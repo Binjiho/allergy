@@ -1,0 +1,322 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">My Page</h2>
+                <ul class="breadcrumb">
+                    <li>My Page</li>
+                    <li>개인정보 수정</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">My Page</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">개인정보 수정</a>
+                    <ul>
+                        <li class="on"><a href="#n">개인정보 수정</a></li>
+                        <li><a href="#n">비밀번호 변경</a></li>
+                        <li><a href="#n">회비납부현황조회</a></li>
+                        <li><a href="#n">학술대회 참석현황</a></li>
+                        <li><a href="#n">책갈피</a></li>
+                        <li><a href="#n">회원탈퇴</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="write-form-wrap">
+                <form action="" method="">
+                    <fieldset>
+                        <legend class="hide">수정</legend>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">회원 가입일</div>
+                                <div class="form-con">
+                                    YYYY-MM-DD HH:MM:SS
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">최종 회원정보 수정일</div>
+                                <div class="form-con">
+                                    YYYY-MM-DD HH:MM:SS
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">회원등급</div>
+                                <div class="form-con">
+                                    정회원
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="btn-wrap text-right mt-30">
+                            <a href="#n" class="btn btn-type1 color-type6">회비납부</a>
+                            <a href="#n" class="btn btn-type1 color-type7">회원탈퇴</a>
+                        </div>
+
+                        <div class="sub-tit-wrap">
+                            <h3 class="sub-tit">기본정보 입력</h3>
+                        </div>
+                        <div class="help-text text-red mb-10">
+                            * 표시된 부분은 반드시 기입해주시기 바랍니다.
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">아이디 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    webmaster
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">성명 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="form-group form-group-text n2">
+                                        <span class="text">국문 : </span>
+                                        국문
+                                    </div>
+                                    <div class="form-group form-group-text n2 mt-10">
+                                        <span class="text">영문 : </span>
+                                        <input type="text" name="" id="" class="form-item" placeholder="First Name">
+                                        <input type="text" name="" id="" class="form-item" placeholder="Last Name">
+                                    </div>
+                                    <div class="form-group form-group-text n2 mt-10">
+                                        <span class="text">한자 : </span>
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">외국 국적 회원 여부 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="radio-wrap cst">
+                                        <label for="chk1_1" class="radio-group"><input type="radio" name="chk1" id="chk1_1">Yes</label>
+                                        <label for="chk1_2" class="radio-group"><input type="radio" name="chk1" id="chk1_2">No</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">생년월일 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <input type="text" name="" id="" class="form-item" placeholder="숫자 8자리만 입력해주세요.">
+                                    <div class="help-text mt-10 text-blue">
+                                        예) 20250101
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">휴대전화번호 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <input type="text" name="" id="" class="form-item" placeholder="숫자만 입력해주세요.">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">E-Mail <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="form-group has-btn">
+                                        <input type="text" name="" id="" class="form-item">
+                                        <button type="button" class="btn btn-small color-type4">중복확인</button>
+                                    </div>
+                                    <div class="checkbox-wrap cst mt-10">
+                                        <label for="chk2" class="checkbox-group"><input type="checkbox" name="" id="chk2">이메일 수정 시 체크</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">자택주소 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="form-group has-btn">
+                                        <input type="text" name="" id="" class="form-item">
+                                        <button type="button" class="btn btn-small color-type4">우편번호 검색</button>
+                                    </div>
+                                    <div class="form-group n2 mt-10">
+                                        <input type="text" name="" id="" class="form-item">
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="sub-tit-wrap">
+                            <h3 class="sub-tit">상세정보 입력</h3>
+                        </div>
+                        <div class="help-text text-red mb-10">
+                            * 표시된 부분은 반드시 기입해주시기 바랍니다.
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">의사면허번호 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    1234567
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">전공분야 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="form-group n2">
+                                        <select name="" id="" class="form-item w-30p">
+                                            <option value="">선택</option>
+                                        </select>
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">전문의 번호</div>
+                                <div class="form-con">
+                                    <input type="text" name="" id="" class="form-item">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">분과 전문의 번호</div>
+                                <div class="form-con">
+                                    <input type="text" name="" id="" class="form-item">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">입회일</div>
+                                <div class="form-con">
+                                    <input type="text" name="" id="" class="form-item" placeholder="숫자 8자리만 입력해주세요.">
+                                    <div class="help-text mt-10 text-blue">
+                                        예) 20250101
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">출신학교</div>
+                                <div class="form-con">
+                                    <input type="text" name="" id="" class="form-item">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">졸업일</div>
+                                <div class="form-con">
+                                    <input type="text" name="" id="" class="form-item" placeholder="숫자 8자리만 입력해주세요.">
+                                    <div class="help-text mt-10 text-blue">
+                                        예) 20250101
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">근무처 정보 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="form-group form-group-text n2">
+                                        <span class="text">국문 : </span>
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                    <div class="form-group form-group-text n2 mt-10">
+                                        <span class="text">영문 : </span>
+                                        <input type="text" name="" id="" class="form-item" placeholder="First Name">
+                                        <input type="text" name="" id="" class="form-item" placeholder="Last Name">
+                                    </div>
+                                    <div class="form-group form-group-text n2 mt-10">
+                                        <span class="text">직위 : </span>
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                    <div class="form-group form-group-text n2 mt-10">
+                                        <span class="text">번호 : </span>
+                                        <select name="" id="" class="form-item w-30p">
+                                            <option value="">선택</option>
+                                        </select>
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">근무처 주소 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="form-group has-btn">
+                                        <input type="text" name="" id="" class="form-item">
+                                        <button type="button" class="btn btn-small color-type4">우편번호 검색</button>
+                                    </div>
+                                    <div class="form-group n2 mt-10">
+                                        <input type="text" name="" id="" class="form-item">
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="sub-tit-wrap">
+                            <h3 class="sub-tit">부가정보 입력</h3>
+                        </div>
+                        <div class="help-text text-red mb-10">
+                            * 표시된 부분은 반드시 기입해주시기 바랍니다.
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">Mailing 서비스 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="radio-wrap cst">
+                                        <label for="chk2_1" class="radio-group"><input type="radio" name="chk2" id="chk2_1">수신</label>
+                                        <label for="chk2_2" class="radio-group"><input type="radio" name="chk2" id="chk2_2">미수신</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">SMS 수신 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="radio-wrap cst">
+                                        <label for="chk3_1" class="radio-group"><input type="radio" name="chk3" id="chk3_1">수신</label>
+                                        <label for="chk3_2" class="radio-group"><input type="radio" name="chk3" id="chk3_2">미수신</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="sub-tit-wrap">
+                            <h3 class="sub-tit">자동화 프로그램 입력 방지</h3>
+                        </div>
+                        <div class="help-text text-red mb-10">
+                            * 정보 보안을 위해 아래 적힌 문자를 입력하신 후 등록 가능합니다.
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-con">
+                                    <div class="captcha">
+                                        <span class="img">
+                                            <img id="captcha_img" src="/assets/image/common/img_captcha.png" alt="">
+                                        </span>
+                                        <button type="button" onclick="refresh_captcha();return false;"><img src="/assets/image/common/ic_refresh.png" class="refresh"></button>
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="btn-wrap text-center">
+                            <a href="#n" class="btn btn-type1 color-type4">취소</a>
+                            <button type="submit" class="btn btn-type1 color-type1">수정</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

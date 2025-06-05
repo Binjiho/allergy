@@ -1,0 +1,147 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">Membership</h2>
+                <ul class="breadcrumb">
+                    <li>Membership</li>
+                    <li>회원가입 안내</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">Membership</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">회원가입 안내</a>
+                    <ul>
+                        <li><a href="#n">로그인</a></li>
+                        <li><a href="#n">아이디 / 비밀번호 찾기</a></li>
+                        <li class="on"><a href="#n">회원가입 안내</a></li>
+                        <li><a href="#n">개인정보취급방침</a></li>
+                        <li><a href="#n">이메일 수집 거부</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox signup-conbox inner-layer">
+            <div class="bg-box signup-info-box">
+                <strong>
+                    대한천식알레르기학회 회원님의 개인정보보호를 위해 최선을 다하고 있습니다. <br>
+                    회원님의 정보는 동의 없이 공개되지 않으며, 개인정보취급방침 가이드에 맞춰 보호 받고 있습니다.
+                </strong>
+            </div>
+
+            <div class="step-list-wrap type2">
+                <ol class="step-list">
+                    <li class="on">
+                        <span class="icon"></span>
+                        <span class="tit">01. 약관동의</span>
+                    </li>
+                    <li class="on">
+                        <span class="icon"></span>
+                        <span class="tit">02. 기본정보 입력</span>
+                    </li>
+                    <li class="on">
+                        <span class="icon"></span>
+                        <span class="tit">03. 상세정보 입력</span>
+                    </li>
+                    <li class="on">
+                        <span class="icon"></span>
+                        <span class="tit">04. 부가정보 입력</span>
+                    </li>
+                    <li>
+                        <span class="icon"></span>
+                        <span class="tit">05. 가입 완료</span>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="write-form-wrap">
+                <form action="./signup_step05.html" mehotd="">
+                    <fieldset>
+                        <legend class="hide">입력</legend>
+                        <div class="sub-tit-wrap">
+                            <h3 class="sub-tit">부가정보 입력</h3>
+                        </div>
+                        <div class="help-text text-red mb-10">
+                            * 표시된 부분은 반드시 기입해주시기 바랍니다.
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">Mailing 서비스 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="radio-wrap cst">
+                                        <label for="chk1_1" class="radio-group"><input type="radio" name="chk1" id="chk1_1">수신</label>
+                                        <label for="chk1_2" class="radio-group"><input type="radio" name="chk1" id="chk1_2">미수신</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">SMS 수신 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="radio-wrap cst">
+                                        <label for="chk2_1" class="radio-group"><input type="radio" name="chk2" id="chk2_1">수신</label>
+                                        <label for="chk2_2" class="radio-group"><input type="radio" name="chk2" id="chk2_2">미수신</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="sub-tit-wrap">
+                            <h3 class="sub-tit">자동화 프로그램 입력 방지</h3>
+                        </div>
+                        <div class="help-text text-red mb-10">
+                            * 정보 보안을 위해 아래 적힌 문자를 입력하신 후 등록 가능합니다.
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-con">
+                                    <div class="captcha">
+                                        <span class="img">
+                                            <img id="captcha_img" src="/assets/image/common/img_captcha.png" alt="">
+                                        </span>
+                                        <button type="button" onclick="refresh_captcha();return false;"><img src="/assets/image/common/ic_refresh.png" class="refresh"></button>
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="btn-wrap text-center">
+                            <a href="#n" class="btn btn-type1 color-type4">취소</a>
+                            <button type="submit" class="btn btn-type1 color-type1">가입 완료</button>
+                            <!-- 수정 -->
+                            <!-- <button type="submit" class="btn btn-type1 color-type1">수정 완료</button> -->
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

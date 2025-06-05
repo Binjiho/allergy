@@ -1,0 +1,1965 @@
+<!doctype html>
+<html lang="ko" class="root-text-sm">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<meta name="csrf-token" content="pM3HDMazYNW1mu1XjvmoeuCxStJnXtP7qhV7f0Cr">
+<title>관리자 | 대한천식알레르기학회</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https:/renew.neuro.or.kr/assets/ko/assets/css/admin/slick.css">
+<link rel="stylesheet" href="/assets/css/admin/admin.css">
+<link rel="stylesheet" href="https:/renew.neuro.or.kr/plugins/flatpickr/css/flatpickr.min.css">
+<style>
+    select {
+        border: 1px solid #ccc;
+    }
+    form select {
+        height: 30px;
+    }
+</style>
+<script src="https:/renew.neuro.or.kr/assets/ko/assets/js/jquery-1.12.4.min.js"></script>
+<script src="https:/renew.neuro.or.kr/assets/ko/assets/js/jquery-ui.min.js"></script>
+<script src="https:/renew.neuro.or.kr/assets/ko/assets/js/slick.min.js"></script>
+<script src="/assets/js/admin.common.js"></script>
+<script src="https:/renew.neuro.or.kr/plugins/moment/js/moment.min.js"></script>
+<script src="https:/renew.neuro.or.kr/plugins/crypto-js/crypto-js.min.js"></script>
+<script src="https:/renew.neuro.or.kr/plugins/flatpickr/js/flatpickr.min.js"></script>
+<script src="https:/renew.neuro.or.kr/plugins/flatpickr/js/flatpickr-ko.min.js"></script>
+<script src="https:/renew.neuro.or.kr/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="https:/renew.neuro.or.kr/script/app/app.common.js?v=20230605"></script>
+</head>
+<body>
+<div class="wrap admin">
+	<header id="header" class="js-header">
+	<div class="header-wrap inner-layer">
+		<h1 class="header-logo">
+		<a href="https:/renew.neuro.or.kr/kr/admin"><img src="/assets/image/common/h1_logo.png"></a>
+		</h1>
+		<div class="util-menu-wrap">
+			<p class="user-info">
+				<b>접속계정 :</b><span style="font-weight: bold; color: #6d6df2; margin-left: 5px;">webmaster99</span>
+			</p>
+			<ul class="util-menu">
+				<li><a href="http://allergy.m2comm.co.kr/" class="btn btn-util color-type17" target="_blank">대한천식알레르기학회</a></li>
+				<li><a href="javascript:logout();" class="btn btn-util color-type5">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+	<nav id="gnb">
+	<div class="gnb-wrap inner-layer">
+		<ul class="gnb js-gnb">
+			<li class="on">
+			<a href="javascript:void(0);">회원 관리</a>
+			<ul>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">회원 관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/fee/feeList">회비 관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/forever/list">평생회비 관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">책임지도전문의 관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member/family">경조사 관리</a>
+				</li>
+			</ul>
+			</li>
+			<li class="">
+			<a href="javascript:void(0);">응시료</a>
+			<ul>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">전문의고시 응시료</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">인서비스 응시료</a>
+				</li>
+			</ul>
+			</li>
+			<li class="">
+			<a href="javascript:void(0);">학술대회</a>
+			<ul>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/workshop/">학술대회 관리</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/bbs/?code=work_notice">학술대회 공지사항</a>
+				</li>
+			</ul>
+			</li>
+			<li class="">
+			<a href="javascript:void(0);">재교육</a>
+			<ul>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=intro">전공의 입문교육</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=integration">전공의 통합교육</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=lifelong">전문의 평생교육</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=specialist">지도전문의 교육</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=depression">기질성 우울증</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=dementia">치매특별강좌</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=camp">의대생캠프</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=brainwave">뇌파정도관리위원회</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/education/manager.php?category=sleep">수면다윈검사</a>
+				</li>
+			</ul>
+			</li>
+			<li class="">
+			<a href="javascript:void(0);">홍보책자/포스터</a>
+			<ul>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/promo">홍보책자</a>
+				</li>
+			</ul>
+			</li>
+			<li class="">
+			<a href="javascript:void(0);">SMS</a>
+			<ul>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/sms/">문자전송</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/sms/g_result.php">전송결과</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/sms/g_reserve.php">예약확인</a>
+				</li>
+				<li>
+				<a href="https:/new.neuro.or.kr/admin/sms/history.php">비용확인</a>
+				</li>
+			</ul>
+			</li>
+			<li class="">
+			<a href="javascript:void(0);">스폰서</a>
+			<ul>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">업체관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">신청관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">후원사 행사관리</a>
+				</li>
+			</ul>
+			</li>
+			<li class="">
+			<a href="javascript:void(0);">기타</a>
+			<ul>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">통합검색순위 관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">외부학회 보고서</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">홍보자료 신청 관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">학술상 관리</a>
+				</li>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/member">국/영문 학회지 우편 수령 여부</a>
+				</li>
+			</ul>
+			</li>
+			<li class="">
+			<a href="javascript:void(0);">이메일 발송신청</a>
+			<ul>
+				<li>
+				<a href="https:/renew.neuro.or.kr/kr/admin/mail">이메일 발송신청</a>
+				</li>
+			</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="gnb-bg js-gnb-bg">
+	</div>
+	</nav>
+	</header>
+	<section id="container" class="inner-layer">
+	<div class="sub-contents">
+
+        <!-- 관리자 추가 작업 -->
+        <div class="admin-info-box text-center">
+            회원 상태를 '승인'으로 변경한 후, 회원 등급을 '정회원' 또는 '준회원'으로 설정하면 당해 연도의 연회비 및 입회비가 자동으로 시스템에 반영됩니다.
+        </div>
+
+        <div class="toggle-wrap">
+            <div class="toggle-tit text-center">
+                <button type="button" class="btn btn-small color-type5  js-btn-toggle">펼치기</button>
+            </div>
+            <div class="toggle-con js-toggle-con" style="display: none;">
+                <table class="cst-table">
+                    <cpation class="hide">안내</cpation>
+                    <colgroup>
+                        <col style="width: 50%;">
+                        <col style="width: 50%;">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="info-tit">
+                                    <img src="/assets/image/admin/ic_info.png" alt="" class="ic-info">
+                                    회비 등록 전, 회원 등급 및 상태가 정확히 설정되어 있는지 반드시 확인해 주세요.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left vat">
+                                <strong class="tit">[회비 등록] 버튼</strong>
+                                <ul class="list-type list-type-dot">
+                                    <li>
+                                        개별 회원의 회비를 단건으로 수동 등록할 수 있는 기능입니다.
+                                    </li>
+                                    <li>
+                                        회원별로 연회비 또는 입회비를 직접 지정하여 등록할 경우 사용해 주세요.
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="text-left vat">
+                                <strong class="tit">[회비 자동 셋팅] 버튼</strong>
+                                <ul class="list-type list-type-dot">
+                                    <li>
+                                        클릭 시 차기연도 회비가 일괄 자동 등록됩니다.
+                                    </li>
+                                    <li>
+                                        회비 자동 셋팅 기능은 매년 12월 1일부터 차기연도 1월 31일까지 사용 가능합니다.
+                                    </li>
+                                    <li>
+                                        해당 기간 외(즉, 12월 1일 이전 또는 1월 31일 이후)에는 기능이 비활성화되며, 사용이 제한됩니다.
+                                    </li>
+                                    <li>
+                                        자동 셋팅 기능은 한 번만 적용되며, 중복 클릭 시 추가 등록되지 않습니다.
+                                    </li>
+                                    <li>
+                                        정해진 기간 내에만 자동 셋팅이 가능하므로, 설정 시점을 반드시 확인해 주세요. 해당 기간 외에는 회비 등록 버튼을 클릭 하시어 개별 등록 해주세요.
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+		<form id="searchF" name="searchF" action="https:/renew.neuro.or.kr/kr/admin/member" class="sch-form-wrap">
+			<fieldset>
+				<legend class="hide">검색</legend>
+				<div class="table-wrap">
+					<table class="cst-table">
+					<colgroup>
+					<col style="width: 8%;">
+					<col style="width: 12%;">
+					<col style="width: 8%;">
+					<col style="width: 12%;">
+					<col style="width: 8%;">
+					<col style="width: 12%;">
+					<col style="width: 8%;">
+					<col style="width: 12%;">
+					<col style="width: 8%;">
+					<col style="width: 12%;">
+					</colgroup>
+					<tbody>
+					<tr>
+						<th scope="row">
+							회원구분
+						</th>
+						<td class="text-left">
+							<select name="memberpart" class="form-item">
+								<option value="">전체</option>
+								<option value="1">전문의</option>
+								<option value="4">전문의고시 재응시 예정자</option>
+								<option value="5">전문준회원</option>
+								<option value="6">일반준회원</option>
+								<option value="2">전공의</option>
+								<option value="3">기타</option>
+								<option value="9">병원</option>
+							</select>
+						</td>
+						<th scope="row">
+							회원등급
+						</th>
+						<td class="text-left">
+							<select name="level" class="form-item">
+								<option value="">전체</option>
+								<option value="1">정회원</option>
+								<option value="2">준회원</option>
+								<option value="W">대기자</option>
+								<option value="T">보류회원</option>
+								<option value="3">일반회원</option>
+								<option value="4">만65세 이상 회원</option>
+								<option value="5">관리회원</option>
+								<option value="M">관리자</option>
+								<option value="O">자격정지</option>
+								<option value="H">학술대회</option>
+								<option value="X">인증의 관리자</option>
+							</select>
+						</td>
+						<th scope="row">
+							이름
+						</th>
+						<td class="text-left">
+							<input type="text" name="name_kr" value="" class="form-item">
+						</td>
+						<th scope="row">
+							아이디
+						</th>
+						<td class="text-left">
+							<input type="text" name="user_id" value="" class="form-item">
+						</td>
+						<th scope="row">
+							면허번호
+						</th>
+						<td class="text-left">
+							<input type="text" name="license_number" value="" class="form-item">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							위원회
+						</th>
+						<td class="text-left">
+							<select name="user_level2" class="form-item">
+								<option value="">전체</option>
+								<option value="1">정보</option>
+								<option value="2">편집</option>
+								<option value="3">법제</option>
+								<option value="4">보험</option>
+								<option value="5">홍보</option>
+								<option value="6">평의원</option>
+								<option value="7">상임이사</option>
+								<option value="8">학술</option>
+								<option value="9">수련</option>
+								<option value="X">고시</option>
+								<option value="Y">총무</option>
+								<option value="Z">교과서</option>
+								<option value="A">기획</option>
+								<option value="B">용어</option>
+								<option value="C">노인의료</option>
+							</select>
+						</td>
+						<th scope="row">
+							직위
+						</th>
+						<td class="text-left">
+							<select name="joblevel1" class="form-item">
+								<option value="">전체</option>
+								<option value="1">교수</option>
+								<option value="2">부교수</option>
+								<option value="3">조교수</option>
+								<option value="4">전임강사</option>
+								<option value="5">임상강사</option>
+								<option value="6">임상교수</option>
+								<option value="21">임상부교수</option>
+								<option value="7">임상조교수</option>
+								<option value="8">전임의</option>
+								<option value="9">연구강사</option>
+								<option value="10">전문의</option>
+								<option value="20">해외연수</option>
+								<option value="23">진료교수</option>
+								<option value="11">기타</option>
+								<option value="12">봉직의</option>
+								<option value="13">전문의</option>
+								<option value="22">원장</option>
+								<option value="14">개업의</option>
+								<option value="15">군의관</option>
+								<option value="16">공중보건의</option>
+								<option value="17">기타</option>
+								<option value="18">휴직</option>
+								<option value="19">기타</option>
+							</select>
+						</td>
+						<th scope="row">
+							핸드폰
+						</th>
+						<td class="text-left">
+							<input type="text" name="phone" value="" class="form-item">
+						</td>
+						<th scope="row">
+							E-mail
+						</th>
+						<td class="text-left">
+							<input type="text" name="email" value="" class="form-item">
+						</td>
+						<th scope="row">
+							의사면허 취득년도
+						</th>
+						<td class="text-left">
+							<input type="text" name="license_year" value="" class="form-item">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							위원회
+						</th>
+						<td class="text-left">
+							<select name="local_area" class="form-item">
+								<option value="">전체</option>
+								<option value="1">서울,경인</option>
+								<option value="2">중부</option>
+								<option value="3">호남</option>
+								<option value="4">대구,경북</option>
+								<option value="5">부산,경남</option>
+								<option value="7">강원</option>
+								<option value="8">재주</option>
+								<option value="6">기타</option>
+							</select>
+						</td>
+						<th scope="row">
+							주소
+						</th>
+						<td class="text-left">
+							<input type="text" name="office_addr" value="" class="form-item">
+						</td>
+						<th scope="row">
+							병원명
+						</th>
+						<td class="text-left">
+							<input type="text" name="office_name" value="" class="form-item">
+						</td>
+						<th scope="row">
+							전문의 번호
+						</th>
+						<td class="text-left">
+							<input type="text" name="special_number" value="" class="form-item">
+						</td>
+						<th scope="row">
+							전문의 취득년도
+						</th>
+						<td class="text-left">
+							<input type="text" name="special_year" value="" class="form-item">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							코스모스졸업
+						</th>
+						<td class="text-left">
+							<select name="cosmosgraduation" style="width:80%;">
+								<option value="">선택</option>
+								<option value="Y">예</option>
+								<option value="N">아니오</option>
+							</select>
+						</td>
+						<th scope="row">
+							수련병원과장
+						</th>
+						<td class="text-left">
+							<select name="joblevel2" style="width:80%;">
+								<option value="">선택</option>
+								<option value="1">예</option>
+								<option value="N">아니오</option>
+							</select>
+						</td>
+						<th scope="row">
+							회원정보제공여부
+						</th>
+						<td class="text-left">
+							<select name="search_agree" class="form-item">
+								<option value="">전체</option>
+								<option value="Y">동의함</option>
+								<option value="N">동의안함</option>
+							</select>
+						</td>
+						<th scope="row">
+							학회지 우편발송
+						</th>
+						<td class="text-left">
+							<div class="form-con">
+								<div class="checkbox-group">
+									<input type="checkbox" name="post1" id="post1" value="Y">
+									<label for="post1">국문학회지</label>
+									<input type="checkbox" name="post1_1" id="post1_1" value="Y">
+									<label for="post1_1">영문학회지</label>
+								</div>
+							</div>
+						</td>
+						<th scope="row">
+							뉴스레터 우편발송
+						</th>
+						<td>
+							<select name="post2">
+								<option value="">선택</option>
+								<option value="Y">예</option>
+								<option value="N">아니오</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							전공의 연차
+						</th>
+						<td colspan="3">
+							<div class="form-con">
+								<div class="checkbox-group">
+									<input type="checkbox" name="major_level[]" id="major_level9" value="9"><label for="major_level9">예비 1년차</label>
+									<input type="checkbox" name="major_level[]" id="major_level1" value="1"><label for="major_level1">전공의 R1</label>
+									<input type="checkbox" name="major_level[]" id="major_level2" value="2"><label for="major_level2">전공의 R2</label>
+									<input type="checkbox" name="major_level[]" id="major_level3" value="3"><label for="major_level3">전공의 R3</label>
+									<input type="checkbox" name="major_level[]" id="major_level4" value="4"><label for="major_level4">전공의 R4</label>
+								</div>
+							</div>
+						</td>
+						<th scope="row">
+							병원분류별
+						</th>
+						<td colspan="5">
+							<div class="form-con">
+								<div class="checkbox-group">
+									<input type="checkbox" name="job_arr[]" id="job_arr1" value="1">
+									<label for="job_arr1">수련병원</label>
+									<input type="checkbox" name="job_arr[]" id="job_arr7" value="7">
+									<label for="job_arr7">대학병원</label>
+									<input type="checkbox" name="job_arr[]" id="job_arr2" value="2">
+									<label for="job_arr2">종합병원</label>
+									<input type="checkbox" name="job_arr[]" id="job_arr3" value="3">
+									<label for="job_arr3">개인병원</label>
+									<input type="checkbox" name="job_arr[]" id="job_arr8" value="8">
+									<label for="job_arr8">요양병원</label>
+									<input type="checkbox" name="job_arr[]" id="job_arr4" value="4">
+									<label for="job_arr4">군복무</label>
+									<input type="checkbox" name="job_arr[]" id="job_arr5" value="5">
+									<label for="job_arr5">기타</label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+					</table>
+				</div>
+				<div class="btn-wrap text-center">
+					<button type="submit" class="btn btn-type1 color-type17">검색</button>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member" class="btn btn-type1 color-type18">검색 초기화</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/excel" class="btn btn-type1 color-type19">데이터 백업</a>
+				</div>
+			</fieldset>
+		</form>
+		<div class="table-wrap mb-50">
+			<table class="cst-table abs-info-table">
+			<colgroup>
+			<col style="width: 15%;">
+			<col style="width: 85%;">
+			</colgroup>
+			<tbody>
+			<tr>
+				<td>
+					병원분류별
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?jobarea=1"><b>수련병원</b> : 790명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?jobarea=7"><b>대학병원</b> : 58명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?jobarea=2"><b>종합병원</b> : 582명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?jobarea=3"><b>개인병원</b> : 515명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?jobarea=8"><b>요양병원</b> : 162명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?jobarea=9"><b>전문병원</b> : 84명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?jobarea=4"><b>군복무</b> : 73명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?jobarea=5"><b>기타</b> : 163명</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					회원등급별
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=1"><b>정회원</b> : 2,238명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=2"><b>준회원</b> : 380명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=W"><b>대기자</b> : 0명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=T"><b>보류회원</b> : 0명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=3"><b>일반회원</b> : 3명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=4"><b>만65세 이상 회원</b> : 111명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=5"><b>관리회원</b> : 0명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=M"><b>관리자</b> : 6명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=H"><b>학술대회</b> : 1명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?level=X"><b>인증의 관리자</b> : 2명</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					회원구분별
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?memberpart=1"><b>전문의</b> : 2,449명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?memberpart=4"><b>전문의고시 재응시 예정자</b> : 4명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?memberpart=5"><b>전문준회원</b> : 3명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?memberpart=6"><b>일반준회원</b> : 335명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?memberpart=2"><b>전공의</b> : 45명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?memberpart=3"><b>기타</b> : 12명</a>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member?memberpart=9"><b>병원</b> : 78명</a>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+		<div class="table-wrap" style="margin-top: 10px;">
+			<table class="cst-table list-table">
+			<caption class="hide">목록</caption>
+			<colgroup>
+			<col style="width: 3%;">
+			<col style="width: 5%;">
+			<col style="width: 6%;">
+			<col style="width: 6%;">
+			<col style="width: 6%;">
+			<col style="width: 6%;">
+			<col style="width: 6%;">
+			<col style="width: 4%;">
+			<col style="width: 7%;">
+			<col style="width: 6%;">
+			<col style="width: 6%;">
+			<col style="width: 6%;">
+			<col style="width: 5%;">
+			<col style="width: 5%;">
+			<col style="width: 5%;">
+			<col style="width: 5%;">
+			</colgroup>
+			<thead>
+			<tr>
+				<th scope="col">
+					번호
+				</th>
+				<th scope="col">
+					등급
+				</th>
+				<th scope="col">
+					아이디
+				</th>
+				<th scope="col">
+					이름
+				</th>
+				<th scope="col">
+					면허번호
+				</th>
+				<th scope="col">
+					전문의번호
+				</th>
+				<th scope="col">
+					생년월일
+				</th>
+				<th scope="col">
+					성별
+				</th>
+				<th scope="col">
+					병원명
+				</th>
+				<th scope="col">
+					직위
+				</th>
+				<th scope="col">
+					E-mail
+				</th>
+				<th scope="col">
+					휴대폰번호
+				</th>
+				<th scope="col">
+					수정일
+				</th>
+				<th scope="col">
+					비밀번호
+				</th>
+				<th scope="col">
+					로그인
+				</th>
+				<th scope="col">
+					관리
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr data-sid="3159">
+				<td>
+					2886
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3159" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					keulos </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3159" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					계근형 </a>
+				</td>
+				<td>
+					132867
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1984-01-17
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					순천향대학교병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					keulos@naver.com
+				</td>
+				<td>
+					010-7247-8694
+				</td>
+				<td>
+					2025-03-10
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3159" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3108">
+				<td>
+					2885
+				</td>
+				<td>
+					 정회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3108" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					ering92 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3108" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					노혜림(M2) </a>
+				</td>
+				<td>
+					123456
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1990-01-01
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					고려대안산병원
+				</td>
+				<td>
+					전공의 R3
+				</td>
+				<td>
+					ering92@m2community.co.kr
+				</td>
+				<td>
+					010-2862-2407
+				</td>
+				<td>
+					2025-03-04
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3108" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3107">
+				<td>
+					2884
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3107" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					jhjindoc </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3107" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					진종현 </a>
+				</td>
+				<td>
+					144394
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1997-05-21
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					국립중앙의료원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					harryjinjin@naver.com
+				</td>
+				<td>
+					010-7595-2275
+				</td>
+				<td>
+					2024-09-06
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3107" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3104">
+				<td>
+					2883
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3104" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					gwj04062 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3104" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					김민경E </a>
+				</td>
+				<td>
+					145926
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1997-05-29
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					연세대원주세브란스기독병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					gwj04062@naver.com
+				</td>
+				<td>
+					010-4562-3891
+				</td>
+				<td>
+					2024-06-14
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3104" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3102">
+				<td>
+					2882
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3102" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					lhj1998 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3102" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					임희정 </a>
+				</td>
+				<td>
+					143517
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1998-08-24
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					중앙대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					lhj1998@naver.com
+				</td>
+				<td>
+					010-2595-1058
+				</td>
+				<td>
+					2024-07-13
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3102" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3099">
+				<td>
+					2881
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3099" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					tedjang7 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3099" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					장석희 </a>
+				</td>
+				<td>
+					144603
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1997-02-08
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					단국대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					gmfmem@naver.com
+				</td>
+				<td>
+					010-8751-6819
+				</td>
+				<td>
+					2024-03-05
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3099" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3098">
+				<td>
+					2880
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3098" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					songlee2338 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3098" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					이송 </a>
+				</td>
+				<td>
+					143596
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1998-09-13
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					의정부을지대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					songlee2338@gmail.com
+				</td>
+				<td>
+					010-9794-0260
+				</td>
+				<td>
+					2024-03-12
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3098" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3097">
+				<td>
+					2879
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3097" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					syestelle </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3097" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					김서윤 </a>
+				</td>
+				<td>
+					1443370
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1996-08-20
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					인제대부산백병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					kim_estelle@naver.com
+				</td>
+				<td>
+					010-7912-3328
+				</td>
+				<td>
+					2024-02-27
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3097" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3096">
+				<td>
+					2878
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3096" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					emp0310 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3096" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					이진용B </a>
+				</td>
+				<td>
+					144414
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1988-03-10
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					서울대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					emp0310nr@gmail.com
+				</td>
+				<td>
+					010-5605-8275
+				</td>
+				<td>
+					2024-02-29
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3096" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3095">
+				<td>
+					2877
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3095" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					bellatrix </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3095" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					박조아 </a>
+				</td>
+				<td>
+					146147
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1991-09-19
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					서울대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					joapark919@gmail.com
+				</td>
+				<td>
+					010-2736-7297
+				</td>
+				<td>
+					2024-02-19
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3095" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3093">
+				<td>
+					2876
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3093" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					yongsu0128 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3093" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					장용수 </a>
+				</td>
+				<td>
+					144750
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1997-01-28
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					서울특별시보라매병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					yyss0128@naver.com
+				</td>
+				<td>
+					010-2018-0268
+				</td>
+				<td>
+					2024-07-03
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3093" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3092">
+				<td>
+					2875
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3092" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					benjamin0212 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3092" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					고지원 </a>
+				</td>
+				<td>
+					143918
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1999-02-12
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					한양대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					benjamin0212@naver.com
+				</td>
+				<td>
+					010-9876-0473
+				</td>
+				<td>
+					2024-02-14
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3092" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3091">
+				<td>
+					2874
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3091" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					kdsshinhak </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3091" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					신정욱 </a>
+				</td>
+				<td>
+					136029
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1991-11-27
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					한양대병원
+				</td>
+				<td>
+					전공의 R2
+				</td>
+				<td>
+					kdsshinhak@gmail.com
+				</td>
+				<td>
+					010-9516-1060
+				</td>
+				<td>
+					2025-03-25
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3091" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3090">
+				<td>
+					2873
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3090" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					alra812 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3090" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					이주현 </a>
+				</td>
+				<td>
+					146311
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1997-08-12
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					대구가톨릭대학교병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					alra812@naver.com
+				</td>
+				<td>
+					010-9085-1858
+				</td>
+				<td>
+					2024-02-17
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3090" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3089">
+				<td>
+					2872
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3089" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					skadngur96 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3089" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					남우혁 </a>
+				</td>
+				<td>
+					144171
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1996-03-14
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					인하대병원
+				</td>
+				<td>
+					예비 1년차
+				</td>
+				<td>
+					namwh.nr@gmail.com
+				</td>
+				<td>
+					010-9486-8101
+				</td>
+				<td>
+					2025-04-12
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3089" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3088">
+				<td>
+					2871
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3088" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					rosalie96 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3088" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					류현정 </a>
+				</td>
+				<td>
+					143766
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1996-07-12
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					울산대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					hj712@naver.com
+				</td>
+				<td>
+					010-3023-0147
+				</td>
+				<td>
+					2024-02-14
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3088" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3087">
+				<td>
+					2870
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3087" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					hyun7186 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3087" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					이승현C </a>
+				</td>
+				<td>
+					141615
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1996-11-21
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					울산대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					hyun7186@naver.com
+				</td>
+				<td>
+					010-8485-7186
+				</td>
+				<td>
+					2024-02-14
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3087" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3086">
+				<td>
+					2869
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3086" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					suchiry </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3086" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					최수련 </a>
+				</td>
+				<td>
+					141053
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1993-02-08
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					건국대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					suchiry28@gmail.com
+				</td>
+				<td>
+					010-3770-7082
+				</td>
+				<td>
+					2024-02-07
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3086" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3085">
+				<td>
+					2868
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3085" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					mskoko </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3085" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					고명서 </a>
+				</td>
+				<td>
+					144752
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1998-10-22
+				</td>
+				<td>
+					여
+				</td>
+				<td>
+					칠곡경북대병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					msk981022@naver.com
+				</td>
+				<td>
+					010-2939-0373
+				</td>
+				<td>
+					2024-03-05
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3085" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			<tr data-sid="3084">
+				<td>
+					2867
+				</td>
+				<td>
+					 준회원
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3084" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					changmoklim </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3084" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900" style="color: #5a5ad7;">
+					임창목 </a>
+				</td>
+				<td>
+					134034
+				</td>
+				<td>
+					신경
+				</td>
+				<td>
+					1989-05-12
+				</td>
+				<td>
+					남
+				</td>
+				<td>
+					한림대강남성심병원
+				</td>
+				<td>
+					전공의 R1
+				</td>
+				<td>
+					changmoklim@naver.com
+				</td>
+				<td>
+					010-7281-1545
+				</td>
+				<td>
+					2024-05-24
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type18 pw-reset">
+					초기화 </a>
+				</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-small color-type5 user-login">
+					로그인 </a>
+				</td>
+				<td>
+					<a href="https:/renew.neuro.or.kr/kr/admin/member/upsert?sid=3084" class="btn-admin call-popup" data-name="member-upsert" data-width="1300" data-height="900">
+					<img src="/assets/ko/assets/image/admin/ic_modify.png" alt="수정">
+					</a>
+					<a href="javascript:void(0);" class="btn-admin btn-del">
+					<img src="/assets/ko/assets/image/admin/ic_del.png" alt="삭제">
+					</a>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+		<div class="paging-wrap">
+			<ul class="paging">
+				<li class="on num" aria-current="page"><a href="javascript:void(0);">1</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=2">2</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=3">3</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=4">4</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=5">5</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=6">6</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=7">7</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=8">8</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=9">9</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=10">10</a></li>
+				<li class="disabled num" aria-disabled="true"><span>...</span></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=144">144</a></li>
+				<li class="num"><a href="https:/renew.neuro.or.kr/kr/admin/member?page=145">145</a></li>
+				<li class="next">
+				<a href="https:/renew.neuro.or.kr/kr/admin/member?page=2" rel="next" aria-label="pagination.next">&rsaquo;</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</section>
+	<footer id="footer">
+	<button type="button" class="btn-top js-btn-top">
+	<img src="/assets/image/admin/common/ic_top.png" alt="">
+	TOP </button>
+	<div class="footer-wrap inner-layer">
+		<div class="footer-con">
+			<span class="footer-logo">Secretariat of 대한신경과학회</span>
+			<ul>
+				<li>[03163] 서울 종로구 인사동 43번지 대일빌딩 1111호 (종로구 인사동길12 1111호)</li>
+				<li>02-737-6530 02-737-6531 이메일 : kna@neuro.or.kr</li>
+			</ul>
+		</div>
+	</div>
+	<p class="copy">
+		Copyright © 대한신경과학회. All Rights Reserved.
+	</p>
+	</footer>
+</div>
+<style>
+        #spinner-div {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+        }
+        .spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .spinner-dot {
+            width: 20px;
+            height: 20px;
+            background-color: #e27f5c;
+            border-radius: 50%;
+            position: absolute;
+            animation: bounce 1s infinite alternate;
+        }
+        .spinner-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .spinner-dot:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        .spinner-dot:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-15px);
+            }
+        }
+</style>
+<div id="spinner-div">
+	<div class="spinner">
+		<div class="spinner-dot">
+		</div>
+		<div class="spinner-dot" style="left: 30px;">
+		</div>
+		<div class="spinner-dot" style="left: 60px;">
+		</div>
+	</div>
+</div>
+</body>
+</html>

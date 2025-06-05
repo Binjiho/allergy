@@ -1,0 +1,194 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">게시판</h2>
+                <ul class="breadcrumb">
+                    <li>게시판</li>
+                    <li>공지사항</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">게시판</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">공지사항</a>
+                    <ul>
+                        <li class="on"><a href="#n">공지사항</a></li>
+                        <li><a href="#n">연구팀 게시판</a></li>
+                        <li><a href="#n">지회 게시판</a></li>
+                        <li><a href="#n">서식</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <!-- s:board -->             
+            <link href="./assets/css/board.css" rel="stylesheet">
+
+            <div id="board" class="board-wrap">
+                <div class="board-write">
+                    <div class="write-form-wrap">
+                        <form action="./list.html" method="">
+                            <fieldset>
+                                <legend class="hide">글쓰기</legend>
+                                <div class="write-contop text-right">
+                                    <div class="help-text"><strong class="required">*</strong> 표시는 필수입력 항목입니다.</div>
+                                </div>
+                                <ul class="write-wrap">
+                                    <li>
+                                        <div class="form-tit">작성자</div>
+                                        <div class="form-con">
+                                            대한천식알레르기학회
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">카테고리 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label for="chk1_1" class="radio-group"><input type="radio" name="chk1" id="chk1_1">공지사항</label>
+                                                <label for="chk1_2" class="radio-group"><input type="radio" name="chk1" id="chk1_2">관련기관 소식</label>
+                                                <label for="chk1_3" class="radio-group"><input type="radio" name="chk1" id="chk1_3">보험관련 소식</label>
+                                                <label for="chk1_4" class="radio-group"><input type="radio" name="chk1" id="chk1_4">보도자료</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">제목 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <input type="text" name="" id="" class="form-item">
+                                            <div class="checkbox-wrap cst mt-10">
+                                                <label for="chk-tit1" class="checkbox-group"><input type="checkbox" name="" id="chk-tit1">공지</label>
+                                                <label for="chk-tit2" class="checkbox-group"><input type="checkbox" name="" id="chk-tit2">Main 노출</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">공개 여부 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label for="chk1" class="radio-group"><input type="radio" name="chk2" id="chk2_1">공개</label>
+                                                <label for="chk2" class="radio-group"><input type="radio" name="chk2" id="chk2_2">비공개 노출</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">팝업 설정</div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label for="chk-pop1" class="radio-group"><input type="radio" name="" id="chk-pop1">설정함</label>
+                                                <label for="chk-pop2" class="radio-group"><input type="radio" name="" id="chk-pop2">설정 안함</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">팝업 템플릿</div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label for="chk-temp1" class="radio-group"><input type="radio" name="" id="chk-temp1">없음</label>
+                                                <label for="chk-temp2" class="radio-group"><input type="radio" name="" id="chk-temp2">템플릿1</label>
+                                                <label for="chk-temp3" class="radio-group"><input type="radio" name="" id="chk-temp3">템플릿2</label>
+                                                <a href="#n" class="btn btn-small">미리보기</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">팝업 내용 선택</div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label for="chk-popcon1" class="radio-group"><input type="radio" name="" id="chk-popcon1">공지 내용과 동일</label>
+                                                <label for="chk-popcon2" class="radio-group"><input type="radio" name="" id="chk-popcon2">팝업 내용 새로 작성</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">팝업 사이즈</div>
+                                        <div class="form-con">
+                                            <div class="form-group">
+                                                <span class="text">사이즈</span> : <input type="text" name="" id="" class="form-item w-10p"> X <input type="text" name="" id="" class="form-item w-10p">
+                                            </div>
+                                            <div class="form-group mt-10">
+                                                <span class="text">위치</span> : 위에서 <input type="text" name="" id="" class="form-item w-10p"> px, 왼쪽에서 <input type="text" name="" id="" class="form-item w-10p"> px
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">팝업 자세히 보기</div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label for="chk-popview1" class="radio-group"><input type="radio" name="" id="chk-popview1">설정함</label>
+                                                <label for="chk-popview2" class="radio-group"><input type="radio" name="" id="chk-popview2">설정안함</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">사이즈 변경</div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label for="chk-popsize1" class="radio-group"><input type="radio" name="" id="chk-popsize1">설정함</label>
+                                                <label for="chk-popsize2" class="radio-group"><input type="radio" name="" id="chk-popsize2">설정안함</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">팝업 시작일 / 종료일</div>
+                                        <div class="form-con">
+                                            <div class="form-group">
+                                                <span class="text">시작일 : </span> <input type="text" name="" id="" class="form-item w-20p datepicker"> &nbsp;
+                                                <span class="text">종료일 : </span> <input type="text" name="" id="" class="form-item w-20p datepicker">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-con">
+                                            에디터 영역
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-con">
+                                            파일 등록 영역
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="btn-wrap text-center">
+                                    <a href="./list.html" class="btn btn-board btn-cancel">취소</a>
+                                    <button type="submit" class="btn btn-board btn-modify">등록</button>
+                                    <a href="./list.html" class="btn btn-board btn-list full-right">목록</a>
+                                </div>                      
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>  
+            <!-- //e:board -->
+            
+        </div>
+    </article>
+</section>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

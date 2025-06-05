@@ -1,0 +1,213 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">학회소개</h2>
+                <ul class="breadcrumb">
+                    <li>학회소개</li>
+                    <li>인사말</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">학회소개</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">인사말</a>
+                    <ul>
+                        <li class="on"><a href="#n">인사말</a></li>
+                        <li><a href="#n">연혁</a></li>
+                        <li><a href="#n">회칙</a></li>
+                        <li><a href="#n">조직</a></li>
+                        <li><a href="#n">오시는길</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="sub-tit-wrap">
+                <h4 class="sub-tit">컨텐츠 타이틀</h4>
+            </div>
+            <div class="sub-tab-wrap">
+                <button type="button" class="btn btn-tab-menu js-btn-tab-menu">tab menu1</button>
+                <ul class="sub-tab-menu js-tab-menu">
+                    <li class="on"><a href="#n">tab menu1</a></li>
+                    <li><a href="#n">tab menu2</a></li>
+                    <li><a href="#n">tab menu3</a></li>
+                </ul>
+            </div>
+
+            <div class="sub-tab-con js-tab-con" style="display: block;">
+                탭메뉴 1 <br>
+                탭메뉴 1 <br>
+                탭메뉴 1
+            </div>
+            <div class="sub-tab-con js-tab-con">
+                탭메뉴 2 <br>
+                탭메뉴 2 <br>
+                탭메뉴 2
+            </div>
+            <div class="sub-tab-con js-tab-con">
+                탭메뉴 3 <br>
+                탭메뉴 3 <br>
+                탭메뉴 3
+            </div>
+
+            <div class="ready-wrap">
+                <img src="/assets/image/sub/img_ready.png" alt="">
+                <p class="tit">해당 메뉴는 <strong>현재 준비중</strong> 입니다.</p>
+            </div>
+            <br><br>
+
+            <!-- Only PC -->
+            <!-- <div class="notice-box m-show">
+                <img src="/assets/image/sub/img_notice.png" alt="">
+                <p class="tit">Only available on the PC</p>
+            </div> -->
+            <br><br>
+
+            <div class="table-wrap scroll-x touch-help">
+                <table class="cst-table">
+                    <caption class="hide">테이블</caption>
+                    <colgroup>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">th</th>
+                            <th scope="col">th</th>
+                            <th scope="col">th</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>td</td>
+                            <td>td</td>
+                            <td>td</td>
+                        </tr>
+                        <tr>
+                            <td>td</td>
+                            <td>td</td>
+                            <td>td</td>
+                        </tr>
+                        <tr>
+                            <td>td</td>
+                            <td>td</td>
+                            <td>td</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br><br>
+
+            <div class="write-form-wrap">
+                <form action="" method="">
+                    <fieldset>
+                        <legend class="hide">등록폼</legend>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">항목 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <input type="text" name="" id="" class="form-item">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">항목 <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <select name="" id="" class="form-item">
+                                        <option value="">선택</option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">radio <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="radio-wrap cst">
+                                        <label for="chk1_1" class="radio-group"><input type="radio" name="chk" id="chk1_1">라디오버튼 1</label>
+                                        <label for="chk1_2" class="radio-group"><input type="radio" name="chk" id="chk1_2">라디오버튼 2</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">checkbox <strong class="required">*</strong></div>
+                                <div class="form-con">
+                                    <div class="checkbox-wrap cst">
+                                        <label for="chk2_1" class="checkbox-group"><input type="checkbox" name="chk" id="chk2_1">체크박스 1</label>
+                                        <label for="chk2_2" class="checkbox-group"><input type="checkbox" name="chk" id="chk2_2">체크박스 2</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </form>
+            </div>
+
+            <br><br>
+
+            <div class="btn-wrap text-center">
+                <a href="#n" class="btn btn-type1 color-type1">color-type1</a>
+                <a href="#n" class="btn btn-type1 color-type2">color-type2</a>
+                <a href="#n" class="btn btn-type1 color-type3">color-type3</a>
+                <a href="#n" class="btn btn-type1 color-type4">color-type4</a>
+                <a href="#n" class="btn btn-type1 color-type5">color-type5</a>
+                <a href="#n" class="btn btn-type1 color-type6">color-type6</a>
+                <a href="#n" class="btn btn-type1 color-type7">color-type7</a>
+                <a href="#n" class="btn btn-type1 color-type8">color-type8</a>
+                <a href="#n" class="btn btn-type1 color-type9">color-type9</a>
+                <a href="#n" class="btn btn-type1 color-type10">color-type10</a>
+            </div>
+            <div class="btn-wrap text-center">
+                <a href="#n" class="btn btn-type1 btn-line color-type1">color-type1</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type2">color-type2</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type3">color-type3</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type4">color-type4</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type5">color-type5</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type6">color-type6</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type7">color-type7</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type8">color-type8</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type9">color-type9</a>
+                <a href="#n" class="btn btn-type1 btn-line color-type10">color-type10</a>
+            </div>
+            <div class="btn-wrap text-center">
+                <a href="#n" class="btn btn-small color-type1">color-type1</a>
+                <a href="#n" class="btn btn-small color-type2">color-type2</a>
+                <a href="#n" class="btn btn-small color-type3">color-type3</a>
+                <a href="#n" class="btn btn-small color-type4">color-type4</a>
+                <a href="#n" class="btn btn-small color-type5">color-type5</a>
+                <a href="#n" class="btn btn-small color-type6">color-type6</a>
+                <a href="#n" class="btn btn-small color-type7">color-type7</a>
+                <a href="#n" class="btn btn-small color-type8">color-type8</a>
+                <a href="#n" class="btn btn-small color-type9">color-type9</a>
+                <a href="#n" class="btn btn-small color-type10">color-type10</a>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

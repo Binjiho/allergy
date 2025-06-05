@@ -1,0 +1,112 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">My Page</h2>
+                <ul class="breadcrumb">
+                    <li>My Page</li>
+                    <li>회원탈퇴</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">My Page</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">회원탈퇴</a>
+                    <ul>
+                        <li><a href="#n">개인정보 수정</a></li>
+                        <li><a href="#n">비밀번호 변경</a></li>
+                        <li><a href="#n">회비납부현황조회</a></li>
+                        <li><a href="#n">학술대회 참석현황</a></li>
+                        <li><a href="#n">책갈피</a></li>
+                        <li class="on"><a href="#n">회원탈퇴</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="write-form-wrap">
+                <form action="" method="">
+                    <fieldset>
+                        <legend class="hide">회원 탈퇴</legend>
+                        <div class="bg-img-box bg-box">
+                            <div class="img-wrap">
+                                <img src="/assets/image/sub/img_resign.png" alt="">
+                            </div>
+                            <div class="text-wrap">
+                                <strong class="tit">탈퇴 신청 전 아래 사항을 반드시 확인해주세요.</strong>
+                                <ul class="list-type list-type-dot">
+                                    <li>
+                                        회원탈퇴 시 대한천식알레르기학회의 모든 정보가 삭제되며, 탈퇴 후 복구가 불가능합니다.
+                                    </li>
+                                    <li>
+                                        본인이 직접 신청하셔야 하며, 회원 DB에 있는 정보와 일치하여야만 탈퇴가 가능합니다.
+                                    </li>
+                                    <li>
+                                        신청된 탈퇴 내역은 <span class="text-red">학회의 확인 후 신청일로부터 10일 이내 탈퇴 처</span>리 됩니다.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">이름</div>
+                                <div class="form-con">
+                                    {이름}
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">아이디</div>
+                                <div class="form-con">
+                                    {아이디}
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">회원등급</div>
+                                <div class="form-con">
+                                    {회원등급}
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">학회 가입일</div>
+                                <div class="form-con">
+                                    {YYYY.MM.DD}
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="btn-wrap text-center">
+                            <a href="#n" class="btn btn-type1 color-type4">닫기</a>
+                            <button type="submit" class="btn btn-type1 btn-line color-type7">회원탈퇴</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

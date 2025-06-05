@@ -1,0 +1,202 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">My Page</h2>
+                <ul class="breadcrumb">
+                    <li>My Page</li>
+                    <li>회비납부현황조회</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">My Page</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">회비납부현황조회</a>
+                    <ul>
+                        <li><a href="#n">개인정보 수정</a></li>
+                        <li><a href="#n">비밀번호 변경</a></li>
+                        <li class="on"><a href="#n">회비납부현황조회</a></li>
+                        <li><a href="#n">학술대회 참석현황</a></li>
+                        <li><a href="#n">책갈피</a></li>
+                        <li><a href="#n">회원탈퇴</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="bg-img-box bg-box">
+                <div class="img-wrap">
+                    <img src="/assets/image/sub/img_fee.png" alt="">
+                </div>
+                <div class="text-wrap">
+                    <strong class="tit">회비 납부 안내</strong>
+                    <ul class="list-type list-type-dot">
+                        <li>
+                            회원 등급 : 정회원 or 준회원
+                        </li>
+                        <li>
+                            당해연도 회비 납부 기간 : 2025.01.01 ~ 2025.12.31
+                        </li>
+                        <li>
+                            차기연도 회비 납부일 : 2025.01.01 ~ 2026.12.31 or 공백처리
+                        </li>
+                    </ul>
+                    <div class="text-red mt-20">
+                        * 평생회비 납부 시 당해연도 연회비부터는 납부하지 않으셔도 됩니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="line-box">
+                <ul class="list-type list-type-dot">
+                    <li>
+                        납부하실 회비 항목 선택 후 회비 납부하기 버튼 클릭해주세요. (당해연도 회비만 납부 가능)
+                    </li>
+                    <li>
+                        <img src="/assets/image/sub/img_shinhanbank.png" alt="신한은행"> 100-012-958376 / 대한천식알레르기학회
+                    </li>
+                    <li class="text-red">
+                        영수증 출력은 PC에서만 제공됩니다.
+                    </li>
+                </ul>
+                <div class="btn-wrap">
+                    <a href="#n" class="btn btn-type1 color-type6">회비 납부하기</a>
+                </div>
+            </div>
+
+            <div class="table-wrap scroll-x touch-help">
+                <table class="cst-table">
+                    <caption class="hide">목록</caption>
+                    <colgroup>
+                        <col style="width: 7%;">
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col style="width: 12%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <div class="checkbox-wrap cst">
+                                    <label for="" class="checkbox-group empty"><input type="checkbox" name="" id=""></label>
+                                </div>
+                            </th>
+                            <th scope="col">연도</th>
+                            <th scope="col">회비 구분</th>
+                            <th scope="col">회비 금액</th>
+                            <th scope="col">납부 일자</th>
+                            <th scope="col">납부 방법</th>
+                            <th scope="col">납부 상태</th>
+                            <th scope="col">영수증</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="checkbox-wrap cst">
+                                    <label for="" class="checkbox-group empty"><input type="checkbox" name="" id=""></label>
+                                </div>
+                            </td>
+                            <td>2025</td>
+                            <td>평생회비</td>
+                            <td>500,000</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <span class="text-red">미납</span>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox-wrap cst">
+                                    <label for="" class="checkbox-group empty"><input type="checkbox" name="" id=""></label>
+                                </div>
+                            </td>
+                            <td>2025</td>
+                            <td>연회비</td>
+                            <td>50,000</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <span class="text-red">미납</span>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2024</td>
+                            <td>평생회비</td>
+                            <td>500,000</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <span class="text-red">해당없음</span>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2024</td>
+                            <td>연회비</td>
+                            <td>50,000</td>
+                            <td>YYYY-MM-DD <br>hh:mm:ss</td>
+                            <td>카드결제</td>
+                            <td>
+                                <span class="text-blue">완납</span>
+                            </td>
+                            <td>
+                                <a href="#n" class="btn btn-small color-type8">영수증</a>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td></td>
+                            <td>2024</td>
+                            <td>입회비</td>
+                            <td>100,000</td>
+                            <td>YYYY-MM-DD <br>hh:mm:ss</td>
+                            <td>카드결제</td>
+                            <td>
+                                <span class="text-blue">완납</span>
+                            </td>
+                            <td>
+                                <a href="#n" class="btn btn-small color-type8">영수증</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

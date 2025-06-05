@@ -1,0 +1,93 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">학술행사</h2>
+                <ul class="breadcrumb">
+                    <li>학술행사</li>
+                    <li>행사일정</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">학술행사</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">행사일정</a>
+                    <ul>
+                        <li class="on"><a href="#n">행사일정</a></li>
+                        <li><a href="#n">역대학술대회</a></li>
+                        <li><a href="#n">해외학회일정</a></li>
+                        <li><a href="#n">국내학술대회</a></li>
+                        <li><a href="#n">교육강좌</a></li>
+                        <li><a href="#n">포토갤러리</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <link rel="stylesheet" href="/assets/css/editor.css">
+            <div class="ev-wrap">
+                <div class="ev-view-wrap">
+                    <div class="ev-view-contop">
+                        <h3 class="ev-view-tit">
+                            <span class="btn-ev ev-cate01">국내</span> 행사명이 들어갑니다.
+                        </h3>
+                        <div class="ev-view-info">
+                            <ul>
+                                <li>일자 : 2024.03.28 ~ 29</li>
+                                <li>장소 : 롯데호텔 월드</li>
+                            </ul>
+                            <p class="text-right">
+                                Homepage : <a href="http://www.naver.com" target="_blank">http://wwww.naver.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ev-view-contents editor-contents">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde autem quidem vitae, mollitia sint magnam tenetur dolorum quos odit. Accusamus, perferendis fuga dolor veritatis non ut ipsa libero necessitatibus quaerat! <br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate culpa adipisci laudantium dignissimos corrupti doloremque cumque, unde ipsa. Esse, quasi amet id odit perspiciatis consectetur eos quae dolore explicabo laudantium? 
+                    </div>
+                    <div class="ev-view-attach">
+                        <div class="view-attach-con">
+                            <div class="tit">첨부파일</div>
+                            <div class="con">
+                                <a href="#n" target="_blank">안내문.docx <img src="/assets/image/sub/ic_ev_file.png" alt=""></a>
+                                <a href="#n" target="_blank">첨부파일명.확장자 <img src="/assets/image/sub/ic_ev_file.png" alt=""></a>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="btn-wrap text-right">
+                        <a href="./list.html" class="btn btn-type1 btn-line color-type1 full-left">목록</a>
+                        <a href="./write.html" class="btn btn-type1 color-type5">수정</a>
+                        <a href="#n" class="btn btn-type1 color-type7">삭제</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>
