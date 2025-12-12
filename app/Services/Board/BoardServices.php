@@ -51,10 +51,21 @@ class BoardServices extends AppServices
 
         $query = Board::where('code', $code)->withCount('files');
 
-        if ($code == 'photo') {
+        if ($code == 'photo' || $code == 'past-workshop' || $code == 'overseas-workshop') {
             $query->orderByDesc('event_sDate'); // 학술대회 일정
-        }else{
+        }else if ($code == 'newsletter') {
+            $query->orderByDesc('year')->orderByDesc('month'); // 뉴스레터
+        }else if ($code == 'treatment') {
+            $query->orderByDesc('year')->orderByDesc('sid'); // 진료지침 게시판
+
+        }else if ($code == 'notice') {
+            $query->orderByDesc('created_at')->orderByDesc('sid'); // 공지사항 게시판
+        } else {
             $query->orderByDesc('sid');
+        }
+
+        if ($code == 'treatment') {
+            $query->where('gubun', $request->gubun); // 진료지침 게시판
         }
 
         if (!empty($category)) {
@@ -64,12 +75,42 @@ class BoardServices extends AppServices
             $query->where('hide', 'N');
         }
 
+
+        if ($request->filled('field')) {
+            $fieldArr = $request->field; // 배열
+            $query->where(function($q) use ($fieldArr) {
+                foreach ($fieldArr as $val) {
+                    $q->orWhere('field', 'like', "%{$val}%");
+                }
+            });
+        }
+
+        if (!empty($request->year)) {
+            $query->where('year', $request->year);
+        }
+
+
         if (!empty($search) && !empty($keyword)) {
             switch ($search) {
                 case 'subject/contents':
                     $query->where(function ($q) use ($keyword) {
                         $q->where('subject', 'like', "%{$keyword}%")
                             ->orWhere('contents', 'like', "%{$keyword}%");
+                    });
+                    break;
+
+                case 'ALL'/*진료지침*/:
+                    $query->where(function ($q) use ($keyword) {
+                        $q->where('subject', 'like', "%{$keyword}%")
+                            ->orWhere('contents', 'like', "%{$keyword}%")
+                            ->orWhere('author', 'like', "%{$keyword}%");
+                    });
+                    break;
+
+                case 'year/subject':
+                    $query->where(function ($q) use ($keyword) {
+                        $q->where('year', 'like', "%{$keyword}%")
+                            ->orWhere('subject', 'like', "%{$keyword}%");
                     });
                     break;
 
@@ -105,7 +146,9 @@ class BoardServices extends AppServices
             $query->whereNotIn('sid', $this->data['notice_list']->pluck('sid'));
         }
 
-        $list = $query->paginate($boardConfig['paginate']);
+        $this->data['tot_cnt'] = $query->count();
+
+        $list = $query->paginate($boardConfig['paginate'])->appends($request->except(['page']));;
         $this->data['list'] = setListSeq($list);
 
         return $this->data;
@@ -227,10 +270,15 @@ class BoardServices extends AppServices
 
             $this->dbCommit("게시글 등록");
 
+            $ret_url = $this->listUrl();
+            if ($request->code == 'treatment') {
+                $ret_url = route('board', ['code' => request()->code, 'gubun'=>$request->gubun]);
+            }
+
             return $this->returnJsonData('alert', [
                 'case' => true,
                 'msg' => '게시글이 등록 되었습니다.',
-                'location' => $this->ajaxActionLocation('replace', $this->listUrl()),
+                'location' => $this->ajaxActionLocation('replace', $ret_url),
             ]);
         } catch (\Exception $e) {
             return $this->dbRollback($e);
@@ -240,6 +288,7 @@ class BoardServices extends AppServices
     private function boardUpdate(Request $request)
     {
         $this->transaction();
+
         try {
             $board = Board::findOrFail($request->sid);
             $board->setByData($request);
@@ -247,10 +296,15 @@ class BoardServices extends AppServices
 
             $this->dbCommit('게시글 수정');
 
+            $ret_url = $this->listUrl();
+            if ($request->code == 'treatment') {
+                $ret_url = route('board', ['code' => request()->code, 'gubun'=>$request->gubun]);
+            }
+
             return $this->returnJsonData('alert', [
                 'case' => true,
                 'msg' => '게시글이 수정 되었습니다.',
-                'location' => $this->ajaxActionLocation('replace', $this->listUrl()),
+                'location' => $this->ajaxActionLocation('replace', $ret_url),
             ]);
         } catch (\Exception $e) {
             return $this->dbRollback($e);
@@ -267,10 +321,15 @@ class BoardServices extends AppServices
 
             $this->dbCommit('게시글 삭제');
 
+            $ret_url = $this->listUrl();
+            if ($request->code == 'treatment') {
+                $ret_url = route('board', ['code' => request()->code, 'gubun'=>$request->gubun]);
+            }
+
             return $this->returnJsonData('alert', [
                 'case' => true,
                 'msg' => '게시글이 삭제 되었습니다.',
-                'location' => $this->ajaxActionLocation('replace', $this->listUrl()),
+                'location' => $this->ajaxActionLocation('replace', $ret_url),
             ]);
         } catch (\Exception $e) {
             return $this->dbRollback($e);

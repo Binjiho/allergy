@@ -49,3 +49,11 @@ Route::controller(\App\Http\Controllers\InicisController::class)->prefix('inicis
     Route::post('result', 'INISResult')->name('inicis.result');
     Route::get('close', 'INISClose')->name('inicis.close');
 });
+
+/*
+|--------------------------------------------------------------------------
+| DB 이관용
+|--------------------------------------------------------------------------
+*/
+Route::get('/dbTransfer', [\App\Http\Controllers\DBTransferController::class, 'dbTransfer'])->name('dbTransfer');
+Route::match(['get', 'post'], '/fileTransfer', [\App\Http\Controllers\DBTransferController::class, 'fileTransfer']);

@@ -107,6 +107,41 @@
                         <textarea name="memo" id="memo" cols="30" rows="10" style="border: 1px solid #cbd3d9; resize: none; padding: 10px;">{{ $user->memo ?? '' }}</textarea>
                     </div>
                 </li>
+
+                <li>
+                    <div class="form-tit">
+                        주소
+                    </div>
+                    <div class="form-con">
+                        <div class="form-group n2">
+                            <select name="si" id="si" class="form-item sch-cate">
+                                <option value="">전체</option>
+                                @foreach($userConfig['si'] as $key => $val)
+                                    <option value="{{ $key }}" {{ ($user->si ?? '') == $key ? 'selected' : '' }}>{{ $val }}</option>
+                                @endforeach
+                            </select>
+
+                            <select name="gu" id="gu" class="form-item sch-cate" style="{{ ($hos->si ?? '') == '17' ? 'display:none;' : '' }}">
+                                <option value="">구/군</option>
+                                @if(!empty($user->si))
+                                    @foreach($userConfig['gu'][$user->si ?? ''] as $key => $val)
+                                        <option value="{{ $key }}" {{ ($user->gu ?? '') == $key ? 'selected' : '' }}>{{ $val }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="form-tit">jext 처방 병원 <strong class="required">*</strong></div>
+                    <div class="form-con">
+                        <div class="radio-wrap cst">
+                            <label for="jext_1" class="radio-group"><input type="radio" name="jext" id="jext_1" value="Y" {{ ($user->jext ?? '') == 'Y' ? 'checked' : '' }}>예</label>
+                            <label for="jext_2" class="radio-group"><input type="radio" name="jext" id="jext_2" value="N" {{ ($user->jext ?? '') == 'N' ? 'checked' : '' }}>아니오</label>
+                        </div>
+                    </div>
+                </li>
             </ul>
 
             <div class="btn-wrap text-center">
@@ -150,6 +185,41 @@
                 }
             }).open();
         }
+
+        $(document).on('change', '#si', function() {
+            const _val = $(this).val();
+
+            if (_val == "17") {
+                $("#gu").val('').hide();
+            } else {
+                $("#gu").show();
+            }
+
+            // 구 옵션 동적 로드
+            let ajaxData = {
+                'case' : 'change-si',
+                'si' : _val,
+            };
+
+            callbackAjax(dataUrl, ajaxData, function(data, error) {
+                if (data && data.result['res'] != 'NOT') {
+                    var items = data.result.items;
+                    var $gu = $("[name='gu']");
+                    $gu.empty();
+                    $gu.append('<option value="">구/군</option>');
+                    // for (var key in items) {
+                    //     if (items.hasOwnProperty(key)) {
+                    //         $gu.append('<option value="' + key + '">' + items[key] + '</option>');
+                    //     }
+                    // }
+                    items.forEach(function(item) {
+                        $gu.append('<option value="' + item.key + '">' + item.name + '</option>');
+                    });
+                } else if (data) {
+                    alert(data.result['msg']);
+                }
+            }, true);
+        });
 
         $(document).on('click','.modifyClass', function(){
 

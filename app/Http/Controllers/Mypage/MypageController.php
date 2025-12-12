@@ -18,8 +18,8 @@ class MypageController extends Controller
         $this->boardServices = (new BoardServices());
 
         view()->share([
-            'userConfig' => getConfig('user'),
             'main_menu' => 'MYPAGE',
+            'userConfig' => getConfig('user'),
         ]);
 
 //        if (!thisPK() ) {
@@ -29,37 +29,46 @@ class MypageController extends Controller
 
     public function intro(Request $request)
     {
-        view()->share(['sub_menu' => 'S9']);
+        view()->share(['sub_menu' => 'S6']);
         return view('mypage.intro', $this->mypageServices->indexService($request));
     }
+
+    //회원찾기
+    public function member_search(Request $request)
+    {
+        view()->share(['sub_menu' => 'S11']);
+
+        return view('mypage.member_search', $this->mypageServices->searchService($request));
+    }
+
     //개인정보수정
     public function pwCheck(Request $request)
     {
-        view()->share(['sub_menu' => 'S1']);
+        view()->share(['sub_menu' => 'S7']);
         return view('mypage.pwCheck', $this->mypageServices->indexService($request));
     }
     public function modify(Request $request)
     {
-        view()->share(['sub_menu' => 'S1']);
+        view()->share(['sub_menu' => 'S7']);
         return view('mypage.modify', $this->mypageServices->upsertService($request));
     }
 
     //비밀번호변경
     public function password(Request $request)
     {
-        view()->share(['sub_menu' => 'S2']);
+        view()->share(['sub_menu' => 'S8']);
         return view('mypage.password', $this->mypageServices->indexService($request));
     }
     public function repassword(Request $request)
     {
-        view()->share(['sub_menu' => 'S2']);
+        view()->share(['sub_menu' => 'S8']);
         return view('mypage.repassword', $this->mypageServices->indexService($request));
     }
 
     //학술대회 참석현황
     public function certi(Request $request)
     {
-        view()->share(['sub_menu' => 'S4']);
+        view()->share(['sub_menu' => 'S10']);
         return view('mypage.certi', $this->mypageServices->certiService($request));
     }
     public function certiReceipt(Request $request)
@@ -75,7 +84,7 @@ class MypageController extends Controller
         $this->boardConfig = getConfig("board")[$code] ?? [];
 
         view()->share([
-            'sub_menu' => 'S5',
+            'sub_menu' => 'S12',
             'code' => $code,
             'boardConfig' => $this->boardConfig,
         ]);
@@ -90,7 +99,7 @@ class MypageController extends Controller
     //회원탈퇴
     public function withdraw(Request $request)
     {
-        view()->share(['sub_menu' => 'S6']);
+        view()->share(['sub_menu' => 'S13']);
         return view('mypage.withdraw', $this->mypageServices->indexService($request));
     }
 

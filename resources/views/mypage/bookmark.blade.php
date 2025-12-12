@@ -1,11 +1,10 @@
 @extends('layouts.web-layout')
 
 @section('addStyle')
-    @if($code == 'notice')
-    <link rel="stylesheet" href="{{ asset('html/bbs/notice/assets/css/board.css') }}">
-    @endif
     @if($code == 'event-schedule')
     <link rel="stylesheet" href="{{ asset('html/bbs/schedule/assets/css/event.css') }}">
+    @else
+    <link rel="stylesheet" href="{{ asset('html/bbs/notice/assets/css/board.css') }}">
     @endif
 @endsection
 
@@ -19,6 +18,7 @@
                 <div class="like-menu-list js-menu-rolling">
                     <a href="{{ route('mypage.bookmark',['code'=>'event-schedule']) }}" class="{{ ($code ?? '') == 'event-schedule' ? 'current' : '' }}">행사일정</a>
                     <a href="{{ route('mypage.bookmark',['code'=>'notice']) }}" class="{{ ($code ?? '') == 'notice' ? 'current' : '' }}">공지사항</a>
+                    <a href="{{ route('mypage.bookmark',['code'=>'format']) }}" class="{{ ($code ?? '') == 'format' ? 'current' : '' }}">서식</a>
                 </div>
                 <button type="button" class="btn btn-arrow btn-next js-next"><span class="hide">다음</span></button>
             </div>

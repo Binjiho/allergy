@@ -71,37 +71,14 @@
 </div>
 @endif
 
-<script>
-    @if(!empty($preview))
-    $(document).on('click', '.btn-pop-close', function () {
-        $('.popup-rolling-wrap').remove();
-    });
+@if(!empty($preview))
+    <script>
+        $(document).on('click', '.btn-pop-close', function () {
+            $('.popup-rolling-wrap').remove();
+        });
 
-    $(document).on('click', '.btn-pop-today-close', function () {
-        $('.popup-rolling-wrap').remove();
-    });
-    @else
-
-    $(document).on('click', '.popup_close_btn', function () {
-        self.close();
-    });
-
-    @if($main_pop !== false)
-    $(document).on('click', '.btn-pop-today-close', function () {
-        const layer = $(this).closest('.win-popup-wrap');
-
-        setCookie24(layer.attr('id'), 'done', 1);
-
-        self.close();
-    });
-    @endif
-
-    function setCookie24(name, value, expiredays) {
-        var todayDate = new Date();
-
-        todayDate.setDate(todayDate.getDate() + expiredays);
-
-        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
-    }
-    @endif
-</script>
+        $(document).on('click', '.btn-pop-today-close', function () {
+            $('.popup-rolling-wrap').remove();
+        });
+    </script>
+@endif

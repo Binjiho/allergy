@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'eCareNo' => env('ECARE_NO'),
+    'eCareNo' => env('ECARE_NUMBER'),
 
     // 파일 업로드 경로
     'directory' => 'mail',
@@ -28,7 +28,7 @@ return [
 
     // 버튼 사용
     'use_btn' => [
-        '1' => '자세히 보기',
+//        '1' => '자세히 보기',
         '2' => '바로가기',
         '9' => '사용 안함',
     ],

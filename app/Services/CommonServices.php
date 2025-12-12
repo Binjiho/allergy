@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Board;
 use App\Models\BoardFile;
 use App\Models\MailFile;
+use App\Models\Publication;
+use App\Models\Lecture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -26,12 +28,24 @@ class CommonServices extends AppServices
     {
         $directory = "uploads/" . $folder;
 
+        $maxSizeInMB = 200;
+        $maxSizeInBytes = $maxSizeInMB * 1024 * 1024;
+
+        if ($file->getSize() > $maxSizeInBytes) {
+            throw new \Exception('파일 업로드 실패: 파일 크기는 최대 ' . $maxSizeInMB . 'MB까지 허용됩니다.');
+        }
+
         $ext = $file->getClientOriginalExtension();
         $save_name = (now()->timestamp . '_' . Str::random(10) . '.' . $ext);
 
+        $storedPath = $file->storeAs($directory, $save_name, 'public');
+        if (!$storedPath) {
+            throw new \Exception('파일 업로드 실패: 저장에 실패했습니다.');
+        }
+
         return [
             'filename' => $this->filenameRegx($file->getClientOriginalName()),
-            'realfile' => '/storage/' . $file->storeAs($directory, $save_name, 'public')
+            'realfile' => '/storage/' . $storedPath,
         ];
     }
 
@@ -50,7 +64,9 @@ class CommonServices extends AppServices
                 $downloadField = ($isThumbnail) ? 'thumbnail_download' : "file{$field}_download";
 
                 $board = Board::findOrFail($sid);
+
                 $board->increment($downloadField);
+
 
                 $this->data = ['realfile' => $board->{$pathField}, 'filename' => $board->{$nameField}];
                 break;
@@ -68,11 +84,33 @@ class CommonServices extends AppServices
 
                 $this->data = ['realfile' => $mailFile->realfile, 'filename' => $mailFile->filename];
                 break;
+            case 'publication':
+                $mailFile = Publication::findOrFail($sid);
+                $this->data = ['realfile' => $mailFile->realfile, 'filename' => $mailFile->filename];
+                break;
+            case 'lecture':
+                $mailFile = Lecture::findOrFail($sid);
+                $this->data = ['realfile' => $mailFile->realfile, 'filename' => $mailFile->filename];
+                break;
+
 
             default:
                 return notFoundRedirect();
         }
 
+        //        dd(
+//            "Searching path: " . $filePath,
+//            "File::exists: " . File::exists($filePath),
+//            "is_readable: " . is_readable($filePath) // is_readable은 권한 문제를 더 명확히 보여줍니다.
+//        );
+
+        /**
+         * 파일 인코딩문제
+         */
+        if(!File::exists(public_path($this->data['realfile']))){
+            $this->data['realfile'] = iconv( "UTF-8", "EUC-KR", $this->data['realfile'] );
+        }
+        
         return (File::exists(public_path($this->data['realfile'])))
             ? response()->download(public_path($this->data['realfile']), $this->data['filename'])
             : errorRedirect('back', errorMsg('nFile')); // 파일 데이터가 없을경우

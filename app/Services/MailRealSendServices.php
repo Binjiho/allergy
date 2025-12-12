@@ -74,8 +74,8 @@ class MailRealSendServices extends AppServices
 //                $data = array_merge($data, $this->mailSendTartgetAppend($mailData));
                 break;
 
+            case 'registration-bank':
             case 'registration-ok':
-            case 'registration-refund':
             case 'abstract-ok':
             case 'support-ok':
             case 'support-bank':
@@ -92,6 +92,7 @@ class MailRealSendServices extends AppServices
                 $data[] = $mailData;
                 break;
 
+            case 'admin-send':
             case 'admin-type-send':
             case 'admin-target-resend':
                 $subject = $additionalData['subject'];
@@ -120,7 +121,6 @@ class MailRealSendServices extends AppServices
         $this->ecare_no = env('ECARE_NUMBER');
 
         $this->transaction();
-
 
         try {
             //서버에 odbc17 에러로 PDO로 연결
@@ -180,7 +180,6 @@ class MailRealSendServices extends AppServices
                         ':ATTACH_YN' => 'N',
                         ':DATA' => $body,
                     ]);
-
 
                     // 메일 발송내역 저장
                     try {

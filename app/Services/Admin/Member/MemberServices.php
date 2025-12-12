@@ -58,7 +58,7 @@ class MemberServices extends AppServices
                 break;
             case 'withdraw' : // 탈퇴회원
                 $excelName = '탈퇴회원';
-                $query = User::where('create_status','Y')->where('del_request', 'Y')->orderByDesc('created_at');
+                $query = User::where('create_status','Y')->where(['del_request'=>'Y','del'=>'N'])->orderByDesc('created_at');
                 break;
             case 'elimination' : // 삭제회원
                 $excelName = '삭제회원';
@@ -118,7 +118,7 @@ class MemberServices extends AppServices
             return (new CommonServices())->excelDownload(new MemberExcel($this->data), date('Y-m-d').'_'.($excelName ?? '회원정보'));
         }
 
-        $list = $query->paginate($li_page);
+        $list = $query->paginate($li_page)->appends($request->except(['page']));;
         $this->data['list'] = setListSeq($list);
         $this->data['li_page'] = $li_page;
         $this->data['memberCase'] = empty($memberCase) ? [] : ['case' => $memberCase];
@@ -143,7 +143,7 @@ class MemberServices extends AppServices
         // 전체 유저 수 카운트
         $this->data['levelCnt']['total'] = User::where('create_status','Y')->count();
         // 탈퇴(요청)회원 카운트
-        $this->data['levelCnt']['withdraw'] = User::withTrashed()->where('create_status','Y')->where(['del_request'=>'Y'])->count();
+        $this->data['levelCnt']['withdraw'] = User::withTrashed()->where('create_status','Y')->where(['del_request'=>'Y','del'=>'N'])->count();
         // 삭제회원 카운트
         $this->data['levelCnt']['elimination'] = User::withTrashed()->where('create_status','Y')->where(['del'=>'Y'])->count();
         // 어드민회원 카운트
@@ -192,7 +192,7 @@ class MemberServices extends AppServices
 
             }
 
-            $list = $query->paginate(20);
+            $list = $query->paginate(20)->appends($request->except(['page']));;
             $this->data['list'] = setListSeq($list);
         }
 
@@ -223,6 +223,8 @@ class MemberServices extends AppServices
                 return $this->changeIsAdmin($request);
             case 'select-member-info':
                 return $this->selectMemberInfo($request);
+            case 'change-si':
+                return $this->changeSi($request);
             default:
                 return notFoundRedirect();
         }
@@ -312,8 +314,7 @@ class MemberServices extends AppServices
         $this->transaction();
 
         try {
-            $user = User::onlyTrashed()->findOrFail($request->sid);
-
+            $user = User::findOrFail($request->sid);
             $user->timestamps = false; // updated_at 자동 갱신 비활성화
             $user->delete();
 
@@ -467,6 +468,29 @@ class MemberServices extends AppServices
                 $feeA->setByData($data);
                 $feeA->save();
             }
+
+            $query = Fee::where(['user_sid'=>$user_sid, 'category'=>'A', 'del'=>'N'])->whereNotIn('level',['A']);
+            if(!empty($feeA)){
+                $query->whereNotIn('sid',[$feeA->sid]);
+            }
+            $feeAlist = $query->get();
+
+            if ( $feeAlist->count() > 0 ){
+                foreach ($feeAlist as $feeA){
+                    $feeA->payment_status = 'E'; //해당없음
+                    $feeA->update();
+                }
+            }
+
+            //변경시 이전 회비 내역들이 있다면 미납처리로 원복
+            $feeList = Fee::where(['user_sid'=>$user_sid, 'category'=>'A', 'del'=>'N', 'level'=>'A'])->get();
+            if ( $feeList->count() > 0 ){
+                foreach ($feeList as $fee){
+                    $fee->payment_status = 'N'; //미납
+                    $fee->update();
+                }
+            }
+
             //연회비
             $feeBExist = Fee::where(['user_sid'=>$user_sid, 'level'=>$level, 'category'=>'B', 'del'=>'N', 'year'=>date('Y')])->exists();
             if($feeBExist === false) {
@@ -480,6 +504,28 @@ class MemberServices extends AppServices
                 ];
                 $feeB->setByData($data);
                 $feeB->save();
+            }
+
+            $query = Fee::where(['user_sid'=>$user_sid, 'category'=>'B', 'del'=>'N'])->whereNotIn('level',['A']);
+            if(!empty($feeB)){
+                $query->whereNotIn('sid',[$feeB->sid]);
+            }
+            $feeBlist = $query->get();
+
+            if ( $feeBlist->count() > 0 ){
+                foreach ($feeBlist as $feeB){
+                    $feeB->payment_status = 'E'; //해당없음
+                    $feeB->update();
+                }
+            }
+
+            //변경시 이전 회비 내역들이 있다면 미납처리로 원복
+            $feeList = Fee::where(['user_sid'=>$user_sid, 'category'=>'B', 'del'=>'N', 'level'=>'A'])->get();
+            if ( $feeList->count() > 0 ){
+                foreach ($feeList as $fee){
+                    $fee->payment_status = 'N'; //미납
+                    $fee->update();
+                }
             }
 
             //종신회비
@@ -504,6 +550,15 @@ class MemberServices extends AppServices
                 $feeC->save();
             }
 
+            //변경시 이전 회비 내역들이 있다면 미납처리로 원복
+            $feeList = Fee::where(['user_sid'=>$user_sid, 'category'=>'C', 'del'=>'N', 'level'=>'A'])->get();
+            if ( $feeList->count() > 0 ){
+                foreach ($feeList as $fee){
+                    $fee->payment_status = 'N'; //미납
+                    $fee->update();
+                }
+            }
+
         }else if ($level == 'B'/*준회원*/){
             //입회비
             $feeAExist = Fee::where(['user_sid'=>$user_sid, 'level'=>$level, 'category'=>'A', 'del'=>'N'])->exists();
@@ -519,6 +574,28 @@ class MemberServices extends AppServices
                 $feeA->setByData($data);
                 $feeA->save();
             }
+
+            $query = Fee::where(['user_sid'=>$user_sid, 'category'=>'A', 'del'=>'N'])->whereNotIn('level',['B']);
+            if(!empty($feeA)){
+                $query->whereNotIn('sid',[$feeA->sid]);
+            }
+            $feeAlist = $query->get();
+
+            if ( $feeAlist->count() > 0 ){
+                foreach ($feeAlist as $feeA){
+                    $feeA->payment_status = 'E'; //해당없음
+                    $feeA->update();
+                }
+            }
+            //변경시 이전 회비 내역들이 있다면 미납처리로 원복
+            $feeList = Fee::where(['user_sid'=>$user_sid, 'category'=>'A', 'del'=>'N', 'level'=>'B'])->get();
+            if ( $feeList->count() > 0 ){
+                foreach ($feeList as $fee){
+                    $fee->payment_status = 'N'; //미납
+                    $fee->update();
+                }
+            }
+
             //연회비
             $feeBExist = Fee::where(['user_sid'=>$user_sid, 'level'=>$level, 'category'=>'B', 'del'=>'N', 'year'=>date('Y')])->exists();
             if($feeBExist === false) {
@@ -532,6 +609,43 @@ class MemberServices extends AppServices
                 ];
                 $feeB->setByData($data);
                 $feeB->save();
+            }
+
+            $query = Fee::where(['user_sid'=>$user_sid, 'category'=>'B', 'del'=>'N'])->whereNotIn('level',['B']);
+            if(!empty($feeB)){
+                $query->whereNotIn('sid',[$feeB->sid]);
+            }
+            $feeBlist = $query->get();
+
+            if ( $feeBlist->count() > 0 ){
+                foreach ($feeBlist as $feeB){
+                    $feeB->payment_status = 'E'; //해당없음
+                    $feeB->update();
+                }
+            }
+
+            //준회원으로 변경시 평생회비 있으면 해당없음으로 변경
+            $lifeFeeExist = Fee::where(['user_sid'=>$user_sid, 'level'=>'A', 'category'=>'C', 'del'=>'N'])->first();
+            if( !empty ($lifeFeeExist) ){
+                $lifeFeeExist->payment_status = 'E'; //해당없음
+                $lifeFeeExist->update();
+            }
+
+            //변경시 이전 회비 내역들이 있다면 미납처리로 원복
+            $feeList = Fee::where(['user_sid'=>$user_sid, 'category'=>'B', 'del'=>'N', 'level'=>'B'])->get();
+            if ( $feeList->count() > 0 ){
+                foreach ($feeList as $fee){
+                    $fee->payment_status = 'N'; //미납
+                    $fee->update();
+                }
+            }
+
+        }else{
+            //명예회원 / 특별회원으로 회원 등급 변경 시 이전 회비 납부 해당없음으로 변경 부탁드립니다
+            $fee_list = Fee::where(['user_sid'=>$user_sid, 'del'=>'N'])->get();
+            foreach ($fee_list as $fee){
+                $fee->payment_status = 'E'; //해당없음
+                $fee->update();
             }
         }
 
@@ -601,5 +715,23 @@ class MemberServices extends AppServices
         $customUser = $user->addCustomData();
 
         return $this->returnJsonData('user', $customUser);
+    }
+
+    private function changeSi(Request $request)
+    {
+        $this->userConfig = config('site.user');
+
+//        $data = $this->userConfig['gu'][$request->si];
+
+        $data = [];
+        foreach ($this->userConfig['gu'][$request->si] as $k => $v) {
+            $data[] = ['key' => $k, 'name' => $v];
+        }
+
+        return $this->returnJsonData('result', [
+            'res' => 'SUC',
+            'msg' => 'gu결과가 있습니다',
+            'items' => $data,
+        ]);
     }
 }

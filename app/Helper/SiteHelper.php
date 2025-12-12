@@ -14,6 +14,10 @@ if (!function_exists('checkUrl')) {
             return 'admin';
         }
 
+        if (strpos($uri, config('site.app.eng.url')) !== false) {
+            return 'eng';
+        }
+
         return 'web';
     }
 }
@@ -126,47 +130,40 @@ if (!function_exists('priceKo')) {
     {
         $price = unComma($price);
 
-        // 값이 0이거나 10억 이상일 때
         if ($price <= 0 || $price >= 1000000000) {
             return $price;
         }
 
-        // 숫자에 해당하는 한글 표기
-        $numKo = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
-        // 단위 표기 (1의 자리, 10의 자리, 100의 자리, 1000의 자리)
+        $numKo  = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
         $unitKo = ['', '십', '백', '천'];
-        // 만 단위 표기 (없음, 만, 억)
-        $manKo = ['', '만', '억'];
+        $manKo  = ['', '만', '억'];
 
         $result = '';
-        $strPrice = (string)$price;
+        $strPrice = str_pad((string)$price, ceil(strlen($price) / 4) * 4, '0', STR_PAD_LEFT);
         $len = strlen($strPrice);
+        $blockCount = $len / 4;
 
-        // 각 자리 숫자를 처리
-        for ($i = 0; $i < $len; $i++) {
-            $digit = (int)$strPrice[$i];
-            $digitPos = $len - $i - 1; // 자릿수 위치 (0부터 시작)
+        for ($i = 0; $i < $blockCount; $i++) {
+            $block = substr($strPrice, $i * 4, 4);
+            $blockResult = '';
 
-            // 현재 숫자가 0이 아닐 때만 처리
-            if ($digit > 0) {
-                // 만, 억 단위 처리
-                $manUnit = floor($digitPos / 4);
-                // 천, 백, 십, 일 단위 처리
-                $unitPos = $digitPos % 4;
-
-                // 숫자 + 단위 추가
-                // 1인 경우, 1의 자리가 아니라면 '일'을 생략 (예: 일십 -> 십)
-                if ($digit == 1 && $unitPos > 0) {
-                    $result .= $unitKo[$unitPos];
-                } else {
-                    $result .= $numKo[$digit] . $unitKo[$unitPos];
-                }
-
-                // 만, 억 단위 추가 (해당 단위의 마지막 숫자일 때)
-                if ($unitPos == 0 && $manUnit > 0) {
-                    $result .= $manKo[$manUnit];
+            for ($j = 0; $j < 4; $j++) {
+                $digit = (int)$block[$j];
+                if ($digit > 0) {
+                    // 1이면 '일십' 대신 '십'
+                    if ($digit == 1 && $j != 3) {
+                        $blockResult .= $unitKo[3 - $j];
+                    } else {
+                        $blockResult .= $numKo[$digit] . $unitKo[3 - $j];
+                    }
                 }
             }
+
+            if ($blockResult !== '') {
+                $blockResult .= $manKo[$blockCount - $i - 1];
+            }
+
+            $result .= $blockResult;
         }
 
         return $result;
@@ -183,5 +180,13 @@ if (!function_exists('isValidTimestamp')) {
         } catch (Exception $e) {
             return false;
         }
+    }
+}
+
+if (!function_exists('formatKoreanDate')) {
+    function formatKoreanDate($dateString) {
+        $date = \Carbon\Carbon::parse($dateString);
+        $weekdays = ['일','월','화','수','목','금','토'];
+        return '(' . $weekdays[$date->dayOfWeek] . ')';
     }
 }

@@ -5,6 +5,7 @@ namespace App\Services\Main;
 use App\Models\Board;
 use App\Services\AppServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class MainServices
@@ -24,7 +25,7 @@ class MainServices extends AppServices
                 $exceptionBoardPopup[] = $boardSid;
             }
         }
-
+//TODO : 서버 이동 우선 막기
         // 게시판 팝업
         $this->data['boardPopupList'] = Board::withCount('files')
             ->where(['hide' => 'N', 'popup' => 'Y'])
@@ -36,25 +37,33 @@ class MainServices extends AppServices
             })
             ->get();
 
-//        dd($this->data['boardPopupList']);
+//TODO : 서버 이동 우선 막기
+        // 메인 상단 게시판
+        $query = Board::where(['hide' => 'N', 'main' => 'Y'])->whereIn('code', ['notice'])->orderByDesc('sid');
+        if(!empty($request->category)){
+            $query->where('category',$request->category);
+        }else{
+            $query->where('category',1);
+        }
+        $this->data['notice_list'] = $query->limit(4)->get();
 
-//        // 학술대회 일정
-//        $query = Board::where(['code' => 'event-schedule', 'hide' => 'N'])->orderBy('event_sDate');
-//        if (!empty($request->year)) {
-//            $query->whereYear('event_sDate', $request->year);
-//        }
-//        if (!empty($request->month)) {
-//            $query->whereMonth('event_sDate', $request->month);
-//        }
-//        $this->data['event_list'] = $query->get();
-//
-//        // 학회소식
-//        $query = Board::where(['hide' => 'N', 'main' => 'Y'])->whereIn('code', ['notice','eco','mems','monthly-magazine'])->orderByDesc('sid');
-//        if(!empty($request->bcode)){
-//            $query->where('code',$request->bcode);
-//        }
-//        $this->data['notice_list'] = $query->limit(5)->get();
-//        $this->data['photo'] = Board::where(['code' => 'photo', 'hide' => 'N', 'main' => 'Y'])->orderByDesc('event_sDate')->first(); // 포토갤러리
+
+        // 메인 중단 뉴스레터
+        $this->data['newsletter'] = Board::where(['code' => 'newsletter', 'hide' => 'N', 'year'=>date('Y')])->orderByDesc('month')->first();
+        // 메인 중단 진료지침
+        $this->data['guideline'] = Board::where(['code' => 'guideline', 'hide' => 'N', 'main'=>'Y'])->orderByDesc('sid')->limit(2)->get();
+        // 메인 중단 최신논문소식
+        $this->data['absnews'] = Board::where(['code' => 'abs-news', 'hide' => 'N', 'main'=>'Y'])->orderByDesc('sid')->limit(2)->get();
+
+        // 학술대회 일정
+        $query = Board::where(['code' => 'event-schedule', 'hide' => 'N'])->orderBy('event_sDate');
+        if (!empty($request->year)) {
+            $query->whereYear('event_sDate', $request->year);
+        }
+        if (!empty($request->month)) {
+            $query->whereMonth('event_sDate', $request->month);
+        }
+        $this->data['event_list'] = $query->get();
 
         return $this->data;
     }

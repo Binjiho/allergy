@@ -13,6 +13,7 @@ use PhpOffice\PhpSpreadsheet\Style\Alignment;
 class RegistrationExcel implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents, WithMapping
 {
     private $userConfig;
+    private $defaultConfig;
     private $collection;
     private $total;
     private $row = 0;
@@ -20,7 +21,7 @@ class RegistrationExcel implements FromCollection, WithHeadings, ShouldAutoSize,
     public function __construct($data)
     {
         $this->userConfig = getConfig('user');
-        $this->workshopConfig = $data['workshopConfig'];
+        $this->defaultConfig = getConfig('default-workshop');
         $this->collection = $data['collection'];
         $this->total = $data['total'];
     }
@@ -38,66 +39,52 @@ class RegistrationExcel implements FromCollection, WithHeadings, ShouldAutoSize,
         return [
             'No',
             '접수번호',
-            '참가구분',
+            '회원구분',
             '등록구분',
             '이름',
-            '직장명(소속)',
+            '근무처(소속)',
 
+            '면허번호',
             '이메일',
-            '휴대폰 번호',
-            '셔틀버스 수요조사',
+            '휴대폰번호',
             '등록비',
-            '결제상태',
-
             '결제방법',
-            '결제일',
+
+            '결제상태',
             '최초등록일',
             '최종등록일',
-            '환불신청일',
-
-            '환불사유',
-            '환불방법',
-            '환불은행명',
-            '환불계좌번호',
-            '예금주',
-
-            '삭제일',
             '메모',
         ];
     }
 
     public function map($data): array
     {
-        $workshopConfig = $this->workshopConfig;
+        $userConfig = $this->userConfig;
+        $defaultConfig = $this->defaultConfig;
+        if( $data['office_use'] == 'Y' ){
+            $sosok ="(".$data->zipcode ?? ''.") ".$data->addr ?? ''." ".$data->addr_etc ?? '';
+        }else{
+            $sosok = $data->office_name ?? '';
+        }
 
         return [
             $this->total - ($this->row++),
-            $data->regnum,
-            $workshopConfig['gubun'][$data->gubun] ?? '',
-            $workshopConfig['category'][$data->category]['name'] ?? '',
+            $data->reg_num,
+            $defaultConfig['member_gubun'][$data->member_gubun] ?? '',
+            $defaultConfig['gubun'][$data->gubun] ?? '',
             $data->name_kr ?? '',
-            $data->sosok_kr ?? '',
+            $sosok,
 
+            $data->license_number,
             $data->email,
             $data->phone,
-            $workshopConfig['shuttle_yn'][$data->shuttle_yn] ?? '',
-            !empty($data->price) ? number_format($data->price ?? 0) : '',
-            $workshopConfig['payment_status'][$data->payment_status] ?? '',
+            !empty($data->amount) ? number_format($data->amount ?? 0) : '',
+            $defaultConfig['pay_method'][$data->pay_method] ?? '',
 
-            $workshopConfig['payment_method'][$data->payment_method] ?? '',
-            !empty($data->payment_date) ? $data->payment_date->format('Y-m-d') : '',
-            !empty($data->created_at) ? $data->created_at->format('Y-m-d') : '',
-            !empty($data->complete_at) ? $data->complete_at->format('Y-m-d') : '',
-            !empty($data->refund_at) ? $data->refund_at->format('Y-m-d') : '',
-
-            $data->refund_reason,
-            $workshopConfig['refund_method'][$data->refund_method] ?? '',
-            $data->refund_bank,
-            $data->refund_num,
-            $data->account_name,
-            
-            !empty($data->deleted_at) ? $data->deleted_at->format('Y-m-d') : '',
-            $data->admin_memo ?? '',
+            $defaultConfig['pay_status'][$data->pay_status] ?? '',
+            $data->created_at ?? '',
+            $data->updated_at ?? '',
+            $data->memo ?? '',
         ];
     }
 

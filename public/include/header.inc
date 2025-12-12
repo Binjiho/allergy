@@ -29,18 +29,19 @@
         <header id="header" class="js-header">
             <div class="header-wrap inner-layer">
                 <ul class="sns-menu">
-                    <li><a href="#n"><img src="/assets/image/common/ic_insta.png" alt="인스타그램"></a></li>
+                    <li><a href="https://www.instagram.com/allergy_kaaaci/" target="_blank"><img src="/assets/image/common/ic_insta.png" alt="인스타그램"></a></li>
                     <li><a href="#n"><img src="/assets/image/common/ic_facebook.png" alt="페이스북"></a></li>
-                    <li><a href="#n"><img src="/assets/image/common/ic_youtube.png" alt="유튜브"></a></li>
+                    <li><a href="https://www.youtube.com/@Kaaaci_Allergy" target="_blank"><img src="/assets/image/common/ic_youtube.png" alt="유튜브"></a></li>
                 </ul>
                 <h1 class="header-logo">
                     <a href="/"><img src="/assets/image/common/h1_logo.png" alt="대한천식알레르기학회. The Korean Academy of Asthma, Allergy and Clinical Immunology"></a>
                 </h1>
                 <ul class="util-menu">
-                    <li class="lang"><a href="#n">ENGLISH</a></li>
-                    <li class="login"><a href="#n">LOGIN</a></li>
-                    <li class="signup"><a href="#n">회원가입 안내</a></li>
                     <li class="admin"><a href="#n">ADMIN</a></li>
+                    <li class="home"><a href="/">HOME</a></li>
+                    <li class="signup"><a href="#n">마이페이지</a></li>
+                    <li class="login"><a href="#n">LOGOUT</a></li>
+                    <li class="lang"><a href="https://www.allergy.or.kr/eng/" target="_blank">ENGLISH</a></li>
                 </ul>
                 <button type="button" class="btn btn-menu-open js-btn-menu-open" title="메뉴 열기">
                     <span></span>

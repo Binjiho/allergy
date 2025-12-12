@@ -4,255 +4,261 @@
 @endsection
 
 @section('contents')
-    <section id="container">
-        <article class="main-visual">
-            <div class="main-visual-wrap js-main-visual cf">
-                <div class="main-visual-con main-visual-con01">
-                    <div class="main-visual-text inner-layer">
-                        <h2 class="main-visual-tit font-paper">
-                            <img src="/assets/image/main/img_mainvisual_logo.png" alt="한, 중, 일 뇌신경과학회 엠블럼" class="logo">
-                            <span>The 28<sup>th</sup> Annual meeting of KSBNS</span>
-                            <strong>
-                                K-Brain 2025 & <br>
-                                The 3<sup>rd</sup> CJK <br>
-                                Neuroscience Meeting
-                                <span class="stroke">
-                                K-Brain 2025 & <br>
-                                The 3<sup>rd</sup> CJK <br>
-                                Neuroscience Meeting
-                            </span>
-                            </strong>
-                        </h2>
-                        <ul class="info-list">
-                            <li>
-                                <span class="tit">DATE</span>
-                                <p>
-                                    Aug <strong>24</strong>(Sun) – Aug <strong>27</strong>(Wed), 2025
-                                </p>
-                            </li>
-                            <li>
-                                <span class="tit">Venue</span>
-                                <p>
-                                    Songdo Convensia, Incheon, Korea
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
+    <article class="main-visual">
+        <div class="main-visual-wrap js-main-visual cf">
+            <div class="main-visual-con">
+                <div class="main-visual-text inner-layer">
+                    <h2 class="main-visual-tit">
+                        <span class="sub-title">Since 1972</span><br>
+                        <span class="title">대한천식알레르기학회</span>는 <br class="m-show">국민보건 향상을 위해 천식,알레르기 및 <br class="m-show">임상면역학 분야의 학문발전에 기여합니다.
+                    </h2>
+                    <img src="/assets/image/main/img_mainvisual01.png" alt="" class="m-hide">
+                    <img src="/assets/image/main/img_mainvisual01_m.png" alt="" class="m-show">
                 </div>
             </div>
-            <ul class="main-visual-menu">
-                <li>
-                    <a href="#n">
-                        Registration
-                        <span class="icon"><img src="/assets/image/main/ic_visual_menu01.png" alt=""></span>
-                    </a>
+            <div class="main-visual-con">
+                <div class="main-visual-text inner-layer">
+                    <h2 class="main-visual-tit">
+                        <span class="sub-title">Since 1972</span><br>
+                        <span class="title">대한천식알레르기학회</span>는 <br class="m-show">국민보건 향상을 위해 천식,알레르기 및 <br class="m-show">임상면역학 분야의 학문발전에 기여합니다.
+                    </h2>
+                    <img src="/assets/image/main/img_mainvisual01.png" alt="" class="m-hide">
+                    <img src="/assets/image/main/img_mainvisual01_m.png" alt="" class="m-show">
+                </div>
+            </div>
+        </div>
+        <div class="slider-attr">
+            <div class="slick-dots-wrap"></div>
+            <div class="slick-arrow-wrap">
+            </div>
+        </div>
+    </article>
+
+    <article class="main-contents inner-layer">
+        <h3 class="hide">공지사항 | 관련기관 소식 | 보험관련 소식 | 보도자료 | 유튜브</h3>
+        <div class="main-board-conbox">
+            <div class="main-board-menu tab-drop-wrap js-tab-drop-wrap">
+                <a href="#n" class="btn-drop-menu js-btn-tab-drop"></a>
+                <ul>
+                    <li class="{{ ( (request()->bcode ?? '') == 'notice' && (request()->category ?? '') == '1') || (empty(request()->bcode) && empty(request()->category)) ? 'on' : '' }}"><a href="{{ route('main',['bcode'=>'notice','category'=>1]) }}">
+                            <span class="icon type1">아이콘</span> 공지사항
+                        </a></li>
+                    <li class="{{ ( (request()->bcode ?? '') == 'notice' && (request()->category ?? '') == '2') ? 'on' : '' }}"><a href="{{ route('main',['bcode'=>'notice','category'=>2]) }}">
+                            <span class="icon type2">아이콘</span> 관련기관 소식
+                        </a></li>
+                    <li class="{{ ( (request()->bcode ?? '') == 'notice' && (request()->category ?? '') == '3') ? 'on' : '' }}"><a href="{{ route('main',['bcode'=>'notice','category'=>3]) }}">
+                            <span class="icon type3">아이콘</span> 보험관련 소식
+                        </a></li>
+                    <li class="{{ ( (request()->bcode ?? '') == 'notice' && (request()->category ?? '') == '4') ? 'on' : '' }}"><a href="{{ route('main',['bcode'=>'notice','category'=>4]) }}">
+                            <span class="icon type4">아이콘</span> 보도자료
+                        </a></li>
+                </ul>
+            </div>
+{{--     TODO : 서버 이동 우선 막기    --}}
+            <ul class="main-board-con list-type list-type-dot">
+                @forelse($notice_list as $row)
+                    <li>
+                        <a href="{{ route('board.view', ['code' => $row->code, 'sid' => $row->sid]) }}">
+                            <p class="tit ellipsis">{{ $row->subject ?? '' }}</p>
+                            <span class="date">{{ $row->created_at->format('Y.m.d') ?? '' }}</span>
+                        </a>
                 </li>
-                <li>
-                    <a href="#n">
-                        Abstract <br>Submission
-                        <span class="icon"><img src="/assets/image/main/ic_visual_menu02.png" alt=""></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#n">
-                        Program
-                        <span class="icon"><img src="/assets/image/main/ic_visual_menu03.png" alt=""></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#n">
-                        Sonsorship
-                        <span class="icon"><img src="/assets/image/main/ic_visual_menu04.png" alt=""></span>
-                    </a>
-                </li>
+                @empty
+                    <li class="no-data">
+                        등록된 게시글이 없습니다.
+                    </li>
+                @endforelse
             </ul>
-        </article>
+        </div>
+        <div class="main-video-conbox">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/x20ku4Iry4Y?si=Sj5sxBNtZLiB2_mF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <a href="https://www.youtube.com/@Kaaaci_Allergy" target="_blank" class="btn btn-type1 color-type1 btn-round text-left">
+                대한천식알레르기학회 유튜브 바로가기<span class="arrow"><img src="/assets/image/main/ico_link_arrow.png" alt=">"></span>
+            </a>
+        </div>
+    </article>
 
-        <article class="main-contents">
-            <div class="main-conbox inner-layer">
-                <div class="main-tit-wrap">
-                    <h3 class="main-tit">IMPORTANT <br>DATES</h3>
+    <article class="main-contents inner-layer">
+        <h3 class="hide">뉴스레터 | 진료지침 | 포토갤러리</h3>
+        <ul class="main-link-conbox">
+            <li>
+                <p class="title"><span>뉴스레터</span></p>
+                <div class="img-wrap">
+                    @if(!empty($newsletter))
+                        <img src="{{ asset($newsletter->thumbnail_realfile) }}" alt="">
+                    @else
+{{--                        <img src="/assets/image/main/img_newsletter.png" alt="">--}}
+                    @endif
                 </div>
-                <ul class="dday-list">
+                <a href="{{ route('board', ['code' => "newsletter"]) }}" class="btn btn-type1 btn-round text-left">
+                    뉴스레터 최근호 보기 <span class="arrow"><img src="/assets/image/main/ico_link_arrow.png" alt=">"></span>
+                </a>
+            </li>
+            <li>
+                <p class="title"><span>진료지침</span></p>
+                <ul class="con-wrap">
                     <li>
-                        <span class="dday">D-123</span>
-                        <p>
-                            Abstract Submission <br>
-                            Deadline
-                        </p>
-                        <strong>By Feb. 1, 2025</strong>
+                        <a href="#n">
+                            <p class="subject ellipsis2">진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침</p>
+                            <p class="text-right">2024 / 아토피피부염</p>
+                        </a>
                     </li>
                     <li>
-                        <span class="dday">D-123</span>
-                        <p>
-                            Minisymposia <br>
-                            Submission Deadline
-                        </p>
-                        <strong>After Feb. 1, 2025</strong>
+                        <a href="#n">
+                            <p class="subject ellipsis2">진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침</p>
+                            <p class="text-right">2024 / 아토피피부염</p>
+                        </a>
                     </li>
-                    <li>
-                        <span class="dday">D-123</span>
-                        <p>
-                            Early Bird Registration <br>
-                            Deadline
-                        </p>
-                        <strong>By Mar. 15, 2025</strong>
-                    </li>
-                    <li>
-                        <span class="dday">D-123</span>
-                        <p>
-                            Standard Registration <br>
-                            Deadline
-                        </p>
-                        <strong>By Mar. 15, 2025</strong>
-                    </li>
+{{--     TODO : 서버 이동 우선 막기    --}}
+                    @forelse($guideline as $row)
+                        <li>
+                            <a href="{{ route('board.view', ['code' => $row->code, 'sid' => $row->sid]) }}">
+                                <p class="subject ellipsis2">{{ $row->subject ?? '' }}</p>
+                                <p class="text-right">{{ $row->created_at->format('Y') ?? '' }}</p>
+                            </a>
+                        </li>
+                    @empty
+                    @endforelse
                 </ul>
-            </div>
-        </article>
-
-        <article class="main-contents">
-            <div class="main-conbox inner-layer">
-                <div class="main-tit-wrap">
-                    <h3 class="main-tit">Invited Speakers</h3>
-                </div>
-                <div class="speakers-wrap">
-                    <div class="speakers-rolling cf js-speakers-rolling cf">
-                        <div class="speakers-con">
-                            <span class="cate cate01">Presidential</span>
-                            <div class="img-wrap">
-                                <img src="/assets/image/main/img_no_speakers.png"  alt="Benjamin Deneed">
-                            </div>
-                            <div class="text-wrap">
-                                <strong class="tit">Benjamin Deneed</strong>
-                                <p class="affiliation">Baylor College of Medicine, <br>USA</p>
-                            </div>
-                        </div>
-                        <div class="speakers-con">
-                            <span class="cate cate01">Presidential</span>
-                            <div class="img-wrap">
-                                <img src="/assets/image/main/img_no_speakers.png"  alt="Benjamin Deneed">
-                            </div>
-                            <div class="text-wrap">
-                                <strong class="tit">Benjamin Deneed</strong>
-                                <p class="affiliation">Baylor College of Medicine, <br>USA</p>
-                            </div>
-                        </div>
-                        <div class="speakers-con">
-                            <span class="cate cate01">Presidential</span>
-                            <div class="img-wrap">
-                                <img src="/assets/image/main/img_no_speakers.png"  alt="Peter Walter">
-                            </div>
-                            <div class="text-wrap">
-                                <strong class="tit">Peter Walter</strong>
-                                <p class="affiliation">Altos Labs, <br>USA</p>
-                            </div>
-                        </div>
-                        <div class="speakers-con">
-                            <span class="cate cate02">KSBNS Plenary</span>
-                            <div class="img-wrap">
-                                <img src="/assets/image/main/img_no_speakers.png"  alt="Matteo Carandini">
-                            </div>
-                            <div class="text-wrap">
-                                <strong class="tit">Matteo Carandini</strong>
-                                <p class="affiliation">University College London, <br> UK</p>
-                            </div>
-                        </div>
-                        <div class="speakers-con">
-                            <span class="cate cate02">KSBNS Plenary</span>
-                            <div class="img-wrap">
-                                <img src="/assets/image/main/img_no_speakers.png"  alt="Matthew Rushworth">
-                            </div>
-                            <div class="text-wrap">
-                                <strong class="tit">Matthew Rushworth</strong>
-                                <p class="affiliation">University Oxford, <br>UK </p>
-                            </div>
-                        </div>
-                        <div class="speakers-con">
-                            <span class="cate cate03">CJK Plenary</span>
-                            <div class="img-wrap">
-                                <img src="/assets/image/main/img_no_speakers.png"  alt="Hailan Hu">
-                            </div>
-                            <div class="text-wrap">
-                                <strong class="tit">Hailan Hu</strong>
-                                <p class="affiliation">Zhejiang University, <br>China</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <article class="main-contents inner-layer">
-            <div class="main-conbox main-board-conbox">
-                <div class="main-tit-wrap">
-                    <h3 class="main-tit">Notice</h3>
-                </div>
-                <ul class="main-board-list">
-                    <li class="no-data" style="display: none;">
-                        No Contents.
-                    </li>
-                    <li>
-                        <a href="#n">
-                            <span class="subject ellipsis">Invitation to the KSBNS Neuro Night: A Night of Music and Fun Invitation to the KSBNS Neuro Night: A Night of Music and Fun</span>
-                            <span class="date">MORE <span class="plus">+</span></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#n">
-                            <span class="subject ellipsis">Invitation to the KSBNS Neuro Night: A Night of Music and Fun Invitation to the KSBNS Neuro Night: A Night of Music and Fun</span>
-                            <span class="date">MORE <span class="plus">+</span></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#n">
-                            <span class="subject ellipsis">Invitation to the KSBNS Neuro Night: A Night of Music and Fun Invitation to the KSBNS Neuro Night: A Night of Music and Fun</span>
-                            <span class="date">MORE <span class="plus">+</span></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#n">
-                            <span class="subject ellipsis">Invitation to the KSBNS Neuro Night: A Night of Music and Fun Invitation to the KSBNS Neuro Night: A Night of Music and Fun</span>
-                            <span class="date">MORE <span class="plus">+</span></span>
-                        </a>
-                    </li>
+                <a href="{{ route('board', ['code' => "guideline"]) }}" class="btn btn-type1 btn-round text-left">
+                    진료지침 바로가기 <span class="arrow"><img src="/assets/image/main/ico_link_arrow.png" alt=">"></span>
+                </a>
+            </li>
+            <li>
+                <p class="title"><span>최신논문소식</span></p>
+                <ul class="con-wrap">
+{{--     TODO : 서버 이동 우선 막기    --}}
+                    @forelse($absnews as $row)
+                        <li>
+                            <a href="{{ route('board.view', ['code' => $row->code, 'sid' => $row->sid]) }}">
+                                <p class="subject ellipsis2">{{ $row->subject ?? '' }}</p>
+                                <p class="text-right">{{ $row->created_at->format('Y') ?? '' }}</p>
+                            </a>
+                        </li>
+                    @empty
+                    @endforelse
                 </ul>
-                <a href="/html/bbs/notice/list.html" class="btn btn-more"><span class="hide">더보기</span></a>
-            </div>
-            <div class="main-conbox main-download-conbox">
-                <div class="main-tit-wrap">
-                    <h3 class="main-tit">Download Center</h3>
+                <a href="{{ route('board', ['code' => "abs-news"]) }}" class="btn btn-type1 btn-round text-left">
+                    최신논문소식 바로가기 <span class="arrow"><img src="/assets/image/main/ico_link_arrow.png" alt=">"></span>
+                </a>
+            </li>
+        </ul>
+    </article>
+
+    <article class="main-contents main-schedule-wrap">
+        <div class="main-title-wrap inner-layer">
+            <h3>행사일정</h3>
+            <p>대한천식알레르기학회 및 연관학회의 <br class="m-show">행사일정을 안내 드립니다.</p>
+            <a href="{{ route('board',['code'=>'event-schedule']) }}" class="plus"><span class="hide">more</span></a>
+        </div>
+        <div class="main-schedule-menu">
+            <div class="inner-layer">
+                <div class="main-year-menu">
+                    <select name="year" id="year">
+                        <option value="2025" {{ (request()->year ?? date('Y') ) == '2025' ? 'selected' : '' }}>2025</option>
+                        <option value="2024" {{ (request()->year ?? date('Y') ) == '2024' ? 'selected' : '' }}>2024</option>
+                        <option value="2023" {{ (request()->year ?? date('Y') ) == '2023' ? 'selected' : '' }}>2023</option>
+                    </select>
                 </div>
-                <div class="scroll-y">
-                    <ul class="download-list">
-                        <li>
-                            <a href="#n" download><img src="/assets/image/main/ic_file01.png" alt="">KSBNS 2024 Poster</a>
-                        </li>
-                        <li>
-                            <a href="#n" download><img src="/assets/image/main/ic_file02.png" alt="">2024 APSN-ISN-Neurochemistry School Poster</a>
-                        </li>
-                        <li>
-                            <a href="#n" download><img src="/assets/image/main/ic_file03.png" alt="">KSBNS NeuroNight Poster</a>
-                        </li>
-                        <li>
-                            <a href="#n" download><img src="/assets/image/main/ic_file01.png" alt="">KSBNS 2024 Poster</a>
-                        </li>
-                        <li>
-                            <a href="#n" download><img src="/assets/image/main/ic_file02.png" alt="">2024 APSN-ISN-Neurochemistry School Poster</a>
-                        </li>
-                        <li>
-                            <a href="#n" download><img src="/assets/image/main/ic_file03.png" alt="">KSBNS NeuroNight Poster</a>
-                        </li>
+                <div class="main-month-menu tab-drop-wrap js-tab-drop-wrap">
+                    <a href="#n" class="btn-drop-menu js-btn-tab-drop"></a>
+                    <ul class="month">
+                        <li class="{{ (request()->month ?? date('m') ) == '1' ? 'on' : '' }}" data-month="1"><a href="javascript:;">1월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '2' ? 'on' : '' }}" data-month="2"><a href="javascript:;">2월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '3' ? 'on' : '' }}" data-month="3"><a href="javascript:;">3월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '4' ? 'on' : '' }}" data-month="4"><a href="javascript:;">4월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '5' ? 'on' : '' }}" data-month="5"><a href="javascript:;">5월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '6' ? 'on' : '' }}" data-month="6"><a href="javascript:;">6월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '7' ? 'on' : '' }}" data-month="7"><a href="javascript:;">7월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '8' ? 'on' : '' }}" data-month="8"><a href="javascript:;">8월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '9' ? 'on' : '' }}" data-month="9"><a href="javascript:;">9월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '10' ? 'on' : '' }}" data-month="10"><a href="javascript:;">10월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '11' ? 'on' : '' }}" data-month="11"><a href="javascript:;">11월</a></li>
+                        <li class="{{ (request()->month ?? date('m') ) == '12' ? 'on' : '' }}" data-month="12"><a href="javascript:;">12월</a></li>
                     </ul>
                 </div>
             </div>
-        </article>
-    </section>
+        </div>
+        <div class="main-schedule-con js-main-schedule inner-layer">
+{{--     TODO : 서버 이동 우선 막기    --}}
+            @forelse($event_list as $row)
+            <div class="schedule-conbox">
+                <a href="{{ route('board.view', ['code' => 'event-schedule', 'sid' => $row->sid]) }}">
+                    <p class="title ellipsis2">{{ $row->subject }}</p>
+                    <p class="ico date">{{ !empty($row->event_sDate) ? $row->event_sDate->format('Y.m.d') : $row->created_at->format('Y.m.d') }}</p>
+                    <p class="ico place">{{ $row->place }}</p>
+                </a>
+            </div>
+            @empty
+            <div class="schedule-conbox no-data">
+                등록된 일정이 없습니다.
+            </div>
+            @endforelse
+        </div>
+    </article>
+
+    <article class="main-contents inner-layer">
+        <h3 class="hide">AAIR | AARD | 알레르기 전문 병원 검색 | 아토피 천식 교육 정보센터 | 역대학술대회</h3>
+        <ul class="main-quick-conbox">
+            <li>
+                <a href="https://www.e-aair.org/index.php" target="_blank">
+                    <p>AAIR</p>
+                    <img src="/assets/image/main/img_main_quick01.png" alt="">
+                    <span class="arrow"><span class="hide">></span></span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.aard.or.kr/" target="_blank">
+                    <p>AARD</p>
+                    <img src="/assets/image/main/img_main_quick02.png" alt="">
+                    <span class="arrow"><span class="hide">></span></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('general.hospitalSearch') }}">
+                    <p>알레르기 전문 <br>병원 검색</p>
+                    <img src="/assets/image/main/img_main_quick03.png" alt="">
+                    <span class="arrow"><span class="hide">></span></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('general.center') }}">
+                    <p>아토피 천식 <br>교육 정보센터</p>
+                    <img src="/assets/image/main/img_main_quick04.png" alt="">
+                    <span class="arrow"><span class="hide">></span></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('general.hospitalSearch') }}">
+                    <p>일반인정보</p>
+                    <img src="/assets/image/main/img_main_quick05.png" alt="">
+                    <span class="arrow"><span class="hide">></span></span>
+                </a>
+            </li>
+        </ul>
+    </article>
 @endsection
 
 @section('addScript')
-{{--    @if(!empty($boardPopupList))--}}
-{{--        @include('common.board.popup.multi_pop', ['boardPopupList' => $boardPopupList])--}}
-{{--    @endif--}}
+    <script>
+        $(document).on('click', '.month li', function() {
+            $('.month li').removeClass('on');
+            // 클릭된 항목에 'on' 클래스 추가
+            $(this).addClass('on');
+
+            const _month = $(this).data('month');
+            const _year = $("#year").val();
+            location.href="/?month="+_month+"&year="+_year;
+        });
+
+        $(document).on('change', '#year', function() {
+            const _month = $(".month li.on").data('month');
+            const _year = $("#year").val();
+            location.href="/?month="+_month+"&year="+_year;
+        });
+    </script>
 
     @isset($boardPopupList)
         @include('common.board.popup.rolling-popup')

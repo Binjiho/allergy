@@ -4,8 +4,8 @@ $code = 'format';
 
 return [
     'menu' => [ // 메뉴 키
-        'main' => 'M6',
-        'sub' => 'S4'
+        'main' => 'M3',
+        'sub' => 'S3'
     ],
 
     'code' => "{$code}", // 게시판 코드
@@ -39,7 +39,7 @@ return [
         'main' => true, // 메인노출
         'notice' => true, // 공지
         'subject' => true, // 제목
-        'link' => false, // 상세링크
+        'link' => true, // 상세링크
         'hide' => true, // 공개옵션
         'popup' => true, // 팝업
         'secret' => false, // 비밀글
@@ -105,7 +105,7 @@ return [
         'subject/contents' => '제목+내용',
         'name' => '작성자',
         'subject' => '제목',
-        'content' => '내용',
+        'contents' => '내용',
     ],
 
 ];

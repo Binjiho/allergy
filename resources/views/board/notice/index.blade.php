@@ -42,6 +42,11 @@
                         </fieldset>
                     </form>
                 </div>
+
+                <div class="list-contop mb-10">
+                    총 게시글 <strong class="text-red">{{ ($tot_cnt ?? 0) + ($notice_list->count() ?? 0) }}</strong>건
+                </div>
+
                 <ul class="board-list">
                     <!-- 공지 -->
                     @foreach($notice_list ?? [] as $row)
@@ -140,7 +145,7 @@
                         <!-- no data -->
                         <li class="no-data text-center">
                             <img src="/html/bbs/notice/assets/image/ic_nodata.png" alt=""> <br>
-                            책갈피 설정된 게시글이 없습니다.
+                            게시글이 없습니다.
                         </li>
                     @endforelse
                 </ul>

@@ -1,0 +1,532 @@
+@extends('layouts.web-layout')
+
+@section('addStyle')
+@endsection
+
+@section('contents')
+    @include('layouts.include.sub-menu-wrap')
+
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="journal-conbox">
+                <div class="sub-tab-wrap">
+                    <ul class="sub-tab-menu">
+                        <li class="on"><a href="{{ route('news.prize') }}">학술상</a></li>
+                        <li class=""><a href="{{ route('news.research') }}">연구비</a></li>
+                    </ul>
+                </div>
+                <div class="sub-tab-wrap">
+                    <ul class="sub-tab-menu type3">
+                        <li class=""><a href="{{ route('news.prize') }}">수상내역</a></li>
+                        <li class="on"><a href="{{ route('news.prize.rule') }}">학술상 규정</a></li>
+                    </ul>
+                </div>
+				<div class="rule-wrap p-0">
+                    <div class="term-tit-wrap">
+                        <strong class="tit">청산강석영학술상 규정</strong>
+                    </div>
+                    <div class="rule-conbox">
+                        <strong class="rule-tit">제 1 조 (명칭)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    학술상의 명칭은 ‘청산강석영학술상’(이하 이 학술상)이라고 한다.
+                                </li>
+                                <li>
+                                    1995년부터 운용된 ‘청산우수논문상’의 명칭을 변경하여 계승한다. 
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 2 조 (목적)</strong>
+                        <div class="rule-con">
+                            <p>이 학술상은 대한천식알레르기학회(이하 학회) 초창기 학회 발전에 공헌하신 청산 강석영 교수님의 뜻에 따라 알레르기학 발전에 크게 기여한 학회원에게 시상하여 연구업적을 축하하고 연구의욕을 고취하여 알레르기학 발전을 도모함을 목적으로 한다.</p>
+                        </div>
+    
+                        <strong class="rule-tit">제 3 조 (수상자 선정)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    수상자의 심사와 선정은 학술상선정위원회에서 담당한다. 
+                                </li>
+                                <li>
+                                    수상자의 선정은 최근 3년간의 논문, 저서, 특허 등 연구업적과 학회활동 및 학회사업에 대한 기여도를 바탕으로 평가한다.
+                                </li>
+                                <li>
+                                    수상자는 시상일을 기준으로 만 65세 이하 학회 정회원으로 한다. 
+                                </li>
+                                <li>
+                                    수상자의 선정은 매년 1회 시행하며, 수상자는 매년 1명으로 한다.
+                                </li>
+                                <li>
+                                    이전 이 학술상 수상자는 제외한다. 
+                                </li>
+                                <li>
+                                    선정 결과는 이사회와 평의원회에 보고한다. 
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 4 조 (수상자 선정절차)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    후보자를 공모한다.
+                                </li>
+                                <li>
+                                    학술상에 지원하는 신청자는 아래의 서류를 지정한 기한 내에 제출하여야 한다.
+                                    <ol class="list-type list-type-text">
+                                        <li>
+                                            <span>1)</span>
+                                            <div>
+                                                신청서
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>2)</span>
+                                            <div>
+                                                이력서 (수상 경력 포함)
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>3)</span>
+                                            <div>
+                                                최근 3년간의 연구업적 목록(논문, 저서, 특허, 연구비 등)
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>4)</span>
+                                            <div>
+                                                증빙자료 (논문 별책 PDF 파일, 기타 심사에 필요한 증빙자료)
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>5)</span>
+                                            <div>
+                                                학회 평의원의 추천서
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 5 조 (시상)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    이 학술상의 시상은 상금 일천만원과 상패로 한다.
+                                </li>
+                                <li>
+                                    이 학술상은 매년 학회 추계학술대회에서 시상한다.
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 6 조 (학술상선정위원회)</strong>
+                        <div class="rule-con">
+                            <p>
+                                학술상선정위원회는 이사장, 총무이사, 학술이사, 연구이사, 간행이사, 기획이사, 수련이사로 구성하며, 이사장이 위원장이 된다. 
+                            </p>
+                        </div>
+
+                        <strong class="rule-tit">부칙</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    이 규정에 명시되지 않은 사항은 위원회의 결정에 따른다.
+                                </li>
+                                <li>
+                                    이 규정은 1995년 1월 1일부터 시행한다.
+                                </li>
+                            </ol>
+                            <p class="mt-20 text-right">
+                                2025년 2월 13일 1차 개정 <br>
+                                2025년 9월 18일 2차 개정
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+				<div class="rule-wrap">
+                    <div class="term-tit-wrap">
+                        <strong class="tit">소오이상용 젊은연구자상 규정</strong>
+                    </div>
+                    <div class="rule-conbox">
+                        <strong class="rule-tit">제 1 조 (명칭)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    학술상의 명칭은 ‘소오이상용 젊은연구자상’(이하 이 학술상)이라고 한다.
+                                </li>
+                                <li>
+                                    1996년부터 수여된 ‘소오우수논문상’의 명칭을 변경하여 계승한다. 
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 2 조 (목적)</strong>
+                        <div class="rule-con">
+                            <p>이 학술상은 대한천식알레르기학회(이하 학회) 초창기 학회 발전에 공헌하신 소오 이상용 교수님의 뜻에 따라 알레르기학 발전에 크게 기여한 젊은 학회원에게 시상하여 연구업적을 축하하고 연구의욕을 고취하여 알레르기학 발전을 도모함을 목적으로 한다.</p>
+                        </div>
+    
+                        <strong class="rule-tit">제 3 조 (수상자 선정)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    수상자의 심사와 선정은 학술상선정위원회에서 담당한다. 
+                                </li>
+                                <li>
+                                    수상자의 선정은 최근 3년간의 논문, 저서, 특허 등 연구업적과 학회활동 및 학회사업에 대한 기여도를 바탕으로 평가한다.
+                                </li>
+                                <li>
+                                    수상자는 학회 정회원으로 시상일을 기준으로 만 45세 이하로 한다.
+                                </li>
+                                <li>
+                                    수상자의 선정은 매년 1회 시행하며, 수상자는 매년 1명으로 한다.
+                                </li>
+                                <li>
+                                    이전 이 학술상 수상자는 제외한다. 
+                                </li>
+                                <li>
+                                    선정 결과는 이사회와 평의원회에 보고한다. 
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 4 조 (수상자 선정절차)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    후보자를 공모한다.
+                                </li>
+                                <li>
+                                    학술상에 지원하는 신청자는 아래의 서류를 지정한 기한 내에 제출하여야 한다.
+                                    <ol class="list-type list-type-text">
+                                        <li>
+                                            <span>1)</span>
+                                            <div>
+                                                신청서
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>2)</span>
+                                            <div>
+                                                이력서 (수상 경력 포함)
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>3)</span>
+                                            <div>
+                                                최근 3년간의 연구업적 목록(논문, 저서, 특허, 연구비 등)
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>4)</span>
+                                            <div>
+                                                증빙자료 (논문 별책 PDF 파일, 기타 심사에 필요한 증빙자료)
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>5)</span>
+                                            <div>
+                                                학회 평의원의 추천서
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 5 조 (시상)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    이 학술상의 시상은 상금 오백만원과 상패로 한다. 
+                                </li>
+                                <li>
+                                    이 학술상은 매년 학회 추계학술대회에서 시상한다.
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 6 조 (학술상선정위원회)</strong>
+                        <div class="rule-con">
+                            <p>
+                                학술상선정위원회는 이사장, 총무이사, 학술이사, 연구이사, 간행이사, 기획이사, 수련이사로 구성하며, 이사장이 위원장이 된다. 
+                            </p>
+                        </div>
+
+                        <strong class="rule-tit">부칙</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    이 규정에 명시되지 않은 사항은 위원회의 결정에 따른다.
+                                </li>
+                                <li>
+                                    이 규정은 1995년 1월 1일부터 시행한다.
+                                </li>
+                            </ol>
+                            <p class="mt-20 text-right">
+                                2025년 2월 13일 1차 개정 <br>
+                                2025년 9월 18일 2차 개정
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-wrap">
+                    <div class="term-tit-wrap">
+                        <strong class="tit">대한천식알레르기학회 우수논문상 규정</strong>
+                    </div>
+                    <div class="rule-conbox">
+                        <strong class="rule-tit">제 1 조 (목적)</strong>
+                        <div class="rule-con">
+                            <p>이 상은 대한천식알레르기학회의 공식 학회지인 Allergy, Asthma & Immunology Research (AAIR 영문학술지)와 Allergy Asthma & Respiratory Disease (AARD 국문학술지)에 우수논문을 게재한 학회원의 연구 성과를 축하하고 알레르기 및 면역질환 연구를 장려함을 목적으로 한다.</p>
+                        </div>
+    
+                        <strong class="rule-tit">제 2 조 (명칭)</strong>
+                        <div class="rule-con">
+                            <p>우수논문상의 명칭은 다음과 같이 4개로 한다.</p>
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    AAIR 최우수 논문상 
+                                </li>
+                                <li>
+                                    AAIR 우수 논문상 
+                                </li>
+                                <li>
+                                    AARD 최우수 논문상 
+                                </li>
+                                <li>
+                                    AARD 우수 논문상 
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 3 조 (수상자) </strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    수상자는 시상일을 기준으로 만 65세 이하 학회원으로 한다. 
+                                </li>
+                                <li>
+                                    학회 연구비 지원을 받은 논문은 심사 대상에서 제외한다. 
+                                </li>
+                                <li>
+                                    당해년도의 다른 학술상, 논문상과 중복하여 수상하지 않는다. 
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 4 조 (선정 기준) </strong>
+                        <div class="rule-con">
+                            <p>다음과 같은 기준으로 수상자를 선정한다.</p>
+                            
+                            <ol class="list-type list-type-text">
+                                <li>
+                                    <span>1)</span>
+                                    <div>
+                                        AAIR 최우수논문상 <br>
+                                        전전년도 1월부터 전년도 12월까지 2년간 AAIR에 게재된 원저 중 최다 피인용된 논문을 게재한 제1저자 또는 교신저자를 우선으로 한다.
+                                    </div>
+                                </li>
+                                <li>
+                                    <span>2)</span>
+                                    <div>
+                                        AAIR 우수논문상 <br>
+                                        전년도 1월부터 12월까지 1년간 AAIR에 게재된 논문(종설, 논평, 증례 포함) 중 우수논문을 게재한 제1저자 또는 교신저자를 우선으로 한다. 
+                                    </div>
+                                </li>
+                                <li>
+                                    <span>3)</span>
+                                    <div>
+                                        AARD 최우수논문상 <br>
+                                        전년도 1월부터 12월까지 1년간 AARD에 게재된 원저 중 우수논문을 게재한 제1저자 또는 교신저자를 우선으로 한다. 
+                                    </div>
+                                </li>
+                                <li>
+                                    <span>4)</span>
+                                    <div>
+                                        AARD 우수논문상 <br>
+                                        전년도 1월부터 12월까지 1년간 AARD에 게재된 논문(종설, 논평, 증례 포함) 중 우수논문을 게재한 제1저자 또는 교신저자를 우선으로 한다.
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 5 조 (선정 절차)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-text">
+                                <li>
+                                    <span>1)</span>
+                                    <div>학회 간행위원회에서 3배수로 추천한다.</div>
+                                </li>
+                                <li>
+                                    <span>2)</span>
+                                    <div>이사장을 위원장으로 하고, 총무이사, 간행이사, 연구이사, 학술이사, 기획이사, 수련이사를 위원으로 하는 학술상선정위원회에서 최종 선정한다. </div>
+                                </li>
+                                <li>
+                                    <span>3)</span>
+                                    <div>선정 결과는 이사회와 평의원회에 보고한다.</div>
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 6 조 (시상)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    이 상은 매년 학회 추계학술대회에서 시상한다. 
+                                </li>
+                                <li>
+                                    이 상의 시상은 다음과 같이 상금과 상장을 수여한다.
+                                    <ol class="list-type list-type-text">
+                                        <li>
+                                            <span>1)</span>
+                                            <div>AAIR 최우수논문상: 상금 400만원</div>
+                                        </li>
+                                        <li>
+                                            <span>2)</span>
+                                            <div>AAIR 우수논문상: 상금 300만원</div>
+                                        </li>
+                                        <li>
+                                            <span>3)</span>
+                                            <div>AARD 최우수논문상: 상금 200만원</div>
+                                        </li>
+                                        <li>
+                                            <span>4)</span>
+                                            <div>AARD 우수논문상: 상금 100만원</div>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <strong class="rule-tit">제 7조 (부칙)</strong>
+                        <div class="rule-con">
+                            <p>이 규정은 2025년 8월 1일부터 시행하며 이 규정에 규정되지 아니한 사항은 관례에 따른다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div  class="rule-wrap">
+                    <div class="term-tit-wrap">
+                        <strong class="tit">대한천식알레르기학회 공로상 규정</strong>
+                    </div>
+                    <div class="rule-conbox">
+                        <strong class="rule-tit">제 1 조 (목적)</strong>
+                        <div class="rule-con">
+                            <p>이 상은 대한천식알레르기학회(이하 학회) 공식 학술잡지인 Allergy, Asthma & Immunology Research (AAIR)와 Allergy Asthma & Respiratory Disease (AARD)의 간행과 학회의 다양한 사업에 적극 협력하여 학회발전에 공헌한 회원의 공로를 기리고 격려함을 목적으로 한다.</p>
+                        </div>
+    
+                        <strong class="rule-tit">제 2 조 (명칭)</strong>
+                        <div class="rule-con">
+                            <p>공로상의 명칭은 다음과 같이 3개로 한다.</p>
+                            <ol class="list-type list-type-text">
+                                <li>
+                                    <span>1)</span>
+                                    <div>AAIR 공로상</div>
+                                </li>
+                                <li>
+                                    <span>2)</span>
+                                    <div>AARD 공로상</div>
+                                </li>
+                                <li>
+                                    <span>3)</span>
+                                    <div>올해의 알빛사(알레르기를 빛낸 사람)</div>
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 3 조 (수상자 선정) </strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    AAIR, AARD 공로상 수상자는 간행위원회에서, 올해의 알빛사의 수상자는 이사회에서 각 3배수로 추천하며, 학술상선정위원회에서 선정한다. 
+                                </li>
+                                <li>
+                                    수상자는 다음과 같은 기준으로 추천한다. 
+                                    <ol class="list-type list-type-text">
+                                        <li>
+                                            <span>1)</span>
+                                            <div>AAIR 공로상: AAIR의 심사자 또는 편집자 중에서 AAIR 발전에 크게 기여한 회원을 우선으로 한다.</div>
+                                        </li>
+                                        <li>
+                                            <span>2)</span>
+                                            <div>AARD 공로상: AARD의 심사자 또는 편집자 중에서 AARD 발전에 크게 기여한 회원을 우선으로 한다.</div>
+                                        </li>
+                                        <li>
+                                            <span>3)</span>
+                                            <div>올해의 알빛사(알레르기를 빛낸 사람): 학회의 발전에 크게 기여한 회원을 우선으로 한다.</div>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    수상자의 선정은 매년 1회 시행하며, 수상자는 각 1명으로 한다.
+                                </li>
+                                <li>
+                                    수상자는 시상일을 기준으로 만 65세 이하 정회원으로 한다. 
+                                </li>
+                                <li>
+                                    선정 결과는 이사회와 평의원회에 보고한다. 
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 4 조 (시상)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    이 상은 매년 학회 추계학술대회에서 시상한다. 
+                                </li>
+                                <li>
+                                    이 상의 시상은 다음과 같이 상금과 상장을 수여한다.
+                                    <ol class="list-type list-type-text">
+                                        <li>
+                                            <span>1)</span>
+                                            <div>AAIR 공로상: 상금 100만원</div>
+                                        </li>
+                                        <li>
+                                            <span>2)</span>
+                                            <div>AARD 공로상: 상금 100만원</div>
+                                        </li>
+                                        <li>
+                                            <span>3)</span>
+                                            <div>올해의 알빛사: 상금 300만원</div>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 5 조 (학술상선정위원회)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>학술상선정위원회는 이사장, 총무이사, 학술이사, 연구이사, 간행이사, 기획이사, 수련이사로 구성하며, 이사장이 위원장이 된다. </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 6 조 (부칙)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    본 규정에 명시되지 않은 사항은 위원회의 결정에 따른다.
+                                </li>
+                                <li>
+                                    본 규정은 2025년 9월 18일부터 시행한다.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </article>
+
+@endsection
+
+@section('addScript')
+@endsection

@@ -37,7 +37,10 @@ class FeeServices extends AppServices
         $order = $request->order ?? 'desc';
 
         if(!empty($sortBy) && !empty($order)){
-            $query = Fee::with('user')->orderBy($sortBy, $order);
+//            $query = Fee::with('user')->orderBy($sortBy, $order);
+            $query = Fee::select('fees.*')
+                ->leftJoin('user_binfo', 'fees.user_sid', '=', 'user_binfo.sid')
+                ->orderBy($sortBy, $order);
         }else{
             $query = Fee::with('user')->orderByDesc('year')->orderByDesc('sid');
         }
@@ -121,7 +124,7 @@ class FeeServices extends AppServices
     public function allListService(Request $request)
     {
         $user = User::withTrashed()->findOrFail($request->user_sid);
-        $list = $user->fees()->paginate(10);
+        $list = $user->fees()->paginate(10)->appends($request->except(['page']));;
 
         $this->data['user'] = $user;
         $this->data['list'] = setListSeq($list);
@@ -197,6 +200,8 @@ class FeeServices extends AppServices
             case 'fee-delete':
                 return $this->feeDelete($request);
 
+            case 'change-payment_method':
+                return $this->changePaymentMethod($request);
             case 'change-payment_status':
                 return $this->changePaymentStatus($request);
 
@@ -258,9 +263,19 @@ class FeeServices extends AppServices
                 $fee->tid='admin'.$random;
             }else{
                 $fee->tid = null;
+                $fee->payment_method = null;
                 $fee->payment_date = null;
             }
             $fee->update();
+
+            //평생회비 입금완료면 해당년도 연회비 해당없음
+            if($fee->payment_status == 'Y' && $fee->category == 'C'){
+                $feeYear = Fee::where(['user_sid'=>$fee->user_sid, 'category'=>'B', 'level'=>$fee->level, 'del'=>'N', 'year'=>date('Y')])->first();
+                if(!empty($feeYear)){
+                    $feeYear->payment_status = 'E';
+                    $feeYear->update();
+                }
+            }
 
             $this->dbCommit('관리자 - 회비 수정');
 
@@ -296,6 +311,29 @@ class FeeServices extends AppServices
         }
     }
 
+    private function changePaymentMethod(Request $request)
+    {
+        $this->transaction();
+
+        try {
+            $this->feeConfig = getConfig('fee');
+
+            $fee = Fee::withTrashed()->findOrFail($request->sid);
+            $fee->payment_method = $request->value;
+            $fee->update();
+
+            $this->dbCommit('관리자 - 회비 납부방법 수정');
+
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => '변경 되었습니다.',
+                'location' => $this->ajaxActionLocation('reload')
+            ]);
+        } catch (\Exception $e) {
+            return $this->dbRollback($e);
+        }
+    }
+
     private function changePaymentStatus(Request $request)
     {
         $this->transaction();
@@ -310,6 +348,14 @@ class FeeServices extends AppServices
             $tot_price = $fee->price ?? 0;
 
             if($request->value=='Y'){
+                /**
+                 * tid가 없는 상태인데 넣으려할때 random값 넣기
+                 */
+                if(empty($fee->tid) ){
+                    $random = substr(Str::uuid(), 0, 15);
+                    $fee->tid='admin'.$random;
+                }
+
                 //처음에 같이 결제한 건이어도 하나씩 개별 발송으로 함 (같이 결제한 건의 경우 status도 같이 바꿔줘야하고 DB이전했을때 이슈생길수 있음)
                 $fee->payment_date = date('Y-m-d H:i:s');
 
@@ -327,8 +373,18 @@ class FeeServices extends AppServices
                 // END 메일 발송
             }else{
                 $fee->payment_date = null;
+                $fee->payment_method = null;
             }
             $fee->update();
+
+            //평생회비 입금완료면 해당년도 연회비 해당없음
+            if($fee->payment_status == 'Y' && $fee->category == 'C'){
+                $feeYear = Fee::where(['user_sid'=>$fee->user_sid, 'category'=>'B', 'level'=>$fee->level, 'del'=>'N', 'year'=>date('Y')])->first();
+                if(!empty($feeYear)){
+                    $feeYear->payment_status = 'E';
+                    $feeYear->update();
+                }
+            }
 
             $this->dbCommit('관리자 - 회비 납부상태 수정');
 
@@ -340,36 +396,6 @@ class FeeServices extends AppServices
         } catch (\Exception $e) {
             return $this->dbRollback($e);
         }
-    }
-
-    private function feeRenew(Request $request)
-    {
-        /**
-         * 회비 관리에서 {당해연도}.12.01부터 회비 셋팅
-         */
-        $currentDate = date('Y-m-d'); // 서버 현재 날짜
-        $compareDate = date('Y') . '-12-01'; // 당해연도 12월 1일
-
-        if ( ($currentDate < $compareDate) && masterIp() === false) {
-            return $this->returnJsonData('alert', [
-                'case' => true,
-                'msg' => '차기연도 연회비 세팅은 당해연도 12월 1일부터 가능합니다.',
-                'location' => $this->ajaxActionLocation('reload')
-            ]);
-        }
-
-        $renewalServices = (new \App\Services\Cron\FeeRenewalServices());
-        $renewResult = $renewalServices->renewalService();
-
-        if ($renewResult != 'suc') {
-            return $renewResult;
-        }
-
-        return $this->returnJsonData('alert', [
-            'case' => true,
-            'msg' => '갱신 되었습니다.',
-            'location' => $this->ajaxActionLocation('reload')
-        ]);
     }
 
     private function sendMail(Request $request)
@@ -415,4 +441,46 @@ class FeeServices extends AppServices
             'winClose' => $this->ajaxActionWinClose(),
         ]);
     }
+    private function feeRenew(Request $request)
+    {
+        /**
+         * 회비 관리에서 {당해연도}.12.01부터 회비 셋팅
+         */
+
+        $currentDate = date('Y-m-d'); // 서버 현재 날짜
+        $year = date('Y');
+        $month = date('n'); // 정수형 월
+
+        if ($month >= 12) {
+            // 12월이면 시작: 올해 12.01, 끝: 내년 01.31
+            $startDate = $year . '-12-01';
+            $endDate = ($year + 1) . '-01-31';
+        } else {
+            // 1~11월이면 시작: 작년 12.01, 끝: 올해 01.31
+            $startDate = ($year - 1) . '-12-01';
+            $endDate = $year . '-01-31';
+        }
+
+        if (!($currentDate >= $startDate && $currentDate <= $endDate) && masterIp() === false) {
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => '회비 자동 셋팅 기간이 아닙니다. 회비 등록 버튼 클릭 후 개별 등록 진행해주세요.',
+                'location' => $this->ajaxActionLocation('reload')
+            ]);
+        }
+
+        $renewalServices = (new \App\Services\Cron\FeeRenewalServices());
+        $renewResult = $renewalServices->renewalService();
+
+        if ($renewResult != 'suc') {
+            return $renewResult;
+        }
+
+        return $this->returnJsonData('alert', [
+            'case' => true,
+            'msg' => date('Y').'회비 셋팅이 완료되었습니다.',
+            'location' => $this->ajaxActionLocation('reload')
+        ]);
+    }
+
 }

@@ -29,13 +29,13 @@
             @switch($mail->use_btn)
                 @case('1')
                     <a href="{{ $mail->link_url }}" style="display: block;border:0 none" target="_blank">
-                        <img src="{{ asset('assets/image/mail/btn_mail_home2.png') }}" alt="자세히보기" style="display: block;border:0 none;">
+                        <img src="{{ asset('assets/image/mail/btn_mail_home.jpg') }}" alt="자세히보기" style="display: block;border:0 none;">
                     </a>
                     @break
 
                 @case('2')
                     <a href="{{ $mail->link_url }}" style="display: block;border:0 none;" target="_blank">
-                        <img src="{{ asset('assets/image/mail/btn_mail_home.png') }}" alt="홈페이지 바로가기" style="display: block;border:0 none;">
+                        <img src="{{ asset('assets/image/mail/btn_mail_home.jpg') }}" alt="홈페이지 바로가기" style="display: block;border:0 none;">
                     </a>
                     @break
 

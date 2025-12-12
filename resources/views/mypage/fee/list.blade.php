@@ -93,6 +93,9 @@
 //                                if( ($row->category ?? '') == 'C' &&  date('Y') > $row->year ) $disableCase = true;
                                 //이미 납부한 회비
                                 if( ($row->payment_status ?? '') == 'Y' ) $disableCase = true;
+
+                                //해당없음은 납부 불가
+                                if( ($row->payment_status ?? '') == 'E' ) $disableCase = true;
                             @endphp
                             <td>
                                 <div class="checkbox-wrap cst">
@@ -118,7 +121,7 @@
 
                             @if($row->year == date('Y'))
                                 <td>
-                                    <span class="text-{{ ($row->payment_status ?? '') == 'Y' ? 'blue' : 'red' }}">{{ ($row->payment_status ?? '') == 'Y' ? '완납' : '미납' }}</span>
+                                    <span class="text-{{ ($row->payment_status ?? '') == 'Y' ? 'blue' : 'red' }}">{{ $feeConfig['payment_status'][$row->payment_status ?? ''] ?? '' }}</span>
                                 </td>
                             @else
                                 <td>

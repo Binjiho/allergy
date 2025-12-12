@@ -72,16 +72,24 @@ class LoginServices extends AppServices
             }
 
             // 4.연회비 미납(당해년도 연회비 미납 && 종신회원이 아닌경우) -> 회비 납부 페이지로 이동
-//            $thisYearFee = Fee::where(['year'=>date('Y'), 'user_sid'=>$user->sid, 'category'=>'B'])->first();
-//            if($thisYearFee->payment_status=="N" && $user->isLifeMember() !== true) {
-//                return $this->returnJsonData('alert', [
-//                    'case' => true,
-//                    'msg' => "연회비 미납 내역이 있습니다.\n회비 납부 페이지로 이동 됩니다.",
-//                    'location' => $this->ajaxActionLocation('replace', route('mypage.fee')),
-//                ]);
-//            }
+            $thisYearFee = Fee::where(['year'=>date('Y'), 'user_sid'=>$user->sid, 'category'=>'B', 'payment_status' => 'N', 'del'=>'N'])->first();
 
-            return $this->returnJsonData('location', $this->ajaxActionLocation('replace', getDefaultUrl()));
+            if(!empty($thisYearFee)){
+                if( $user->isLifeMember() !== true ) {
+                    return $this->returnJsonData('alert', [
+                        'case' => true,
+                        'msg' => "연회비 미납 내역이 있습니다.\n회비 납부 페이지로 이동 됩니다.",
+                        'location' => $this->ajaxActionLocation('replace', route('mypage.fee')),
+                    ]);
+                }
+            }
+
+
+            if(!empty($request->ret_url)){
+                return $this->returnJsonData('location', $this->ajaxActionLocation('replace', '/'.$request->ret_url));
+            }else{
+                return $this->returnJsonData('location', $this->ajaxActionLocation('replace', '/'));
+            }
         }
 
         // 비밀번호 불일치
@@ -98,7 +106,8 @@ class LoginServices extends AppServices
     public function logoutAction(Request $request)
     {
         // 관리자도 로그인 중인데 관리자와 사용자가 같을경우 관리자도 로그아웃 처리
-        if (auth('admin')->check() && (auth('admin')->id() == auth('web')->id())) {
+        if ( auth('admin')->check() ) {
+//        if (auth('admin')->check() && (auth('admin')->id() == auth('web')->id())) {
             auth('admin')->logout();
         }
 

@@ -17,13 +17,13 @@
                     <div class="ev-view-contop">
                         <h3 class="ev-view-tit">
                             <span class="btn-ev ev-cate0{{ $board->gubun ?? '1' }}">{{ $board->gubunTxt() }}</span>
-                            {{ $board->subject }}
+                            <strong>{{ $board->subject }}</strong>
                         </h3>
                         <div class="ev-view-info">
                             <ul>
                                 <li>행사 일자 : {{ $board->eventPeriod() }}</li>
                                 @if(!empty($board->place))
-                                    <li>장소 : {{ $board->place ?? '' }}</li>
+                                    <li>행사 장소 : {{ $board->place ?? '' }}</li>
                                 @endif
                             </ul>
                             @if(!empty($board->link_url))

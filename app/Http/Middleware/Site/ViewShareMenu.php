@@ -19,7 +19,7 @@ class ViewShareMenu
         view()->share([
             'menu' => config('site.menu-' . checkUrl()) ?? [],
         ]);
-
+        
         return $next($request);
     }
 }

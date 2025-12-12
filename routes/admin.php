@@ -35,6 +35,29 @@ Route::controller(\App\Http\Controllers\Admin\Fee\FeeController::class)->prefix(
     Route::post('data', 'data')->name('fee.data');
 });
 
+// 학술행사 M3
+Route::prefix('workshop')->group(function() {
+    Route::controller(\App\Http\Controllers\Admin\Workshop\WorkshopController::class)->group(function() {
+        Route::get('/', 'index')->name('workshop');
+        Route::get('upsert/{sid?}', 'upsert')->name('workshop.upsert');
+        Route::post('data', 'data')->name('workshop.data');
+    });
+
+    // 사전등록
+    Route::controller(\App\Http\Controllers\Admin\Workshop\RegistrationController::class)->prefix('{wsid}/registration')->group(function() {
+        Route::get('/', 'index')->name('registration');
+        Route::get('/upsert/{sid?}', 'upsert')->name('registration.upsert');
+        Route::get('office_search', 'office_search')->name('registration.office_search');
+
+        Route::get('/receipt/{sid}', 'receipt')->name('registration.receipt');
+        Route::get('/memo', 'memo')->name('registration.memo');
+        Route::get('resend/{sid}', 'resend')->name('registration.resend');
+        
+        Route::get('/excel', 'excel')->name('registration.excel');
+        Route::post('data', 'data')->name('registration.data');
+    });
+});
+
 // 메일
 Route::prefix('mail')->group(function () {
     Route::controller(\App\Http\Controllers\Admin\Mail\MailController::class)->group(function () {

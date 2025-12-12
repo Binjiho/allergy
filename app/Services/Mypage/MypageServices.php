@@ -21,6 +21,36 @@ class MypageServices extends AppServices
         return $this->data;
     }
 
+    public function searchService(Request $request)
+    {
+        $this->data['list'] = [];
+        if ($request->keyword) {
+            $query = User::where(['del'=>'N'])->orderBy('name_kr');
+
+            $keyword = $request->keyword ?? '';
+
+            if($request->search == 'name_kr'){
+                $query->where('name_kr', 'like', "%{$keyword}%")
+                    ->orWhere('first_name', 'like', "%{$keyword}%")
+                    ->orWhere('last_name', 'like', "%{$keyword}%")
+                    ->orWhere('name_han', 'like', "%{$keyword}%");
+            }
+            if($request->search == 'id'){
+                $query->where('id', 'like', "%{$keyword}%");
+            }
+            if($request->search == 'company_kr'){
+                $query->where('company_kr', 'like', "%{$keyword}%");
+            }
+            if($request->search == 'school'){
+                $query->where('school', 'like', "%{$keyword}%");
+            }
+
+            $list = $query->paginate(9999);
+            $this->data['list'] = setListSeq($list);
+        }
+        return $this->data;
+    }
+
     public function upsertService(Request $request)
     {
         $this->data['user'] = thisUser();

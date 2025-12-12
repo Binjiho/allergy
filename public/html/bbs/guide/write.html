@@ -1,0 +1,189 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">진료치짐</h2>
+                <ul class="breadcrumb">
+                    <li>진료치짐</li>
+                    <li>진료치짐</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">진료치짐</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">회원공간</a></li>
+                        <li><a href="#n">진료지침</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">진료치짐</a>
+                    <ul>
+                        <li class="on"><a href="#n">진료치짐</a></li>
+                        <li><a href="#n">개발 중 진료지침</a></li>
+                        <li><a href="#n">진료지침 게시판</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="journal-conbox guideline-conbox">
+                <!-- s:board -->
+                <link href="./assets/css/board.css" rel="stylesheet">
+
+                <div id="baord" class="board-wrap">
+                    <div class="board-write">
+                        <div class="write-form-wrap">
+                            <form action="./list.html" method="">
+                                <fieldset>
+                                    <legend class="hide">글쓰기</legend>
+                                    <div class="write-contop text-right">
+                                        <div class="help-text"><strong class="required">*</strong> 표시는 필수입력 항목입니다.</div>
+                                    </div>
+                                    <ul class="write-wrap">
+                                        <li>
+                                            <div class="form-tit">작성자</div>
+                                            <div class="form-con">
+                                                대한천식알레르기학회
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">구분 <strong class="required">*</strong></div>
+                                            <div class="form-con">
+                                                <div class="radio-wrap cst">
+                                                    <label for="chk1_1" class="radio-group"><input type="radio" name="chk1" id="chk1_1">진료지침</label>
+                                                    <label for="chk1_2" class="radio-group"><input type="radio" name="chk1" id="chk1_2">개발 중 진료지침</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">분야 <strong class="required">*</strong></div>
+                                            <div class="form-con">
+                                                <div class="checkbox-wrap cst">
+                                                    <label for="chk2_1" class="checkbox-group"><input type="checkbox" name="" id="chk2_1">전체</label>
+                                                    <label for="chk2_2" class="checkbox-group"><input type="checkbox" name="" id="chk2_2">천식</label>
+                                                    <label for="chk2_3" class="checkbox-group"><input type="checkbox" name="" id="chk2_3">비염</label>
+                                                    <label for="chk2_4" class="checkbox-group"><input type="checkbox" name="" id="chk2_4">아토피피부염</label>
+                                                    <label for="chk2_5" class="checkbox-group"><input type="checkbox" name="" id="chk2_5">두드러기</label>
+                                                    <label for="chk2_6" class="checkbox-group"><input type="checkbox" name="" id="chk2_6">아나필락시스</label>
+                                                    <label for="chk2_7" class="checkbox-group"><input type="checkbox" name="" id="chk2_7">기침</label>
+                                                    <label for="chk2_8" class="checkbox-group"><input type="checkbox" name="" id="chk2_8">면역요법</label>
+                                                    <label for="chk2_9" class="checkbox-group"><input type="checkbox" name="" id="chk2_9">약물알레르기</label>
+                                                    <label for="chk2_10" class="checkbox-group"><input type="checkbox" name="" id="chk2_10">검사방법</label>
+                                                    <label for="chk2_11" class="checkbox-group"><input type="checkbox" name="" id="chk2_11">기타</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">연도 <strong class="required">*</strong></div>
+                                            <div class="form-con">
+                                                <select name="" id="" class="form-item">
+                                                    <option value="">연도</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">진료지침/전문가 의견서 <strong class="required">*</strong></div>
+                                            <div class="form-con">
+                                                <input type="text" name="" id="" class="form-item">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">영문 진료지침명</div>
+                                            <div class="form-con">
+                                                <input type="text" name="" id="" class="form-item">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">저자</div>
+                                            <div class="form-con">
+                                                <input type="text" name="" id="" class="form-item">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">인용(Citation)</div>
+                                            <div class="form-con">
+                                                <input type="text" name="" id="" class="form-item">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">링크</div>
+                                            <div class="form-con">
+                                                <div class="radio-wrap cst">
+                                                    <label for="chk3_1" class="radio-group"><input type="radio" name="" id="chk3_1">링크연결</label>
+                                                    <label for="chk3_2" class="radio-group"><input type="radio" name="" id="chk3_2">동영상링크</label>
+                                                </div>
+                                                <input type="text" name="" id="" class="form-item mt-10">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">첨부파일</div>
+                                            <div class="form-con">
+                                                <div class="filebox">
+                                                    <input class="upload-name form-item" value="" placeholder="파일첨부" readonly="readonly">
+                                                    <label for="file">파일찾기</label> 
+                                                    <input type="file" id="file" class="file-upload">  
+                                                    <div class="attach-file">
+                                                        <a href="#n" target="_blank" class="link">첨부파일.jpg</a>
+                                                        <a href="#n" class="btn-file-delete text-red">X</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-tit">대표 이미지</div>
+                                            <div class="form-con">
+                                                <div class="filebox">
+                                                    <input class="upload-name form-item" value="" placeholder="파일첨부" readonly="readonly">
+                                                    <label for="file2">파일찾기</label> 
+                                                    <input type="file" id="file2" class="file-upload">  
+                                                    <div class="attach-file">
+                                                        <a href="#n" target="_blank" class="link">첨부파일.jpg</a>
+                                                        <a href="#n" class="btn-file-delete text-red">X</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-con">
+                                                에디터 영역
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="btn-wrap text-center">
+                                        <a href="./list.html" class="btn btn-board btn-cancel">취소</a>
+                                        <button type="submit" class="btn btn-board btn-modify">등록</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- //e:board -->
+            </div>
+        </div>
+    </article>
+</section>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

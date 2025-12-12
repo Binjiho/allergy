@@ -18,7 +18,7 @@ class FeeController extends Controller
             'userConfig' => getConfig('user'),
             'feeConfig' => getConfig('fee'),
             'main_menu' => 'MYPAGE',
-            'sub_menu' => 'S3',
+            'sub_menu' => 'S9',
         ]);
     }
 

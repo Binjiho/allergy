@@ -18,7 +18,7 @@
 
     <form id="fee-frm" method="post" data-sid="{{ $fee->sid ?? 0 }}" data-case="fee-{{ empty($fee->sid) ? 'create' : 'update' }}">
         <input type="hidden" name="user_sid" id="user_sid" class="form-item" value="{{ !empty($user->sid) ? $user->sid ?? '' : ($fee->user->sid ?? '') }}"  readonly>
-{{--        <input type="hidden" name="isAge50OrOlder" id="isAge55OrOlder" class="form-item" value="{{ !empty($user->sid) ? $user->isAge55OrOlder($user->birth ?? '') ?? 0 : (!empty($fee) ? $fee->user->isAge55OrOlder($fee->user->birth ?? '') ?? 0 : 0) }}" readonly>--}}
+        <input type="hidden" name="isAge50OrOlder" id="isAge50OrOlder" class="form-item" value="{{ !empty($user->sid) ? $user->isAge50OrOlder($user->birth_date ?? '') ?? 0 : (!empty($fee) ? $fee->user->isAge50OrOlder($fee->user->birth_date ?? '') ?? 0 : 0) }}" readonly>
         <input type="hidden" name="level" id="level" class="form-item" value="{{ !empty($user->sid) ? $user->level ?? '' : ($fee->user->level ?? '') }}" readonly>
         <fieldset>
             <div class="write-wrap">
@@ -198,17 +198,16 @@
         const feeConfig = @json($feeConfig);
 
         function setUserInfo(userInfo) {
-            console.log(userInfo);
             $('#user_sid').val(userInfo.sid);
-            $('#isAge55OrOlder').val(Number(userInfo.isAge55OrOlder));
+            $('#isAge50OrOlder').val(Number(userInfo.isAge50OrOlder));
             $('#level').val(userInfo.level);
 
             $('#level_span').html(userInfo.getLevel);
             $('#id_span').val(userInfo.id);
             $('#name_span').html(userInfo.name_kr);
-            $('#company_span').html(userInfo.company);
+            $('#company_span').html(userInfo.company_kr);
 
-            const cateArr = feeConfig['getCate'][userInfo.gubun];
+            const cateArr = feeConfig['getCate'][userInfo.level];
 
             let html = "";
             html += "<option value=\"\">선택</option>";

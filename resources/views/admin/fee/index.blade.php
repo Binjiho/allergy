@@ -11,15 +11,15 @@
         <div class="sub-tab-wrap">
             <ul class="sub-tab-menu cf">
                 <li class="{{ empty($feeCase) ? 'on' : '' }}">
-                    <a href="{{ route('fee') }}">전체 list ({{ $caseCnt['total'] ?? 0 }}명)</a>
+                    <a href="{{ route('fee') }}">전체회비 list ({{ $caseCnt['total'] ?? 0 }})</a>
                 </li>
 
                 <li class="{{ request()->case == 'full' ? 'on' : '' }}">
-                    <a href="{{ route('fee', ['case' => 'full']) }}">완납회원 ({{ $caseCnt['Y'] ?? 0 }}명)</a>
+                    <a href="{{ route('fee', ['case' => 'full']) }}">완납회비 ({{ $caseCnt['Y'] ?? 0 }})</a>
                 </li>
 
                 <li class="{{ request()->case == 'unpaid' ? 'on' : '' }}">
-                    <a href="{{ route('fee', ['case' => 'unpaid']) }}">미납회원 ({{ $caseCnt['N'] ?? 0 }}명)</a>
+                    <a href="{{ route('fee', ['case' => 'unpaid']) }}">미납회비 ({{ $caseCnt['N'] ?? 0 }})</a>
                 </li>
             </ul>
         </div>
@@ -145,6 +145,7 @@
         <!-- 관리자 추가 작업 -->
         <div class="toggle-wrap">
             <div class="toggle-tit text-center">
+                회비 등록 버튼 및 회비 자동 셋팅 버튼 기능 사용 방법 안내
                 <button type="button" class="btn btn-small color-type5  js-btn-toggle">펼치기</button>
             </div>
             <div class="toggle-con js-toggle-con" style="display: none;">
@@ -255,7 +256,11 @@
                     </th>
                     <th scope="col">회비 구분</th>
                     <th scope="col">회비 금액</th>
-                    <th scope="col">이름</th>
+                    <th scope="col">
+                        <a href="{{ route('fee', array_merge(request()->all(), ['sort_by' => 'name_kr', 'order' => request()->order == 'asc' ? 'desc' : 'asc'])) }}">
+                            이름▲▼
+                        </a>
+                    </th>
 
                     <th scope="col">아이디</th>
                     <th scope="col">면허번호</th>
@@ -285,6 +290,7 @@
                         <td>{{ $row->user->company_kr ?? '' }}</td>
                         <td>
                             <select class="form-item payment-method">
+                                <option value="">전체</option>
                                 @foreach($feeConfig['payment_method'] as $key => $val)
                                     <option value="{{ $key }}" {{ $row->payment_method == $key ? 'selected' : '' }}>{{ $val }}</option>
                                 @endforeach
@@ -306,13 +312,15 @@
 
                         @php
                             $type = 'ok';
-                            if( ($row->payment_method ?? '') == 'B' && ($row->payment_status ?? '') == 'N' ){
+                            if( ($row->payment_status ?? '') == 'N' ){
                                 $type = 'request';
                             }
                         @endphp
 
                         <td>
+                            @if(($row->payment_status ?? '') != 'E' )
                             <a href="{{ route('fee.remail',['sid'=>$row->sid ?? '', 'type'=>$type]) }}" class="btn btn-small color-type9 call-popup" data-popup_name="receipt-pop" data-width="800" data-height="900">재발송</a>
+                            @endif
                         </td>
 
                         <td>
@@ -357,7 +365,7 @@
         }
 
         $(document).on('click', '#renew-btn', function () {
-            if (confirm('회비를 갱신 하시겠습니까?')) {
+            if (confirm('회비를 자동 세팅 하시겠습니까?')) {
                 callAjax(dataUrl, {
                     'case': 'fee-renew',
                 });
@@ -398,7 +406,7 @@
             const _this = this;
             const sid = getPK(_this);
 
-            if (confirm('삭제 하시겠습니까?')) {
+            if (confirm('회비 납부 내역을 삭제하시겠습니까?\n삭제 후 원복 불가능하며 다시 세팅 해주셔야 합니다.')) {
                 callAjax(dataUrl, {
                     'case': 'fee-delete',
                     'sid': sid,

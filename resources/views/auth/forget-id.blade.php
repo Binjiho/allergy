@@ -4,6 +4,7 @@
 @endsection
 
 @section('contents')
+    @include('layouts.include.sub-menu-wrap')
 
     <article class="sub-contents">
         <div class="sub-conbox inner-layer">

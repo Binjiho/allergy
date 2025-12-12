@@ -596,9 +596,9 @@
                 popup_contents: {
                     PopupIsTinyEmpty: true,
                 },
-                contents: {
-                    isTinyEmpty: true,
-                },
+                // contents: {
+                //     isTinyEmpty: true,
+                // },
             },
             messages: {
                 gubun: {

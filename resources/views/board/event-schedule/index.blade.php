@@ -10,10 +10,7 @@
     <article class="sub-contents">
         <div class="sub-conbox inner-layer">
 
-            <!-- s:행사일정 Typea B -->
-            <link href="/html/bbs/schedule/assets/css/event.css" rel="stylesheet">
-
-            <div class="ev-wrap type2">
+            <div class="ev-wrap">
                 <div class="ev-contop">
                     <a href="javascript:void(0);" class="btn btn-ev-arrow btn-ev-first"><span class="hide">처음</span></a>
                     <a href="javascript:void(0);" class="btn btn-ev-arrow btn-ev-prev"><span class="hide">이전</span></a>
@@ -69,9 +66,9 @@
                             <div class="ev-list-con">
                                 <div class="ev-con-wrap">
                                     <div class="ev-con text-left">
-                                        <p class="tit">{{ $row->subject ?? '' }}</p>
+                                        <p class="tit"><span class="ellipsis2">{{ $row->subject ?? '' }}</span></p>
                                         @if(!empty($row->place))
-                                        <p class="place">장소 : {{ $row->place }}</p>
+                                        <p class="place"><span class="ellipsis2">장소 : {{ $row->place }}</span></p>
                                         @endif
 
 {{--                                        {!! $row->isNew() !!}--}}

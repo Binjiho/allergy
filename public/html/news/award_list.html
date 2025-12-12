@@ -1,0 +1,175 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">학회소식</h2>
+                <ul class="breadcrumb">
+                    <li>학회소식</li>
+                    <li>시상내역</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">학회소식</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">회원공간</a></li>
+                        <li><a href="#n">진료지침</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">시상내역</a>
+                    <ul>
+                        <li><a href="#n">공지사항</a></li>
+                        <li class="on"><a href="#n">시상내역</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="journal-conbox">
+                <div class="sub-tab-wrap">
+                    <ul class="sub-tab-menu">
+                        <li class="on"><a href="#n">학술상</a></li>
+                        <li><a href="#n">연구비</a></li>
+                    </ul>
+                </div>
+                <div class="sub-tab-wrap">
+                    <ul class="sub-tab-menu type3">
+                        <li class="on"><a href="#n">수상내역</a></li>
+                        <li><a href="#n">학술상 규정</a></li>
+                    </ul>
+                </div>
+                <div class="sch-wrap">
+                    <form action="" method="">
+                        <fieldset>
+                            <legend class="hide">검색</legend>
+                            <div class="form-group">
+                                <input type="text" name="" id="" class="form-item sch-key" placeholder="연도, 구분, 연구책임자, 소속, 연구과제 등 검색하고자 하는 내용 입력 후 검색 버튼 클릭 해주세요.">
+                                <button type="submit" class="btn btn-sch"><span class="hide">검색</span></button>
+                                <button type="reset" class="btn btn-reset">검색 초기화</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="btn-wrap text-right mt-0">
+                    <a href="#n" class="btn btn-type1 btn-round color-type8">학술상 다건 등록 <span class="icon"><img src="/assets/image/sub/ic_btn_regi.png" alt=""></span></a>
+                    <a href="#n" class="btn btn-type1 btn-round color-type5">학술상 단건 등록 <span class="icon"><img src="/assets/image/sub/ic_btn_regi02.png" alt=""></span></a>
+                </div>
+                    
+                <div class="table-wrap scroll-x touch-help mt-30">
+                    <table class="cst-table">
+                        <caption class="hide">수상내역</caption>
+                        <colgroup>
+                            <col style="width: 10%;">
+                            <col style="width: 12%;">
+                            <col style="width: 12%;">
+                            <col style="width: 10%;">
+                            <col>
+                            <col style="width: 13%;">
+                            <col style="width: 10%;">
+                        </colgroup>
+                        <thead>
+                            <tr class="active">
+                                <th scope="col">연도</th>
+                                <th scope="col">구분</th>
+                                <th scope="col">연구책임자</th>
+                                <th scope="col">소속</th>
+                                <th scope="col">연구과제</th>
+                                <th scope="col">승인번호</th>
+                                <th scope="col">관리</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" rowspan="2">2025</th>
+                                <td>개인연구자</td>
+                                <td>김규원</td>
+                                <td>중앙의대</td>
+                                <td class="text-left">Transcriptomic Profiling and Cellular Composition of Creeping Fat in Crohn’s disease</td>
+                                <td>
+                                    KAAACI-2025-01
+                                </td>
+                                <td>
+                                    <div class="btn-admin">
+                                        <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                        <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>중증천식 연구팀</td>
+                                <td>이창균</td>
+                                <td>경희의대</td>
+                                <td class="text-left">Fegulatory Variants on the Leukocyte Immunoglobulin-Like Receptor Gene Cluster are Associated with Crohn’s Disease and Interact with Regulatory Variants for TAP2</td>
+                                <td>
+                                    KAAACI-2025-02
+                                </td>
+                                <td>
+                                    <div class="btn-admin">
+                                        <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                        <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" rowspan="2">2024</th>
+                                <td>개인연구자</td>
+                                <td>백지은</td>
+                                <td>가톨릭의대</td>
+                                <td class="text-left">Clinical characteristics and outcomes of Clostridioides difficile infection in the intensive care unit: a KASID multi-centre study</td>
+                                <td>
+                                    KAAACI-2025-03
+                                </td>
+                                <td>
+                                    <div class="btn-admin">
+                                        <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                        <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>중증천식 연구팀</td>
+                                <td>신승용</td>
+                                <td>중앙의대</td>
+                                <td class="text-left">Compositional changes in fecal microbiota associated with clinical phenotypes and prognosis in Korean patients with inflammatory bowel disease</td>
+                                <td>
+                                    KAAACI-2025-04
+                                </td>
+                                <td>
+                                    <div class="btn-admin">
+                                        <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                        <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

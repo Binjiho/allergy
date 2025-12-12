@@ -105,7 +105,7 @@ return [
         'subject/contents' => '제목+내용',
         'name' => '작성자',
         'subject' => '제목',
-        'content' => '내용',
+        'contents' => '내용',
     ],
 
 ];

@@ -43,11 +43,21 @@ class MailList extends Model
         });
 
         static::saved(function ($mail) {
+//            \Log::info('saved', [
+//                'sid' => $mail->sid,
+//                'request_data' => request()->all(),
+//                'backtrace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 10),
+//            ]);
             $data = request();
             $plupload_file = $data->plupload_file;
             $plupload_file_del = $data->plupload_file_del;
 
             $ml_sid = $mail->sid;
+
+//            if( $_SERVER['REMOTE_ADDR']=="218.235.94.247") {
+//                dd($plupload_file);
+//            }
+
 
             if (!empty($plupload_file)) {
                 /* 첨부파일 (plupload) */
@@ -108,6 +118,16 @@ class MailList extends Model
     {
         return $this->hasMany(MailSend::class, 'ml_sid');
     }
+
+    public function totCnt()
+    {
+        $readyCnt =$this->readyCnt ?? 0;
+        $failCnt = $this->failCnt ?? 0;
+        $sucCnt = $this->sucCnt ?? 0;
+
+        return ($readyCnt + $failCnt + $sucCnt);
+    }
+
 
     public function sucMail()
     {

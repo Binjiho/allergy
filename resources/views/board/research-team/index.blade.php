@@ -10,6 +10,15 @@
     <article class="sub-contents">
         <div class="sub-conbox inner-layer">
 
+            <div class="sub-tab-wrap">
+                <button type="button" class="btn btn-tab-menu js-btn-tab-menu">연혁</button>
+                <ul class="sub-tab-menu js-tab-menu">
+                    <li class=""><a href="{{ route('intro.research') }}">현 임원진</a></li>
+                    <li class=""><a href="{{ route('intro.research',['tab'=>2]) }}">역대 임원진</a></li>
+                    <li class="on"><a href="{{ route('board',['code'=>'research-team']) }}">게시판</a></li>
+                </ul>
+            </div>
+
             <div id="board" class="board-wrap">
                 {{-- 카테고리 --}}
                 @if($boardConfig['use']['category'])
@@ -42,6 +51,11 @@
                         </fieldset>
                     </form>
                 </div>
+
+                <div class="list-contop mb-10">
+                    총 게시글 <strong class="text-red">{{ ($tot_cnt ?? 0) + ($notice_list->count() ?? 0) }}</strong>건
+                </div>
+
                 <ul class="board-list">
                     <!-- 공지 -->
                     @foreach($notice_list ?? [] as $row)

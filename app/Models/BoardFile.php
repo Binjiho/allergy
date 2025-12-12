@@ -37,7 +37,7 @@ class BoardFile extends Model
         if (empty($this->sid)) {
             $this->bsid = $b_sid;
         }
-
+        
         $this->realfile = $data['realfile'];
         $this->filename = $data['filename'];
     }

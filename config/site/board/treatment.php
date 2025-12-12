@@ -1,0 +1,136 @@
+<?php
+
+$code = 'treatment';
+
+$year = [];
+
+for ($i = date('Y'); $i >= 2000; $i--) {
+    $year[$i] = $i;
+}
+
+
+return [
+    'menu' => [ // 메뉴 키
+        'main' => 'M6',
+        'sub' => 'S1',
+    ],
+
+    'year' => $year,
+
+    'field' => [
+        'A' => '천식',
+        'B' => '비염',
+        'C' => '아토피피부염',
+        'D' => '두드러기',
+        'E' => '아나필락시스',
+        'F' => '기침',
+        'G' => '면역요법',
+        'H' => '약물알레르기',
+        'I' => '검사방법',
+        'Z' => '기타',
+    ],
+
+    'link_type' => [
+        '1' => '링크연결',
+        '2' => '동영상링크',
+    ],
+
+    'code' => "{$code}", // 게시판 코드
+    'skin' => 'treatment', // 게시판 스킨
+    'name' => '공지사항', // 게시판 명
+    'subject' => '행사명', // 게시판 Subject 명
+    'directory' => "/board/notice", // 게시판 업로드 경로
+    'paginate' => 15, // 페이지별 노출 리스트 수
+
+    'options' => [
+        'hide' => ['N' => '공개', 'Y' => '비공개'], // 노출여부
+        'main' => ['Y' => '노출', 'N' => '미노출'], // 메인노출
+        'notice' => ['Y' => '사용', 'N' => '미사용'], // 상단공지
+        'secret' => ['Y' => '사용', 'N' => '미사용'], // 비밀글
+        'date_type' => ['D' => '하루', 'L' => '장기'], // 기간 타입
+        'popup_contents' => ['1' => '공지 내용과 동일', '2' => '팝업 내용 새로 작성'], // 팝업내용
+        'popup_detail' => ['N' => '설정안함', 'Y' => '설정함'], // 팝업 상세보기 링크 사용여부
+        'popup_skin' => ['none' => '없음', 'A' => 'TYPE A', 'B' => 'TYPE B', 'C' => 'TYPE C'], // 팝업 스킨
+        'popup_yn' => ['N' => '미사용', 'Y' => '사용'], // 팝업 사용여부
+    ],
+
+    'permission' => [ // 권한 빈값은 전체 접근, 값이있을경우 해당 level 만 접근가능
+        'list' => [], // 리스트 권한
+        'view' => [], // 상세보기 권한
+        'write' => [], // 글쓰기 권한
+    ],
+
+    'use' => [ // 사용 유무
+        'login' => false, // 로그인 필요
+        'writer' => true, //작성자
+        'main' => false, // 메인노출
+        'notice' => false, // 공지
+        'subject' => false, // 제목
+        'link' => true, // 상세링크
+        'hide' => true, // 공개옵션
+        'popup' => false, // 팝업
+        'secret' => false, // 비밀글
+        'gubun' => true, // 구분
+        'category' => true, // 카테고리
+        'date' => false, // 기간설정
+        'place' => false, // 장소
+        'thumbnail' => false, // 썸네일파일
+        'file' => true, // 파일업로드 (단일파일)
+        'contents' => true, // 내용
+        'plupload' => false, // 파일업로드 (plupload) 사용
+    ],
+
+    'gubun' => [
+        'name' => '구분', // 구분 명칭
+        'type' => 'radio', // radio or select
+        'item' => [ // 게시판 카테고리 ex) key => value
+            '1' => '진료지침',
+            '2' => '개발중 진료지침',
+        ],
+    ],
+
+    'category' => [
+        'name' => '카테고리', // 카테고리 명칭
+        'type' => 'radio', // radio or select
+        'item' => [ // 게시판 카테고리 ex) key => value
+            '1' => 'c1',
+            '2' => 'c2',
+        ],
+    ],
+
+    'file' => [ // 기본 max 5개 까지 업로드가능 그이상은 DB 추가 필요
+        1 => [
+            'name' => '파일1',
+        ],
+
+//        2 => [
+//            'name' => '파일2',
+//        ],
+//
+//        3 => [
+//            'name' => '파일3',
+//        ],
+//
+//        4 => [
+//            'name' => '파일4',
+//        ],
+//
+//        5 => [
+//            'name' => '파일5',
+//        ],
+    ],
+
+    'thumbnail' => [
+        'name' => '썸네일 이미지', // 썸네일 명칭
+    ],
+
+    'date' => [
+        'name' => '행사 일자' // 일정 사용시 일정명
+    ],
+
+    'search' => [ // 검색 정보
+        'subject' => '제목',
+        'author' => '저자',
+        'contents' => '내용',
+    ],
+];

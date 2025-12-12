@@ -1,0 +1,233 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">학술행사</h2>
+                <ul class="breadcrumb">
+                    <li>학술행사</li>
+                    <li>국내학술대회</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">학술행사</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">국내학술대회</a>
+                    <ul>
+                        <li><a href="#n">행사일정</a></li>
+                        <li><a href="#n">국외학술대회참가신청</a></li>
+                        <li class="on"><a href="#n">국내학술대회</a></li>
+                        <li><a href="#n">교육강좌</a></li>
+                        <li><a href="#n">역대학술대회</a></li>
+                        <li><a href="#n">포토갤러리</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="ev-conbox">
+                <div class="ev-view-box">
+                    <p class="tit">대한천식알레르기학회 제 66차 교육강좌</p>
+                    <ul>
+                        <li>행사일 : 2025년 9월 21일(금) ~ 2025년 9월 22일(일)</li>
+                        <li>장소 : 가톨릭의대 성의회관 마리아홀</li>
+                    </ul>
+                </div>
+
+                <div class="sub-tab-wrap">
+                    <button type="button" class="btn btn-tab-menu js-btn-tab-menu">사전등록</button>
+                    <ul class="sub-tab-menu">
+                        <li><a href="#n">종합안내</a></li>
+                        <li class="on"><a href="#n">사전등록</a></li>
+                        <li><a href="#n">등록 조회 및 영수증 출력</a></li>
+                        <li><a href="#n">강의원고 보기</a></li>
+                    </ul>
+                </div>
+
+                <!-- <div class="date-box">
+                    <img src="/assets/image/sub/img_date.png" alt="">
+                    <div class="text-wrap">
+                        사전등록 마감일 : <span>~ YYYY년 <strong>MM</strong>월 <strong>DD일</strong> (요일) 까지</span>
+                    </div>
+                </div> -->
+
+                <div class="bg-box bg-img-box">
+                    <div class="text-wrap text-center">
+                        입력하신 내용을 확인하신 후, 수정할 사항이 없다면 아래의 등록 <span class="text-red">최종 완료</span> 버튼을 클릭해 주세요. <br>
+                        또한, 등록 완료 메일을 받아야 최종 등록이 완료 됩니다.
+                    </div>
+                </div>
+                <div class="write-form-wrap">
+                    <form action="" method="">
+                        <fieldset>
+                            <legend class="hide">사전등록</legend>
+
+                            <ul class="write-wrap">
+                                <li>
+                                    <div class="form-tit">접수번호</div>
+                                    <div class="form-con">
+                                        {행사코드}_R0001
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">회원등급 및 ID <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        {회원등급} / {ID}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">등록구분 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        {전문의 - 50,000원}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">성명 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        {성명}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">의사면허번호 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        <div class="form-group has-btn">
+                                            1212121212
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">소속의사회</div>
+                                    <div class="form-con">
+                                        {소속의사회}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">근무처(소속) <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        {근무처(소속)}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">근무처(소속) 주소 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        {근무처(소속) 주소}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">소속과 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        {소속과}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">근무처(소속) 전화번호</div>
+                                    <div class="form-con">
+                                        {근무처(소속) 전화번호}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">휴대전화번호 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        {휴대전화번호}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">E-Mail <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        {E-Mail}
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="form-tit">총 등록비</div>
+                                    <div class="form-con">
+                                        <strong class="text-red">50,000원</strong>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">결제 방법 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        <div class="radio-wrap cst">
+                                            <label for="chk3_1" class="radio-group"><input type="radio" name="chk3_1" id="chk3_1">신용카드</label>
+                                            <label for="chk3_2" class="radio-group"><input type="radio" name="chk3_1" id="chk3_2">무통장입금</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">입금자 명 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">입금 예정일 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        <input type="text" name="" id="" class="form-item datepicker">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">계좌정보</div>
+                                    <div class="form-con">
+                                        신한은행 / 100-012-958376 / 대한천식알레르기학회
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="sub-tit-wrap mt-70">
+                                <h3 class="sub-tit">자동화 프로그램 입력 방지</h3>
+                            </div>
+                            <div class="help-text text-red mb-10">
+                                * 정보 보안을 위해 아래 적힌 문자를 입력하신 후 등록 가능합니다.
+                            </div>
+                            <ul class="write-wrap">
+                                <li>
+                                    <div class="form-con">
+                                        <div class="captcha">
+                                            <span class="img">
+                                                <img id="captcha_img" src="/assets/image/common/img_captcha.png" alt="">
+                                            </span>
+                                            <button type="button" onclick="refresh_captcha();return false;"><img src="/assets/image/common/ic_refresh.png" class="refresh"></button>
+                                            <input type="text" name="" id="" class="form-item">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <div class="btn-wrap text-center">
+                                <a href="#n" class="btn btn-type1 color-type4">취소</a>
+                                <a href="#n" class="btn btn-type1 color-type5">수정</a>
+                                <button type="submit" class="btn btn-type1 color-type1">최종 완료</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

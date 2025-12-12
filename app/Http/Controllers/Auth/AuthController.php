@@ -15,7 +15,7 @@ class AuthController extends Controller
         $this->authServices = (new AuthServices());
 
         view()->share([
-            'main_menu' => 'M8',
+            'main_menu' => 'MYPAGE',
             'userConfig' => getConfig('user'),
         ]);
     }
@@ -24,13 +24,13 @@ class AuthController extends Controller
     {
         if ( thisPK() ) {
             view()->share([
-                'sub_menu' => 'S9',
+                'sub_menu' => 'S6',
             ]);
             return view("mypage.intro");
         }
         
         view()->share([
-            'sub_menu' => 'S1',
+            'sub_menu' => 'S3',
         ]);
         return view('auth.join.step0'.$request->step ,$this->authServices->signupAction($request) );
     }
@@ -39,12 +39,12 @@ class AuthController extends Controller
     {
         if ( thisPK() ) {
             view()->share([
-                'sub_menu' => 'S9',
+                'sub_menu' => 'S6',
             ]);
             return view("mypage.intro");
         }
         view()->share([
-            'sub_menu' => 'S3',
+            'sub_menu' => 'S2',
         ]);
         return view('auth.forget-id');
     }
@@ -52,14 +52,29 @@ class AuthController extends Controller
     {
         if ( thisPK() ) {
             view()->share([
-                'sub_menu' => 'S9',
+                'sub_menu' => 'S6',
             ]);
             return view("mypage.intro");
         }
         view()->share([
-            'sub_menu' => 'S3',
+            'sub_menu' => 'S2',
         ]);
         return view('auth.forget-pw');
+    }
+
+    public function privacy (Request $request)
+    {
+        view()->share([
+            'sub_menu' => 'S4',
+        ]);
+        return view('auth.privacy');
+    }
+    public function refusal (Request $request)
+    {
+        view()->share([
+            'sub_menu' => 'S5',
+        ]);
+        return view('auth.refusal');
     }
 
     public function data(Request $request)

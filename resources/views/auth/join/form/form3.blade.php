@@ -75,11 +75,11 @@
             <div class="form-con">
                 <div class="form-group form-group-text n2">
                     <span class="text">국문 : </span>
-                    <input type="text" name="company_kr" id="company_kr" value="{{ $user->company_kr ?? '' }}" class="form-item" onlyKo>
+                    <input type="text" name="company_kr" id="company_kr" value="{{ $user->company_kr ?? '' }}" class="form-item" noneEn>
                 </div>
                 <div class="form-group form-group-text n2 mt-10">
                     <span class="text">영문 : </span>
-                    <input type="text" name="company_en" id="company_en" value="{{ $user->company_en ?? '' }}" class="form-item" onlyEn>
+                    <input type="text" name="company_en" id="company_en" value="{{ $user->company_en ?? '' }}" class="form-item" noneKo>
                 </div>
                 <div class="form-group form-group-text n2 mt-10">
                     <span class="text">직위 : </span>
@@ -98,9 +98,9 @@
                             <option value="{{ $key }}" {{ ($companyTelArr[0] ?? '') == $key ? 'selected' : '' }}>{{ $val }}</option>
                         @endforeach
                     </select>
-                    <input type="text" name="companyTel[]" id="companyTel2" value="{{ $companyTelArr[1] ?? '' }}" class="form-item">
+                    <input type="text" name="companyTel[]" id="companyTel2" value="{{ $companyTelArr[1] ?? '' }}" class="form-item" onlyNumber>
                     -
-                    <input type="text" name="companyTel[]" id="companyTel3" value="{{ $companyTelArr[2] ?? '' }}" class="form-item">
+                    <input type="text" name="companyTel[]" id="companyTel3" value="{{ $companyTelArr[2] ?? '' }}" class="form-item" onlyNumber>
                 </div>
             </div>
         </li>

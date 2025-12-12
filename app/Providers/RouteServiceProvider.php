@@ -51,6 +51,13 @@ class RouteServiceProvider extends ServiceProvider
                         ->group(base_path('routes/admin.php'));
                     break;
 
+                case 'eng' :
+                    Route::middleware(['web', 'cryptoDecrypt', 'XSS.defense', 'counter'])
+                        ->prefix('eng')
+                        ->group(base_path('routes/eng.php'));
+                    break;
+
+
                 default :
                     Route::middleware(['web', 'cryptoDecrypt', 'XSS.defense', 'counter'])
                         ->group(base_path('routes/web.php'));

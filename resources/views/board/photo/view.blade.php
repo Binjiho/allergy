@@ -25,7 +25,9 @@
 
                         <div class="view-info text-right">
                             <span><strong>행사 일자 : </strong>{{ $board->eventPeriod() ?? '' }}</span>
+                            @if(!empty($board->place))
                             <span><strong>행사 장소 : </strong>{{ $board->place ?? '' }}</span>
+                            @endif
                         </div>
                     </div>
                     @if($boardConfig['use']['link'] && !empty($board->link_url))

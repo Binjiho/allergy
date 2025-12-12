@@ -75,21 +75,21 @@ return [
                 'dev' => false,
                 'continue' => false,
             ],
-            'S4' => [
-                'name' => '탈퇴회원',
-                'route' => null,
-                'param' => [],
-                'url' => 'javascript:;',
-                'dev' => false,
-                'continue' => false,
-            ],
+//            'S4' => [
+//                'name' => '탈퇴회원',
+//                'route' => 'member',
+//                'param' => ['case'=>'withdraw'],
+//                'url' => null,
+//                'dev' => false,
+//                'continue' => false,
+//            ],
         ],
 
         'M2' => [
             'S1' => [
                 'name' => '회비관리',
                 'route' => 'fee',
-                'param' => [],
+                'param' => ['case'=>'full'],
                 'url' => null,
                 'dev' => false,
                 'continue' => false,
@@ -102,6 +102,15 @@ return [
                 'route' => null,
                 'param' => [],
                 'url' => 'javascript:;',
+                'dev' => false,
+                'continue' => false,
+            ],
+
+            'S2' => [
+                'name' => '교육강좌관리',
+                'route' => 'workshop',
+                'param' => [],
+                'url' => null,
                 'dev' => false,
                 'continue' => false,
             ],

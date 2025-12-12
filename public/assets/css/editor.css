@@ -142,8 +142,8 @@
     display: block;
 } */
 .editor-contents a > img{
-    padding: 1px;
-    margin: 1px;
+    /* padding: 1px;
+    margin: 1px; */
     border: none;
 }
 

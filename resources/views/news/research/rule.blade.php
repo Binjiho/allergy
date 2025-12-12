@@ -1,0 +1,225 @@
+@extends('layouts.web-layout')
+
+@section('addStyle')
+@endsection
+
+@section('contents')
+    @include('layouts.include.sub-menu-wrap')
+
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="journal-conbox">
+                <div class="sub-tab-wrap">
+                    <ul class="sub-tab-menu">
+                        <li class=""><a href="{{ route('news.prize') }}">학술상</a></li>
+                        <li class="on"><a href="{{ route('news.research') }}">연구비</a></li>
+                    </ul>
+                </div>
+                <div class="sub-tab-wrap">
+                    <ul class="sub-tab-menu type3">
+                        <li class=""><a href="{{ route('news.research') }}">수상내역</a></li>
+                        <li class="on"><a href="{{ route('news.research.rule') }}">연구비 규정</a></li>
+                    </ul>
+                </div>
+
+                <div class="revision">
+                    <img src="/assets/image/sub/img_revision.png" alt="">
+                    <div class="text-wrap">
+                        <span>
+                            2017년 2월 28일 1차 개정
+                        </span>
+                        <span>
+                            2017년 7월 26일 2차 개정
+                        </span>
+                        <span>
+                            2020년 2월 27일 3차 개정
+                        </span>
+                        <span>
+                            2024년 3월 21일 4차 개정
+                        </span> <br>
+                        <span>
+                            2024년 6월 30일 5차 개정
+                        </span>
+                        <span>
+                            2024년 7월 18일 6차 개정
+                        </span>
+                        <span class="active">
+                            2025년 9월 18일 7차 개정
+                        </span>
+                    </div>
+                </div>
+
+                <div class="rule-wrap p-0">
+                    <div class="term-tit-wrap">
+                        <strong class="tit">대한천식알레르기학회 연구비 규정</strong>
+                    </div>
+                    <div class="rule-conbox">
+                        <strong class="rule-tit">제 1 조 (목적)</strong>
+                        <div class="rule-con">
+                            <p>대한천식알레르기학회(이하 학회)는 학회 산하의 연구팀, 지회, 혹은 개인 회원을 대상으로 천식 및 알레르기질환의 연구과제를 선정하여 연구비를 지원함으로써 천식, 알레르기 및 임상면역학의 발전에 실질적인 도움을 줄 수 있는 연구 결과를 도출하여, 학회 발전과 국민건강 개선에 기여하고자 한다.</p>
+                        </div>
+    
+                        <strong class="rule-tit">제 2 조 (명칭)</strong>
+                        <div class="rule-con">
+                            <p>학회 연구비라 한다. </p>
+                        </div>
+    
+                        <strong class="rule-tit">제 3 조 (연구비 지원규모) </strong>
+                        <div class="rule-con">
+                            <p>
+                                학회 연구비는 연구과제 당 연간 최대 5천만원까지 지원한다. 
+                            </p>
+                        </div>
+    
+                        <strong class="rule-tit">제 4 조 (연구기간) </strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    연구기간은 원칙적으로 1년으로 하되, 연구 과제의 성격에 따라 2년으로 신청할 수 있다. 
+                                </li>
+                                <li>
+                                    연구 시작일은 연구비 지급 결정 통보일을 기준으로 한다. 
+                                </li>
+                                <li>
+                                    연구기간이 길어져 연구기간에 대한 연장이 필요할 경우 연장신청서를 제출하여 연구심사위원회의 승인을 받아야 한다.
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 5 조 (신청자격)</strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    연구과제는 학회 정회원으로 중에서 단체(연구팀, 지회 등)나 개인이 신청할 수 있으며, 단체에서 지원하는 경우 연구책임자 1인을 두어 신청서를 제출한다. 
+                                </li>
+                                <li>
+                                    신청한 연구 과제는 타 학술 연구비 지원 기관에 중복 신청할 수 없다. 
+                                </li>
+                                <li>
+                                    연구과제 신청은 연구팀, 지회, 혹은 개인 회원 당 한 개의 연구과제 신청을 원칙으로 한다. 
+                                </li>
+                            </ol>
+                        </div>
+    
+                        <strong class="rule-tit">제 6 조 (연구심사위원회) </strong>
+                        <div class="rule-con">
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    연구심사위원회는 이사장, 총무이사, 연구이사, 학술이사, 기획이사, 수련이사로 구성되며, 이사장이 심사위원장이 된다. 
+                                </li>
+                                <li>
+                                    연구심사위원회는 학회 연구비 지원과제 접수 완료 1개월 이내에 연구과제를 심사하여 지원대상을 선정하고 그 결과를 이사회에 보고한다. 
+                                </li>
+                                <li>
+                                    연구심사위원회는 심사위원 2/3 이상이 참여하여야 한다. 단, 부득이하게 참석이 어려운 위원은 위임장으로 출석을 대신할 수 있다). 
+                                </li>
+                                <li>
+                                    심사위원에게는 소정의 심사료를 지급한다. 
+                                </li>
+                            </ol>
+                        </div>
+
+                        <strong class="rule-tit">제 7 조 (신청서류) </strong>
+                        <div class="rule-con">
+                            <p>학회 연구비 신청자는 아래의 서류를 제출한다.</p>
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    신청서
+                                </li>
+                                <li>
+                                    요약문
+                                </li>
+                                <li>
+                                    연구계획서
+                                </li>
+                                <li>
+                                    연구실적 및 증빙자료  
+                                </li>
+                                <li>
+                                    연구개발비 소요명세서
+                                </li>
+                            </ol>
+                        </div>
+
+                        <strong class="rule-tit">제 8 조 (연구비 지급 방법, 편성 기준, 및 정산) </strong>
+                        <div class="rule-con">
+                            <p>학회 연구비 신청자는 아래의 서류를 제출한다.</p>
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    연구비는 소속기관(병원 또는 산학협력단)과 위탁연구용역 계약을 통해 지급한다. 단, 간접비는 연구비 총액의 5%를 초과할 수 없다. 
+                                </li>
+                                <li>
+                                    병원 또는 산학협력단과 계약이 불가한 경우에는 연구기간동안 학회로 증빙서류를 제출하여 사후 정산으로 처리한다. 
+                                </li>
+                                <li>
+                                    연구비는 인건비, 여비, 유인물비, 기술정보비, 재료비(연구 기자재비, 시약 및 재료비, 전산 처리비), 수용비 및 수수료 등으로 구분하며 산출 근거를 제시하여야 한다. 
+                                </li>
+                                <li>
+                                    연구참여자인 학회원에 대한 직접적인 인건비 지불이나 상품권 구입에 의한 정산은 불가능하며, 회의 참석자에 대한 합리적인 범위에서의 거마비는 회의록과 참석에 대한 증빙자료와 함께 정산 처리할 수 있다. 
+                                </li>
+                                <li>
+                                    연구책임자는 연구가 종료된 후에 연구비 지출에 대해서 정산하고 이를 학회에 보고하여야 한다. 
+                                </li>
+                                <li>
+                                    연구비는 연구기간 종료 시점으로부터 3개월 이내에 정산을 완료하여야 한다. 
+                                </li>
+                            </ol>
+                        </div>
+
+                        <strong class="rule-tit">제 9 조 (연구결과 보고서와 논문게재) </strong>
+                        <div class="rule-con">
+                            <p>학회 연구비 신청자는 아래의 서류를 제출한다.</p>
+                            <ol class="list-type list-type-decimal">
+                                <li>
+                                    연구책임자는 연구기간 종료 후 3개월 이내에 연구결과 보고서를 학회에 제출하여야 한다. 
+                                </li>
+                                <li>
+                                    연구책임자는 연구기간 종료 후 2년 이내에 연구 결과를 국내외 학술지(AARD 혹은 AAIR 포함)에 논문으로 게재하고 이를 학회에 보고하여야 한다.
+                                </li>
+                                <li>
+                                    연구결과의 발표물에는 학회 연구비의 지원에 의해 이루어진 것을 명시하여야 한다.
+                                    <ul class="list-type list-type-text wide">
+                                        <li>
+                                            <span>영문:</span> 
+                                            <div>This study was upported by a grant from the Korean Academy of Asthma, Allergy and Clinical Immunology (KAAACI-20OO-OO).</div>
+                                        </li>
+                                        <li>
+                                            <span>국문:</span> 
+                                            <div>본 연구는 한천식알레르기학회 연구비에 의해서 지원됨 (KAAACI-20OO-OO). </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    상기한 논문게재 의무를 이행하지 못하였을 경우 학회 연구비 신청에 제한을 둘 수 있다.
+                                </li>
+                            </ol>
+                        </div>
+
+                        <strong class="rule-tit">제 10 조 (기타 사항) </strong>
+                        <div class="rule-con">
+                            <p>기타 본 규정에 기록되지 않은 사항은 일반 관례에 준한다. </p>
+                        </div>
+
+                        <strong class="rule-tit">부 칙</strong>
+                        <div class="rule-con">
+                            <ul class="list-type list-type-text wide">
+                                <li>
+                                    <span>제1조</span>
+                                    <div>본 규정은 이사회에서 승인을 받은 날부터 유효하다. </div>
+                                </li>
+                                <li>
+                                    <span>제2조</span>
+                                    <div>연구심사위원이 연구비신청인(또는 신청연구팀)과 같은 병원 같은 과 소속인 경우, 연구팀의 팀장 또는 간사인 경우에는 심사위원회에 미리 통보하여야 한다.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+@endsection
+
+@section('addScript')
+@endsection

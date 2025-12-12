@@ -1,26 +1,29 @@
 <header id="header" class="js-header">
     <div class="header-wrap inner-layer">
         <ul class="sns-menu">
-            <li><a href="#n"><img src="/assets/image/common/ic_insta.png" alt="인스타그램"></a></li>
-            <li><a href="#n"><img src="/assets/image/common/ic_facebook.png" alt="페이스북"></a></li>
-            <li><a href="#n"><img src="/assets/image/common/ic_youtube.png" alt="유튜브"></a></li>
+            <li><a href="https://www.instagram.com/allergy_kaaaci/" target="_blank"><img src="/assets/image/common/ic_insta.png" alt="인스타그램"></a></li>
+{{--            <li><a href="#n"><img src="/assets/image/common/ic_facebook.png" alt="페이스북"></a></li>--}}
+            <li><a href="https://www.youtube.com/@Kaaaci_Allergy" target="_blank"><img src="/assets/image/common/ic_youtube.png" alt="유튜브"></a></li>
         </ul>
         <h1 class="header-logo">
             <a href="/"><img src="/assets/image/common/h1_logo.png" alt="대한천식알레르기학회. The Korean Academy of Asthma, Allergy and Clinical Immunology"></a>
         </h1>
 
         <ul class="util-menu">
-                <li class="lang"><a href="#n">ENGLISH</a></li>
+            @auth('admin')
+                <li class="admin"><a href="{{ env('APP_URL') }}/admin">ADMIN</a></li>
+            @endauth
+                <li class="home"><a href="{{ env('APP_URL') }}">HOME</a></li>
             @if(thisAuth()->check())
-                <li class="lang"><a href="javascript:logout();">LOGOUT</a></li>
+                <li class="signup"><a href="{{ route('mypage.intro') }}">마이페이지</a></li>
+                <li class="login"><a href="javascript:logout();">LOGOUT</a></li>
 {{--                <li class="lang"><a href="">MYPAGE</a></li>--}}
             @else
-                <li class="login"><a href="{{ route('login') }}">LOGIN</a></li>
+                <li class="login"><a href="{{ route('login') }}">로그인</a></li>
                 <li class="signup"><a href="{{ route('join',['step'=>'1']) }}">회원가입 안내</a></li>
             @endif
-            @auth('admin')
-                <li class="admin"><a href="{{ env('APP_URL') }}admin">ADMIN</a></li>
-            @endauth
+                <li class="lang"><a href="https://www.allergy.or.kr/eng/" target="_blank">ENGLISH</a></li>
+
         </ul>
 
         <button type="button" class="btn btn-menu-open js-btn-menu-open" title="메뉴 열기">
@@ -35,15 +38,18 @@
     <nav id="gnb">
         <div class="m-gnb-header">
             <ul class="util-menu">
+                @auth('admin')
+                    <li class="admin"><a href="{{ env('APP_URL') }}/admin">ADMIN</a></li>
+                @endauth
+                    <li class="home"><a href="{{ env('APP_URL') }}">HOME</a></li>
                 @if(thisAuth()->check())
-                    <li class="logout"><a href="javascript:logout();"><img src="/assets/ko/assets/image/common/ic_util_logout.png" alt="">LOGOUT</a></li>
+                    <li class="signup"><a href="{{ route('mypage.intro') }}">마이페이지</a></li>
+                    <li class="login"><a href="javascript:logout();"><img src="/assets/ko/assets/image/common/ic_util_logout.png" alt="">LOGOUT</a></li>
                 @else
-                    <li class="login"><a href="{{ route('login') }}">LOGIN</a></li>
+                    <li class="login"><a href="{{ route('login') }}">로그인</a></li>
                     <li class="signup"><a href="{{ route('join',['step'=>'1']) }}">회원가입 안내</a></li>
                 @endif
-                @auth('admin')
-                    <li class="admin"><a href="{{ env('APP_URL') }}admin">ADMIN</a></li>
-                @endauth
+                    <li class="lang"><a href="https://www.allergy.or.kr/eng/" target="_blank">ENGLISH</a></li>
 
             </ul>
         </div>
@@ -52,6 +58,7 @@
             <ul class="gnb js-gnb">
                 @foreach($menu['main'] as $key => $val)
                     @if($val['continue']) @continue @endif
+                    @if($val['isLogined']) @if(thisAuth()->check()) @else @continue @endif @endif
                     <li >
                         <a href="{{ empty($val['url']) ? route($val['route'], $val['param']) : $val['url'] }}" ><span>{!! $val['name'] !!}</span></a>
 
@@ -59,6 +66,8 @@
                             <ul>
                             @foreach($menu['sub'][$key] ?? [] as $sKey => $sVal)
                                 @if($sVal['continue']) @continue @endif
+                                @if($sVal['isLogined']) @if(thisAuth()->check()) @else @continue @endif @endif
+                                @if($key == 'MYPAGE') @if(thisAuth()->check() && $sVal['isLogined'] == false) @continue @endif @endif
                                 <li><a href="{{ empty($sVal['url']) ? route($sVal['route'], $sVal['param']) : $sVal['url'] }}" target="{{ $sVal['blank'] ? '_blank' : '' }}" >{!! $sVal['name'] !!}</a></li>
                             @endforeach
                             </ul>
@@ -75,10 +84,10 @@
         </div>
 
         <ul class="sns-menu">
-            <li class="lang"><a href="#n">ENGLISH</a></li>
-            <li><a href="#n"><img src="/assets/image/common/ic_insta.png" alt="인스타그램"></a></li>
-            <li><a href="#n"><img src="/assets/image/common/ic_facebook.png" alt="페이스북"></a></li>
-            <li><a href="#n"><img src="/assets/image/common/ic_youtube.png" alt="유튜브"></a></li>
+            <li class="lang"><a href="https://www.allergy.or.kr/eng/" target="_blank">ENGLISH</a></li>
+            <li><a href="https://www.instagram.com/allergy_kaaaci/" target="_blank"><img src="/assets/image/common/ic_insta.png" alt="인스타그램"></a></li>
+{{--            <li><a href="#n"><img src="/assets/image/common/ic_facebook.png" alt="페이스북"></a></li>--}}
+            <li><a href="https://www.youtube.com/@Kaaaci_Allergy" target="_blank"><img src="/assets/image/common/ic_youtube.png" alt="유튜브"></a></li>
         </ul>
 
         <button type="button" class="btn btn-menu-close js-btn-menu-close"><span class="hide">메뉴 닫기</span></button>
@@ -92,6 +101,7 @@
         <ul>
             @foreach($menu['main'] as $key => $val)
                 @if($val['continue']) @continue @endif
+                @if($val['isLogined']) @if(thisAuth()->check()) @else @continue @endif @endif
                 <li >
                     <a href="{{ empty($val['url']) ? route($val['route'], $val['param']) : $val['url'] }}" ><span>{!! $val['name'] !!}</span></a>
 
@@ -99,6 +109,8 @@
                         <ul>
                             @foreach($menu['sub'][$key] ?? [] as $sKey => $sVal)
                                 @if($sVal['continue']) @continue @endif
+                                @if($sVal['isLogined']) @if(thisAuth()->check()) @else @continue @endif @endif
+                                @if($key == 'MYPAGE') @if(thisAuth()->check() && $sVal['isLogined'] == false) @continue @endif @endif
                                 <li><a href="{{ empty($sVal['url']) ? route($sVal['route'], $sVal['param']) : $sVal['url'] }}" target="{{ $sVal['blank'] ? '_blank' : '' }}" >{!! $sVal['name'] !!}</a></li>
                             @endforeach
                         </ul>

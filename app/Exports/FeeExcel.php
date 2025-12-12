@@ -37,20 +37,19 @@ class FeeExcel implements FromCollection, WithHeadings, ShouldAutoSize, WithEven
     public function headings(): array
     {
         return [
-            'No',
-            '회원등급-세부등급',
+            '번호',
+            '회비셋팅연도',
+            '회비구분',
+            '회비금액',
             '이름',
-            '아이디',
-            '직장명(기관명)',
 
-            '회비 연도',
-            '회비 구분',
-            '금액',
+            '아이디',
+            '면허번호',
+            '근무처',
             '납부방법',
             '납부상태',
 
             '납부일자',
-            '메모',
         ];
     }
 
@@ -62,18 +61,18 @@ class FeeExcel implements FromCollection, WithHeadings, ShouldAutoSize, WithEven
 
         return [
             $this->total - ($this->row++),
-            $userConfig['level'][$data->user->level ?? ''] ?? '',
-            $user->name_kr ?? '',
-            $user->id ?? '',
-            $user->company ?? '',
-
             $data->year,
             $feeConfig['category'][$data->category ?? ''] ?? '',
-            number_format($data->price),
+            number_format($data->price ?? 0),
+            $user->name_kr ?? '',
+
+            $user->id ?? '',
+            $user->license_number ?? '',
+            $user->company_kr ?? '',
             $feeConfig['payment_method'][$data->payment_method ?? ''] ?? '',
             $feeConfig['payment_status'][$data->payment_status ?? ''] ?? '',
+
             !empty($data->payment_date) && isValidTimestamp($data->payment_date) ? $data->payment_date : '',
-            $data->memo ?? '',
         ];
     }
 

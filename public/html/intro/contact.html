@@ -1,0 +1,88 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">학회소개</h2>
+                <ul class="breadcrumb">
+                    <li>학회소개</li>
+                    <li>조직</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">학회소개</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">오시는길</a>
+                    <ul>
+                        <li><a href="#n">인사말</a></li>
+                        <li><a href="#n">연혁</a></li>
+                        <li><a href="#n">회칙</a></li>
+                        <li><a href="#n">조직</a></li>
+                        <li class="on"><a href="#n">오시는길</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="map-wrap">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.377383091835!2d126.97232857635584!3d37.56973032394416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca3370d37d539%3A0xc4947da533eb08b1!2z64yA7ZWc7LKc7Iud7JWM66CI66W06riw7ZWZ7ZqM!5e0!3m2!1sko!2skr!4v1753254243009!5m2!1sko!2skr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="map-info">
+                    <img src="/assets/image/sub/img_emblem.png" alt="">
+                    <div class="text-wrap">
+                        <strong>대한천식알레르기학회</strong>
+                        <p>03186 서울 종로구 새문안로 92 광화문오피시아빌딩 1329호</p>
+                    </div>
+                </div>
+            </div>
+            <ul class="map-info-list">
+                <li>
+                    <div class="text-wrap">
+                        <strong>전화</strong>
+                        <a href="tel:02-747-0528" target="_blank">02-747-0528</a>
+                    </div>
+                    <img src="/assets/image/sub/img_map_tel.png" alt="">
+                </li>
+                <li>
+                    <div class="text-wrap">
+                        <strong>팩스</strong>
+                        02-3676-2847
+                    </div>
+                    <img src="/assets/image/sub/img_map_fax.png" alt="">
+                </li>
+                <li>
+                    <div class="text-wrap">
+                        <strong>E-mail</strong>
+                        <a href="mailto:korall@chol.com" target="_blank">korall@chol.com</a>
+                    </div>
+                    <img src="/assets/image/sub/img_map_mail.png" alt="">
+                </li>
+            </ul>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

@@ -137,7 +137,7 @@
 @section('memberScript')
     <script>
         $(document).on('click', '.btn-del', function () {
-            if (confirm('회원벙보를 완전히 삭제 하시겠습니까?\n데이터를 복구할수 없습니다.')) {
+            if (confirm('회원정보를 완전히 삭제 하시겠습니까?\n데이터를 복구할수 없습니다.')) {
                 callAjax(dataUrl, {
                     'case': 'user-delete',
                     'sid': getPK(this),

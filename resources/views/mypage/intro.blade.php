@@ -11,6 +11,13 @@
 
             <!-- s:인트로 -->
             <ul class="mypage-menu">
+
+                <li class="mem-sch">
+                    <a href="{{ route('mypage.member_search') }}">
+                        <p class="tit">회원검색 <img src="/assets/image/sub/ic_mypage_sch.png" alt=""></p>
+                    </a>
+                </li>
+
                 <li><a href="{{ route('mypage.pwCheck') }}">
                          <span class="icon">
                             <img src="/assets/image/sub/ic_mypage01.png" alt="">

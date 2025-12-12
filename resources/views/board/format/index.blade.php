@@ -42,6 +42,11 @@
                         </fieldset>
                     </form>
                 </div>
+
+                <div class="list-contop mb-10">
+                    총 게시글 <strong class="text-red">{{ ($tot_cnt ?? 0) + ($notice_list->count() ?? 0) }}</strong>건
+                </div>
+                
                 <ul class="board-list">
                     <!-- 공지 -->
                     @foreach($notice_list ?? [] as $row)

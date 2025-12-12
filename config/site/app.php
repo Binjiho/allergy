@@ -21,7 +21,7 @@ return [
 
     // ================= api =================
     'api' => [
-        'url' => env('APP_URL') . '/api',
+        'url' => env('APP_URL') . 'api',
     ],
 
     // ================= web =================
@@ -29,11 +29,16 @@ return [
         'app_name' => env('APP_NAME'),
         'url' => env('APP_URL'),
     ],
+    // ================= eng =================
+    'eng' => [
+        'app_name' => 'ALLERGY',
+        'url' => env('APP_URL') . '/eng',
+    ],
     
     // ================= admin =================
     'admin' => [
         'app_name' => '관리자 | ' . env('APP_NAME'),
-        'url' => env('APP_URL') . 'admin',
+        'url' => env('APP_URL') . '/admin',
     ],
 
     'info' => [

@@ -15,7 +15,7 @@
 
                 <div class="sch-wrap ">
                     <form action="{{ route('board', ['code' => $code]) }}" method="get">
-                        <feildset>
+                        <fieldset>
                             <legend class="hide">검색</legend>
                             <div class="form-group">
                                 <select name="search" class="form-item sch-cate">
@@ -24,9 +24,9 @@
                                     @endforeach
                                 </select>
                                 <input type="text" name="keyword" class="form-item sch-key" placeholder="검색어를 입력하세요." value="{{ request()->keyword ?? '' }}">
-                                <button type="submit" class="btn btn-sch">검색</button>
+                                <button type="submit" class="btn btn-sch"></button>
                             </div>
-                        </feildset>
+                        </fieldset>
                     </form>
                 </div>
 
@@ -36,8 +36,14 @@
                         <li class="ef03" data-sid="{{ $row->sid ?? 0 }}">
                             <a href="{{ route('board.view', ['code' => $code, 'sid' => $row->sid]) }}">
                                 <div class="gall-img">
-                                    <img src="{{ empty($row->thumbnail_realfile) ? '/html/bbs/gallery/assets/image/board/no_image.png' : asset($row->thumbnail_realfile) }}" alt="">
+                                    @if( !empty($row->thumbnail_realfile) && file_exists( public_path($row->thumbnail_realfile)) )
+                                        <img src="{{ asset($row->thumbnail_realfile) }}" alt="">
+                                    @else
+                                        <img src="{{ asset($row->files[0]->realfile) }}" alt="">
+                                    @endif
                                 </div>
+
+
                                 <div class="gall-text">
                                     <span class="gall-tit ellipsis2">
                                         {{ $row->subject }}

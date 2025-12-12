@@ -207,6 +207,7 @@ body:has(.print-wrap){
     margin-top: 35px;
 }
 .cst-table{
+    position: relative;
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
@@ -222,10 +223,26 @@ body:has(.print-wrap){
     word-break: break-word;
     vertical-align: middle;
 }
+.table-wrap:has(.active){
+    border-color: #007cbe;
+}
 .cst-table .active th{
-    border-top-color: #1385b5;
-    background-color: #1385b5;
+    position: relative;
+    border: 0;
+    background-color: #007cbe;
     color: #fff;
+}
+.cst-table .active th + th:before{
+    display: block;
+    content: '';
+    clear: both;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 15px;
+    background-color: #fff;
 }
 .table-wrap:has(.active.type2){
     border-color: #124788;
@@ -353,6 +370,12 @@ body:has(.print-wrap){
 .list-type-text > li > span + div{
     width: calc(100% - 25px);
 }
+.list-type-text.wide > li > span{
+    width: 40px;
+}
+.list-type-text.wide > li > span + div{
+    width: calc(100% - 45px);
+}
 .list-type-square > li{
     padding-left: 20px;
 }
@@ -391,20 +414,16 @@ body:has(.print-wrap){
     content: '';
     clear: both;
     position: absolute;
-    top: 6px;
+    top: 3px;
     left: 0;
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url('../image/icon/ic_list_check.png');
+    background-image: url('../image/icon/ic_check.png');
 }
-.list-type-check.type2 > li:before{
-    top: 0;
-    width: 18px;
-    height: 100%;
-    background-position: 0 5px;
-    background-image: url('../image/icon/ic_list_check03.png');
+.list-type-check > li:has(.text-red):before{
+    background-image: url('../image/icon/ic_check_red.png');
 }
 .list-type-star > li{
     padding-left: 20px;
@@ -530,25 +549,14 @@ body:has(.print-wrap){
     border-color: #3a81d1;
     color: #fff;
 }
-/**/
 .btn.color-type11{
-    background-color: #d85666;
-    border-color: #d85666;
+    background-color: #e94068;
+    border-color: #e94068;
     color: #fff;
 }
 .btn.color-type12{
-    background-color: #774f9d;
-    border-color: #774f9d;
-    color: #fff;
-}
-.btn.color-type13{
-    background-color: #4f575a;
-    border-color: #4f575a;
-    color: #fff;
-}
-.btn.color-type14{
-    background-color: #da3131;
-    border-color: #da3131;
+    background-color: #958287;
+    border-color: #958287;
     color: #fff;
 }
 .btn.btn-small{
@@ -613,26 +621,15 @@ body:has(.print-wrap){
     border-color: #3a81d1;
     color: #3a81d1;
 }
-/**/
 .btn-line.color-type11{
     background-color: #fff;
-    border-color: #d85666;
-    color: #d85666;
+    border-color: #e94068;
+    color: #e94068;
 }
 .btn-line.color-type12{
     background-color: #fff;
-    border-color: #774f9d;
-    color: #774f9d;
-}
-.btn-line.color-type13{
-    background-color: #fff;
-    border-color: #4f575a;
-    color: #4f575a;
-}
-.btn-line.color-type14{
-    background-color: #fff;
-    border-color: #da3131;
-    color: #da3131;
+    border-color: #958287;
+    color: #958287;
 }
 .btn.btn-round{
     border-radius: 30px;
@@ -713,7 +710,7 @@ body:has(.print-wrap){
     height: 16px;
     border: 2px solid #b6b6b6;
     background-color: #fff;
-    margin-top: -3px;
+    margin-top: -4px;
     margin-right: 10px;
     border-radius: 100%;
     vertical-align: middle;
@@ -765,9 +762,20 @@ body:has(.print-wrap){
 }
 
 /* form */
+form,
+fieldset,
+table{
+    min-width: 1px;
+}
 .help-text{
     font-size: 1.5rem;
     line-height: 1.2;
+}
+.help-text.list-type > li:before{
+    top: 7px;
+}
+.write-contop{
+    margin-bottom: 10px;
 }
 .write-form-wrap form,
 .write-form-wrap fieldset{
@@ -853,6 +861,7 @@ textarea.form-item{
 }
 .form-group[class*="n"]{
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 .form-group-text{
@@ -1379,7 +1388,7 @@ textarea.form-item{
 
 /* show, hide */
 .m-show{
-    display: none;
+    display: none !important;
 }
 .t-show{
     display: block;
@@ -1389,5 +1398,5 @@ textarea.form-item{
 }
 
 .m-hide{
-    display: block;
+    display: block !important;
 }

@@ -1,0 +1,285 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">회원공간</h2>
+                <ul class="breadcrumb">
+                    <li>회원공간</li>
+                    <li>회원검색</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <a href="/" class="btn btn-home"><span class="hide">HOME</span></a>
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">회원공간</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">회원공간</a></li>
+                        <li><a href="#n">진료지침</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">회원검색</a>
+                    <ul>
+                        <li><a href="#n">천식 E-러닝</a></li>
+                        <li><a href="#n">뉴스레터</a></li>
+                        <li><a href="#n">자료실</a></li>
+                        <li class="on"><a href="#n">회원검색</a></li>
+                        <li><a href="#n">분과전문의자격시험</a></li>
+                        <li><a href="#n">최신논문소식</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="mem-sch-conbox">
+                <div class="bg-box">
+                    <img src="/assets/image/sub/img_member_search.png" alt="">
+                    <div class="text-wrap">
+                        <ul class="list-type list-type-dot">
+                            <li>
+                                검색하고자 하는 회원의 검색조건을 선택한 후, 검색어를 입력한 다음 검색버튼을 클릭하시면 검색결과를 보실 수 있습니다.
+                            </li>
+                            <li>
+                                검색어 전체가 생각이 안나시면 부분검색도 가능합니다.
+                            </li>
+                            <li>
+                                성명, 출신의과대학, 근무처명 중 원하시는 항목만으로 검색이 가능합니다.
+                            </li>
+                            <li>
+                                원하시는 검색조건을 선택하신 후 '찾아보기' 버튼을 클릭해 주십시오.
+                            </li>
+                            <li>
+                                대한천식알레르기학회 홈페이지 가입 회원에 한해서만 검색이 됩니다.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <div class="sch-wrap">
+                    <form action="" method="">
+                        <fieldset>
+                            <legend class="hide">검색</legend>
+                            <div class="form-group">
+                                <select name="" id="" class="form-item sch-cate">
+                                    <option value="">성명</option>
+                                    <option value="">아이디</option>
+                                    <option value="">소속</option>
+                                    <option value="">출신대학</option>
+                                </select>
+                                <input type="text" name="" id="" class="form-item sch-key" placeholder="검색하실 내용을 입력해주세요.">
+                                <button type="submit" class="btn btn-sch"><span class="hide">검색</span></button>
+                                <button type="reset" class="btn btn-reset">검색 초기화</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+    
+                <ul class="member-list">
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="name">
+                            홍길동
+                        </p>
+                        <strong class="tit">
+                            <img src="/assets/image/sub/ic_hospital.png" alt=""> 00 병원
+                        </strong>
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_addr.png" alt=""></span>
+                                <div>(12345)서울 중랑구 망우동 207-2 러스크서울병원</div>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/assets/image/sub/ic_hos_tel.png" alt=""></span>
+                                <div><a href="tel:02-0000-0000" target="_blank">02-0000-0000</a></div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="no-data text-center">
+                        검색하신 회원이 없습니다.
+                    </li>
+                </ul>
+    
+                <div class="paging-wrap">
+                    <ul class="paging">
+                        <li class="first"><a href="#n"><span class="hide">처음</span></a></li>
+                        <li class="prev"><a href="#n"><span class="hide">이전</span></a></li>
+                        <li class="num on"><a href="#n">1</a></li>
+                        <li class="num"><a href="#n">2</a></li>
+                        <li class="num"><a href="#n">3</a></li>
+                        <li class="num"><a href="#n">4</a></li>
+                        <li class="num"><a href="#n">5</a></li>
+                        <li class="next"><a href="#n"><span class="hide">다음</span></a></li>
+                        <li class="last"><a href="#n"><span class="hide">마지막</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

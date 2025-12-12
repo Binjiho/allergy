@@ -35,8 +35,8 @@
 }
 .sns-menu li > a{
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 .sns-menu li > a img{
     width: 100%;
@@ -60,22 +60,25 @@
 }
 .util-menu li > a{
     display: block;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 30px;
     font-size: 1.5rem;
     color: #fff;
 }
 .util-menu .lang a{
-    background-color: #1398c3;
+    background-color: #15a0cd;
 }
 .util-menu .login a{
-    background-color: #0776d4;
-}
-.util-menu .signup a{
     background-color: #003c8d;
 }
 .util-menu .admin a{
-    background-color: #7f44c1;
+    background-color: #3b485d;
+}
+.util-menu .home a{
+    background-color: #0081c7;
+}
+.util-menu .signup a{
+    background-color: #0065ba;
 }
 #gnb{
     width: 100%;
@@ -98,6 +101,7 @@
     flex: 1;
     position: relative;
     height: 60px;
+    text-align: center;
 }
 .gnb > li > a{
     display: flex;
@@ -107,13 +111,24 @@
     height: 100%;
     font-size: 2rem;
     font-weight: 500;
+    word-break: break-word;
     transition: 0.3s ease;
+}
+.gnb > li:last-child{
+    flex: 0 0 auto;
+    width: 20%;
+}
+.gnb > li a br{
+    display: none;
 }
 .gnb > li > ul{
     display: none;
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 10;
     width: 100%;
+    min-width: 180px;
     background-color: #fff;
     text-align: center;
 }
@@ -232,6 +247,12 @@
     width: calc((100% - 120px)/5);
     text-align: center;
 }
+.allmenu-wrap > ul > li:last-child{
+    width: calc((100% - 120px)/5 * 1.5);
+}
+.allmenu-wrap > ul > li:last-child span br{
+    display: none;
+}
 .allmenu-wrap > ul > li > a{
     display: block;
     position: relative;
@@ -317,7 +338,7 @@
     position: fixed;
     right: calc((100%  - 1500px)/2);
     bottom: 220px;
-    z-index: 10;
+    z-index: 9;
     width: 80px;
     height: 80px;
     background: radial-gradient(circle at center, #0182c8 0%,#103f93 100%);
@@ -416,11 +437,11 @@
         left: 15px;
     }
     .util-menu{
-        gap: 7px;
+        gap: 5px;
         right: 15px;
     }
     .util-menu li > a{
-        padding: 8px 16px;
+        padding: 8px 10px;
         font-size: 13px;
     }
 
@@ -534,7 +555,7 @@
     }
     .gnb > li{
         flex: inherit;
-        width: 100%;
+        width: 100% !important;
         height: auto;
         border-bottom: 1px solid #cccccc;
     }
@@ -571,6 +592,8 @@
     }
     .gnb > li > ul{
         position: static;
+        transform: none;
+        min-width: initial;
         padding: 7px 0;
         border-top: 1px solid #cccccc;
     }
@@ -666,7 +689,7 @@
         gap: 15px;
     }
     .allmenu-wrap > ul > li{
-        width: calc((100% - 15px)/2);
+        width: calc((100% - 15px)/2) !important;
     }
     .allmenu-wrap > ul > li > a{
         padding: 10px 15px;

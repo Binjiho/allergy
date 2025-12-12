@@ -163,7 +163,7 @@
         $(document).on('click', '.btn-del', function () {
             const sid = $(this).closest('tr').data('sid');
 
-            if (confirm('삭제 하시겠습니까?')) {
+            if (confirm('회비 납부 내역을 삭제하시겠습니까?\n삭제 후 원복 불가능하며 다시 세팅 해주셔야 합니다.')) {
                 callAjax('{{ route('fee.data') }}', {
                     'case': 'fee-delete',
                     'sid': sid,

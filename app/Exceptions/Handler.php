@@ -43,6 +43,10 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
             return notFoundRedirect();
         }
+
+//        if( $_SERVER['REMOTE_ADDR']=="218.235.94.247") {
+//            dd($exception);
+//        }
         
         if ($this->isHttpException($exception)) {
             $statusCode = $exception->getStatusCode();

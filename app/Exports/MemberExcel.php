@@ -35,54 +35,22 @@ class MemberExcel implements FromCollection, WithHeadings, ShouldAutoSize, WithE
     public function headings(): array
     {
         return [
-            'No',
-            '회원등급-세부등급',
+            '번호',
+            '회원상태',
+            '회원등급',
+            '이름',
             '아이디',
-            '이름(국문)',
-            '이름(영문)',
 
-            '생년월일',
-            '성별',
             '이메일',
-            '이메일 수신 동의',
-            '휴대폰 번호',
+            '면허번호',
+            '근무처',
+            '근무처번호',
+            '휴대폰번호',
 
-            'SMS 수신 동의',
-            '우편물 수령지',
-            '직장명',
-            '대표이사',
-            '부서',
-
-            '업태,종목',
-            '직종',
-            '직위',
-            '직위(기타)',
-            '직장 우편번호',
-
-            '직장 주소',
-            '직장 주소 상세',
-            '직장 전화번호',
-            '직장 팩스번호',
-            '담당자 성명',
-
-            '담당자 전화번호',
-            '담당자 이메일',
-            '자택 우편번호',
-            '자택 주소',
-            '자택 주소 상세',
-
-            '자택 전화번호',
-            '학위',
-            '졸업(예정)연도',
-            '취득국가',
-            '취득기관',
-
-            '지도교수',
-            '국문논문명',
-            '영문논문명',
-            '관리자메모',
             '가입일',
-            '수정일',
+            '최종수정일',
+            '최종로그인',
+            '관라자지정',
         ];
     }
 
@@ -92,53 +60,21 @@ class MemberExcel implements FromCollection, WithHeadings, ShouldAutoSize, WithE
 
         return [
             $this->total - ($this->row++),
+            $userConfig['confirm'][$data->confirm] ?? '',
             $userConfig['level'][$data->level] ?? '',
-            $data->id,
             $data->name_kr ?? '',
-            $data->name_en ?? '',
+            $data->id ?? '',
 
-            $data->birthday,
-            $data->sex,
             $data->email ?? '',
-            $userConfig['receptionYn'][$data->emailReception] ?? '',
+            $data->license_number ?? '',
+            !empty($data->company_kr) ? $data->company_kr : $data->company_en ?? '',
+            $data->companyTel ?? '',
             $data->phone ?? '',
 
-            $userConfig['receptionYn'][$data->smsReception] ?? '',
-            $userConfig['post'][$data->post] ?? '',
-            $data->company ?? '',
-            $data->ceo ?? '',
-            $data->department ?? '',
-
-            $data->business ?? '',
-            $data->job ?? '',
-            $data->position ?? '',
-            $data->position_etc ?? '',
-            $data->company_zipcode ?? '',
-
-            $data->company_address ?? '',
-            $data->company_address2 ?? '',
-            $data->companyTel ?? '',
-            $data->companyFax ?? '',
-            $data->manager ?? '',
-
-            $data->managerTel ?? '',
-            $data->managerEmail ?? '',
-            $data->home_zipcode ?? '',
-            $data->home_address ?? '',
-            $data->home_address2 ?? '',
-
-            $data->homeTel ?? '',
-            $data->degree ?? '',
-            $data->graduate ?? '',
-            $data->degreeCountry ?? '',
-            $data->degreeAgency ?? '',
-
-            $data->tutor ?? '',
-            $data->journalKor ?? '',
-            $data->journalEng ?? '',
-            $data->memo ?? '',
             !empty($data->created_at) ? $data->created_at->format('Y-m-d') : '',
             !empty($data->updated_at) ? $data->updated_at->format('Y-m-d') : '',
+            !empty($data->login_at) ? $data->login_at->format('Y-m-d') : '',
+            $data->is_admin ?? '',
         ];
     }
 

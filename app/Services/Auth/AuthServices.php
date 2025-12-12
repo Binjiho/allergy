@@ -90,10 +90,10 @@ class AuthServices extends AppServices
         try {
             $user = User::findOrFail($request->sid);
 
-            if($request->companyTel){
-                $companyTel = implode('-',$request->companyTel);
-                $request->merge(['companyTel'=>$companyTel]);
-            }
+//            if($request->companyTel){
+//                $companyTel = implode('-',$request->companyTel);
+//                $request->merge(['companyTel'=>$companyTel]);
+//            }
 
             $user->setByData($request);
             $user->timestamps = false; // updated_at 자동 갱신 비활성화
@@ -142,7 +142,7 @@ class AuthServices extends AppServices
 
     private function uidCheckServices(Request $request)
     {
-        $user = User::withTrashed()->where(['id' => $request->id, 'del'=>'N', 'create_status'=>'N'])->first();
+        $user = User::withTrashed()->where(['id' => $request->id, 'del'=>'N', 'create_status'=>'Y'])->first();
 
         if (empty($user)) {
             $this->setJsonData('data', [
@@ -163,9 +163,9 @@ class AuthServices extends AppServices
     private function emailCheckServices(Request $request)
     {
         if($request->sid > 0){
-            $user = User::withTrashed()->where(['email' => $request->email, 'del'=>'N', 'create_status'=>'N'])->whereNotIn('sid',[$request->sid])->first();
+            $user = User::withTrashed()->where(['email' => $request->email, 'del'=>'N', 'create_status'=>'Y'])->whereNotIn('sid',[$request->sid])->first();
         }else{
-            $user = User::withTrashed()->where(['email' => $request->email, 'del'=>'N', 'create_status'=>'N'])->first();
+            $user = User::withTrashed()->where(['email' => $request->email, 'del'=>'N', 'create_status'=>'Y'])->first();
         }
 
         if (empty($user)) {
@@ -187,9 +187,9 @@ class AuthServices extends AppServices
     private function llicenseCheckServices(Request $request)
     {
         if($request->create_status == 'Y'){
-            $user = User::withTrashed()->where(['license_number' => $request->license_number, 'del'=>'N', 'create_status'=>'N'])->whereNotIn('sid',[$request->sid])->first();
+            $user = User::withTrashed()->where(['license_number' => $request->license_number, 'del'=>'N', 'create_status'=>'Y'])->whereNotIn('sid',[$request->sid])->first();
         }else{
-            $user = User::withTrashed()->where(['license_number' => $request->license_number, 'del'=>'N', 'create_status'=>'N'])->first();
+            $user = User::withTrashed()->where(['license_number' => $request->license_number, 'del'=>'N', 'create_status'=>'Y'])->first();
         }
 
         if (empty($user)) {

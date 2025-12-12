@@ -192,6 +192,82 @@
     text-align: center;
 }
 
+/* Type 2 */
+.board-gallery-type2 .gall-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.board-gallery-type2 .gall-list > li{
+    width: calc((100% - 20px)/2);
+    border: 0;
+}
+.board-gallery-type2 .gall-img{
+    position: relative;
+    height: 320px;
+    border: 0;
+}
+.board-gallery-type2 .gall-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: inherit;
+}
+.board-gallery-type2 .gall-img:before{
+    display: block;
+    content: '';
+    clear: both;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cecece;
+    transition: 0.1s ease;
+}
+.board-gallery-type2 .gall-text{
+    padding: 0;
+    margin-top: 15px;
+}
+.board-gallery-type2 .gall-tit{
+    display: block;
+    height: auto;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #003173;
+    line-height: 1.2;
+}
+.board-gallery-type2 .gall-con{
+    margin-top: 12px;
+    color: #4c4c4c;
+}
+.board-gallery-type2 .gall-con ul > li{
+    display: flex;
+    gap: 10px;
+    align-items: start;
+    padding: 3px 0;
+}
+.board-gallery-type2 .gall-con ul > li img{
+    flex: 0 0 auto;
+    margin: 1px 0;
+}
+.board-gallery-type2 .gall-list .no-data{
+    border-top: 2px solid #20366f;
+    border-bottom: 1px solid #e2e2e2;
+}
+.board-gallery-type2 .gall-list > li:hover > a{
+    box-shadow: none;
+}
+.board-gallery-type2 .gall-list > li > a:hover{
+    box-shadow: none;
+}
+.board-gallery-type2 .gall-list > li:hover .gall-img{
+    border-color: #20366f;
+}
+.board-gallery-type2 .gall-list > li:hover .gall-img:before{
+    border: 3px solid #20366f;
+}
+
 /* list::effect */
 .ef01,
 .ef02,
@@ -587,7 +663,7 @@
     content: '';
     clear: both;
     position: absolute;
-    top: 4px;
+    top: 3px;
     left: 0;
     width: 1px;
     height: 14px;
@@ -1283,6 +1359,32 @@
     }
     .gall-list.n2 .gall-name + span:before{
         display: none;
+    }
+
+    .board-gallery-type2 .gall-list{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .board-gallery-type2 .gall-list > li{
+        width: 100%;
+    }
+    .board-gallery-type2 .gall-img{
+        height: 165px;
+    }
+    .board-gallery-type2 .gall-tit{
+        margin-top: 5px;
+        font-size: 16px;
+    }
+    .board-gallery-type2 .gall-con{
+        margin-top: 5px;
+        font-size: 14px;
+    }
+    .board-gallery-type2 .gall-con ul > li{
+        gap: 5px;
+        padding: 2px 0;
+    }
+    .board-gallery-type2 .gall-con ul > li img{
+        width: 14px;
     }
 
     /* button */

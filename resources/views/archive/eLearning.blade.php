@@ -1,0 +1,405 @@
+@extends('layouts.web-layout')
+
+@section('addStyle')
+@endsection
+
+@section('contents')
+    @include('layouts.include.sub-menu-wrap')
+
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="elearning-conbox">
+                <div class="sub-tab-wrap">
+                    <button type="button" class="btn btn-tab-menu js-btn-tab-menu">천식 E-러닝 안내</button>
+                    <ul class="sub-tab-menu js-tab-menu">
+                        <li class="on"><a href="#n">천식 E-러닝 안내</a></li>
+                        <li><a href="#n">개요</a></li>
+                        <li><a href="#n">진단</a></li>
+                        <li><a href="#n">치료</a></li>
+                        <li><a href="#n">관리</a></li>
+                    </ul>
+                </div>
+
+                <!-- s:천식 E-러닝 안내 -->
+                <div class="sub-tab-con js-tab-con" style="display: block;">
+                    <div class="sub-contit-wrap">
+                        <h3 class="sub-contit">천식 E-러닝 안내</h3>
+                    </div>
+                    <div class="table-wrap scroll-x touch-help">
+                        <table class="cst-table">
+                            <caption class="hide">천식 E-러닝 안내</caption>
+                            <colgroup>
+                                <col style="width: 15%;">
+                                <col>
+                                <col style="width: 18%;">
+                                <col style="width: 12%;">
+                                <col style="width: 30%;">
+                            </colgroup>
+                            <thead>
+                            <tr class="active">
+                                <th scope="col"></th>
+                                <th scope="col">제목</th>
+                                <th scope="col">연자</th>
+                                <th scope="col">모의환자</th>
+                                <th scope="col">상세내용</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">개요</th>
+                                <td>한국에서 천식의 역학</td>
+                                <td>김상헌 교수</td>
+                                <td>X</td>
+                                <td>천식의 유병률, 진단율 등</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" rowspan="4">진단</th>
+                                <td>감별진단</td>
+                                <td>정이영 교수</td>
+                                <td>O</td>
+                                <td>기침으로 내원한 환자: 천식 감별 진단</td>
+                            </tr>
+                            <tr>
+                                <td>경험적치료</td>
+                                <td>김정은 원장</td>
+                                <td>O</td>
+                                <td>경험적 치료를 통한 천식 진단 <br>(개원의 선생님들에게 중요한 부분이라 생각됨)</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">폐기능 검사를 통한 <br>천식진단</td>
+                                <td>김수정 교수</td>
+                                <td>O</td>
+                                <td>폐기능 검사 시행방법<br>
+                                    검사기기 소지 : 약 40%, 검사실시 비율 : 약 20%</td>
+                            </tr>
+                            <tr>
+                                <td>권용은 교수</td>
+                                <td>X</td>
+                                <td>폐기능 검사의 해석과 BDR을 통해 천식 진단</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" rowspan="6">치료</th>
+                                <td>대한천식알레르기학회 <br>천식진료지침 summary</td>
+                                <td>김민혜 교수</td>
+                                <td>X</td>
+                                <td>천식 치료 목적과 Step에 따른 치료단계</td>
+                            </tr>
+                            <tr>
+                                <td>진단 후 치료의 시작</td>
+                                <td>양민석 교수</td>
+                                <td>X</td>
+                                <td>첫 치료 시 고려해야 하는 사항과 치료제 선택</td>
+                            </tr>
+                            <tr>
+                                <td>환자 상태에 따른 Step up/down <br>(asthma action plan)</td>
+                                <td>최길순 교수</td>
+                                <td>O</td>
+                                <td>환자 상태 구분 방법 및 치료 단계 조정 방법</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">흡입제 환자 교육</td>
+                                <td>이영목 원장</td>
+                                <td>O</td>
+                                <td>효과적인 환자 교육 커뮤니케이션(디바이스)</td>
+                            </tr>
+                            <tr>
+                                <td>박소연 원장</td>
+                                <td>O</td>
+                                <td>흡입제 종류와 선택, 사용법/잘못 사용된 예</td>
+                            </tr>
+                            <tr>
+                                <td>동반질환의 치료</td>
+                                <td>김주희 교수</td>
+                                <td>X</td>
+                                <td>ACO, Rhinitis</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" rowspan="2">관리</th>
+                                <td>Follow up</td>
+                                <td>권재우 교수</td>
+                                <td>O</td>
+                                <td>정기적인 환자 관리를 위한 모니터링 방법</td>
+                            </tr>
+                            <tr>
+                                <td>증상 악화 시 치료</td>
+                                <td>송우정 교수</td>
+                                <td>X</td>
+                                <td>증상의 악화 시 어떻게 치료하고 follow up 해야 하는가?</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- //e:천식 E-러닝 안내 -->
+
+                <!-- s:개요 -->
+                <div class="sub-tab-con js-tab-con">
+                    <div class="board-cate-wrap inner-tab-wrap">
+                        <button type="button" class="btn btn-tab-menu js-btn-tab-menu">한국에서 천식의 역학</button>
+                        <ul class="board-cate-list sub-tab-menu js-inner-tab-menu">
+                            <li class="on"><a href="#n">한국에서 천식의 역학</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="inner-tab-con js-inner-tab-con" style="display: block;">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>한국에서 천식의 역학</strong>
+                                <span>김상헌 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311304?h=c676546d24&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            천식의 유병율, 진단율 등
+                        </div>
+                    </div>
+                </div>
+                <!-- //e:개요 -->
+
+                <!-- s:진단 -->
+                <div class="sub-tab-con js-tab-con">
+                    <div class="board-cate-wrap inner-tab-wrap">
+                        <button type="button" class="btn btn-tab-menu js-btn-tab-menu">감별진단</button>
+                        <ul class="board-cate-list sub-tab-menu js-inner-tab-menu">
+                            <li class="on"><a href="#n">감별진단</a></li>
+                            <li><a href="#n">경험적치료</a></li>
+                            <li><a href="#n">폐기능 검사를 통한 천식진단</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- s:감별진단 -->
+                    <div class="inner-tab-con js-inner-tab-con" style="display: block;">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>감별진단</strong>
+                                <span>정이영 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106310906?h=bba1f9d6a9&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            기침으로 내원한 환자: 천식 감별 진단
+                        </div>
+                    </div>
+                    <!-- //e:감별진단 -->
+
+                    <!-- s:경험적치료 -->
+                    <div class="inner-tab-con js-inner-tab-con">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>경험적치료</strong>
+                                <span>김정은 원장</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106310841?h=d235a2995e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            경험적 치료를 통한 천식 진단 <br>
+                            (개원의 선생님들에게 중요한 부분이라 생각됨)
+                        </div>
+                    </div>
+                    <!-- //e:경험적치료 -->
+
+                    <!-- s:폐기능 검사를 통한 천식진단 -->
+                    <div class="inner-tab-con js-inner-tab-con">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>폐기능 검사를 통한 천식진단</strong>
+                                <span>김수정 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311000?h=dfecc9aa8a&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            폐기능 검사 시행방법 <br>
+                            검사기기 소지 : 약 40%, 검사실시 비율 : 약 20%
+                        </div>
+
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>폐기능 검사를 통한 천식진단</strong>
+                                <span>권용은 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311389?h=986b47a059&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            폐기능 검사의 해석과 BDR을 통해 천식 진단
+                        </div>
+                    </div>
+                    <!-- //e:폐기능 검사를 통한 천식진단 -->
+                </div>
+                <!-- //e:진단 -->
+
+                <!-- s:치료 -->
+                <div class="sub-tab-con js-tab-con">
+                    <div class="board-cate-wrap inner-tab-wrap">
+                        <button type="button" class="btn btn-tab-menu js-btn-tab-menu">천식 진료지침 Summary</button>
+                        <ul class="board-cate-list sub-tab-menu js-inner-tab-menu">
+                            <li class="on"><a href="#n">천식 진료지침 Summary</a></li>
+                            <li><a href="#n">진단 후 치료의 시작</a></li>
+                            <li><a href="#n">환자 상태에 따른 Step</a></li>
+                            <li><a href="#n">흡입제 환자교육</a></li>
+                            <li><a href="#n">동반 질환의 치료</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- s:천식 진료지침 Summary -->
+                    <div class="inner-tab-con js-inner-tab-con" style="display: block;">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>대한천식알레르기학회 천식진료지침 summary</strong>
+                                <span>김민혜 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311262?h=a6ac2de366&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            천식 치료 목적과 Step에 따른 치료단계
+                        </div>
+                    </div>
+                    <!-- //e:천식 진료지침 Summary -->
+
+                    <!-- s:진단 후 치료의 시작 -->
+                    <div class="inner-tab-con js-inner-tab-con">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>진단 후 치료의 시작</strong>
+                                <span>양민석 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311221?h=fcc43c45a4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            첫 치료 시 고려해야 하는 사항과 치료제 선택
+                        </div>
+                    </div>
+                    <!-- //e:진단 후 치료의 시작 -->
+
+                    <!-- s:환자 상태에 따른 Step -->
+                    <div class="inner-tab-con js-inner-tab-con">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>환자 상태에 따른 Step up/down (asthma action plan)</strong>
+                                <span>최길순 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311072?h=c65f6e737c&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            환자 상태 구분 방법 및 치료 단계 조정 방법
+                        </div>
+                    </div>
+                    <!-- //e:환자 상태에 따른 Step -->
+
+                    <!-- s:흡입제 환자교육 -->
+                    <div class="inner-tab-con js-inner-tab-con">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>흡입제 환자 교육</strong>
+                                <span>이영목 원장</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106310688?h=f9c745fa78&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            효과적인 환자 교육 커뮤니케이션(디바이스)
+                        </div>
+
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>흡입제 환자 교육</strong>
+                                <span>박소연 원장</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311440?h=6343d32ea7&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            흡입제 종류와 선택, 사용법/잘못 사용된 예
+                        </div>
+                    </div>
+                    <!-- //e:흡입제 환자교육 -->
+
+                    <!-- s:동반 질환의 치료 -->
+                    <div class="inner-tab-con js-inner-tab-con">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>동반 질환의 치료</strong>
+                                <span>김주희 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311348?h=b4341f047d&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            ACO, Rhinitis
+                        </div>
+                    </div>
+                    <!-- //e:동반 질환의 치료 -->
+                </div>
+                <!-- //e:치료 -->
+
+                <!-- s:관리 -->
+                <div class="sub-tab-con js-tab-con">
+                    <div class="board-cate-wrap inner-tab-wrap">
+                        <button type="button" class="btn btn-tab-menu js-btn-tab-menu">Follow up</button>
+                        <ul class="board-cate-list sub-tab-menu js-inner-tab-menu">
+                            <li class="on"><a href="#n">Follow up</a></li>
+                            <li><a href="#n">증상 악화 시 치료</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- s:Follow up -->
+                    <div class="inner-tab-con js-inner-tab-con" style="display: block;">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>Follow up</strong>
+                                <span>권재우 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106310774?h=6b813f3510&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            정기적인 환자 관리를 위한 모니터링 방법
+                        </div>
+                    </div>
+                    <!-- //e:Follow up -->
+
+                    <!-- s:증상 악화 시 치료 -->
+                    <div class="inner-tab-con js-inner-tab-con">
+                        <div class="video-tit-wrap">
+                            <h4 class="video-tit">
+                                <strong>증상 악화 시 치료</strong>
+                                <span>송우정 교수</span>
+                            </h4>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://player.vimeo.com/video/1106311181?h=98a0edb4a6&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe>
+                        </div>
+                        <div class="video-contents">
+                            증상의 악화 시 어떻게 치료하고 follow up 해야 하는가?
+                        </div>
+                    </div>
+                    <!-- //e:증상 악화 시 치료 -->
+                </div>
+                <!-- //e:관리 -->
+            </div>
+        </div>
+    </article>
+
+@endsection
+
+@section('addScript')
+@endsection

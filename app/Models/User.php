@@ -16,6 +16,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     public $table = 'user_binfo';
+//    public $table = 'user_binfo_backup';
 
     protected $primaryKey = 'sid';
 
@@ -39,6 +40,11 @@ class User extends Authenticatable
     protected $casts = [
 
     ];
+
+    private function userConfig()
+    {
+        return getConfig('user');
+    }
 
     protected static function booted()
     {
@@ -80,9 +86,14 @@ class User extends Authenticatable
             }
 
         }else{
-///////////////////////DB이관////////////////////////////////////
-//            $this->sid = $data['sid'];
-////////////////////////DB이관///////////////////////////////////
+            $this->id = $data['id'];
+            $this->password = Hash::make('apkass2026');
+            $this->confirm = $data['confirm'];
+            $this->companyFax = $data['companyFax'];
+            $this->gender = $data['gender'];
+            $this->del = $data['del'];
+            $this->create_status = 'Y';
+            $companyTel = $data['companyTel'];
         }
 
         if(!empty($data['level'])) $this->level = $data['level'] ?? null;
@@ -90,6 +101,7 @@ class User extends Authenticatable
         if(!empty($data['first_name'])) $this->first_name = $data['first_name'] ?? null;
         if(!empty($data['last_name'])) $this->last_name = $data['last_name'] ?? null;
         if(!empty($data['name_han'])) $this->name_han = $data['name_han'] ?? null;
+
         if(!empty($data['is_national'])) $this->is_national = $data['is_national'] ?? null;
         if(!empty($data['birth_date'])) $this->birth_date = $data['birth_date'] ?? null;
         if(!empty($data['phone'])) $this->phone = $data['phone'] ?? null;
@@ -117,6 +129,9 @@ class User extends Authenticatable
         if(!empty($data['company_address'])) $this->company_address = $data['company_address'] ?? null;
         if(!empty($data['company_address2'])) $this->company_address2 = $data['company_address2'] ?? null;
         if(!empty($data['companyTel'])) $this->companyTel = $companyTel ?? null;
+        if(!empty($data['si'])) $this->si = $data['si'] ?? null;
+        if(!empty($data['gu'])) $this->gu = $data['gu'] ?? null;
+        if(!empty($data['jext'])) $this->jext = $data['jext'] ?? 'N';
 
         if(!empty($data['memo'])) $this->memo = $data['memo'] ?? null;
     }
@@ -132,18 +147,51 @@ class User extends Authenticatable
     }
     public function isLifeMember() // 종신회원
     {
-        return Fee::where(['user_sid'=>$this->sid, 'level'=>$this->level, 'category'=>'C', 'del'=>'N', 'payment_status'=>'Y'])->exists();
+        return Fee::where(['user_sid'=>$this->sid, 'category'=>'C', 'del'=>'N', 'payment_status'=>'Y'])->exists();
     }
 
-//    public function addCustomData()
-//    {
-//        $user = $this;
-//        $user->getLevel = $this->getLevel();
-//        $user->isAge50OrOlder = false;
-//        if($this->gubun == 'N'){
-//            $user->isAge55OrOlder = self::isAge55OrOlder($this->birth);
-//        }
-//
-//        return $user;
-//    }
+    public static function isAge50OrOlder($birthDate = null) {
+
+        if(empty($birthDate)){
+            return false;
+        }
+
+        // 생년월일을 DateTime 객체로 변환
+        $birthDateObj = Carbon::createFromFormat('Y-m-d', $birthDate);
+
+        if (!$birthDateObj) {
+            return false; // 잘못된 날짜 형식이면 false 반환
+        }
+
+        // 현재 날짜 가져오기
+        $today = Carbon::today();
+
+        // 나이 계산 (만 나이)
+        $age = $today->diffInYears($birthDateObj);
+
+        // 생일이 지나지 않았다면 나이 1살 빼기
+        if ($today->isBefore($birthDateObj->copy()->year($today->year))) {
+            $age--; // 생일이 지나지 않았다면 1살 빼기
+        }
+
+        // 50세 이상인지 확인
+        return $age >= 50;
+    }
+
+    public function addCustomData()
+    {
+        $user = $this;
+        $user->getLevel = $this->getLevel();
+        $user->isAge50OrOlder = false;
+        if($this->gubun == 'N'){
+            $user->isAge50OrOlder = self::isAge50OrOlder($this->birth_date);
+        }
+
+        return $user;
+    }
+
+    public function getLevel()
+    {
+        return $this->userConfig()['level'][$this->level] ?? '';
+    }
 }

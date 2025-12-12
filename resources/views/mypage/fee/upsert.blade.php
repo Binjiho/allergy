@@ -22,6 +22,10 @@
                             <legend class="hide">연회비 납부</legend>
                             <ul class="write-wrap">
                                 <li>
+                                    <div class="form-tit">회원등급</div>
+                                    <div class="form-con">{{ $userConfig['level'][$user->level] ?? '' }}</div>
+                                </li>
+                                <li>
                                     <div class="form-tit">이름</div>
                                     <div class="form-con">{{ $user->name_kr ?? '' }}</div>
                                 </li>

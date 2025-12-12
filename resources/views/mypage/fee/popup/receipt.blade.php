@@ -101,7 +101,7 @@
                     {{ $fee_list[0]->year }}년 {{ $target_category ?? '' }}로 정히 영수합니다.
                 </p>
                 <div class="date">
-                    {{ date('Y.m.d') }}
+                    {{ !empty($fee_list[0]->payment_date) ? $fee_list[0]->payment_date->format('Y.m.d') : '' }}
                 </div>
                 <div class="sign">
                     <img src="/assets/image/sub/img_print_logo.png" alt="대한천식알레르기학회. The Korean Academy of Asthma, Allergy and Clinical Immunology.">

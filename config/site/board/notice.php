@@ -4,7 +4,7 @@ $code = 'notice';
 
 return [
     'menu' => [ // 메뉴 키
-        'main' => 'M6',
+        'main' => 'M2',
         'sub' => 'S1'
     ],
 
@@ -39,7 +39,7 @@ return [
         'main' => true, // 메인노출
         'notice' => true, // 공지
         'subject' => true, // 제목
-        'link' => false, // 상세링크
+        'link' => true, // 상세링크
         'hide' => true, // 공개옵션
         'popup' => true, // 팝업
         'secret' => false, // 비밀글
@@ -71,6 +71,7 @@ return [
             '2' => '관련기관 소식',
             '3' => '보험관련 소식',
             '4' => '보도자료',
+//            '5' => '분과전문의자격시험',
         ],
     ],
 
@@ -108,7 +109,7 @@ return [
         'subject/contents' => '제목+내용',
         'name' => '작성자',
         'subject' => '제목',
-        'content' => '내용',
+        'contents' => '내용',
     ],
 
 ];

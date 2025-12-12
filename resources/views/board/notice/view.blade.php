@@ -2,6 +2,7 @@
 
 @section('addStyle')
     <link rel="stylesheet" href="{{ asset('html/bbs/notice/assets/css/board.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/editor.css') }}">
 @endsection
 
 @section('contents')

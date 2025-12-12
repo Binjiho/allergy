@@ -11,6 +11,7 @@
             <div class="login-wrap">
                 <div class="login-form">
                     <form id="login-frm" action="" method="">
+                        <input type="hidden" name="ret_url" value="{{ request()->ret_url ?? '' }}">
                         <fieldset>
                             <legend class="hide">로그인</legend>
                             <div class="login-tit-wrap">

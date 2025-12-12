@@ -282,8 +282,8 @@ class MailServices extends AppServices
             foreach ($user as $row) {
                 $mailData[] = [
                     'ml_sid' => $mail->sid,
-                    'receiver_name' => $row->getName(),
-                    'receiver_email' => $row->email,
+                    'receiver_name' => $row->name_kr ?? '',
+                    'receiver_email' => $row->email ?? '',
                     'body' => $body,
                 ];
             }
@@ -296,8 +296,8 @@ class MailServices extends AppServices
             foreach ($address as $row) {
                 $mailData[] = [
                     'ml_sid' => $mail->sid,
-                    'receiver_name' => $row->getName(),
-                    'receiver_email' => $row->email,
+                    'receiver_name' => $row->name ?? '',
+                    'receiver_email' => $row->email ?? '',
                     'body' => $body,
                 ];
             }
@@ -322,8 +322,8 @@ class MailServices extends AppServices
         $this->transaction();
 
         try {
-            // 대기 메일 업데이트
-            $mail->update([
+            // 대기 메일 업데이트 기존 update사용하면 2번 update되는 문제때문
+            $mail->updateQuietly([
                 'readyCnt' => $mail->readyMail()->count(),
                 'failCnt' => $mail->failMail()->count(),
                 'sucCnt' => $mail->sucMail()->count(),
@@ -452,57 +452,5 @@ class MailServices extends AppServices
             return $this->dbRollback($e);
         }
     }
-
-    private function mailSendRenewService_old(Request $request)
-    {
-        $mail = MailList::findOrFail($request->sid);
-        $whereIn = $mail->totMail()->where('status', 'R')->pluck('wiseu_seq');
-
-        if ($whereIn->isEmpty()) {
-            return $this->returnJsonData('alert', [
-                'msg' => "최신 상태입니다.",
-            ]);
-        }
-
-        $wiseuLog = WiseUMailLog::where('ECARE_NO', $this->mailConfig['eCareNo'])->whereIn('CUSTOMER_KEY', $whereIn)->get();
-
-        if ($wiseuLog->isEmpty()) {
-            return $this->returnJsonData('alert', [
-                'msg' => "메일 발송 로그 기록이 없습니다.",
-            ]);
-        }
-
-        $this->transaction();
-
-        try {
-            foreach ($wiseuLog as $row) {
-                $code = $row->ERROR_CD;
-
-                if (!empty($this->mailConfig['code'][$code])) {
-                    MailSend::where('wiseu_seq', $row->CUSTOMER_KEY)
-                        ->update([
-                            'status' => ($code === '250' || $code === '000') ? 'S' : 'F',
-                            'status_msg' => $this->mailConfig['code'][$code],
-                        ]);
-                }
-            }
-
-            // 메일 발송상태 업데이트
-            $mail->update([
-                'readyCnt' => $mail->readyMail()->count(),
-                'failCnt' => $mail->failMail()->count(),
-                'sucCnt' => $mail->sucMail()->count(),
-            ]);
-
-            $this->dbCommit('관리자 - 메일 발송상태 갱신');
-
-            return $this->returnJsonData('alert', [
-                'case' => true,
-                'msg' => "갱신 되었습니다.",
-                'location' => $this->ajaxActionLocation('reload'),
-            ]);
-        } catch (\Exception $e) {
-            return $this->dbRollback($e);
-        }
-    }
+    
 }

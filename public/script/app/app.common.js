@@ -25,6 +25,15 @@ $.ajaxSetup({
     },
 });
 
+//이메일 무단수집 openlayer
+function BsJsOpenLayer(id){
+    var popCnt = id;
+    $('html, body').addClass('ovh');
+    $(popCnt).stop().fadeIn();
+    $('.popup-wrap .scroll-y').scrollTop(0);
+    return false;
+}
+
 // window popup
 $(document).on('click', '.call-popup', function (e) {
     e.preventDefault();
@@ -671,7 +680,7 @@ const fileCheck = (_this, inputTarget = null) => {
         const ext = str.split('.').pop().toLowerCase();
 
         if ($.inArray(ext, extArr) == -1) {
-            alert(`${accept.replace(/\|/g, ', ')}` + ' only');
+            alert(`${accept.replace(/\|/g, ', ')}` + ' 만 업로드 가능합니다.');
 
             if (!isEmpty(inputTarget)) {
                 $(inputTarget).val('');

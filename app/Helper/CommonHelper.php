@@ -62,9 +62,15 @@ if (!function_exists('denyRedirect')) {
 
 // 로그인 필요
 if (!function_exists('authRedirect')) {
-    function authRedirect()
+    function authRedirect($redirectUrl = null)
     {
-        return errorRedirect('replace', 'auth');
+        $url = getDefaultUrl('auth');
+        if ($redirectUrl) {
+            $url .= '?ret_url=' . urlencode($redirectUrl);
+        }
+
+        return errorRedirect('replace', 'auth', $url, '먼저 학회 홈페이지 로그인을 해주세요.');
+//        return errorRedirect('replace', 'auth', null, '투표 대상자만 접근 가능합니다. 먼저 학회 홈페이지 로그인을 해주세요.');
     }
 }
 
@@ -94,7 +100,7 @@ if (!function_exists('CSRFRedirect')) {
 
 // custom error redirect
 if (!function_exists('errorRedirect')) {
-    function errorRedirect(string $redirect, string $code, $url = null)
+    function errorRedirect(string $redirect, string $code, $url = null, $msg = null)
     {
         /*
          * $redirect 종류
@@ -110,7 +116,7 @@ if (!function_exists('errorRedirect')) {
         $referer = request()->headers->get('referer');
 
         $json = [
-            'msg' => errorMsg($code),
+            'msg' => $msg ?? errorMsg($code),
             'url' => $url ?? getDefaultUrl($code == 'auth'),
             'redirect' => $redirect,
         ];

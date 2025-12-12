@@ -96,7 +96,7 @@
             <div class="form-tit">E-Mail <strong class="required">*</strong></div>
             <div class="form-con">
                 <div class="form-group has-btn">
-                    <input type="text" name="email" id="email" value="{{ $user->email ?? '' }}" class="form-item emailOnly" data-chk="{{ isset($user) ? 'Y' : 'N' }}" {{ isset($user) ? 'readonly' : 'N' }}>
+                    <input type="text" name="email" id="email" value="{{ $user->email ?? '' }}" class="form-item emailOnly" data-chk="{{ isset($user) ? 'Y' : 'N' }}" {{ isset($user) ? 'readonly' : 'N' }} noneKo>
                     <button type="button" id="email_chk" class="btn btn-small color-type4">중복확인</button>
                 </div>
 

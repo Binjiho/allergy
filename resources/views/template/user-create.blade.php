@@ -10,7 +10,7 @@
     <tbody>
     <tr>
         <td style="padding: 0;text-align: center;text-align: center; font-family: 'Malgun Gothic', '맑은고딕', '돋움', 'dotum', 'Arial', sans-serif;font-size: 26px;color: #050505;">
-            <img src="{{ env('APP_URL') }}assets/image/mail/mail_header.jpg" alt="대한천식알레르기학회" style="display: inline-block;border:0 none;vertical-align: top;" />
+            <img src="{{ env('APP_URL') }}/assets/image/mail/mail_header.jpg" alt="대한천식알레르기학회" style="display: inline-block;border:0 none;vertical-align: top;" />
         </td>
     </tr>
     <tr>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <td style="padding-top: 60px;text-align: center;">
-                        <a href="{{ env('APP_URL') }}/" target="_blank"><img src="{{ env('APP_URL') }}/assets/image/mail/btn_mail_home.jpg" alt="홈페이지 바로가기"></a>
+                        <a href="{{ env('APP_URL') }}" target="_blank"><img src="{{ env('APP_URL') }}/assets/image/mail/btn_mail_home.jpg" alt="홈페이지 바로가기"></a>
                     </td>
                 </tr>
                 <tr>

@@ -1,0 +1,127 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">학술행사</h2>
+                <ul class="breadcrumb">
+                    <li>학술행사</li>
+                    <li>국내학술대회</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">학술행사</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">국내학술대회</a>
+                    <ul>
+                        <li><a href="#n">행사일정</a></li>
+                        <li><a href="#n">역대학술대회</a></li>
+                        <li><a href="#n">해외학회일정</a></li>
+                        <li class="on"><a href="#n">국내학술대회</a></li>
+                        <li><a href="#n">교육강좌</a></li>
+                        <li><a href="#n">포토갤러리</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="ev-wrap">
+                <div class="write-form-wrap">
+                    <form action="" method="">
+                        <fieldset>
+                            <legend class="hide">등록</legend>
+                            <ul class="write-wrap">
+                                <li>
+                                    <div class="form-tit">일시 <strong class="required">*</strong></div>
+                                    <div class="form-con">
+                                        <div class="radio-wrap cst">
+                                            <label class="radio-group" for="chk-date1"><input type="radio" name="chk-date" id="chk-date1">하루</label>
+                                            <label class="radio-group" for="chk-date2"><input type="radio" name="chk-date" id="chk-date2">장기</label>
+                                        </div>
+                                        <div class="form-group form-group-text n2 mt-10">
+                                            <input type="text" name="" id="" class="form-item datepicker">
+                                            <span class="text">~</span>
+                                            <input type="text" name="" id="" class="form-item datepicker">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">장소</div>
+                                    <div class="form-con">
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">홈페이지</div>
+                                    <div class="form-con">
+                                        <input type="text" name="" id="" class="form-item">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">초록집</div>
+                                    <div class="form-con">
+                                        <div class="radio-wrap cst">
+                                            <label class="radio-group" for="chk1_1"><input type="radio" name="chk1_1" id="chk1_1">파일첨부</label>
+                                            <label class="radio-group" for="chk1_2"><input type="radio" name="chk1_1" id="chk1_2">링크연결</label>
+                                        </div>
+                                        <div class="form-group mt-10">
+                                            <input type="text" name="" id="" class="form-item" placeholder="홈페이지 주소를 입력해주세요.">
+                                        </div>
+                                        <div class="filebox mt-10">
+                                            <input class="upload-name form-item" value="" placeholder="파일첨부" readonly="readonly">
+                                            <label for="file">파일찾기</label> 
+                                            <input type="file" id="file" class="file-upload">  
+                                            <div class="attach-file">
+                                                <a href="#n" target="_blank" class="link">첨부파일.jpg</a>
+                                                <a href="#n" class="btn-file-delete text-red">X</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-tit">게시글 공개 여부</div>
+                                    <div class="form-con">
+                                        <div class="radio-wrap cst">
+                                            <label class="radio-group" for="chk-visible1"><input type="radio" name="chk-visible" id="chk-visible1">공개</label>
+                                            <label class="radio-group" for="chk-visible2"><input type="radio" name="chk-visible" id="chk-visible2">비공개</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="btn-wrap text-center">
+                                <a href="#n" class="btn btn-type1 color-type4">취소</a>
+                                <button type="submit" class="btn btn-type1 color-type1">등록</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>
