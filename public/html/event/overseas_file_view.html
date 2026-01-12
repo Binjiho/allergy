@@ -1,0 +1,298 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">학술행사</h2>
+                <ul class="breadcrumb">
+                    <li>학술행사</li>
+                    <li>국외학술대회참가신청</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">학술행사</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">국외학술대회참가신청</a>
+                    <ul>
+                        <li><a href="#n">행사일정</a></li>
+                        <li class="on"><a href="#n">국외학술대회참가신청</a></li>
+                        <li><a href="#n">국내학술대회</a></li>
+                        <li><a href="#n">교육강좌</a></li>
+                        <li><a href="#n">역대학술대회</a></li>
+                        <li><a href="#n">포토갤러리</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <div class="sub-tab-wrap">
+                <button type="button" class="btn btn-tab-menu js-btn-tab-menu">신청내역 확인 및 결과보고</button>
+                <ul class="sub-tab-menu">
+                    <li><a href="overseas_schedule.html">국외학회 스케줄 및 진행상황</a></li>
+                    <li><a href="overseas_guide.html">지원 규정 및 선정 규정</a></li>
+                    <li><a href="overseas_step01.html">지원신청</a></li>
+                    <li class="on"><a href="overseas_result_list.html">신청내역 확인 및 결과보고</a></li>
+                    <li><a href="#n">공지사항</a></li>
+                </ul>
+            </div>
+            
+            <div class="sub-tit-wrap">
+                <h4 class="sub-tit">신청자 정보</h4>
+            </div>
+            <ul class="write-wrap">
+                <li>
+                    <div class="form-tit">학회 아이디</div>
+                    <div class="form-con">{학회 아이디}</div>
+                </li>
+                <li>
+                    <div class="form-tit">성명 (한글)</div>
+                    <div class="form-con">{성명}</div>
+                </li>
+                <li>
+                    <div class="form-tit">성명 (영문)</div>
+                    <div class="form-con">{성명}</div>
+                </li>
+                <li>
+                    <div class="form-tit">의사면허번호</div>
+                    <div class="form-con">{의사면허번호}</div>
+                </li>
+                <li>
+                    <div class="form-tit">생년월일</div>
+                    <div class="form-con">{생년월일}</div>
+                </li>
+                <li>
+                    <div class="form-tit">전공분야</div>
+                    <div class="form-con">{전공분야}</div>
+                </li>
+                <li>
+                    <div class="form-tit">근무처 정보(국문)</div>
+                    <div class="form-con">{근무처}</div>
+                </li>
+                <li>
+                    <div class="form-tit">휴대전화번호</div>
+                    <div class="form-con">{휴대전화번호}</div>
+                </li>
+                <li>
+                    <div class="form-tit">E-mail</div>
+                    <div class="form-con">{E-mail}</div>
+                </li>
+                <li>
+                    <div class="form-tit">계좌정보</div>
+                    <div class="form-con">
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">은행명</div>
+                                <div class="form-con">{은행명}</div>
+                            </li>
+                            <li>
+                                <div class="form-tit">계좌번호</div>
+                                <div class="form-con">{계좌번호}</div>
+                            </li>
+                            <li>
+                                <div class="form-tit">예금주</div>
+                                <div class="form-con">{예금주}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="sub-tit-wrap">
+                <h4 class="sub-tit">신청 정보</h4>
+            </div>
+            <ul class="write-wrap">
+                <li>
+                    <div class="form-tit">학회명</div>
+                    <div class="form-con">{학회명}</div>
+                </li>
+                <li class="n2">
+                    <div class="form-tit">개최일자</div>
+                    <div class="form-con">{개최일자}</div>
+                    <div class="form-tit">개최장소</div>
+                    <div class="form-con">{개최장소}</div>
+                </li>
+                <li>
+                    <div class="form-tit">참가역할</div>
+                    <div class="form-con">
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">초록 발표자</div>
+                                <div class="form-con">{초록 발표자}</div>
+                            </li>
+                            <li>
+                                <div class="form-tit">강의</div>
+                                <div class="form-con">{강의}</div>
+                            </li>
+                            <li>
+                                <div class="form-tit">참석 형태</div>
+                                <div class="form-con">{참석 형태}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">초록사본</div>
+                    <div class="form-con">
+                        <a href="#n" class="link" download="">filename.pdf</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">초록채택메일</div>
+                    <div class="form-con">
+                        <a href="#n" class="link" download="">filename.pdf</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">
+                        <p>지원경비 영수증 파일</p>
+                        <span class="help-text text-blue">** “모든” 영수증 및 서류들을 각 카테고리별로 업로드 해주시길 부탁드립니다</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">항공료</div>
+                    <div class="form-con">
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-con">
+                                    {항공료} 원
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-con">
+                                    <a href="#n" class="link" download="">filename.pdf</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">숙박비</div>
+                    <div class="form-con">
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-con">
+                                    {숙박비} 원
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-con">
+                                    <a href="#n" class="link" download="">filename.pdf</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">등록비</div>
+                    <div class="form-con">
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-con">
+                                    {등록비} 원
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-con">
+                                    <a href="#n" class="link" download="">filename.pdf</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">식대</div>
+                    <div class="form-con">
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-con">
+                                    {식대} 원
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-con">
+                                    <a href="#n" class="link" download="">filename.pdf</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">교통비</div>
+                    <div class="form-con">
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-con">
+                                    {교통비} 원
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-con">
+                                    <a href="#n" class="link" download="">filename.pdf</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">기타 영수증</div>
+                    <div class="form-con">
+                        <a href="#n" class="link" download="">filename.pdf</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">
+                        <p>결과보고서</p>
+                    </div>
+                    <div class="form-con">
+                        <a href="#n" class="link" download="">filename.pdf</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">
+                        <p>지출내역서</p>
+                    </div>
+                    <div class="form-con">
+                        <a href="#n" class="link" download="">filename.pdf</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-tit">기타</div>
+                    <div class="form-con">
+                        <a href="#n" class="link" download="">filename.pdf</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="btn-wrap text-center">
+                <a href="#n" class="btn btn-type1 color-type4 btn-line">목록 이동</a>
+            </div>
+
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

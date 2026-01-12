@@ -24,7 +24,8 @@ return [
         'popup_contents' => ['1' => '공지 내용과 동일', '2' => '팝업 내용 새로 작성'], // 팝업내용
         'popup_detail' => ['N' => '설정안함', 'Y' => '설정함'], // 팝업 상세보기 링크 사용여부
         'popup_skin' => ['none' => '없음', 'A' => 'TYPE A', 'B' => 'TYPE B', 'C' => 'TYPE C'], // 팝업 스킨
-        'popup_yn' => ['N' => '미사용', 'Y' => '사용'], // 팝업 사용여부
+        'popup_yn' => ['N' => '미사용', 'Y' => '사용'], // 팝업 사용여부,
+
     ],
 
     'permission' => [ // 권한 빈값은 전체 접근, 값이있을경우 해당 level 만 접근가능
@@ -36,12 +37,12 @@ return [
     'use' => [ // 사용 유무
         'login' => false, // 로그인 필요
         'writer' => true, //작성자
-        'main' => true, // 메인노출
+        'main' => false, // 메인노출
         'notice' => true, // 공지
         'subject' => true, // 제목
         'link' => true, // 상세링크
         'hide' => true, // 공개옵션
-        'popup' => true, // 팝업
+        'popup' => false, // 팝업
         'secret' => false, // 비밀글
         'gubun' => false, // 구분
         'category' => false, // 카테고리
@@ -52,6 +53,7 @@ return [
         'contents' => true, // 내용
         'plupload' => true, // 파일업로드 (plupload) 사용
         'heart' => true, // 좋아요 기능 사용
+        'comment' => false, // 댓글
     ],
 
     'gubun' => [
@@ -106,10 +108,9 @@ return [
     ],
 
     'search' => [ // 검색 정보
-        'subject/contents' => '제목+내용',
-        'name' => '작성자',
-        'subject' => '제목',
-        'contents' => '내용',
+        'subject/contents' => 'Subject+Contents',
+        'subject' => 'Subject',
+        'contents' => 'Contents',
     ],
 
 ];

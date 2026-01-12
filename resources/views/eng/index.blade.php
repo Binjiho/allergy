@@ -4,33 +4,63 @@
 @endsection
 
 @section('contents')
-    <article class="main-visual">
-        <div class="main-visual-wrap js-main-visual cf">
-            <div class="main-visual-con">
-                <div class="main-visual-text inner-layer">
-                    <h2 class="main-visual-tit">
-                        <span class="sub-title">Since 1972</span><br>
-                        <span class="title">대한천식알레르기학회</span>는 <br class="m-show">국민보건 향상을 위해 천식,알레르기 및 <br class="m-show">임상면역학 분야의 학문발전에 기여합니다.
-                    </h2>
-                    <img src="/assets/image/main/img_mainvisual01.png" alt="" class="m-hide">
-                    <img src="/assets/image/main/img_mainvisual01_m.png" alt="" class="m-show">
+    <article class="main-contents inner-layer" id="section1">
+        <h2>
+            <span>Since 1972</span><br>
+            The Korean Academy of Asthma,<br class="m-hide">
+            Allergy and Clinical Immunology
+        </h2>
+    </article>
+    <article class="main-contents inner-layer" id="section2">
+        <div class="main-slide js-main-slide">
+            <div class="main-slide-con">
+                <div class="con-wrap">
+                    <div class="img-wrap">
+                        <img src="/html/english/assets/image/main/img_main_slide.png" alt="">
+                    </div>
+                    <div class="text-wrap">
+                        <h3 class="main-visual-tit ellipsis3">Asthma and Allergic Disease, 3rd. edition</h3>
+                        <p>Publisher: <br>Yeomungak Publishing Co.</p>
+                    </div>
                 </div>
             </div>
-            <div class="main-visual-con">
-                <div class="main-visual-text inner-layer">
-                    <h2 class="main-visual-tit">
-                        <span class="sub-title">Since 1972</span><br>
-                        <span class="title">대한천식알레르기학회</span>는 <br class="m-show">국민보건 향상을 위해 천식,알레르기 및 <br class="m-show">임상면역학 분야의 학문발전에 기여합니다.
-                    </h2>
-                    <img src="/assets/image/main/img_mainvisual01.png" alt="" class="m-hide">
-                    <img src="/assets/image/main/img_mainvisual01_m.png" alt="" class="m-show">
+            <!-- <div class="main-slide-con">
+                <div class="con-wrap">
+                    <div class="img-wrap">
+                        <img src="/html/english/assets/image/main/img_main_slide.png" alt="">
+                    </div>
+                    <div class="text-wrap">
+                        <h3 class="main-visual-tit ellipsis3">Asthma and Allergic Disease, 3rd. edition</h3>
+                        <p>Publisher: <br>Yeomungak Publishing Co.</p>
+                    </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="slider-attr">
-            <div class="slick-dots-wrap"></div>
-            <div class="slick-arrow-wrap">
-            </div>
+        <div class="quick-menu">
+            <ul class="col2">
+                <li><a href="/eng/publication/aair">
+                        <p>AAIR</p>
+                        <i class="icon"><span class="hide">arrow</span></i>
+                    </a></li>
+                <li><a href="/eng/publication/aard">
+                        <p>AAIR</p>
+                        <i class="icon"><span class="hide">arrow</span></i>
+                    </a></li>
+            </ul>
+            <ul class="col3">
+                <li><a href="/eng/board/news">
+                        <p>NEWS & NOTICE</p>
+                        <i class="icon"><span class="hide">arrow</span></i>
+                    </a></li>
+                <li><a href="/eng/about/welcome">
+                        <p>ABOUT KAAACI</p>
+                        <i class="icon"><span class="hide">arrow</span></i>
+                    </a></li>
+                <li><a href="/eng/board/meeting">
+                        <p>ACADEMIC <br class="m-hide">MEETINGS</p>
+                        <i class="icon"><span class="hide">arrow</span></i>
+                    </a></li>
+            </ul>
         </div>
     </article>
 

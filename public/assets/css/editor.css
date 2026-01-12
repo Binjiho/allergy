@@ -334,7 +334,7 @@
     table-layout: auto;
     width: auto;
     border-color: #ccc;
-    max-width: 100% !important;
+    max-width: 100%;
 }
 .editor-contents table th{
     font-weight: bold;
@@ -352,8 +352,11 @@
     border: inherit;
 }
 .editor-contents img{
-    height: auto;
+    /* height: auto; */
     max-width: 100%;
+}
+.editor-contents span{
+    display: inline-block;
 }
 
 /* tinymce - content.css */

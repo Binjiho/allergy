@@ -1,0 +1,273 @@
+@extends('eng.layouts.web-layout')
+
+@section('addStyle')
+@endsection
+
+@section('contents')
+    @include('eng.layouts.include.sub-menu-wrap')
+
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <ul class="committee-list">
+                <li>
+                    <p class="position">President</p>
+                    <p class="name">An-Soo Jang</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Soonchunhyang University, <br>
+                        Bucheon Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Secretary General</p>
+                    <p class="name">Sang-Heon Kim</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Hanyang University Hospital, <br>
+                        Hanyang University College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Treasurer</p>
+                    <p class="name">Byung-Jae Lee</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Sungkyunkwan University, <br>
+                        Samsung Medical Center
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Scientific Program Committee</p>
+                    <p class="name">Sae-Hoon Kim</p>
+                    <p>
+                        Division of Allergy and Clinical Immunology, <br>
+                        Department of Internal Medicine, <br>
+                        Seoul National University Bundang Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Scientific Program Committee</p>
+                    <p class="name">Kyung Won Kim</p>
+                    <p>
+                        Department of Pediatrics, <br>
+                        Yonsei University College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Publication Committee</p>
+                    <p class="name">Woo-Jung Song</p>
+                    <p>
+                        Department of Allergy and Clinical Immunology, <br>
+                        Asan Medical Center, <br>
+                        University of Ulsan College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Education Committee</p>
+                    <p class="name">Hyo Bin Kim</p>
+                    <p>
+                        Professor, <br>
+                        Department of Pediatrics, <br>
+                        Inje University Sanggye Paik Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Guideline Committee</p>
+                    <p class="name">Dong In Suh</p>
+                    <p>
+                        Department of Pediatrics, <br>
+                        Seoul National University College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Insurance Committee</p>
+                    <p class="name">Jae Won Jeong</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Inje University Ilsan Paik Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Legislation Committee</p>
+                    <p class="name">Yong Mean Park</p>
+                    <p>
+                        Department of Pediatrics, <br>
+                        Konkuk University School of Medicine, <br>
+                        Konkuk Univ. Medical Center
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Ethics Committee</p>
+                    <p class="name">Cheol-Woo Kim</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Inha University School of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Public Relations Committee</p>
+                    <p class="name">Jae Woo Kwon</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Kangwon University College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Training Committee</p>
+                    <p class="name">Young-Min Ye</p>
+                    <p>
+                        Department of Allergy&amp;Clinical Immunology, <br>
+                        Ajou University School of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Planning Committee</p>
+                    <p class="name">Gyu Young Hur</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Korea University College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, International Committee</p>
+                    <p class="name">Tae-Bum Kim</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Asan Medical Center, <br>
+                        University of Ulsan College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Technical Committee</p>
+                    <p class="name">Myung Hyun Sohn</p>
+                    <p>
+                        Department of Pediatrics, <br>
+                        Yonsei University College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Research Committee</p>
+                    <p class="name">Jeong-Hee Choi</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Hallym University Dongtan Sacred Heart Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Information Committee</p>
+                    <p class="name">Min-Hye Kim</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Ewha Womans University College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Relations &amp; Development Committee</p>
+                    <p class="name">Yong Won Lee</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Catholic Kwandong University College of Medicine, <br>
+                        International St. Mary's Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Development of the Branch</p>
+                    <p class="name">Dong-Ho Nahm</p>
+                    <p>
+                        Department of Allergy and Clinical Immunology, <br>
+                        Ajou University School of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Chair, Primary Healthcare Committee</p>
+                    <p class="name">YoungMok Lee</p>
+                    <p>
+                        GF Internal Medicine Allergy Clinic
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Director without portfolio</p>
+                    <p class="name">Young-Il Koh</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Chonnam National University Medical School &amp; Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Director without portfolio</p>
+                    <p class="name">Kangmo Ahn</p>
+                    <p>
+                        Department of Pediatrics, <br>
+                        Samsung Medical Center, <br>
+                        Sungkyunkwan University School of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Director without portfolio</p>
+                    <p class="name">Yoon-Seok Chang</p>
+                    <p>
+                        Division of Allergy and Clinical Immunology (IM), <br>
+                        Seoul National University Bundang Hospital, <br>
+                        Seoul National University College of Medicine
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Director without portfolio</p>
+                    <p class="name">Junehyuk Lee</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Soonchunhyang University, <br>
+                        Bucheon Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Director without portfolio</p>
+                    <p class="name">Yi Yeong Jeong</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Gyeongsang National University Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Director without portfolio</p>
+                    <p class="name">Ji-Yong Moon</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Hanyang University Guri Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Director without portfolio</p>
+                    <p class="name">Hyun-Woo Shin</p>
+                    <p>
+                        Department of Biomedical Sciences and Otorhinolaryngology-Head and Neck Surgery, <br>
+                        Seoul National University College of Medicine and Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Auditor</p>
+                    <p class="name">Sang Pyo Lee</p>
+                    <p>
+                        Department of Internal Medicine, <br>
+                        Gachon University Gil Hospital
+                    </p>
+                </li>
+                <li>
+                    <p class="position">Auditor</p>
+                    <p class="name">Jung Yeon Shim</p>
+                    <p>
+                        Department of Pediatrics, <br>
+                        Kangbuk Samsung Hospital, <br>
+                        Sungkyunkwan University School of Medicine
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </article>
+@endsection
+
+@section('addScript')
+
+@endsection

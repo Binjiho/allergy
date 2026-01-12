@@ -30,7 +30,7 @@
     display: block;
     flex: 1;
     max-width: 150px;
-    height: 60px;
+    height: 70px;
     text-align: center;
 }
 .board-cate-list > li > a{
@@ -43,7 +43,7 @@
     font-size: 1.9rem;
     color: #cecece;
     letter-spacing: -0.045em;
-    line-height: 1.2;
+    line-height: 1.1;
     word-break: keep-all;
     transition: 0.3s ease;
 }

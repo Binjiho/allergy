@@ -17,7 +17,7 @@ class RegistrationController extends Controller
 
         view()->share([
             'main_menu' => 'M5',
-            'sub_menu' => 'S3',
+            'sub_menu' => 'S4',
             'userConfig' => config('site.user'),
             'wsid' => $wsid,
             'defaultConfig' => config('site.default-workshop'),

@@ -12,8 +12,9 @@
             <div class="journal-conbox guideline-conbox">
                 <div class="btn-wrap text-right mt-0">
                     <a href="#pop-sch-info" class="btn btn-type1 btn-round color-type1 js-pop-open">개발규정 <span class="icon"><img src="/assets/image/sub/ic_btn_info.png" alt=""></span></a>
-                    <a href="/assets/file/진료지침_개발규정.docx" class="btn btn-type1 btn-round color-type8" traget="_blank" download>개발 규정 다운로드 <span class="icon"><img src="/assets/image/sub/ic_btn_download03.png" alt=""></span></a>
-                    <a href="/assets/flie/진료지침규정_부록(제안서).docx" class="btn btn-type1 btn-round color-type5" traget="_blank" download>개발 규정 부록 다운로드 <span class="icon"><img src="/assets/image/sub/ic_btn_download04.png" alt=""></span></a>
+                    <a href="/assets/file/진료지침_개발 규정.docx" class="btn btn-type1 btn-round color-type8" traget="_blank" download>개발 규정 다운로드 <span class="icon"><img src="/assets/image/sub/ic_btn_download03.png" alt=""></span></a>
+					<a href="/assets/file/진료지침_개발 규정 부록.docx" class="btn btn-type1 btn-round color-type5" traget="_blank" download>개발 규정 부록 다운로드 <span class="icon"><img src="/assets/image/sub/ic_btn_download04.png" alt=""></span></a>
+                    <!-- <a href="/assets/flie/진료지침_개발 규정 부록.docx" class="btn btn-type1 btn-round color-type5" traget="_blank" download>개발 규정 부록 다운로드 <span class="icon"><img src="/assets/image/sub/ic_btn_download04.png" alt=""></span></a> -->
                 </div>
 
                 <!-- s:board -->
@@ -128,7 +129,7 @@
                         @endforelse
                     </ul>
 
-                    @if(isAdmin())
+                    @if(thisAuth()->check() )
                         <div class="btn-wrap text-right">
                             <a href="{{ route('board.upsert', ['code' => $code, 'gubun'=>request()->gubun ?? '1']) }}" class="btn btn-board btn-write">등록</a>
                         </div>
@@ -233,16 +234,16 @@
                             공식문건 제정이 긴급한 경우 진료지침위원회 위원을 통하여 제안할 수 있고 위원회 심사와 이사회 승인 이후 개발 절차를 진행할 수 있다.
                         </li>
                         <li>
-                            학회의 연구팀(워크그룹), 지회, 위원회, 개인 모두 제안 자격을 가진다.
+                            학회의 워크그룹(연구팀), 지회, 위원회, 개인 모두 제안 자격을 가진다.
                         </li>
                         <li>
                             제안서 제출시 개발팀(Task Force, TF)을 구성한 후 제안서를 제출할 것을 권고한다.
                         </li>
                         <li>
-                            개발하려는 문건의 주제와 관련이 있는 학회 연구팀(워크그룹), 지회, 위원회가 있는 경우에는 제안서 제출 전 해당 단체와 협의 후 제출할 것을 권고한다.
+                            개발하려는 문건의 주제와 관련이 있는 학회 워크그룹(연구팀), 지회, 위원회가 있는 경우에는 제안서 제출 전 해당 단체와 협의 후 제출할 것을 권고한다.
                         </li>
                         <li>
-                            이사회에서 문건 개발이 필요하다고 결정된 주제는 진료지침이사가 해당주제 전문가에 연락하여 TF 팀을 구성한 후 제안서를 제출하도록 한다.
+                            이사회에서 문건 개발이 필요하다고 결정된 주제는 진료지침이사가 해당 주제 전문가에 연락하여 TF 팀을 구성한 후 제안서를 제출하도록 한다.
                         </li>
                         <li>
                             제출된 제안서는 사무국과 진료지침이사가 사전 검토하고 내용이 충분하지 않은 경우 수정하여 제출하도록 권고할 수 있다.
@@ -252,7 +253,7 @@
                     <strong class="term-tit">제5조 (제안서 심사와 승인)</strong>
                     <ol class="list-type list-type-decimal">
                         <li>접수된 제안서는 진료지침위원회에서 심사하고 심사 의견과 채택 여부에 대한 권고 의견을 이사회에 제출한다. 이사회에서는 제안서 채택, TF 승인, 지원 예산을 최종 결정한다.</li>
-                        <li>진료지침이사는 이사회 권고 의견 제출 전 총무이사, 간행이사, 관련 연구팀(워크그룹) 등 관계부서(단체)와 협의과정을 거치고 협의 의견을 첨부하여 이사회에 제출한다.</li>
+                        <li>진료지침이사는 이사회 권고 의견 제출 전 총무이사, 간행이사, 관련 워크그룹(연구팀) 등 관계부서(단체)와 협의과정을 거치고 협의 의견을 첨부하여 이사회에 제출한다.</li>
                         <li>이사회는 제안서 접수마감 후 4개월 이내에 제안서 채택 여부를 최종 결정하고 사무국은 제안자에게 결정사항을 메일로 회신하도록 한다.</li>
                     </ol>
 
@@ -284,20 +285,41 @@
                         <li>진료지침이사는 문건 심사 의견과 채택여부에 대한 권고 의견을 이사회에 제출한다. 이사회에서는 학회 공식문건으로 승인 여부를 최종결정한다.</li>
                         <li>이사회 승인을 받은 문건만이 저널 투고와 출간이 가능하다.</li>
                         <li>투고 문건은 국문의 경우 “대한천식알레르기학회 진료지침” 또는 “대한천식알레르기학회 의견서”라고 표기하고 영문의 경우 “the KAAACI guideline” 또는 “the KAAACI statement (or consensus document)”라고 표기한다. 제목 변경이 필요한 경우 진료지침위원회와 협의한다.</li>
-                        <li>저자 리스트와 순서는 TF 위원의 의견을 수렴하여 TF 팀장이 결정한다. 필요시 연구팀(워크그룹), 지회, 위원회의 이름을 넣을 수 있다.</li>
+						<li>
+							학회에서 지원을 받아 발간하는 진료지침/가이드라인에 지원과 관련하여 다음을 그대로 혹은 알맞게 변형하여 사용하길 권한다.<br>
+							- 영문<br>
+							&nbsp;This guideline was supported by the Korean Academy of Asthma, Allergy and Clinical Immunology (KAAACI).<br>
+							- 국문<br>
+							&nbsp;이 지침은 대한천식알레르기학회의 지원으로 개발되었습니다.
+						</li>
+						<li>
+							이사회의 승인을 받은 진료지침/가이드라인은 공식문건임을 입증하기 위해 하기 문구를 적용할 수 있다.<br>
+							- 영문<br>
+							&nbsp;This guideline has been officially reviewed and endorsed by KAAACI and reflects the official position of the Academy.<br>
+							- 국문<br>
+							&nbsp;이 지침은 대한천식알레르기학회의 심의와 이사회 승인을 거쳐 공식 채택되었으며, 학회의 공식 입장을 반영합니다.
+						</li>
+                        <li>저자 리스트와 순서는 TF 위원의 의견을 수렴하여 TF 팀장이 결정한다. 필요시 워크그룹(연구팀), 지회, 위원회의 이름을 넣을 수 있다.</li>
                         <li>투고 문건의 최종 게재 승인 여부는 AAIR와 AARD 편집자의 결정에 따른다.</li>
                         <li>AAIR와 AARD, 또는 다른 학회지에 중복게재가 필요한 경우 진료지침이사와 간행이사에게 보고하고 승인된 경우 이중 투고가 가능하다. AAIR와 AARD 중복게재 최종 승인여부는 AAIR와 AARD 편집자의 결정에 따른다.</li>
                     </ol>
 
                     <strong class="term-tit">제8조 (공동개발 문건)</strong>
                     <ol class="list-type list-type-decimal">
-                        <li>다른 학회 또는 조직과 공동으로 문건을 개발하는 경우 진료지침이사가 본 학회 개발 담당자를 선임하여 제안서를 제출하도록 한다. <br> 진료지침위원회에서 검토된 심사의견은 관련 이사, 연구팀(워크그룹) 의견을 첨부하여 이사회에 제출하고 이사회는 진행여부를 최종 결정한다.</li>
+                        <li>다른 학회 또는 조직과 공동으로 문건을 개발하는 경우 진료지침이사가 본 학회 개발 담당자를 선임하여 제안서를 제출하도록 한다. 진료지침위원회에서 검토된 심사의견은 관련 이사, 워크그룹(연구팀) 의견을 첨부하여 이사회에 제출하고 이사회는 진행여부를 최종 결정한다. </li>
                         <li>학회를 대표하여 참여하는 개발 담당자는 TF 구성 등 진행상황을 진료지침이사에게 보고하고 상의하여야 한다.</li>
                         <li>타 학회와 공동으로 개발한 문건은 진료지침위원회에서 심사하고 심사의견과 채택여부에 대한 권고의견을 이사회에 제출한다. 이사회에서는 학회 공식문건으로 승인여부를 최종결정한다.</li>
                         <li>문건과 논문의 제목과 학회 표기 등은 타 학회와 조율하여 이사회에서 최종 결정한다.</li>
                     </ol>
 
-                    <strong class="term-tit">제9조 (활용과 보급)</strong>
+					<strong class="term-tit">제9조 (외부 개발 지침의 검토와 승인)</strong>
+					<ol class="list-type list-type-decimal">
+						<li>국내 혹은 국외 타 학회에서 이미 개발되어 검토를 요청받은 지침의 승인은 진료지침이사가 본 학회의 관련 분야 담당자(예: 관련이사, 연구팀[워크그룹])를 선임하여 검토를 요청하도록 한다. 검토된 심사의견은 진료지침이사가 이사회에 제출하고, 이사회는 승인 여부를 최종 결정한다.</li>
+						<li>검토 의견이 승인이 아닌 경우, 진료지침이사는 해당 의견에 대해 이사회 전에 각 이사들에게 메일로 사전 회람한다.</li>
+						<li>승인으로 최종 결정된 지침이나 의견서는 진료지침위원회에서 작성하되, 사무국에서 직인 및 공식 문건으로 만들어 최종 회신한다.</li>
+					</ol>
+
+                    <strong class="term-tit">제10조 (활용과 보급)</strong>
                     <ol class="list-type list-type-decimal">
                         <li>문건 개발 시 학회 진료지침과 의견서를 바탕으로 지침의 확산과 보급을 위한 교육 및 홍보자료(강의자료, 슬라이드, 동영상, 애니메이션, 리플렛, 책자 등)의 개발을 권고한다. TF 제안서에 제작여부를 포함하여 제안하도록 하며 문건 개발 이후 계획이 수정 변경되는 경우 진료지침위원회에서 심의한다.</li>
                         <li>저널에 게시된 논문 자료를 바탕으로 한 이차 자료(강의자료, 슬라이드, 동영상, 애니메이션, 리플렛, 책자 등)는 해당 저널의 승인을 얻어 제작한다.</li>
@@ -305,9 +327,9 @@
                         <li>외부 기관이나 회사에서 진료지침과 이차 자료 활용을 요청하는 경우 활용계획서를 받아 진료지침위원회에서 심사 후 이사회에서 최종 승인여부를 결정한다. 단 저널에 게재된 논문을 활용하는 경우 해당 저널에도 사용에 대한 승인을 받아야 한다.</li>
                     </ol>
 
-                    <strong class="term-tit">제10조 (부칙)</strong>
+                    <strong class="term-tit">제11조 (부칙)</strong>
                     <ol class="list-type list-type-decimal">
-                        <li>본 규정은 2022년 9월 22일 이사회 승인을 받은 날부터 유효하다.</li>
+                        <li>본 규정은 2025년 12월 4일 이사회 승인을 받은 날부터 유효하다.</li>
                     </ol>
                 </div>
             </div>
@@ -371,7 +393,7 @@
         }
     </script>
 
-    @if(isAdmin())
+
         <script>
             $(document).on('change', 'select[name=hide]', function() {
                 const ajaxData = {
@@ -396,5 +418,5 @@
                 }
             });
         </script>
-    @endif
+
 @endsection

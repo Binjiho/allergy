@@ -6,7 +6,7 @@
 @section('contents')
     <article class="main-visual">
         <div class="main-visual-wrap js-main-visual cf">
-            <div class="main-visual-con">
+            <div class="main-visual-con main-visual-con01">
                 <div class="main-visual-text inner-layer">
                     <h2 class="main-visual-tit">
                         <span class="sub-title">Since 1972</span><br>
@@ -17,14 +17,12 @@
                 </div>
             </div>
             <div class="main-visual-con">
-                <div class="main-visual-text inner-layer">
-                    <h2 class="main-visual-tit">
-                        <span class="sub-title">Since 1972</span><br>
-                        <span class="title">대한천식알레르기학회</span>는 <br class="m-show">국민보건 향상을 위해 천식,알레르기 및 <br class="m-show">임상면역학 분야의 학문발전에 기여합니다.
-                    </h2>
-                    <img src="/assets/image/main/img_mainvisual01.png" alt="" class="m-hide">
-                    <img src="/assets/image/main/img_mainvisual01_m.png" alt="" class="m-show">
-                </div>
+                <a href="https://allergy3.pcocms.com/" target="_blank">
+                    <picture>
+                        <source srcset="/assets/image/main/img_mainvisual02_m.jpg" media="(max-width: 768px)">
+                        <img src="/assets/image/main/img_mainvisual02.jpg" alt="">
+                    </picture>
+                </a>
             </div>
         </div>
         <div class="slider-attr">
@@ -35,7 +33,7 @@
     </article>
 
     <article class="main-contents inner-layer">
-        <h3 class="hide">공지사항 | 관련기관 소식 | 보험관련 소식 | 보도자료 | 유튜브</h3>
+        <h3 class="hide">공지사항 | 유관기관 | 보험관련 | 보도자료 | 유튜브</h3>
         <div class="main-board-conbox">
             <div class="main-board-menu tab-drop-wrap js-tab-drop-wrap">
                 <a href="#n" class="btn-drop-menu js-btn-tab-drop"></a>
@@ -44,10 +42,10 @@
                             <span class="icon type1">아이콘</span> 공지사항
                         </a></li>
                     <li class="{{ ( (request()->bcode ?? '') == 'notice' && (request()->category ?? '') == '2') ? 'on' : '' }}"><a href="{{ route('main',['bcode'=>'notice','category'=>2]) }}">
-                            <span class="icon type2">아이콘</span> 관련기관 소식
+                            <span class="icon type2">아이콘</span> 유관기관
                         </a></li>
                     <li class="{{ ( (request()->bcode ?? '') == 'notice' && (request()->category ?? '') == '3') ? 'on' : '' }}"><a href="{{ route('main',['bcode'=>'notice','category'=>3]) }}">
-                            <span class="icon type3">아이콘</span> 보험관련 소식
+                            <span class="icon type3">아이콘</span> 보험관련
                         </a></li>
                     <li class="{{ ( (request()->bcode ?? '') == 'notice' && (request()->category ?? '') == '4') ? 'on' : '' }}"><a href="{{ route('main',['bcode'=>'notice','category'=>4]) }}">
                             <span class="icon type4">아이콘</span> 보도자료
@@ -69,6 +67,10 @@
                     </li>
                 @endforelse
             </ul>
+
+            <a href="javascript:moveBoard();" class="btn btn-more">
+                More <span class="icon"><img src="/assets/image/main/ic_more_arrow.png" alt=""></span>
+            </a>
         </div>
         <div class="main-video-conbox">
             <div class="video-wrap">
@@ -100,15 +102,15 @@
                 <p class="title"><span>진료지침</span></p>
                 <ul class="con-wrap">
                     <li>
-                        <a href="#n">
-                            <p class="subject ellipsis2">진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침</p>
-                            <p class="text-right">2024 / 아토피피부염</p>
+                        <a href="https://allergy.or.kr/board/treatment/view/7821?gubun=1">
+                            <p class="subject ellipsis2">중증 천식 환자 스테로이드 사용과 감량에 대한 전문가 의견서</p>
+                            <p class="text-right">2025</p>
                         </a>
                     </li>
                     <li>
-                        <a href="#n">
-                            <p class="subject ellipsis2">진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침진료지침</p>
-                            <p class="text-right">2024 / 아토피피부염</p>
+                        <a href="https://allergy.or.kr/board/treatment/view/7820?gubun=1">
+                            <p class="subject ellipsis2">난치 아토피피부염 전신 치료에 관한 전문가 의견서 업데이트</p>
+                            <p class="text-right">2024</p>
                         </a>
                     </li>
 {{--     TODO : 서버 이동 우선 막기    --}}
@@ -122,7 +124,7 @@
                     @empty
                     @endforelse
                 </ul>
-                <a href="{{ route('board', ['code' => "guideline"]) }}" class="btn btn-type1 btn-round text-left">
+                <a href="{{ route('board', ['code' => "treatment",'gubun'=>'1']) }}" class="btn btn-type1 btn-round text-left">
                     진료지침 바로가기 <span class="arrow"><img src="/assets/image/main/ico_link_arrow.png" alt=">"></span>
                 </a>
             </li>
@@ -157,9 +159,10 @@
             <div class="inner-layer">
                 <div class="main-year-menu">
                     <select name="year" id="year">
-                        <option value="2025" {{ (request()->year ?? date('Y') ) == '2025' ? 'selected' : '' }}>2025</option>
-                        <option value="2024" {{ (request()->year ?? date('Y') ) == '2024' ? 'selected' : '' }}>2024</option>
-                        <option value="2023" {{ (request()->year ?? date('Y') ) == '2023' ? 'selected' : '' }}>2023</option>
+                        @foreach($yearList as $yearItem)
+                        <option value="{{ $yearItem }}" {{ (request()->year ?? date('Y') ) == $yearItem ? 'selected' : '' }}>
+                            {{ $yearItem }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="main-month-menu tab-drop-wrap js-tab-drop-wrap">
@@ -258,6 +261,11 @@
             const _year = $("#year").val();
             location.href="/?month="+_month+"&year="+_year;
         });
+
+        const moveBoard = (_this) => {
+            const _url = "{{ route('board', ['code' => "notice", 'category'=>request()->category ?? '1']) }}";
+            location.href = _url;
+        }
     </script>
 
     @isset($boardPopupList)

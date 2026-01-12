@@ -50,6 +50,7 @@
                                     <div class="form-con">
                                         <div class="radio-wrap cst">
                                             @foreach($feeConfig['payment_method'] as $key => $val)
+
                                                 <label class="radio-group"><input type="radio" name="payment_method" id="payment_method_{{ $key }}" value="{{ $key }}">{{ $val }}</label>
                                             @endforeach
                                         </div>
@@ -150,19 +151,46 @@
 
         const boardSubmit = () => {
             const _price = $("input[name='tot_price']").val();
+            const payment_method = $("input[name='payment_method']:checked").val();
+
             if(_price == 0) {
                 $("#payment_method").val('F');
             }
 
             // 'payment_method'가 'B'가 아니라면, 은행 관련 정보 비우기
-            if ($("input[name='payment_method']:checked").val() !== 'B') {
+            if (payment_method !== 'B') {
                 $("#depositor").val('');
                 $("#deposit_date").val('');
             }
 
-            let ajaxData = newFormData(form);
 
-            callMultiAjax(dataUrl, ajaxData);
+            let ajaxData = newFormData(form);
+            callbackMultiAjax(dataUrl, ajaxData, function (data, error) {
+                if (error) {
+                    console.log(error);
+                    alert('ERROR');
+                    // location.reload();
+                    return false;
+                }
+
+                if (payment_method !== 'C') {
+                    ajaxSuccessData(data);
+                } else {
+                    if (data.status === 'fail') {
+                        alert(data.msg);
+                        location.reload();
+                        return false;
+                    }
+
+                    const popupHeight = 700;
+                    const popupWidth = 600;
+                    const popName = 'easyPay';
+                    const popupY = (window.screen.height / 2) - (popupHeight / 2);
+                    const popupX = (window.screen.width / 2) - (popupWidth / 2);
+
+                    window.open(data.url, popName, 'status=no, height=' + popupHeight + ', width=' + popupWidth + ', left=' + popupX + ', top=' + popupY);
+                }
+            });
         }
 
     </script>

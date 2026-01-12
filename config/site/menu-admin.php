@@ -22,6 +22,15 @@ return [
         ],
 
         'M3' => [
+            'name' => '국외학술대회지원 관리',
+            'route' => null,
+            'param' => [],
+            'url' => 'javascript:void(0);',
+            'dev' => false,
+            'continue' => false,
+        ],
+
+        'M4' => [
             'name' => '학술대회 관리',
             'route' => null,
             'param' => [],
@@ -60,6 +69,14 @@ return [
                 'continue' => false,
             ],
             'S2' => [
+                'name' => '오프라인회원',
+                'route' => 'memberoff',
+                'param' => [],
+                'url' => null,
+                'dev' => false,
+                'continue' => false,
+            ],
+            'S3' => [
                 'name' => '임원관리',
                 'route' => null,
                 'param' => [],
@@ -67,7 +84,7 @@ return [
                 'dev' => false,
                 'continue' => false,
             ],
-            'S3' => [
+            'S4' => [
                 'name' => '위원회관리',
                 'route' => null,
                 'param' => [],
@@ -75,14 +92,7 @@ return [
                 'dev' => false,
                 'continue' => false,
             ],
-//            'S4' => [
-//                'name' => '탈퇴회원',
-//                'route' => 'member',
-//                'param' => ['case'=>'withdraw'],
-//                'url' => null,
-//                'dev' => false,
-//                'continue' => false,
-//            ],
+
         ],
 
         'M2' => [
@@ -98,17 +108,29 @@ return [
 
         'M3' => [
             'S1' => [
-                'name' => '학술대회관리',
-                'route' => null,
+                'name' => '국외학술대회지원 관리',
+                'route' => 'overseas',
                 'param' => [],
-                'url' => 'javascript:;',
+                'url' => null,
+                'dev' => false,
+                'continue' => false,
+            ],
+
+        ],
+
+        'M4' => [
+            'S1' => [
+                'name' => '학술대회관리',
+                'route' => 'workshop',
+                'param' => [],
+                'url' => null,
                 'dev' => false,
                 'continue' => false,
             ],
 
             'S2' => [
                 'name' => '교육강좌관리',
-                'route' => 'workshop',
+                'route' => 'education',
                 'param' => [],
                 'url' => null,
                 'dev' => false,
@@ -118,7 +140,7 @@ return [
 
         'mail' => [
             'S1' => [
-                'name' => '메일발송',
+                'name' => '이전메일내역',
                 'route' => 'mail',
                 'param' => [],
                 'url' => null,
@@ -126,14 +148,6 @@ return [
                 'continue' => false,
             ],
 
-            'S2' => [
-                'name' => '주소록관리',
-                'route' => 'mail.address',
-                'param' => [],
-                'url' => null,
-                'dev' => false,
-                'continue' => false,
-            ],
         ],
 
 //        'stat' => [

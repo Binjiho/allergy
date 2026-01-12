@@ -23,9 +23,9 @@
                                 </p>
                             </div>
                             <div class="bg-box login-info-box">
-                                학회 홈페이지 개편에 따라 모든 회원님의 비밀번호가 초기화되었습니다. <strong class="text-pink">초기화된 비밀번호는 회원님의 생년월일 8자리</strong> 입니다. <br>
+                                학회 홈페이지 개편에 따라 모든 회원님의 비밀번호가 초기화되었습니다. <strong class="text-pink">초기화된 비밀번호는 회원님의 생년월일 6자리</strong> 입니다. <br>
                                 보안을 위해 초기 비밀번호로 로그인하신 후 반드시 새로운 비밀번호로 변경해 주시기 바랍니다.
-                                <p class="mt-10"><img src="/assets/image/sub/ic_login_info.png" alt=""> 초기화된 비밀번호 예시 : 20250101</p>
+                                <p class="mt-10"><img src="/assets/image/sub/ic_login_info.png" alt=""> 초기화된 비밀번호 예시 : 250101</p>
                             </div>
                             <div class="input-box">
                                 <div class="form-group">

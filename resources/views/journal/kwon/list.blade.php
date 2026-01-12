@@ -21,15 +21,17 @@
                 <ul class="journal-list">
                     @forelse($list as $row)
                     <li>
+                        @if(!empty($row['category']))
                         <p class="cate">
                             <span>{{ $row['category'] ?? '' }}</span>
                         </p>
+                        @endif
                         <div class="tit">
-                            {{ $row['subject_kr'] ?? '' }}
+                            {!! $row['subject_kr'] ?? '' !!}
                         </div>
                         <div class="info">
                             <p class="name">{!! $row['author_kr'] ?? '' !!}</p>
-                            <p>{{ $row['subject_en'] ?? '' }}</p>
+                            <p>{!! $row['subject_en'] ?? '' !!}</p>
                             <p>{!! $row['author_en'] ?? '' !!}</p>
                         </div>
                         <div class="iso">
@@ -41,7 +43,7 @@
                             {{ $formattedDate }}; {{ $row['vol'] ?? '' }}({{ $row['num'] ?? '' }}): {{ $row['start_page'] ?? '' }}-{{ $row['last_page'] ?? '' }}.
                         </div>
                         <div class="keywords">
-                            {{ $row['keywords'] ?? '' }}
+                            {!! $row['keywords'] ?? ''  !!}
                         </div>
                         @php
                             $book = $row['book'];
@@ -57,6 +59,11 @@
 
                     @endforelse
                 </ul>
+
+                <div class="paging-wrap">
+                    {{ $list->links('pagination::custom') }}
+                </div>
+
             </div>
         </div>
     </article>

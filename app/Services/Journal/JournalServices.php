@@ -48,48 +48,88 @@ class JournalServices extends AppServices
     }
     public function searchService(Request $request)
     {
-        $this->data['list'] = [];
+        $show_list = ['subject','author','sosok','keywords','abstract','publisher'];
 
-        if($request->keyword1 || $request->keyword2 || $request->keyword3 || $request->keyword4){
-            $query = Journal::where('del','N');
-
-            if($request->year1){
-                $query->where('year','>=',$request->year1);
-            }
-            if($request->year2){
-                $query->where('year','<=',$request->year2);
-            }
-
-            if ($request->search1 && $request->keyword1) {
-                if($request->search1 == 'authork'){
-                    $query->where(function ($q) use ($request) {
-                        $q->where('authork', 'like', '%' . trim($request->keyword1) . '%')
-                            ->orWhere('author_common', 'like', '%' . trim($request->keyword1) . '%')
-                            ->orWhere('exchange_author', 'like', '%' . trim($request->keyword1) . '%');
-                    });
-                } else{
-                    $query->where($request->search1, 'like', '%' . trim($request->keyword1) . '%');
-                }
-            }
-
-            if ($request->search2 && $request->keyword2) {
-                $query->where($request->search2, 'like', '%' . trim($request->keyword2) . '%');
-            }
-
-            if($request->order){
-                if($request->order == 'year'){
-                    $query->orderByDesc($request->order);
-                }else{
-                    $query->orderBy($request->order);
-                }
-            }
-
-            $li_page = $request->li_page ?? 10;
-            $this->data['li_page'] = $li_page;
-
-            $list = $query->paginate($li_page);
-            $this->data['list'] = setListSeq($list);
+        if(!empty($request->show_list)){
+            $show_list = $request->show_list;
         }
+        
+        $this->data['show_list'] = $show_list;
+
+        $query = Journal::where('del','N');
+
+        $searches = $request->search ?? [];
+        $keywords = $request->keyword ?? [];
+
+        // 💡 검색 조건 동적 처리 (배열을 순회하며 쿼리 연결)
+        foreach ($searches as $index => $searchType) {
+            $keyword = trim($keywords[$index] ?? '');
+
+            // 1. 검색 유형과 키워드가 유효할 때만 처리
+            if (empty($searchType) || empty($keyword)) {
+                continue;
+            }
+
+            // 2. 연산자 결정 (두 번째 조건부터 'and' 또는 'or' 값 가져오기)
+            $method = 'where';
+
+            // 첫 번째 조건(index 0) 다음부터 추가 조건이 시작됩니다.
+            if ($index > 0) {
+                // 요청 변수 이름을 동적으로 구성 (예: index=1일 때 'and1')
+                $operatorField = 'and' . $index;
+                $operator = $request->$operatorField;
+
+                // 연산자 값에 따라 메서드를 결정합니다. (기본은 AND, 즉 where)
+                if ($operator === 'or') {
+                    $method = 'orWhere';
+                }
+            }
+
+            // 4. 필터링 로직 (클로저)
+            $callback = function ($q) use ($searchType, $keyword) {
+                switch ($searchType) {
+                    case 'title':
+                        $q->where('subject_kr', 'like', '%' . $keyword . '%')
+                            ->orWhere('subject_en', 'like', '%' . $keyword . '%');
+                        break;
+                    case 'author':
+                        $q->where('author_kr', 'like', '%' . $keyword . '%')
+                            ->orWhere('author_en', 'like', '%' . $keyword . '%');
+                        break;
+                    case 'keywords':
+                        $q->where('keywords', 'like', '%' . $keyword . '%');
+                        break;
+                    case 'abstract':
+                        $q->where('abstract_kr', 'like', '%' . $keyword . '%')
+                            ->orWhere('abstract_en', 'like', '%' . $keyword . '%');
+                        break;
+                }
+            };
+
+            // 5. 쿼리 빌더에 조건 적용
+            $query->$method($callback);
+        }
+
+        if($request->sdate){
+            $query->where('published_at','>=',$request->sdate);
+        }
+        if($request->edate){
+            $query->where('published_at','<=',$request->edate);
+        }
+
+        if($request->orderby){
+            if($request->orderby == 'year'){
+                $query->orderByDesc($request->orderby);
+            }else{
+                $query->orderBy($request->orderby);
+            }
+        }
+
+        $li_page = $request->li_page ?? 10;
+        $this->data['li_page'] = $li_page;
+
+        $list = $query->paginate($li_page)->appends($request->except(['page']));
+        $this->data['list'] = setListSeq($list);
 
         return $this->data;
     }
@@ -108,7 +148,7 @@ class JournalServices extends AppServices
         $li_page = $request->li_page ?? 10;
         $this->data['li_page'] = $li_page;
 
-        $list = $query->paginate($li_page);
+        $list = $query->paginate($li_page)->appends(request()->except(['page']));;
         $this->data['list'] = setListSeq($list);
 
         return $this->data;

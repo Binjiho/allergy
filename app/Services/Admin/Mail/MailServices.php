@@ -43,12 +43,19 @@ class MailServices extends AppServices
         }
 
         if ($request->create_sdate) {
-            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d')", '>=', $request->create_sdate);
+            $query->whereDate('created_at', '>=', $request->create_sdate);
         }
 
         if ($request->create_edate) {
-            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d')", '<=', $request->create_edate);
+            $query->whereDate('created_at', '<=', $request->create_edate);
         }
+//        if ($request->create_sdate) {
+//            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d')", '>=', $request->create_sdate);
+//        }
+//
+//        if ($request->create_edate) {
+//            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d')", '<=', $request->create_edate);
+//        }
 
         if ($request->send_sdate) {
             $query->whereRaw("DATE_FORMAT(send_date, '%Y-%m-%d')", '>=', $request->send_sdate);

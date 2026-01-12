@@ -10,8 +10,9 @@
     </div>
 
     <form id="register-frm" method="post" data-sid="{{ $workshop->sid ?? 0 }}" data-case="workshop-{{ empty($workshop->sid) ? 'create' : 'update' }}">
-
-        @include('admin.workshop.form.register-frm')
+        <input type="hidden" name="kind" value="E" readonly>
+        
+        @include('admin.education.form.register-frm')
 
         <div class="btn-wrap text-center">
             <a href="javascript:window.close();" class="btn btn-type1 color-type3">취소</a>

@@ -10,6 +10,7 @@
     </div>
 
     <form id="register-frm" method="post" data-sid="{{ $workshop->sid ?? 0 }}" data-case="workshop-{{ empty($workshop->sid) ? 'create' : 'update' }}">
+        <input type="hidden" name="kind" value="W" readonly>
 
         @include('admin.workshop.form.register-frm')
 

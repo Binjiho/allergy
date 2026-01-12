@@ -12,7 +12,7 @@ class BoardController extends Controller
     private $boardServices;
     private $boardConfig;
 
-    private $blockList = ['photo','research-team','branch','format', 'treatment', 'guideline'];
+    private $blockList = ['archive', 'past-workshop', 'overseas-notice'];
     public function __construct()
     {
         $code = request()->code ?? '';
@@ -46,6 +46,7 @@ class BoardController extends Controller
                 authRedirect( $ret_url );
             }
         }
+
         return view("board.{$this->boardConfig['skin']}.index", $this->boardServices->listService($request));
     }
 

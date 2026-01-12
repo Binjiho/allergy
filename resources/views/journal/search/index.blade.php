@@ -18,7 +18,7 @@
                 <div class="btn-wrap text-right">
                     <a href="#pop-sch-info" class="btn btn-type1 btn-round color-type1 js-pop-open">논문 검색 방법 <span class="icon"><img src="/assets/image/sub/ic_sch_info.png" alt=""></span></a>
                 </div>
-                <div class="sch-form-wrap">
+                <div class="sch-form-wrap journal-sch-form">
                     <form id="searchF" name="searchF" action="{{ route('journal.asSearchList') }}">
                         <fieldset>
                             <legend class="hide">논문검색</legend>
@@ -58,8 +58,8 @@
                                             </td>
                                             <td >
                                                 <div class="radio-wrap cst text-center and_div" style="display:none;">
-                                                    <label for="and1_1" class="radio-group"><input type="radio" name="and1_[]" id="and1_1" value="and" {{ (request()->and1 ?? '') == 'and' ? 'selected' : '' }}>AND</label>
-                                                    <label for="and1_2" class="radio-group"><input type="radio" name="and1_[]" id="and1_2" value="or" {{ (request()->and1 ?? '') == 'or' ? 'selected' : '' }}>OR</label>
+                                                    <label for="and1_1" class="radio-group"><input type="radio" name="and1" id="and1_1" value="and" {{ (request()->and1 ?? '') == 'and' ? 'selected' : '' }}>AND</label>
+                                                    <label for="and1_2" class="radio-group"><input type="radio" name="and1" id="and1_2" value="or" {{ (request()->and1 ?? '') == 'or' ? 'selected' : '' }}>OR</label>
                                                 </div>
                                             </td>
                                             <td>
@@ -81,10 +81,10 @@
                                         <th scope="row">리스트 갯수</th>
                                         <td>
                                             <div class="radio-wrap cst">
-                                                <label for="li_page_1" class="radio-group"><input type="radio" name="li_page" id="li_page_1">10건</label>
-                                                <label for="li_page_2" class="radio-group"><input type="radio" name="li_page" id="li_page_2">20건</label>
-                                                <label for="li_page_3" class="radio-group"><input type="radio" name="li_page" id="li_page_3">30건</label>
-                                                <label for="li_page_4" class="radio-group"><input type="radio" name="li_page" id="li_page_4">40건</label>
+                                                <label for="li_page_1" class="radio-group"><input type="radio" name="li_page" id="li_page_1" value="10">10건</label>
+                                                <label for="li_page_2" class="radio-group"><input type="radio" name="li_page" id="li_page_2" value="20">20건</label>
+                                                <label for="li_page_3" class="radio-group"><input type="radio" name="li_page" id="li_page_3" value="30">30건</label>
+                                                <label for="li_page_4" class="radio-group"><input type="radio" name="li_page" id="li_page_4" value="40">40건</label>
                                             </div>
                                         </td>
                                     </tr>
@@ -92,20 +92,20 @@
                                         <th scope="row">출력결과</th>
                                         <td class="text-left">
                                             <div class="checkbox-wrap cst">
-                                                <label for="chk4_1" class="checkbox-group"><input type="checkbox" name="" id="chk4_1">제목</label>
-                                                <label for="chk4_2" class="checkbox-group"><input type="checkbox" name="" id="chk4_2">저자</label>
-                                                <label for="chk4_3" class="checkbox-group"><input type="checkbox" name="" id="chk4_3">소속</label>
-                                                <label for="chk4_4" class="checkbox-group"><input type="checkbox" name="" id="chk4_4">키워드</label>
-                                                <label for="chk4_5" class="checkbox-group"><input type="checkbox" name="" id="chk4_5">초록</label>
-                                                <label for="chk4_6" class="checkbox-group"><input type="checkbox" name="" id="chk4_6">학회지명 및 출판 정보</label>
+                                                <label for="chk4_1" class="checkbox-group"><input type="checkbox" name="show_list[]" value="subject" id="chk4_1" checked disabled>제목</label>
+                                                <label for="chk4_2" class="checkbox-group"><input type="checkbox" name="show_list[]" value="author" id="chk4_2">저자</label>
+                                                <label for="chk4_3" class="checkbox-group"><input type="checkbox" name="show_list[]" value="sosok" id="chk4_3">소속</label>
+                                                <label for="chk4_4" class="checkbox-group"><input type="checkbox" name="show_list[]" value="keywords" id="chk4_4">키워드</label>
+                                                <label for="chk4_5" class="checkbox-group"><input type="checkbox" name="show_list[]" value="abstract" id="chk4_5">초록</label>
+                                                <label for="chk4_6" class="checkbox-group"><input type="checkbox" name="show_list[]" value="publisher" id="chk4_6">학회지명 및 출판 정보</label>
                                             </div>
                                         </td>
                                         <th scope="row">정렬기준</th>
                                         <td class="text-left">
                                             <select name="orderby" id="orderby" class="form-item">
                                                 <option value="published_at">발행연도</option>
-                                                <option value="subject">제목</option>
-                                                <option value="author">저자명</option>
+                                                <option value="subject_kr">제목</option>
+                                                <option value="author_kr">저자명</option>
                                             </select>
                                         </td>
                                     </tr>

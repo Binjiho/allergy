@@ -85,6 +85,9 @@
 
                     @forelse($list as $row)
                         <li class="ef01" data-sid="{{ $row->sid }}">
+                            <div class="bbs-no">
+                                {{ $row->seq }}
+                            </div>
                             <div class="list-con">
                                 <div class="bbs-tit">
                                     @if($boardConfig['use']['category'])

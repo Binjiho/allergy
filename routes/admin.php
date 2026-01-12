@@ -19,7 +19,10 @@ Route::controller(\App\Http\Controllers\Admin\Member\MemberController::class)->p
     Route::get('/{case?}', 'index')->where('case', 'levelN|levelA|levelB|levelC|levelD|withdraw|elimination|admin')->name('member');
     Route::get('upsert/{sid}', 'upsert')->name('member.upsert');
     Route::get('popup/search', 'popupSearch')->name('member.popup.search');
-    
+
+    Route::get('offline', 'offline')->name('memberoff');
+    Route::get('offline/upsert/{sid}', 'offlineUpsert')->name('memberoff.upsert');
+
     Route::get('excel', 'excel')->name('member.excel');
     Route::post('data', 'data')->name('member.data');
 });
@@ -35,16 +38,70 @@ Route::controller(\App\Http\Controllers\Admin\Fee\FeeController::class)->prefix(
     Route::post('data', 'data')->name('fee.data');
 });
 
-// 학술행사 M3
+//M3 국외학술대회지원관리
+Route::controller(\App\Http\Controllers\Admin\Overseas\OverseasController::class)->prefix('overseas')->group(function () {
+    Route::get('/', 'index')->name('overseas');
+    Route::get('upsert/{sid?}', 'upsert')->name('overseas.upsert');
+    Route::get('remail/{sid?}', 'remail')->name('overseas.remail');
+    Route::get('excel', 'excel')->name('overseas.excel');
+    Route::post('data', 'data')->name('overseas.data');
+
+    // apply
+    Route::controller(\App\Http\Controllers\Admin\Overseas\ApplyController::class)->prefix('{o_sid}/apply')->group(function() {
+        Route::get('/', 'index')->name('apply');
+        Route::get('modify/{sid}', 'modify')->name('apply.modify');
+        Route::get('report_modify/{sid}', 'report_modify')->name('apply.report_modify');
+        Route::get('all-judge-change', 'allJudgeChange')->name('apply.all-judge-change');
+        Route::get('memo', 'memo')->name('apply.memo');
+
+        Route::get('excel', 'excel')->name('apply.excel');
+        Route::get('completeZip', 'completeZip')->name('apply.completeZip');
+        Route::get('reportZip', 'reportZip')->name('apply.reportZip');
+        
+        Route::post('data', 'data')->name('apply.data');
+    });
+
+});
+
+Route::controller(\App\Http\Controllers\Admin\Grantees\GranteesController::class)->prefix('grantees')->group(function () {
+    Route::get('/', 'index')->name('grantees');
+    Route::get('upsert/{sid?}', 'upsert')->name('grantees.upsert');
+    Route::get('collective', 'collective')->name("grantees.collective");
+    Route::get('memo', 'memo')->name('grantees.memo');
+    Route::get('excel', 'excel')->name('grantees.excel');
+    Route::post('data', 'data')->name('grantees.data');
+});
+
+// 학술행사 M4
 Route::prefix('workshop')->group(function() {
     Route::controller(\App\Http\Controllers\Admin\Workshop\WorkshopController::class)->group(function() {
         Route::get('/', 'index')->name('workshop');
         Route::get('upsert/{sid?}', 'upsert')->name('workshop.upsert');
+
         Route::post('data', 'data')->name('workshop.data');
     });
 
+    // 상세
+    Route::controller(\App\Http\Controllers\Admin\Workshop\DetailController::class)->prefix('{wsid}/detail')->group(function() {
+        Route::get('/', 'index')->name('detail');
+        Route::get('/upsert/{sid?}', 'upsert')->name('detail.upsert');
+
+        Route::get('collective', 'collective')->name("detail.collective");
+        Route::get('/excel', 'excel')->name('detail.excel');
+        Route::post('data', 'data')->name('detail.data');
+    });
+});
+//교육강좌
+Route::prefix('education')->group(function() {
+    Route::controller(\App\Http\Controllers\Admin\Education\EducationController::class)->group(function() {
+        Route::get('/', 'index')->name('education');
+        Route::get('upsert/{sid?}', 'upsert')->name('education.upsert');
+
+        Route::post('data', 'data')->name('education.data');
+    });
+
     // 사전등록
-    Route::controller(\App\Http\Controllers\Admin\Workshop\RegistrationController::class)->prefix('{wsid}/registration')->group(function() {
+    Route::controller(\App\Http\Controllers\Admin\Education\RegistrationController::class)->prefix('{wsid}/registration')->group(function() {
         Route::get('/', 'index')->name('registration');
         Route::get('/upsert/{sid?}', 'upsert')->name('registration.upsert');
         Route::get('office_search', 'office_search')->name('registration.office_search');
@@ -52,7 +109,8 @@ Route::prefix('workshop')->group(function() {
         Route::get('/receipt/{sid}', 'receipt')->name('registration.receipt');
         Route::get('/memo', 'memo')->name('registration.memo');
         Route::get('resend/{sid}', 'resend')->name('registration.resend');
-        
+
+        Route::get('collective', 'collective')->name("registration.collective");
         Route::get('/excel', 'excel')->name('registration.excel');
         Route::post('data', 'data')->name('registration.data');
     });

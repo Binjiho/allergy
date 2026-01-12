@@ -159,6 +159,7 @@ class Board extends Model
         $this->choice_type = $data['choice_type'] ?? null;
 
         //진료지침 게시판
+        $this->guideline_kr = $data['guideline_kr'] ?? null;
         $this->guideline = $data['guideline'] ?? null;
         $this->author = $data['author'] ?? null;
         $this->etc = $data['etc'] ?? null;
@@ -225,6 +226,16 @@ class Board extends Model
     public function popups()
     {
         return $this->hasOne(BoardPopup::class, 'bsid');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(BoardReply::class, 'b_sid');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(BoardComment::class, 'b_sid')->withTrashed();
     }
 
     public function downloadUrl($field) // 게시판 첨부 파일 다운로드

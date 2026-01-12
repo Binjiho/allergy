@@ -7,8 +7,8 @@
 
     # PHP 설정 (PHP 8.3용)
     <IfModule mod_php.c>
-        php_value upload_max_filesize 200M
-        php_value post_max_size 20M
+        php_value upload_max_filesize 500M
+        php_value post_max_size 50M
         php_value max_input_vars 5000
     </IfModule>
 

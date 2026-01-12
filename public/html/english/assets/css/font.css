@@ -1,0 +1,636 @@
+/* 사용하지 않는 폰트는 삭제 후 사용할 것! */
+
+/* Pretendard Variable */
+@font-face {
+    font-family: 'Pretendard Variable';
+    font-weight: 45 920;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+
+/* Paperlogy */
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-1Thin.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-2ExtraLight.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-3Light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-4Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-5Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-6SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-7Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-8ExtraBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Paperlogy';
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Paperlogy-9Black.woff2') format('woff2');
+}
+
+/* SUIT Variable */
+@font-face {
+    font-family: 'SUIT Variable';
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/SUIT-Variable.woff2') format('woff2-variations');
+}
+
+/* SUITE Variable */
+@font-face {
+    font-family: 'SUITE Variable';
+    font-weight: 300 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/SUITE-Variable.woff2') format('woff2-variations');
+}
+
+/* Noto Sans KR */
+@font-face {
+    font-family: "Noto Sans KR";
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+    src: url("/assets/fonts/NotoSans-Thin.woff") format("woff"),
+        url("/assets/fonts/NotoSans-Thin.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans KR";
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    src: url("/assets/fonts/NotoSans-Light.woff") format("woff"),
+        url("/assets/fonts/NotoSans-Light.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans KR";
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url("/assets/fonts/NotoSans-DemiLight.woff") format("woff"),
+        url("/assets/fonts/NotoSans-DemiLight.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans KR";
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url("/assets/fonts/NotoSans-Regular.woff") format("woff"),
+        url("/assets/fonts/NotoSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url("/assets/fonts/NotoSans-Medium.woff") format("woff"),
+        url("/assets/fonts/NotoSans-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans KR";
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url("/assets/fonts/NotoSans-Black.woff") format("woff"),
+        url("/assets/fonts/NotoSans-Black.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Sans KR";
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    src: url("/assets/fonts/NotoSans-Bold.woff") format("woff"),
+        url("/assets/fonts/NotoSans-Bold.woff2") format("woff2");
+}
+
+/* Noto Serif KR */
+@font-face {
+    font-family: 'Noto Serif KR';
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/NotoSerifCJKkr-ExtraLight-subset.woff2') format('woff2'),
+        url('/assets/fonts/NotoSerifCJKkr-ExtraLight-subset.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Noto Serif KR';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/NotoSerifCJKkr-Regular-subset.woff2') format('woff2'),
+        url('/assets/fonts/NotoSerifCJKkr-Regular-subset.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Noto Serif KR';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/NotoSerifCJKkr-Bold-subset.woff2') format('woff2'),
+        url('/assets/fonts/NotoSerifCJKkr-Bold-subset.woff') format('woff');
+}
+
+/* Roboto */
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Roboto-Thin.woff2') format('woff2'),
+        url('/assets/fonts/Roboto-Thin.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Roboto-Light.woff2') format('woff2'),
+        url('/assets/fonts/Roboto-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Roboto-Regular.woff2') format('woff2'),
+        url('/assets/fonts/Roboto-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Roboto-Medium.woff2') format('woff2'),
+        url('/assets/fonts/Roboto-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Roboto-Bold.woff2') format('woff2'),
+        url('/assets/fonts/Roboto-Bold.woff') format('woff');
+}
+
+@font-face{
+    font-family: 'Roboto';
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('/html/app/assets/fonts/Roboto-Black.woff2') format('woff2'),
+        url('/html/app/assets/fonts/Roboto-Black.woff') format('woff');
+}
+
+/* BC Card */
+@font-face {
+    font-family: 'BCcard';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/BCCardLight.woff2') format('woff2'),
+        url('/assets/fonts/BCCardLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'BCcard';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/BCCardBold.woff2') format('woff2'),
+        url('/assets/fonts/BCCardBold.woff') format('woff');
+}
+
+/* Freesentation */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Freesentation-1Thin.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Freesentation-2ExtraLight.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Freesentation-4Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Freesentation-5Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Freesentation-6SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Freesentation-7Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Freesentation-8ExtraBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Freesentation-9Black.woff2') format('woff2');
+}
+
+/* GmarketSans */
+@font-face {
+    font-family: 'GmarketSans';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts//GmarketSansLight.woff2') format('woff2'),
+        url('/assets/fonts//GmarketSansLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GmarketSans';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts//GmarketSansMedium.woff2') format('woff2'),
+        url('/assets/fonts//GmarketSansMedium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GmarketSans';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts//GmarketSansBold.woff2') format('woff2'),
+        url('/assets/fonts//GmarketSansBold.woff') format('woff');
+}
+
+/* Montserrat */
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-Thin.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-ExtraLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-weight: 700;
+    font-style: normal;
+    font-family: 'Montserrat';
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/Montserrat-Black.woff') format('woff'),
+        url('/assets/fonts/Montserrat-Black.ttf') format('truetype');
+}
+
+/* NanumSquare */
+@font-face {
+    font-family: 'NanumSquare';
+    font-weight: 400;
+    font-display: swap;
+    src: url('/assets/fonts/NanumSquareR.woff2') format('woff2'),
+        url('/assets/fonts/NanumSquareR.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquare';
+    font-weight: 700;
+    font-display: swap;
+    src: url('/assets/fonts/NanumSquareB.woff2') format('woff2'),
+        url('/assets/fonts/NanumSquareB.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquare';
+    font-weight: 800;
+    font-display: swap;
+    src: url('/assets/fonts/NanumSquareEB.woff2') format('woff2'),
+        url('/assets/fonts/NanumSquareEB.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquare';
+    font-weight: 300;
+    font-display: swap;
+    src: url('/assets/fonts/NanumSquareL.woff2') format('woff2'),
+        url('/assets/fonts/NanumSquareL.woff') format('woff');
+}
+
+/* NanumSquare Neo */
+@font-face {
+    font-family: 'NanumSquare Neo';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: local('NanumSquare Neo'), url('/assets/fonts/NanumSquareNeo-bRg.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquare Neo';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: local('NanumSquare Neo'), url('/assets/fonts/NanumSquareNeo-aLt.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquare Neo';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: local('NanumSquare Neo'), url('/assets/fonts/NanumSquareNeo-cBd.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquare Neo';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: local('NanumSquare Neo'), url('/assets/fonts/NanumSquareNeo-dEb.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquare Neo';
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    src: local('NanumSquare Neo'), url('/assets/fonts/NanumSquareNeo-eHv.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumSquare Neo variable';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: local('NanumSquare Neo variable'), url('/assets/fonts/NanumSquareNeo-Variable.woff') format('woff');
+}
+
+/* NanumMyeongjo */
+@font-face {
+    font-family: 'NanumMyeongjo';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/NanumMyeongjo.woff2') format('woff2'),
+        url('/assets/fonts/NanumMyeongjo.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumMyeongjo';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/NanumMyeongjoBold.woff2') format('woff2'),
+        url('/assets/fonts/NanumMyeongjoBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'NanumMyeongjo';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/NanumMyeongjoExtraBold.woff2') format('woff2'),
+        url('/assets/fonts/NanumMyeongjoExtraBold.woff') format('woff');
+}
+
+/* SebangGothic */
+@font-face {
+    font-family: 'SebangGothic';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/SebangGothicRegular.woff2') format('woff2'),
+        url('/assets/fonts/SebangGothicRegular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'SebangGothic';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/SebangGothicBold.woff2') format('woff2'),
+        url('/assets/fonts/SebangGothicBold.woff') format('woff');
+}
+
+/* S-CoreDream */
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-1Thin.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-2ExtraLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-3Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-4Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-5Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-6Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-7ExtraBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-8Heavy.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'S-CoreDream';
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('/assets/fonts/S-CoreDream-9Black.woff') format('woff');
+}

@@ -70,7 +70,6 @@ Route::prefix('workshop')->group(function() {
         Route::get('overseas', 'overseas')->name('workshop.overseas');
         Route::get('education', 'education')->name('workshop.education');
 
-        Route::get('domestic', 'domestic')->name('workshop.domestic');
         Route::get('upsert/{sid?}', 'upsert')->name('workshop.upsert');
         Route::get('detail/{wsid}/', 'detail')->name('workshop.detail');
 
@@ -100,6 +99,24 @@ Route::prefix('workshop')->group(function() {
 
         Route::post('data', 'data')->name('lecture.data');
     });
+});
+
+// Overseas M5
+Route::controller(\App\Http\Controllers\Overseas\OverseasController::class)->prefix('overseas')->group(function() {
+    Route::get('list', 'index')->name('overseas');
+    Route::get('guide', 'guide')->name('overseas.guide');
+    Route::get('search', 'search')->name('overseas.search');
+    Route::get('{o_sid}/{step}/upsert', 'upsert')->where('step', '1|2|3|4')->name('overseas.upsert');
+    Route::get('{o_sid}/{step}/upsert_modify', 'modify')->where('step', '1|2|3|4')->name('overseas.modify');
+
+    Route::get('search/preview/{sid}', 'preview')->name('overseas.preview');
+
+    Route::get('search', 'search')->name('overseas.search');
+    Route::get('search/report/{sid}', 'report')->name('overseas.report');
+    Route::get('search/report_modify/{sid}', 'report_modify')->name('overseas.report_modify');
+    Route::get('search/report_preview/{sid}', 'report_preview')->name('overseas.report_preview');
+
+    Route::post('data', 'data')->name('overseas.data');
 });
 
 // General M7

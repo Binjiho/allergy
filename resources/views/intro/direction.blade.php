@@ -36,7 +36,8 @@
                 <li>
                     <div class="text-wrap">
                         <strong>E-mail</strong>
-                        <a href="mailto:korall@chol.com" target="_blank">korall@chol.com</a>
+						<a href="mailto:allergy@allergy.or.kr" target="_blank">allergy@allergy.or.kr</a>
+                        <!-- <a href="mailto:korall@chol.com" target="_blank">korall@chol.com</a> -->
                     </div>
                     <img src="/assets/image/sub/img_map_mail.png" alt="">
                 </li>

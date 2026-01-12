@@ -4,12 +4,16 @@
     * main
     
 ================================================== */
-#container:has(.main-visual){
+#container{
     background-repeat: no-repeat;
     background-position: center 0;
     background-size: 1920px auto;
     background-image: url('../image/main/bg_mainvisual01.png');
     word-break: keep-all;
+}
+.wrap.sub #container,
+#container.n-bg{
+    background: none;
 }
 .main-title-wrap{
     position: relative;
@@ -73,7 +77,7 @@
 .main-visual{
     position: relative;
     width: 100%;
-    height: 493px;
+    /* height: 493px; */
 }
 .main-visual-wrap{
     width: 100%;
@@ -193,6 +197,25 @@
 .main-visual .slick-arrow-wrap .slick-arrow.slick-disabled{
     background-blend-mode: exclusion;
 }
+.main-visual-con{
+    height: 100%;
+    min-height: 493px;
+}
+.main-visual-con01{
+    height: 493px;
+    min-height: initial;
+}
+.main-visual-con > a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.main-visual-con > a img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0;
+}
 
 .main-contents:has(.main-board-conbox){
     position: relative;
@@ -210,6 +233,35 @@
     border-radius: 5px 30px 30px;
     background-color: #f0f6fe;
     box-shadow: 0 0 10px 0 rgba(0, 38, 144, 0.2);
+}
+.main-board-conbox .btn.btn-more{
+    display: inline-block;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: auto;
+    padding: 8px 18px;
+    border: 1px solid #003172;
+    background-color: #fff;
+    border-radius: 30px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #003172;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    vertical-align: middle;
+}
+.main-board-conbox .btn.btn-more .icon{
+    display: inline-block;
+    margin-top: -4px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.main-board-conbox .btn.btn-more .icon img{
+    margin: 0;
+}
+.main-board-conbox:has(.btn-more){
+    padding-top: 75px;
 }
 .main-board-menu{
     position: relative;
@@ -267,6 +319,7 @@
     justify-content: space-between;
     gap: 10px;
     padding: 8px 0;
+    line-height: 1.2;
 }
 .main-board-con li a .tit{
     transition: 0.3s ease;

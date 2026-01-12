@@ -56,7 +56,7 @@
 
                         @if(isAdmin() || (thisPk() != 0 && thisPk() == $board->user_sid))
                             <a href="{{ route('board.upsert', ['code' => $code, 'sid' => $board->sid]) }}" class="btn btn-type1 color-type5">수정</a>
-                            <a href="javascript:void(0);" class="btn btn-type1 color-type7">삭제</a>
+                            <a href="javascript:;" class="btn btn-type1 color-type7 btn-delete">삭제</a>
                         @endif
                     </div>
 

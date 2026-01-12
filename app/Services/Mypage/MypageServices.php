@@ -3,6 +3,8 @@
 namespace App\Services\Mypage;
 
 use App\Models\User;
+use App\Models\Workshop;
+use App\Models\Registration;
 use App\Services\AppServices;
 use App\Services\CommonServices;
 use App\Services\Auth\AuthServices;
@@ -63,6 +65,29 @@ class MypageServices extends AppServices
     public function certiService(Request $request)
     {
         $this->data['user'] = thisUser();
+
+        $query = Registration::where(['del'=>'N','license_number'=>thisUser()->license_number])->whereNotIn('pay_status',['N']); /* ->orderBy('name_kr'); */
+
+        // 2. 연관된 workshop 테이블의 del='N' 조건 추가
+        $query->whereHas('workshop', function($q) {
+            $q->where('del', 'N');
+        });
+
+        // event_sdate 서브쿼리로 가져와서 정렬 (20251218 한상혁)
+        $query->orderBy(
+            Workshop::select('event_sdate') ->whereColumn('workshops.sid', 'registrations.wsid') ->take(1), 'desc'
+        );
+
+        $list = $query->paginate(9999);
+        $this->data['list'] = setListSeq($list);
+
+        return $this->data;
+    }
+    public function certiReceiptService(Request $request)
+    {
+        $this->data['user'] = thisUser();
+        $this->data['reg'] = Registration::findOrFail($request->sid);
+
         return $this->data;
     }
 

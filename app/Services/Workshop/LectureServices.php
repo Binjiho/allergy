@@ -3,7 +3,7 @@
 namespace App\Services\Workshop;
 
 use App\Services\AppServices;
-use App\Models\Workshop;
+use App\Models\Education;
 use App\Models\Registration;
 use App\Models\Lecture;
 use App\Models\User;
@@ -18,13 +18,10 @@ class LectureServices extends AppServices
 {
     public function indexService(Request $request)
     {
-        $this->data['workshop'] = Workshop::findOrFail($request->wsid);
+        $this->data['workshop'] = Education::findOrFail($request->wsid);
 
-        $query = Lecture::orderByDesc('sid')->where('del', 'N');
+        $query = Lecture::orderByDesc('sid')->where(['del'=>'N', 'wsid'=>$request->wsid]);
 
-//        if (!isAdmin()) {
-//            $query->where('hide', 'N');
-//        }
 
         $list = $query->paginate(6)->appends(request()->except(['page']));
         $this->data['list'] = setListSeq($list);
@@ -34,7 +31,7 @@ class LectureServices extends AppServices
 
     public function upsertService(Request $request)
     {
-        $this->data['workshop'] = Workshop::findOrFail($request->wsid);
+        $this->data['workshop'] = Education::findOrFail($request->wsid);
 
         if($request->sid){
             $this->data['lecture'] = Lecture::findOrFail($request->sid);

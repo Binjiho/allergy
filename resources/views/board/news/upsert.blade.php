@@ -25,8 +25,8 @@
                                     @if($boardConfig['use']['writer'])
                                         <li>
                                             <div class="form-tit">작성자</div>
-                                            <div class="form-con">{{ env('APP_NAME') }}</div>
-                                            <input type="hidden" name="name" value="{{ env('APP_NAME') }}" readonly>
+                                            <div class="form-con">Admin</div>
+                                            <input type="hidden" name="name" value="Admin" readonly>
                                         </li>
                                     @endif
 

@@ -74,9 +74,9 @@
             </div>
         </div>
 
-        <div class="popup-footer btn-pop-today-close" style="cursor: pointer;">
-            [오늘하루 그만보기]
-{{--            <button type="button">[오늘 하루 그만보기]</button>--}}
+        <div class="popup-footer">
+            <button type="button" class="btn-pop-today-close">[오늘하루 그만보기]</button>
+            <button type="button" class="btn-pop-7-close">[7일동안 열지않기]</button>
         </div>
 
         <button type="button" class="btn btn-pop-close">
@@ -104,11 +104,19 @@
             self.close();
         });
 
-        @if($main_pop !== false)
+        @if(!empty($main_pop) && $main_pop !== false)
         $(document).on('click', '.btn-pop-today-close', function () {
             const layer = $(this).closest('.win-popup-wrap');
 
             setCookie24(layer.attr('id'), 'done', 1);
+
+            self.close();
+        });
+
+        $(document).on('click', '.btn-pop-7-close', function () {
+            const layer = $(this).closest('.win-popup-wrap');
+
+            setCookie24(layer.attr('id'), 'done', 7);
 
             self.close();
         });

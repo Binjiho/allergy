@@ -86,8 +86,17 @@ class User extends Authenticatable
             }
 
         }else{
+            $this->sid = $data['sid'];
             $this->id = $data['id'];
-            $this->password = Hash::make('apkass2026');
+            if(!empty($data['birth_date'])) {
+                $tmp_birth_date = $data['birth_date']; // "1971-06-08"
+                $birth_full = trim(str_replace("-", '', $tmp_birth_date));
+                $birth = substr($birth_full, 2);
+                $this->password = Hash::make($birth);
+            }else{
+                $this->password = Hash::make('allergy');
+
+            }
             $this->confirm = $data['confirm'];
             $this->companyFax = $data['companyFax'];
             $this->gender = $data['gender'];
@@ -129,9 +138,7 @@ class User extends Authenticatable
         if(!empty($data['company_address'])) $this->company_address = $data['company_address'] ?? null;
         if(!empty($data['company_address2'])) $this->company_address2 = $data['company_address2'] ?? null;
         if(!empty($data['companyTel'])) $this->companyTel = $companyTel ?? null;
-        if(!empty($data['si'])) $this->si = $data['si'] ?? null;
-        if(!empty($data['gu'])) $this->gu = $data['gu'] ?? null;
-        if(!empty($data['jext'])) $this->jext = $data['jext'] ?? 'N';
+        
 
         if(!empty($data['memo'])) $this->memo = $data['memo'] ?? null;
     }

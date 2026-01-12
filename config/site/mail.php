@@ -35,22 +35,22 @@ return [
 
     // 메일 템플릿 (관리자용)
     'admin_template' => [
-//        'none' => [
-//            'name' => '템플릿 없음',
-//            'path' => 'admin.mail.template.none',
+        'none' => [
+            'name' => '템플릿 없음',
+            'path' => 'admin.mail.template.none',
+        ],
+//         'A' => [
+//             'name' => 'TYPE-A',
+//             'path' => 'admin.mail.template.template-A',
+//         ],
+//        'B' => [
+//            'name' => 'TYPE-B',
+//            'path' => 'admin.mail.template.template-B',
 //        ],
-         'A' => [
-             'name' => 'TYPE-A',
-             'path' => 'admin.mail.template.template-A',
-         ],
-        'B' => [
-            'name' => 'TYPE-B',
-            'path' => 'admin.mail.template.template-B',
-        ],
-        'C' => [
-            'name' => 'TYPE-C',
-            'path' => 'admin.mail.template.template-C',
-        ],
+//        'C' => [
+//            'name' => 'TYPE-C',
+//            'path' => 'admin.mail.template.template-C',
+//        ],
     ],
 
     'code' => [

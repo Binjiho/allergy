@@ -85,23 +85,23 @@ class MailList extends Model
     public function setByData($data)
     {
         $this->subject = $data['subject']; // 메일 제목
-        $this->sender_name = $data['sender_name']; // 발송자
-        $this->sender_email = $data['sender_email']; // 발송자 메일
+        $this->sender_name = $data['sender_name'] ?? '대한천식알레르기학회'; // 발송자
+        $this->sender_email = $data['sender_email'] ?? 'allergy@allergy.or.kr'; // 발송자 메일
 
-        $this->send_type = $data['send_type']; // 메일 발송 타입;
+        $this->send_type = $data['send_type'] ?? '1'; // 메일 발송 타입;
 
-        $this->level = ($this->send_type == 1) ? $data['level'] : null; // 등급별 발송일 경우
+        $this->level = ($this->send_type == 1) ? ($data['level'] ?? null) : null; // 등급별 발송일 경우
         $this->ma_sid = ($this->send_type == 2) ? $data['ma_sid'] : null; // 주소록 발송일 경우
         $this->test_email = ($this->send_type == 9) ? $data['test_email'] : null; // 테스트 발송일 경우
 
-        $this->template = $data['template']; // 메일 템플릿
-        $this->use_btn = $data['use_btn']; // 버튼 사용;
+        $this->template = $data['template']?? 'A'; // 메일 템플릿
+        $this->use_btn = $data['use_btn']?? '9'; // 버튼 사용;
 
-        $this->link_url = ($this->use_btn == 9) ? null : $data['link_url']; // 버튼사용 할때 링크
+        $this->link_url = ($this->use_btn == 9) ? null : $data['link_url'] ?? null; // 버튼사용 할때 링크
 
         $this->contents = $data['contents']; // 메일 내용
 
-        if ($data['send'] === 'Y') { // 발송 할때
+        if (($data['send']) ?? '' === 'Y') { // 발송 할때
             $thread = $this->thread ?? 0;
 
             $this->send_date = now();

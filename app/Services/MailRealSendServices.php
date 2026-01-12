@@ -17,7 +17,8 @@ class MailRealSendServices extends AppServices
 {
     private $mailConfig;
 
-    private $secretariatMail = 'allergy@allergy.or.kr'; // 학회사무국 메일
+    private $secretariatMail = 'kaaaci@naver.com'; // 학회사무국 메일
+//    private $secretariatMail = 'allergy@allergy.or.kr'; // 학회사무국 메일
 
     private $plannerMail = ''; // 기획자 메일
 
@@ -36,11 +37,11 @@ class MailRealSendServices extends AppServices
                 'body' => $mailData['body'],
             ],
 
-            [ // 기획자
-                'receiver_name' => $mailData['receiver_name'],
-                'receiver_email' => $this->plannerMail,
-                'body' => $mailData['body'],
-            ],
+//            [ // 기획자
+//                'receiver_name' => $mailData['receiver_name'],
+//                'receiver_email' => $this->plannerMail,
+//                'body' => $mailData['body'],
+//            ],
         ];
     }
 
@@ -51,27 +52,30 @@ class MailRealSendServices extends AppServices
                 $subject = '['.env('APP_NAME').'] 회원가입을 축하 드립니다.';
 
                 $data[] = $mailData;
-//                $data = array_merge($data, $this->mailSendTartgetAppend($mailData));
+                $data = array_merge($data, $this->mailSendTartgetAppend($mailData));
                 break;
 
             case 'forget-password':
                 $subject = '['.env('APP_NAME').'] 임시 비밀번호 안내 드립니다.';
 
                 $data[] = $mailData;
-//                $data = array_merge($data, $this->mailSendTartgetAppend($mailData));
                 break;
 
             case 'fee-ok':
                 $subject = '['.env('APP_NAME').'] 회비 납부가 정상적으로 완료되었습니다.';
 
                 $data[] = $mailData;
-//                $data = array_merge($data, $this->mailSendTartgetAppend($mailData));
                 break;
             case 'fee-request':
                 $subject = '['.env('APP_NAME').'] 회비 입금 요청 드립니다.';
 
                 $data[] = $mailData;
-//                $data = array_merge($data, $this->mailSendTartgetAppend($mailData));
+                break;
+
+            case 'overseas-create':
+                $subject = $additionalData['subject'];
+
+                $data[] = $mailData;
                 break;
 
             case 'registration-bank':
@@ -82,7 +86,6 @@ class MailRealSendServices extends AppServices
                 $subject = $additionalData['subject'];
 
                 $data[] = $mailData;
-//                $data = array_merge($data, $this->mailSendTartgetAppend($mailData));
                 break;
 
             // 관리자 발송 메일
@@ -149,6 +152,10 @@ class MailRealSendServices extends AppServices
 
                     if (strpos($_SERVER['REMOTE_ADDR'], "218.235.94.247") !== false) {
                         $receiver_email = "jh2.park@m2community.co.kr";
+                    }
+
+                    if ($_SERVER['REMOTE_ADDR'] == '218.235.94.217') {
+                        $receiver_email = "sh.han@m2community.co.kr";
                     }
 
                     $stmt = $wiseUconnection->prepare("INSERT INTO NVREALTIMEACCEPT 

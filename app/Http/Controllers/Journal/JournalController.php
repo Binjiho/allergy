@@ -30,16 +30,17 @@ class JournalController extends Controller
         return view('journal.publication.upsert',$this->journalServices->upsertService($request));
     }
 
-    public function aard(Request $request)
-    {
-        view()->share(['sub_menu' => 'S4']);
-        return view('journal.aard');
-    }
     public function aair(Request $request)
     {
-        view()->share(['sub_menu' => 'S5']);
+        view()->share(['sub_menu' => 'S4']);
         return view('journal.aair');
     }
+    public function aard(Request $request)
+    {
+        view()->share(['sub_menu' => 'S5']);
+        return view('journal.aard');
+    }
+
     public function asSearch(Request $request)
     {
         view()->share(['sub_menu' => 'S6']);

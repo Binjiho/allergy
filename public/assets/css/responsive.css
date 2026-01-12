@@ -223,6 +223,32 @@
         flex: 0 0 auto;
         width: 100%;
     }
+
+    /* 25.12.17 수정, ma.kal */
+    .journal-list {
+        gap: 15px;
+    }
+    .journal-list > li {
+        padding: 20px;
+    }
+    .journal-list .iso {
+        font-size: 1.6rem;
+    }
+    .journal-list .btn-download {
+        padding: 8px 15px;
+        padding-right: 10px;
+    }
+
+    /*  국외학술대회참가신청::지원규정 및 선정 규정 */
+    .process-list{
+        flex-wrap: wrap;
+    }
+    .process-list > li {
+        width: calc(33.3333% - 34px);
+    }
+    .process-list > li:nth-of-type(4)::before {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 768px){
@@ -414,6 +440,10 @@
     .write-wrap li.n2 .form-con{
         width: 100%;
     }
+    .write-wrap .form-con .form-tit {
+        width: 100%;
+        border-left: 0;
+    }
     .write-wrap li.wide .form-tit,
     .write-wrap li.wide .form-con{
         width: 100%;
@@ -518,9 +548,6 @@
     .write-wrap .list-type > li{
         line-height: 1.5;
     }
-    .write-wrap .form-con .write-wrap li:not(:has(.form-tit)){
-        padding: 10px;
-    }
     
     /* input file custom */
     .filebox label{
@@ -604,7 +631,7 @@
         background: none;
     }
     .main-visual{
-        height: 290px;
+        height: auto;
         background-color: #dcebff;
     }
     .main-visual-text.inner-layer{
@@ -621,7 +648,7 @@
     .main-visual-tit .title{
         font-size: 25px;
     }
-    .main-visual-text img{
+    /* .main-visual-text img{
         filter: unset;
         left: 0;
         right: 0;
@@ -629,7 +656,33 @@
         bottom: 0;
         width: 100%;
         transform: translate(0);
+    } */
+    .main-visual-con{
+        min-height: initial;
     }
+     .main-visual-con01{
+        position: relative;
+        height: auto;
+     }
+     .main-visual-con .main-visual-text{
+        padding: 0;
+     }
+     .main-visual-con01 .main-visual-tit{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px 15px 0;
+     }
+     .main-visual-con01 .main-visual-text img{
+        position: static;
+        width: 100%;
+        right: 0;
+        transform: none;
+        filter: none;
+     }
+     .main-visual-text img{
+     }
 
     .main-visual .slider-attr{
         gap: 15px;
@@ -695,6 +748,36 @@
         padding: 20px 15px;
         border-radius: 5px 15px 15px;
         box-shadow: 0 0 5px 0 rgba(0, 38, 144, 0.2);
+    }
+    .main-board-conbox:has(.btn-more){
+        padding-top: 20px;
+    }
+    .main-board-conbox .btn.btn-more{
+        position: relative;
+        top: auto;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px;
+        padding: 12px 20px;
+        padding-right: 80px;
+        background-color: #003172;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.2;
+        color: #fff;
+    }
+    .main-board-conbox .btn.btn-more .icon{
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        margin: 0;
+        vertical-align: top;
+    }
+    .main-board-conbox .btn.btn-more .icon img{
+        content: url('/assets/image/main/ico_link_arrow.png');
+        vertical-align: top;
     }
     .main-board-menu{
         margin-bottom: 10px;
@@ -988,8 +1071,14 @@
         line-height: 1.3;
     }
     .notice-box img{
-        width: 120px;
-        margin-bottom: 10px;
+        width: 250px;
+        margin-bottom: 20px;
+    }
+    .notice-box .tit {
+        font-size: 16px;
+    }
+    .notice-box strong{
+        color: #003172;
     }
 
     /* sub visual */
@@ -1186,6 +1275,9 @@
     .sub-tab-wrap{
         position: relative;
         margin-bottom: 25px;
+    }
+    .sub-tab-wrap + .board-wrap{
+        margin-top: -10px;
     }
     .sub-tab-menu{
         justify-content: start;
@@ -2508,12 +2600,9 @@
     .journal-conbox .btn-reset .icon img{
         width: 12px;
     }
-    .journal-list{
-        gap: 15px;
-    }
+    
     .journal-list > li{
         width: 100%;
-        padding: 20px;
         border-radius: 3px;
     }
     .journal-list .cate{
@@ -2536,15 +2625,15 @@
         margin-top: 0;
     }
     .journal-list .iso{
+        margin-bottom: 10px;
         font-size: 14px;
     }
     .journal-list .keywords{
         margin-top: 0;
+        margin-bottom: 10px;
         font-size: 14px;
     }
     .journal-list .btn-download{
-        top: 20px;
-        right: 20px;
         padding: 5px 12px;
         padding-right: 10px;
         font-size: 12px;
@@ -3436,6 +3525,96 @@
     .center-list .text-wrap strong{
         font-size: 20px;
     }
+
+    /*  국외학술대회참가신청::지원규정 및 선정 규정 */
+    .cst-table th.m-hide,
+    .cst-table td.m-hide {
+        display: none !important;
+    }
+    .overseas-box {
+        padding: 15px;
+        font-size: 14px;
+    }
+    .overseas-box .btn-wrap {
+        margin-top: 10px;
+    }
+    .overseas-box .btn-wrap .btn img {
+        height: 20px;
+    }
+
+    .progress-title {
+        margin: 20px 0 10px;
+        font-size: 14px;
+        background-image: url('../image/sub/bg_progress_title01_m.png');
+    }
+    .progress-title.end {
+        background-image: url('../image/sub/bg_progress_title02_m.png');
+    }
+
+    .img-border-box {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    /* 국외학술대회참가신청::지원규정 및 선정 규정 */
+    .process-list{
+        gap: 20px 40px;
+        margin-top: 25px;
+    }
+    .process-list > li {
+        gap: 10px;
+        width: calc(50% - 20px);
+        padding: 15px 10px;
+    }
+    .process-list > li span {
+        font-size: 12px;
+    }
+    .process-list > li img {
+        max-height: 40px;
+    }
+    .process-list > li + li:before {
+        width: 22px;
+        height: 16px;
+        left: -20px;
+    }
+    .process-list > li:nth-of-type(4)::before {
+        display: block;
+    }
+    .process-list > li:nth-of-type(3)::before,
+    .process-list > li:nth-of-type(5)::before {
+        display: none;
+    }
+
+    /*  국외학술대회참가신청::신청내역 확인 및 결과보고 */
+    .overseas-list-title {
+        padding: 25px 15px;
+        margin: 20px 0 10px;
+        font-size: 17px;
+        background-image: url('../image/sub/bg_overseas_title01_m.png');
+    }
+    .overseas-list-title.past {
+        background-image: url('../image/sub/bg_overseas_title02_m.png');
+    }
+
+    .committee-conbox .term-wrap{
+        margin-top: 30px;
+        padding: 20px 15px;
+    }
+    .committee-conbox .term-conbox > .tit{
+        font-size: 16px;
+    }
+    .committee-conbox .term-conbox .list-type-decimal > li + li{
+        margin-top: 15px;
+    }
+    .committee-conbox .term-tit{
+        margin-top: 15px;
+    }
+    .committee-conbox .term-tit.fz-big{
+        margin-top: 30px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 480px){
@@ -3444,4 +3623,5 @@
         max-width: 100%;
         padding: 8px 12px;
     }
+
 }

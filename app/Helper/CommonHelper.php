@@ -62,14 +62,25 @@ if (!function_exists('denyRedirect')) {
 
 // 로그인 필요
 if (!function_exists('authRedirect')) {
-    function authRedirect($redirectUrl = null)
+    function authRedirect($redirectUrl = null, $msg = null)
     {
         $url = getDefaultUrl('auth');
         if ($redirectUrl) {
             $url .= '?ret_url=' . urlencode($redirectUrl);
         }
 
-        return errorRedirect('replace', 'auth', $url, '먼저 학회 홈페이지 로그인을 해주세요.');
+        // ajax 요청이 아닐때
+        if (!request()->ajax()) {
+            // 현재 URL을 세션에 저장
+            session(['previous_url' => request()->fullUrl()]);
+        }
+
+        $message = '먼저 학회 홈페이지 로그인을 해주세요.';
+        if(!empty($msg)){
+            $message = $msg;
+        }
+
+        return errorRedirect('replace', 'auth', $url, $message);
 //        return errorRedirect('replace', 'auth', null, '투표 대상자만 접근 가능합니다. 먼저 학회 홈페이지 로그인을 해주세요.');
     }
 }

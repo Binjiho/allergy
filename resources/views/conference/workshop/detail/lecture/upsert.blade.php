@@ -44,7 +44,7 @@
                                             <input type="hidden" name="thumbfile_del" id="thumbfile_del" value="" readonly>
                                             <input class="upload-name form-item" id="thumbfile_name" name="thumbfile_name" value="{{ $lecture->filename ?? '' }}" placeholder="파일첨부" readonly="readonly">
                                             <label for="thumbfile">파일 첨부</label>
-                                            <input type="file" id="thumbfile" name="thumbfile" class="file-upload" onchange="fileCheck(this,$('#fileName'))" data-accept="jpg|png|jpeg|gif|pdf|ppt|pptx">
+                                            <input type="file" id="thumbfile" name="thumbfile" class="file-upload" onchange="fileCheck(this,$('#fileName'))" data-accept="jpg|png|jpeg|gif|pdf|ppt|pptx|wma">
                                             @if (!empty($lecture->realfile))
                                                 <div class="attach-file">
                                                     <a href="{{ $lecture->downloadUrl() }}" class="link">{{ $lecture->filename }}</a>
@@ -124,11 +124,11 @@
                     $("#sosok").focus();
                     return false;
                 }
-                if (isEmpty($("#thumbfile_name").val())) {
-                    alert('강의원고를 업로드해주세요.');
-                    $("#thumbfile_name").focus();
-                    return false;
-                }
+                // if (isEmpty($("#thumbfile_name").val())) {
+                //     alert('강의원고를 업로드해주세요.');
+                //     $("#thumbfile_name").focus();
+                //     return false;
+                // }
                 boardSubmit();
             }
         });

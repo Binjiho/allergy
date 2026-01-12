@@ -10,6 +10,7 @@
             </p>
 
             <ul class="util-menu">
+                <li><a href="javascript:mailLogin();" class="btn btn-util color-type1">메일</a></li>
                 <li><a href="{{ env('APP_URL') }}" class="btn btn-util color-type17" target="_blank">{{ env('APP_NAME') }}</a></li>
                 <li><a href="javascript:logout();" class="btn btn-util color-type5">Logout</a></li>
             </ul>

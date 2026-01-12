@@ -98,7 +98,7 @@
                 </div>
                 <p>
                     상기 금액을 대한천식알레르기학회 <br>
-                    {{ $fee_list[0]->year }}년 {{ $target_category ?? '' }}로 정히 영수합니다.
+                    {{ !empty($fee_list[0]->payment_date) ? date('Y', strtotime($fee_list[0]->payment_date)) : $fee_list[0]->year }}년 {{ $target_category ?? '' }}로 정히 영수합니다.
                 </p>
                 <div class="date">
                     {{ !empty($fee_list[0]->payment_date) ? $fee_list[0]->payment_date->format('Y.m.d') : '' }}

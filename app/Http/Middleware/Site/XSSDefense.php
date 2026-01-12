@@ -36,7 +36,7 @@ class XSSDefense
 
                 case 'string':
                     // 문자열인 경우에만 HTMLPurifier를 사용하여 안전한 HTML로 변환
-                    $value = Purifier::clean($value);
+//                    $value = Purifier::clean($value);
                     $value = htmlspecialchars_decode($value);
                     break;
 

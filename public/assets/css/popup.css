@@ -68,6 +68,11 @@
     font-size: 1.4rem;
     letter-spacing: -0.05em;
 }
+.popup-footer button{
+    display: inline-block;
+    height: 100%;
+    padding: 0 5px;
+}
 .popup-footer .btn{
     position: absolute;
     top: 0;
@@ -783,5 +788,9 @@
         width: 35px;
         height: 35px;
         background-size: 10px;
+    }
+
+    .popup-con .img-responsive{
+        height: auto !important;
     }
 }

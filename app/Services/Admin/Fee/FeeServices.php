@@ -270,11 +270,16 @@ class FeeServices extends AppServices
 
             //평생회비 입금완료면 해당년도 연회비 해당없음
             if($fee->payment_status == 'Y' && $fee->category == 'C'){
-                $feeYear = Fee::where(['user_sid'=>$fee->user_sid, 'category'=>'B', 'level'=>$fee->level, 'del'=>'N', 'year'=>date('Y')])->first();
-                if(!empty($feeYear)){
-                    $feeYear->payment_status = 'E';
-                    $feeYear->update();
-                }
+                // 2. 평생회비가 있다면 당해년도 입회비/연회비(C가 아닌 것들)를 한 번에 '해당없음' 처리
+                Fee::where([
+                    'year' => date('Y'),
+                    'user_sid' => $fee->user_sid,
+                    'del' => 'N'
+                ])
+                ->whereNotIn('category', ['C'])
+                ->update([
+                    'payment_status' => 'E', // 해당없음
+                ]);
             }
 
             $this->dbCommit('관리자 - 회비 수정');
@@ -379,11 +384,16 @@ class FeeServices extends AppServices
 
             //평생회비 입금완료면 해당년도 연회비 해당없음
             if($fee->payment_status == 'Y' && $fee->category == 'C'){
-                $feeYear = Fee::where(['user_sid'=>$fee->user_sid, 'category'=>'B', 'level'=>$fee->level, 'del'=>'N', 'year'=>date('Y')])->first();
-                if(!empty($feeYear)){
-                    $feeYear->payment_status = 'E';
-                    $feeYear->update();
-                }
+                // 2. 평생회비가 있다면 당해년도 입회비/연회비(C가 아닌 것들)를 한 번에 '해당없음' 처리
+                Fee::where([
+                    'year' => date('Y'),
+                    'user_sid' => $fee->user_sid,
+                    'del' => 'N'
+                ])
+                ->whereNotIn('category', ['C'])
+                ->update([
+                    'payment_status' => 'E', // 해당없음
+                ]);
             }
 
             $this->dbCommit('관리자 - 회비 납부상태 수정');

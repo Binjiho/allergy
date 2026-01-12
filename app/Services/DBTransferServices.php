@@ -13,9 +13,12 @@ use App\Models\MailFile;
 use App\Models\MailSend;
 use App\Models\Referer;
 use App\Models\User;
+use App\Models\UserOff;
 use App\Models\Fee;
-use App\Models\OldFee;
+use App\Models\Education;
 use App\Models\Workshop;
+use App\Models\Lecture;
+use App\Models\Hospital;
 use App\Models\Registration;
 use App\Models\Abs;
 use App\Models\Affiliations;
@@ -44,30 +47,33 @@ class DBTransferServices extends AppServices
             /* 관리자 영역 */
 //            $this->userLevelUpdate(); // 회원 등급 업데이트
 //            $this->userPasswordUpdate(); // 회원 비밀번호 일괄 업데이트
-//            $this->userCreatedAtUpdate(); // 회원 가입날짜 업데이트
+//            $this->userMajorUpdate(); // 회원 가입날짜 업데이트
+//            $this->userMetaUpdate(); // 회원 가입날짜 업데이트
 
-            $this->userTransfer(); // 회원 정보
-//            $this->userComTransfer(); // 회원 정보
+//            $this->userTransfer(); // 회원 정보
+//            $this->offUserTransfer();
+
 //            $this->feeTransfer(); // 회비 정보
-//            $this->oldfeeTransfer(); // 회비 정보
 
 //            $this->mailAddressTransfer(); // 메일 주소록
 //            $this->mailAddressDetailTransfer(); // 메일 주소록 상세
 //
-//            $this->oldMailTransfer(); // 메일목록
 //            $this->mailTransfer(); // 메일목록
 //            $this->mailSendTransfer(); // 메일발송 리스트
             /* END 관리자 영역 */
 
 //            $this->boardNotice(); // 공지사항 게시판
+//            $this->boardBranch(); // 지회 게시판
 //            $this->boardTreatment(); // 진료지침게시판
 //            $this->boardPhoto(); // 포토갤러리 게시판
 //            $this->boardJournal(); // 권호수 게시판
 //            $this->boardWorkshop(); // 학술대회 게시판
+//            $this->hospitalTransfer();
 
             /* 학술대회 영역 */
+//            $this->pastWorkshopTransfer(); // 학술대회
 //            $this->workshopTransfer(); // 학술대회
-//            $this->regTransfer(); // 사전등록
+//            $this->workshopRegistrationTransfer(); // 사전등록
 //            $this->absTransfer(); // 초록등록
 //            $this->affiTransfer(); // affi
 //            $this->authorTransfer(); // author
@@ -144,19 +150,39 @@ class DBTransferServices extends AppServices
         }
     }
 
-    private function userCreatedAtUpdate()
+    private function userMajorUpdate()
     {
         $this->oldDBConnection();
-        $old_user = DB::select(DB::raw("select * from member_com "));
+        $old_user = DB::select(DB::raw("select * from if_users "));
         $custom_old_user = [];
 
         foreach ($old_user as $key => $row) {
-            $user_id = $row->USERID;
+            $user_id = $row->user_login;
+
+            switch ($row->major_field){
+                case '1010':
+                    $user_major = 'A';
+                    break;
+                case '1020':
+                    $user_major = 'B';
+                    break;
+                case '1030':
+                    $user_major = 'C';
+                    break;
+                case '1040':
+                    $user_major = 'D';
+                    break;
+                case '1050':
+                    $user_major = 'E';
+                    break;
+                default:
+                    $user_major = 'Z';
+                    break;
+            }
 
             $custom_old_user[] = [
                 'user_id' => $user_id,
-                'created_at' => $row->WORK_DATE ?? null,
-                'updated_at' => $row->UPDATE_DATE ?? null,
+                'major' => $user_major ?? null,
             ];
         }
 
@@ -170,8 +196,161 @@ class DBTransferServices extends AppServices
             foreach ($custom_old_user as $key => $row) {
                 $user = User::withTrashed()->where(['id'=> $row['user_id']])->first();
                 if($user){
-                    $user->created_at = !empty($row['created_at']) ? $row['created_at'] : null;
-                    $user->updated_at = !empty($row['updated_at']) ? $row['updated_at'] : null;
+                    $user->major = !empty($row['major']) ? $row['major'] : null;
+
+                    $user->update();
+
+                }
+
+                $cnt = ($key + 1);
+                var_dump("INSERT users {$cnt} 번째 <br>");
+            }
+
+            DB::commit();
+            var_dump("<br><br> INSERT users FINISH");
+        } catch (\Exception $e) {
+            $this->dbRollback($e);
+        }
+    }
+    private function userMetaUpdate()
+    {
+        $this->oldDBConnection();
+        $old_user = DB::select(DB::raw("select * from if_users "));
+        $custom_old_user = [];
+
+        foreach ($old_user as $key => $row) {
+            $user_id = $row->user_login;
+
+            // meta_data 필드에 JSON 문자열이 있다고 가정합니다.
+            $meta_data = json_decode($row->meta_data, true);
+
+//            $home_zipcode = null;
+//            $home_address1 = null;
+//            $home_address2 = null;
+//            $org_zipcode = null;
+//            $org_address1 = null;
+//            $org_address2 = null;
+//            $of_tel = null;
+//            $of_fax = null;
+//            $major_field_etc = null;
+//            $special_no = null;
+            $dtl_sp_no = null;
+            $org_name_en = null;
+//            $join_dt = null;
+//            $graduated_dt = null;
+//            $org_position = null;
+//            $last_login_dt = null;
+//            $admin_memo = null;
+
+            if (!empty($meta_data['home_zipcode']) ) {
+                $home_zipcode = $meta_data['home_zipcode'];
+            }
+            if (!empty($meta_data['home_address1']) ) {
+                $home_address1 = $meta_data['home_address1'];
+            }
+            if (!empty($meta_data['home_address2']) ) {
+                $home_address2 = $meta_data['home_address2'];
+            }
+            if (!empty($meta_data['org_zipcode']) ) {
+                $org_zipcode = $meta_data['org_zipcode'];
+            }
+            if (!empty($meta_data['org_address1']) ) {
+                $org_address1 = $meta_data['org_address1'];
+            }
+            if (!empty($meta_data['org_address2']) ) {
+                $org_address2 = $meta_data['org_address2'];
+            }
+            if (!empty($meta_data['of_tel']) ) {
+                $of_tel = $meta_data['of_tel'];
+            }
+            if (!empty($meta_data['of_fax']) ) {
+                $of_fax = $meta_data['of_fax'];
+            }
+            if (!empty($meta_data['of_fax']) ) {
+                $of_fax = $meta_data['of_fax'];
+            }
+            if (!empty($meta_data['major_field_etc']) ) {
+                $major_field_etc = $meta_data['major_field_etc'];
+            }
+            if (!empty($meta_data['special_no']) ) {
+                $special_no = $meta_data['special_no'];
+            }
+            if (!empty($meta_data['dtl_sp_no']) ) {
+                $dtl_sp_no = $meta_data['dtl_sp_no'];
+            }
+            if (!empty($meta_data['org_name_en']) ) {
+                $org_name_en = $meta_data['org_name_en'];
+            }
+            if (!empty($meta_data['join_dt']) ) {
+                $join_dt = $meta_data['join_dt']; //입회일
+            }
+            if (!empty($meta_data['graduated_dt']) ) {
+                $graduated_dt = $meta_data['graduated_dt'];
+            }
+            if (!empty($meta_data['org_position']) ) {
+                $org_position = $meta_data['org_position'];
+            }
+            if (!empty($meta_data['last_login_dt']) ) {
+                $last_login_dt = $meta_data['last_login_dt'];
+            }
+            if (!empty($meta_data['admin_memo']) ) {
+                $admin_memo = $meta_data['admin_memo'];
+            }
+
+            $custom_old_user[] = [
+                'user_id' => $user_id,
+                'home_zipcode' => $home_zipcode ?? null,
+                'home_address' => $home_address1 ?? null,
+                'home_address2' => $home_address2 ?? null,
+
+                'major_etc' => $major_field_etc ?? null,
+                'special_number' => $special_no ?? null,
+                'bun_number' => $dtl_sp_no ?? null,
+                'org_name_en' => $org_name_en ?? null,
+                'join_date' => $join_dt ?? null,
+                'graduate_date' => $graduated_dt ?? null,
+
+                'position' => $org_position ?? null,
+                'company_zipcode' => $org_zipcode ?? null,
+                'company_address' => $org_address1 ?? null,
+                'company_address2' => $org_address2 ?? null,
+                'companyTel' => $of_tel ?? null,
+                'companyFax' => $of_fax ?? null,
+
+                'memo' => $admin_memo ?? null,
+                'login_at' => $last_login_dt ?? null,
+            ];
+        }
+
+        $this->activationDBConnection();
+        $this->transaction();
+
+        try {
+            $totUser = number_format(count($custom_old_user));
+            var_dump("INSERT users START: {{$totUser}} 개 데이터 <br><br>");
+
+            foreach ($custom_old_user as $key => $row) {
+                $user = User::withTrashed()->where(['id'=> $row['user_id']])->first();
+                if($user){
+//                    $user->home_zipcode = !empty($row['home_zipcode']) ? $row['home_zipcode'] : null;
+//                    $user->home_address = !empty($row['home_address']) ? $row['home_address'] : null;
+//                    $user->home_address2 = !empty($row['home_address2']) ? $row['home_address2'] : null;
+//
+//                    $user->major_etc = !empty($row['major_etc']) ? $row['major_etc'] : null;
+//                    $user->special_number = !empty($row['special_number']) ? $row['special_number'] : null;
+                    $user->bun_number = !empty($row['bun_number']) ? $row['bun_number'] : null;
+                    $user->company_en = !empty($row['org_name_en']) ? $row['org_name_en'] : null;
+//                    $user->join_date = !empty($row['join_date']) ? $row['join_date'] : null;
+//                    $user->graduate_date = !empty($row['graduate_date']) ? $row['graduate_date'] : null;
+//
+//                    $user->position = !empty($row['position']) ? $row['position'] : null;
+//                    $user->company_zipcode = !empty($row['company_zipcode']) ? $row['company_zipcode'] : null;
+//                    $user->company_address = !empty($row['company_address']) ? $row['company_address'] : null;
+//                    $user->company_address2 = !empty($row['company_address2']) ? $row['company_address2'] : null;
+//                    $user->companyTel = !empty($row['companyTel']) ? $row['companyTel'] : null;
+//
+//                    $user->companyFax = !empty($row['companyFax']) ? $row['companyFax'] : null;
+//                    $user->memo = !empty($row['memo']) ? $row['memo'] : null;
 
                     $user->update();
 
@@ -220,6 +399,219 @@ class DBTransferServices extends AppServices
     {
         $this->oldDBConnection();
         $old_notice = DB::select(DB::raw("select * from if_users ORDER BY seq_id"));
+        $custom_old_notice = [];
+
+        // 팝업 사용 게시판 없어서 팝업은 안옮김
+        foreach ($old_notice as $row) {
+            $del = $row->show_hide == 'show' ? 'N' : 'Y';
+            $created_at = $row->create_dt ?? null;
+            $updated_at = $row->update_dt ?? null;
+
+            switch ($row->user_class){
+                case '2':
+                    $user_level = 'B';
+                    break;
+                case '3':
+                    $user_level = 'A';
+                    break;
+                case '4':
+                    $user_level = 'C';
+                    break;
+                case '5':
+                    $user_level = 'D';
+                    break;
+                default:
+                    $user_level = 'N';
+                    break;
+            }
+
+            switch ($row->user_state){
+                case '30':
+                    $user_confirm = 'Y';
+                    break;
+                default:
+                    $user_confirm = 'N';
+                    break;
+            }
+
+            switch ($row->major_field){
+                case '1010':
+                    $user_major = 'A';
+                    break;
+                case '1020':
+                    $user_major = 'B';
+                    break;
+                case '1030':
+                    $user_major = 'C';
+                    break;
+                case '1040':
+                    $user_major = 'D';
+                    break;
+                case '1050':
+                    $user_major = 'E';
+                    break;
+                default:
+                    $user_major = 'Z';
+                    break;
+            }
+
+            if(!empty($row->name_en)){
+                $eng_name = $row->name_en;
+
+                $lastSpacePosition = strrpos($eng_name, ' ');
+
+                if ($lastSpacePosition === false) {
+                    $firstname = "";
+                    $lastname = $eng_name;
+                } else {
+                    $lastname = substr($eng_name, $lastSpacePosition + 1);
+                    $firstname = trim(substr($eng_name, 0, $lastSpacePosition));
+                }
+            }
+
+            // meta_data 필드에 JSON 문자열이 있다고 가정합니다.
+            $meta_data = json_decode($row->meta_data, true);
+
+            if (!empty($meta_data['gender']) ) {
+                $gender = $meta_data['gender'];
+            }
+            if (!empty($meta_data['home_zipcode']) ) {
+                $home_zipcode = $meta_data['home_zipcode'];
+            }
+            if (!empty($meta_data['home_address1']) ) {
+                $home_address1 = $meta_data['home_address1'];
+            }
+            if (!empty($meta_data['home_address2']) ) {
+                $home_address2 = $meta_data['home_address2'];
+            }
+            if (!empty($meta_data['org_zipcode']) ) {
+                $org_zipcode = $meta_data['org_zipcode'];
+            }
+            if (!empty($meta_data['org_address1']) ) {
+                $org_address1 = $meta_data['org_address1'];
+            }
+            if (!empty($meta_data['org_address2']) ) {
+                $org_address2 = $meta_data['org_address2'];
+            }
+            if (!empty($meta_data['of_tel']) ) {
+                $of_tel = $meta_data['of_tel'];
+            }
+            if (!empty($meta_data['of_fax']) ) {
+                $of_fax = $meta_data['of_fax'];
+            }
+            if (!empty($meta_data['of_fax']) ) {
+                $of_fax = $meta_data['of_fax'];
+            }
+            if (!empty($meta_data['major_field_etc']) ) {
+                $major_field_etc = $meta_data['major_field_etc'];
+            }
+            if (!empty($meta_data['special_no']) ) {
+                $special_no = $meta_data['special_no'];
+            }
+            if (!empty($meta_data['dtl_sp_no']) ) {
+                $dtl_sp_no = $meta_data['dtl_sp_no'];
+            }
+            if (!empty($meta_data['join_dt']) ) {
+                $join_dt = $meta_data['join_dt']; //입회일
+            }
+            if (!empty($meta_data['graduated_dt']) ) {
+                $graduated_dt = $meta_data['graduated_dt'];
+            }
+            if (!empty($meta_data['org_position']) ) {
+                $org_position = $meta_data['org_position'];
+            }
+            if (!empty($meta_data['last_login_dt']) ) {
+                $last_login_dt = $meta_data['last_login_dt'];
+            }
+            if (!empty($meta_data['admin_memo']) ) {
+                $admin_memo = $meta_data['admin_memo'];
+            }
+
+            $custom_old_notice[] = [
+                'del' => $del ?? 'N',
+                'level' => $user_level ?? 'N',
+                'gender' => $gender ?? null,
+                'confirm' => $user_confirm ?? 'N',
+                'sid' => $row->seq_id ?? null,
+
+
+                'id' => $row->user_login ?? null,
+                'name_kr' => $row->name_ko ?? null,
+                'first_name' => $firstname ?? null,
+                'last_name' => $lastname ?? null,
+                'name_han' => $row->name_zh ?? null,
+
+                'is_national' => ($row->is_foreign_member == 'NO') ? 'N' : 'Y',
+                'birth_date' => $row->user_birth ?? null,
+                'phone' => $row->user_mobile ?? null,
+                'smsReception' => ($row->sms_service == 'Y') ? 'Y' : 'N',
+                'email' => $row->user_email ?? null,
+
+                'emailReception' => ($row->mailing_service == 'Y') ? 'Y' : 'N',
+                'home_zipcode' => $home_zipcode ?? null,
+                'home_address' => $home_address1 ?? null,
+                'home_address2' => $home_address2 ?? null,
+                'license_number' => $row->license_no ?? null,
+
+                'major' => $user_major ?? 'Z',
+                'major_etc' => $major_field_etc ?? null,
+                'special_number' => $special_no ?? null,
+                'bun_number' => $dtl_sp_no ?? null,
+                'join_date' => $join_dt ?? null,
+
+                'graduate_date' => $graduated_dt ?? null,
+                'school' => $row->graduated_univ ?? null,
+                'position' => $org_position ?? null,
+                'company_kr' => $row->org_name ?? null,
+                'company_en' => $row->org_name ?? null,
+
+                'company_zipcode' => $org_zipcode ?? null,
+                'company_address' => $org_address1 ?? null,
+                'company_address2' => $org_address2 ?? null,
+                'companyTel' => $of_tel ?? null,
+                'companyFax' => $of_fax ?? null,
+                'memo' => $admin_memo ?? null,
+
+                'created_at' => $created_at ?? null,
+                'updated_at' => $updated_at ?? null,
+                'login_at' => $last_login_dt ?? null,
+            ];
+        }
+
+        $this->activationDBConnection();
+        $this->transaction();
+
+        try {
+            $totNotice = number_format(count($custom_old_notice));
+            var_dump("INSERT users (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
+
+            foreach ($custom_old_notice as $key => $row) {
+
+                $board = new User();
+                $board->setByData($row);
+
+                // 추가 or 변경 데이터
+                $board->created_at = $row['created_at'];
+                $board->updated_at = $row['updated_at'];
+                $board->login_at = $row['login_at'];
+
+                $board->save();
+
+                $cnt = ($key + 1);
+                var_dump("INSERT users (회원db) {$cnt} 번째 <br>");
+            }
+
+            DB::commit();
+            var_dump("<br><br> INSERT boards FINISH (공지사항)");
+        } catch (\Exception $e) {
+            $this->dbRollback($e);
+        }
+    }
+
+    private function offUserTransfer()
+    {
+        $this->oldDBConnection();
+        $old_notice = DB::select(DB::raw("select * from if_users_offline ORDER BY seq_id"));
         $custom_old_notice = [];
 
         // 팝업 사용 게시판 없어서 팝업은 안옮김
@@ -353,7 +745,7 @@ class DBTransferServices extends AppServices
                 'gender' => $gender ?? null,
                 'confirm' => $user_confirm ?? 'N',
 
-                
+
                 'id' => $row->user_login ?? null,
                 'name_kr' => $row->name_ko ?? null,
                 'first_name' => $firstname ?? null,
@@ -402,11 +794,11 @@ class DBTransferServices extends AppServices
 
         try {
             $totNotice = number_format(count($custom_old_notice));
-            var_dump("INSERT users (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
+            var_dump("INSERT users_off (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
 
             foreach ($custom_old_notice as $key => $row) {
 
-                $board = new User();
+                $board = new UserOff();
                 $board->setByData($row);
 
                 // 추가 or 변경 데이터
@@ -417,294 +809,115 @@ class DBTransferServices extends AppServices
                 $board->save();
 
                 $cnt = ($key + 1);
-                var_dump("INSERT users (회원db) {$cnt} 번째 <br>");
+                var_dump("INSERT users_off (회원db) {$cnt} 번째 <br>");
             }
 
             DB::commit();
-            var_dump("<br><br> INSERT boards FINISH (공지사항)");
-        } catch (\Exception $e) {
-            $this->dbRollback($e);
-        }
-    }
-    private function userComTransfer()
-    {
-        $this->oldDBConnection();
-        $old_user = DB::select(DB::raw("select * from member_com "));
-        $custom_old_user = [];
-
-        foreach ($old_user as $key => $row) {
-
-
-
-            switch ($row->BIZ_KIND){
-                case '중소기업':
-                    $rank = '중소기업';
-                    $gubun = 'S';
-                    $grade = 'A';
-                    $level = 'SA';
-                    $is_admin = 'N';
-                    break;
-                case '기관/관공서':
-                    $rank = '국가기관,공기업';
-                    $gubun = 'S';
-                    $grade = 'B';
-                    $level = 'SB';
-                    $is_admin = 'N';
-                    break;
-                case '대기업':
-                    $rank = '대기업';
-                    $gubun = 'S';
-                    $grade = 'C';
-                    $level = 'SC';
-                    $is_admin = 'N';
-                    break;
-                default:
-                    $rank = '단체회원';
-                    $gubun = 'G';
-                    $grade = 'G';
-                    $level = 'G';
-                    $is_admin = 'N';
-                    break;
-            }
-
-
-
-//            $created_at = date('Y-m-d H:i:s', $row->signdate);
-//            $updated_at = date('Y-m-d H:i:s', empty($row->modifydate) ? $row->signdate : $row->modifydate);
-//            $password_at = date('Y-m-d H:i:s', $row->pwd_modifydate);
-
-            // kosenv1234
-            $pwd = '$2y$10$pn6HfD5VQg9yiBc3etC39ufA2UMW3zR7P/bjvSoFb.DyRDa2TiMYK';
-            $custom_old_user[] = [
-                'userno' => $row->USERNO,
-                'gubun' => $gubun,
-                'grade' => $grade,
-                'level' => $level,
-
-                'id' => $row->USERID,
-                'password' => $pwd,
-                'name_kr' => $row->STAFF_NAME,
-                'name_en' => null,
-                'birth' => null,
-                'sex' => null,
-
-                'email' => $row->STAFF_EMAIL,
-                'emailReception' => $row->agree_email,
-                'phone' => $row->STAFF_TEL,
-                'smsReception' => $row->agree_sms,
-                'post' => null,
-
-                'company' => $row->COMP_NAME,
-                'ceo' => $row->CEO,
-                'department' => null,
-                'business' => $row->BIZ_TYPE,
-                'job' => null,
-
-                'position' => null,
-                'position_etc' => null,
-                'company_zipcode' => $row->ZIPCODE,
-                'company_address' => $row->ADDRESS1,
-                'company_address2' => $row->ADDRESS2,
-
-                'companyTel' => $row->STAFF_TEL,
-                'companyFax' => null,
-                'manager' => $row->STAFF_NAME,
-                'managerTel' => $row->STAFF_TEL,
-                'managerEmail' => $row->STAFF_EMAIL,
-                'home_zipcode' =>null,
-
-                'home_address' => null,
-                'home_address2' => null,
-                'homeTel' => null,
-                'degree' => null,
-                'graduate' => null,
-
-//                'degreeCountry' => $row->ACQ_COUNTRY,
-//                'degreeAgency' => $row->ACQ_AGENCY,
-//                'degreeDept' => $row->DEPT,
-//                'tutor' => $row->TUTOR,
-//                'journalKor' => $row->THESIS_KOR,
-//                'journalEng' => $row->THESIS_ENG,
-
-                'imsi_password' => 'Y',
-                'memo' => $row->MEMO,
-                'is_admin' => $is_admin,
-                'del_type' => null,
-                'del' => 'N',
-                'del_request_at' => null,
-
-                'login_at' => null,
-                'password_at' => null,
-                'created_at' => null,
-                'updated_at' => null,
-                'deleted_at' => null,
-            ];
-
-        }
-
-//        dd($custom_old_user);
-
-        $this->activationDBConnection();
-        $this->transaction();
-
-        try {
-            $totUser = number_format(count($custom_old_user));
-            var_dump("INSERT users START: {{$totUser}} 개 데이터 <br><br>");
-
-            foreach ($custom_old_user as $key => $row) {
-                $user = new User();
-                $user->timestamps = false;
-
-                $user->setByData($row);
-
-                // 추가 or 변경 데이터
-//                $user->lang = $row['lang'];
-//                $user->level = $row['level'];
-//                $user->confirm = $row['confirm'];
-//                $user->del_type = $row['del_type'];
-//
-//                $user->created_at = $row['created_at'];
-//                $user->updated_at = $row['updated_at'];
-//                $user->password_at = $row['password_at'];
-//                $user->deleted_at = $row['deleted_at'];
-//                $user->out_at = $row['out_at'];
-//
-//                $user->imsi_password = 'Y';
-                $user->userno = $row['userno'];
-
-                $user->save();
-
-                $cnt = ($key + 1);
-                var_dump("INSERT users {$cnt} 번째 <br>");
-            }
-
-            DB::commit();
-            var_dump("<br><br> INSERT users FINISH");
+            var_dump("<br><br> INSERT users_off FINISH (공지사항)");
         } catch (\Exception $e) {
             $this->dbRollback($e);
         }
     }
 
-    private function oldfeeTransfer()
+    private function feeTransfer()
     {
         $this->oldDBConnection();
-        $old_fee = DB::select(DB::raw("SELECT od.product_name, oh.userid, op.*
-                FROM order_pay op
-                INNER JOIN order_detail od
-                    ON (op.order_no = od.order_no)
-                INNER JOIN order_head oh
-                    ON (op.order_no = oh.order_no)
-                -- inner join member u
-                    -- on (oh.userid = u.userid )
-        "));
-        $custom_old_fee = [];
+        $old_notice = DB::select(DB::raw("select * from if_user_payment WHERE item_type IN ('ANN', 'PER', 'ENT') ORDER BY pay_id"));
+        $custom_old_notice = [];
 
-        foreach ($old_fee as $key => $row) {
-            switch ($row->product_name) {
-                case '정회원 입회비':
-                    $gubun = 'N';
-                    $category = 'A';
-                    break;
-                case '정회원 연회비':
-                    $gubun = 'N';
+        // 팝업 사용 게시판 없어서 팝업은 안옮김
+        foreach ($old_notice as $row) {
+
+            $product_id = $row->product_id;
+            if($product_id > 0){
+                $old_item = DB::table('if_item_product')
+                    ->where('product_id', $product_id)
+                    ->first();
+                $user_class_id = $old_item->user_class_id;
+            }
+
+            $created_at = $row->create_dt ?? null;
+
+            switch ($row->item_type){
+                case 'ANN':
                     $category = 'B';
                     break;
-                case '종신회비':
-                    $gubun = 'N';
+                case 'PER':
                     $category = 'C';
                     break;
-                case '중소기업 연회비':
-                    $gubun = 'S';
-                    $category = 'B';
-                    break;
-                case '공기관 연회비':
-                    $gubun = 'S';
-                    $category = 'B';
-                    break;
-                case '대기업 연회비':
-                    $gubun = 'S';
-                    $category = 'B';
-                    break;
-                case '단체회원 연회비':
-                    $gubun = 'G';
-                    $category = 'B';
+                case 'ENT':
+                    $category = 'A';
                     break;
                 default:
-                    $gubun = 'Z'; // 이외 결제항목은 skip
+                    $category = 'B';
                     break;
             }
 
-            if($gubun == 'Z') continue;
+            switch ($row->pay_state){
+                case '1000':
+                    $payment_status = 'N';
+                    break;
+                case '9000':
+                    $payment_status = 'Y';
+                    break;
+                default:
+                    $payment_status = 'N';
+                    break;
+            }
 
-//            switch ($row->pay_kind) {
-//                case 'CARD':
-//                    $payment_method = 'Card';
-//                    break;
-//                case 'EASYPAY':
-//                    $payment_method = 'EASYPAY';
-//                    break;
-//                case 'VIRT':
-//                    $payment_method = 'VBank';
-//                    break;
-//                default:
-//                    $payment_method = 'Bank'; // 이외 결제항목은 skip
-//                    break;
-//            }
+            // meta_data 필드에 JSON 문자열이 있다고 가정합니다.
+            $meta_data = json_decode($row->meta_data, true);
 
-            $custom_old_fee[] = [
-                'user_id' => $row->userid,
-                'year' => substr($row->pay_date, 0, 4),
-                'gubun' => $gubun ?? null,
+            if (!empty($meta_data['admin_memo']) ) {
+                $admin_memo = $meta_data['admin_memo'];
+            }
+            if (!empty($meta_data['order_code']) ) {
+                $order_code = $meta_data['order_code'];
+            }
+
+            $custom_old_notice[] = [
                 'category' => $category ?? null,
+                'user_sid' => $row->user_id ?? null,
+                'memo' => $admin_memo ?? null,
+                'payment_status' => $payment_status ?? 'N',
+                'payment_method' => ($row->pay_method == 'BANK_TR') ? 'B' : 'C',
 
-                'price' => $row->pay_amt,
-                'pay_kind' => $row->pay_kind,
-                'payment_status' => 'Y',
+                'year' => $row->item_year ?? null,
                 'payment_date' => $row->pay_date ?? null,
-                'depositor' => $row->depositor ?? null,
-                'deposit_date' => !empty($row->depositor) ? $row->pay_date : null,
+                'price' => $row->pay_amount ?? null,
+                'sDate' => $row->pay_date ?? null,
+                'eDate' => $row->expiry_date ?? null,
 
-                'created_at' => empty($row->work_date) ? null : $row->work_date,
-                'updated_at' => empty($row->update_date) ? null : $row->update_date,
+                'resultCode' => $order_code ?? null,
+                'level' => ($user_class_id == '2') ? 'B' : 'A',
+
+                'created_at' => $created_at ?? null,
             ];
-
         }
-
 
         $this->activationDBConnection();
         $this->transaction();
 
         try {
-            $totFee = number_format(count($custom_old_fee));
-            var_dump("INSERT fees START: {{$totFee}} 개 데이터 <br><br>");
+            $totNotice = number_format(count($custom_old_notice));
+            var_dump("INSERT fee (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
 
-            foreach ($custom_old_fee as $key => $row) {
-                $user = User::withTrashed()->where('id', $row['user_id'])->first();
+            foreach ($custom_old_notice as $key => $row) {
 
-                if (empty($user->sid)) {
-                    continue;
-                }
-
-                $row['user_sid'] = $user->sid;
-
-                $fee = new OldFee();
-                $fee->setByData($row);
+                $board = new Fee();
+                $board->setByTransfer($row);
 
                 // 추가 or 변경 데이터
-//                $fee->tid = $row['tid'];
+                $board->created_at = $row['created_at'];
 
-                $fee->save();
+                $board->save();
 
                 $cnt = ($key + 1);
-                var_dump("INSERT fees {$cnt} 번째 <br>");
+                var_dump("INSERT fee (회원db) {$cnt} 번째 <br>");
             }
 
             DB::commit();
-
-            // 삭제회원 회비는 삭제
-//            Fee::whereIn('u_sid', User::onlyTrashed()->pluck('sid'))->delete();
-
-            var_dump("<br><br> INSERT fees FINISH");
+            var_dump("<br><br> INSERT fee FINISH (공지사항)");
         } catch (\Exception $e) {
             $this->dbRollback($e);
         }
@@ -798,148 +1011,26 @@ class DBTransferServices extends AppServices
             $this->dbRollback($e);
         }
     }
-
-    private function oldMailTransfer()
-    {
-        $this->oldDBConnection();
-        $old_mail = DB::select(DB::raw("select * from mail_request ORDER BY IDX"));
-        $custom_old_mail = [];
-
-        foreach ($old_mail as $key => $row) {
-
-            $custom_old_mail[] = [
-                'MAIL_SID' => $row->MAIL_SID,
-                'SUBJECT' => $row->SUBJECT,
-                'CONTENT' => $row->CONTENT,
-                'CONTENT_URL' => $row->CONTENT_URL ?? null,
-                'SENDER_NAME' => $row->SENDER_NAME,
-                'SENDER_EMAIL' => $row->SENDER_EMAIL,
-
-                'created_at' => empty($row->WORK_DATE) ? null : $row->WORK_DATE,
-            ];
-        }
-
-        $this->activationDBConnection();
-        $this->transaction();
-
-        try {
-            $totMail = number_format(count($custom_old_mail));
-            var_dump("INSERT mail_lists START: {{$totMail}} 개 데이터 <br><br>");
-
-            foreach ($custom_old_mail as $key => $row) {
-                $mail = new MailOldList();
-                $mail->setByData($row);
-                $mail->save();
-
-                $cnt = ($key + 1);
-                var_dump("INSERT mail_lists {$cnt} 번째 <br>");
-            }
-
-            DB::commit();
-            var_dump("<br><br> INSERT mail_lists FINISH");
-        } catch (\Exception $e) {
-            $this->dbRollback($e);
-        }
-    }
+    
     private function mailTransfer()
     {
         $this->oldDBConnection();
-        $old_mail = DB::select(DB::raw("select * from send_email ORDER BY signdate"));
+        $old_mail = DB::select(DB::raw("select * from if_mail_content ORDER BY create_dt"));
         $custom_old_mail = [];
 
         foreach ($old_mail as $key => $row) {
-            switch ($row->template) {
-                case '1':
-                    $template = 'A';
-                    break;
 
-                case '2':
-                    $template = 'B';
-                    break;
-
-                case '3':
-                    $template = 'C';
-                    break;
-            }
-
-            switch ($row->to_name_group) {
-                case '1': // 회원발송
-                    $send_type = 1;
-                    $level = empty($row->member_gubun) ? [] : explode(',', $row->member_gubun);
-                    break;
-
-                case '3': // 주소록발송
-                    $send_type = 2;
-
-                    // 주소록 3개 뿐이라 그외는 0번으로 처리
-                    switch ($row->member_gubun) {
-                        case '445':
-                            $ma_sid = 3;
-                            break;
-
-                        case '443':
-                            $ma_sid = 2;
-                            break;
-
-                        case '418':
-                            $ma_sid = 1;
-                            break;
-
-                        default:
-                            $ma_sid = 0;
-                            break;
-                    }
-                    break;
-
-                case '4': // 테스트발송
-                    $send_type = 9;
-                    $test_email = ''; // test 이메일 필드가 testing_mail 이건데 필드가 없음 ?? 모지
-                    break;
-            }
-
-            switch ($row->btn_type) {
-                case '1':
-                    $use_btn = 1;
-                    break;
-
-                case '2':
-                    $use_btn = 2;
-                    break;
-
-                default:
-                    $use_btn = 9;
-                    break;
-            }
-
-            $upload = [];
-
-            for ($i = 1; $i <= 10; $i++) {
-                if (!empty($row->{'read_name' . $i})) {
-                    $upload[] = [
-                        'filename' => $row->{'file_name' . $i},
-                        'realfile' => '/upload/email/' . $row->{'read_name' . $i},
-                    ];
-                }
-            }
+            $del = $row->show_hide == 'show' ? 'N' : 'Y';
+            $created_at = $row->create_dt ?? null;
 
             $custom_old_mail[] = [
-                'template' => $template,
-                'sender_name' => $row->send_name,
-                'sender_email' => $row->send_email,
-                'subject' => $row->subject,
-                'send_type' => $send_type,
-                'use_btn' => $use_btn,
-                'link_url' => $row->btn_link,
-                'level' => $level ?? null,
-                'ma_sid' => $ma_sid ?? null,
-                'test_email' => $test_email ?? null,
-                'contents' => $row->content,
+                'template' => 'none',
+                'subject' => $row->mail_subject,
+                'contents' => $row->mail_content,
                 'thread' => $row->send_count ?? 0,
                 'send_date' => empty($row->senddate) ? null : date('Y-m-d H:i:s', $row->senddate),
-                'created_at' => date('Y-m-d H:i:s', $row->signdate),
-                'updated_at' => date('Y-m-d H:i:s', $row->signdate),
-                'upload' => $upload,
-                'old_sid' => $row->sid,
+                'created_at' => $created_at,
+                'del' => $del,
             ];
         }
 
@@ -955,21 +1046,10 @@ class DBTransferServices extends AppServices
                 $mail->setByData($row);
 
                 // 추가 or 변경 데이터
-                $mail->thread = $row['thread'];
-                $mail->send_date = $row['send_date'];
                 $mail->created_at = $row['created_at'];
-                $mail->updated_at = $row['updated_at'];
-                $mail->old_sid = $row['old_sid'];
 
                 $mail->save();
 
-                if (!empty($row['upload'])) {
-                    foreach ($row['upload'] as $data) {
-                        $mailFile = new MailFile();
-                        $mailFile->setByData($data, $mail->sid);
-                        $mailFile->save();
-                    }
-                }
 
                 $cnt = ($key + 1);
                 var_dump("INSERT mail_lists {$cnt} 번째 <br>");
@@ -1322,7 +1402,7 @@ class DBTransferServices extends AppServices
     private function boardNotice()
     {
         $this->oldDBConnection();
-        $old_notice = DB::select(DB::raw("select * from if_posts where template_id = '33' ORDER BY seq_id")); //공지사항
+        $old_notice = DB::select(DB::raw("select * from if_posts where template_id = '7' ORDER BY seq_id")); //공지사항
         $custom_old_notice = [];
 
         // 팝업 사용 게시판 없어서 팝업은 안옮김
@@ -1336,31 +1416,31 @@ class DBTransferServices extends AppServices
             // meta_data 필드에 JSON 문자열이 있다고 가정합니다.
             $meta_data = json_decode($row->meta_data, true);
             // 1. meta_data에서 파일 첨부 배열이 존재하는지 확인합니다.
-            if (isset($meta_data['file_attachment']) && is_array($meta_data['file_attachment'])) {
-
-                // file_attachment 배열의 데이터를 순회합니다.
-                foreach ($meta_data['file_attachment'] as $fileData) {
-                    $fileName = $fileData['file_name'] ?? null;
-                    $originalFilePath = $fileData['file_path'] ?? '';
-
-                    // 1. 파일 이름 추출 (경로의 마지막 슬래시 / 이후 문자열)
-                    $baseName = basename($originalFilePath);
-
-                    $realFilePath = '/storage/uploads/board/notice/' . $baseName;
-
-                    $uploadFile[] = [
-                        // DB에 저장할 때 필요한 필드명으로 매핑합니다.
-                        'filename' => $fileName,
-                        'realfile' => $realFilePath, // 실제 파일 경로 (DB에 저장될 값)
-                        'download' => 0, // JSON에 없으므로 기본값 0 사용
-                        'created_at' => null,
-                        'updated_at' => null,
-                    ];
-                }
-            }
+//            if (isset($meta_data['file_attachment']) && is_array($meta_data['file_attachment'])) {
+//
+//                // file_attachment 배열의 데이터를 순회합니다.
+//                foreach ($meta_data['file_attachment'] as $fileData) {
+//                    $fileName = $fileData['file_name'] ?? null;
+//                    $originalFilePath = $fileData['file_path'] ?? '';
+//
+//                    // 1. 파일 이름 추출 (경로의 마지막 슬래시 / 이후 문자열)
+//                    $baseName = basename($originalFilePath);
+//
+//                    $realFilePath = '/storage/uploads/board/notice/' . $baseName;
+//
+//                    $uploadFile[] = [
+//                        // DB에 저장할 때 필요한 필드명으로 매핑합니다.
+//                        'filename' => $fileName,
+//                        'realfile' => $realFilePath, // 실제 파일 경로 (DB에 저장될 값)
+//                        'download' => 0, // JSON에 없으므로 기본값 0 사용
+//                        'created_at' => null,
+//                        'updated_at' => null,
+//                    ];
+//                }
+//            }
 
             $custom_old_notice[] = [
-                'code' => 'report',
+                'code' => 'abs-news',
                 'user_sid' => $row->post_user_id ?? null,
                 'name' => $row->post_name ?? null,
                 'email' => $row->post_email ?? null,
@@ -1414,6 +1494,71 @@ class DBTransferServices extends AppServices
                         $boardFile->save();
                     }
                 }
+
+                $cnt = ($key + 1);
+                var_dump("INSERT boards (공지사항) {$cnt} 번째 <br>");
+            }
+
+            DB::commit();
+            var_dump("<br><br> INSERT boards FINISH (공지사항)");
+        } catch (\Exception $e) {
+            $this->dbRollback($e);
+        }
+    }
+
+    private function boardBranch()
+    {
+        $this->oldDBConnection();
+        $old_notice = DB::select(DB::raw("select * from if_posts where template_id = '24' ORDER BY seq_id")); //서울지회
+        $custom_old_notice = [];
+
+        // 팝업 사용 게시판 없어서 팝업은 안옮김
+        foreach ($old_notice as $row) {
+            $hide = $row->post_state == 'open' ? 'N' : 'Y';
+            $created_at = $row->post_date ?? null;
+            $updated_at = $row->post_modified ?? null;
+
+            $uploadFile = [];
+
+            $custom_old_notice[] = [
+                'code' => 'branch',
+                'user_sid' => $row->post_user_id ?? null,
+                'name' => $row->post_name ?? null,
+                'email' => $row->post_email ?? null,
+                'subject' => $row->post_title ?? null,
+                'contents' => $row->post_content ?? null,
+//                'link_url' => empty($row->LINK_URL) ? null : $row->LINK_URL,
+                'notice' => 'N',
+                'popup' => 'N',
+                'main' => 'N',
+                'hide' => $hide,
+                'ref' => $row->post_view_count ?? null,
+                'uploadFile' => $uploadFile,
+                'created_at' => $created_at ?? null,
+                'updated_at' => $updated_at ?? null,
+            ];
+        }
+
+        $this->activationDBConnection();
+        $this->transaction();
+
+        try {
+            $totNotice = number_format(count($custom_old_notice));
+            var_dump("INSERT bords (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
+
+            foreach ($custom_old_notice as $key => $row) {
+//                $row['user_sid'] = '17905'; // 작성자 sid 추가
+
+                $board = new Board();
+                $board->setByData($row);
+
+                // 추가 or 변경 데이터
+                $board->category = '7'; //서울 1
+                $board->ref = $row['ref'];
+                $board->created_at = $row['created_at'];
+                $board->updated_at = $row['updated_at'];
+
+                $board->save();
 
                 $cnt = ($key + 1);
                 var_dump("INSERT boards (공지사항) {$cnt} 번째 <br>");
@@ -1778,35 +1923,102 @@ class DBTransferServices extends AppServices
             $this->dbRollback($e);
         }
     }
+    private function pastWorkshopTransfer()
+    {
+        $this->oldDBConnection();
+        $old_notice = DB::select(DB::raw("select * from if_study ORDER BY num"));
+        $custom_old_notice = [];
+
+        // 팝업 사용 게시판 없어서 팝업은 안옮김
+        foreach ($old_notice as $row) {
+            $created_at = $row->create_dt ?? null;
+
+            // meta_data 필드에 JSON 문자열이 있다고 가정합니다.
+//            $meta_data = json_decode($row->meta_data, true);
+//
+//            if (!empty($meta_data['event_content']) ) {
+//                $event_content = $meta_data['event_content'];
+//            }
+
+            $custom_old_notice[] = [
+                'code' => $row->num ?? null,
+                'title' => $row->times ? '제'.$row->times.'차 교육강좌' : null,
+                'date_type' => 'D',
+                'event_sdate' => $row->dt ?? null,
+
+                'created_at' => $created_at ?? null,
+            ];
+        }
+
+        $this->activationDBConnection();
+        $this->transaction();
+
+        try {
+            $totNotice = number_format(count($custom_old_notice));
+            var_dump("INSERT past_workshop (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
+
+            foreach ($custom_old_notice as $key => $row) {
+                $board = new Education();
+                $board->setByTransfer($row);
+
+                // 추가 or 변경 데이터
+                $board->created_at = $row['created_at'];
+                $board->save();
+
+                $cnt = ($key + 1);
+                var_dump("INSERT past_workshop (공지사항) {$cnt} 번째 <br>");
+            }
+
+            DB::commit();
+            var_dump("<br><br> INSERT past_workshop FINISH (공지사항)");
+        } catch (\Exception $e) {
+            $this->dbRollback($e);
+        }
+    }
+
     private function workshopTransfer()
     {
         $this->oldDBConnection();
-        $old_schedule = DB::select(DB::raw("SELECT * FROM workshop_basic "));
-        $custom_old_schedule = [];
+        $old_notice = DB::select(DB::raw("select * from if_conference where event_type = 'EDU' ORDER BY seq_id"));
+        $custom_old_notice = [];
 
         // 팝업 사용 게시판 없어서 팝업은 안옮김
-        foreach ($old_schedule as $row) {
+        foreach ($old_notice as $row) {
+            $created_at = $row->create_dt ?? null;
 
-            $signdate = $row->WORK_DATE ?? null;
-            $date = DateTime::createFromFormat('y/m/d', $signdate);
-            $created_at = $date ? $date->format('Y-m-d H:i:s') : null;
+            // meta_data 필드에 JSON 문자열이 있다고 가정합니다.
+            $meta_data = json_decode($row->meta_data, true);
 
-            $custom_old_schedule[] = [
-                'work_code' => $row->WORKSHOP_IDX,
-                'subject' => $row->WORKSHOP_NAME,
-                'place' => $row->PLACE,
+            if (!empty($meta_data['event_content']) ) {
+                $event_content = $meta_data['event_content'];
+            }
+            if (!empty($meta_data['program_table']) ) {
+                $program_table = $meta_data['program_table'];
+            }
+            if (!empty($meta_data['pre_reg_content']) ) {
+                $pre_reg_content = $meta_data['pre_reg_content'];
+            }
 
-                'event_sdate' => $row->EVENT_START,
-                'event_edate' => $row->EVENT_END,
-                'regist_sdate' => $row->PREREG_START,
-                'regist_edate' => $row->PREREG_END,
-                'abs_sdate' => $row->ABS_START,
-                'abs_edate' => $row->ABS_END,
-                'support_sdate' => $row->DONATION_START,
-                'support_edate' => $row->DONATION_END,
-                'display_sdate' => $row->SPECIAL_START,
-                'display_edate' => $row->SPECIAL_END,
-                'created_at' => $created_at,
+            $custom_old_notice[] = [
+                'code' => $row->seq_id ?? null,
+                'title' => $row->event_name ?? null,
+                'date_type' => ($row->event_period_from == $row->event_period_to) ? 'D' : 'L',
+                'event_sdate' => $row->event_period_from ?? null,
+                'created_at' => $created_at ?? null,
+                'regist_use' => 'Y',
+
+                'event_edate' => $row->event_period_to ?? null,
+                'hide' => 'N',
+                'place' => $row->event_place ?? null,
+                'total_info' => $event_content ?? null,
+                'fee_info' => $program_table ?? null,
+                'pay_info' => $pre_reg_content ?? null,
+//                'notice_info' => $row->event_place ?? null,
+//                'inquire_info' => $row->event_place ?? null,
+
+                'regist_sdate' => $row->pre_reg_from ?? null,
+                'regist_edate' => $row->pre_reg_to ?? null,
+
             ];
         }
 
@@ -1814,161 +2026,92 @@ class DBTransferServices extends AppServices
         $this->transaction();
 
         try {
-            $totSchedule = number_format(count($custom_old_schedule));
-            var_dump("INSERT workshop (mems) START: {{$totSchedule}} 개 데이터 <br><br>");
+            $totNotice = number_format(count($custom_old_notice));
+            var_dump("INSERT past_workshop (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
 
-            foreach ($custom_old_schedule as $key => $row) {
-                $board = new Workshop();
-                $board->setByData($row);
+            foreach ($custom_old_notice as $key => $row) {
+                $board = new Education();
+                $board->setByTransfer($row);
 
+                // 추가 or 변경 데이터
                 $board->created_at = $row['created_at'];
                 $board->save();
 
                 $cnt = ($key + 1);
-                var_dump("INSERT boards (학술대회 일정) {$cnt} 번째 <br>");
+                var_dump("INSERT past_workshop (공지사항) {$cnt} 번째 <br>");
             }
 
             DB::commit();
-            var_dump("<br><br> INSERT boards FINISH (학술대회 일정)");
+            var_dump("<br><br> INSERT past_workshop FINISH (공지사항)");
         } catch (\Exception $e) {
             $this->dbRollback($e);
         }
     }
 
-    private function regTransfer()
+    private function workshopRegistrationTransfer()
     {
         $this->oldDBConnection();
-        $old_schedule = DB::select(DB::raw("SELECT * FROM workshop_prereg "));
-        $custom_old_schedule = [];
+        $old_notice = DB::select(DB::raw("select * from if_conference_register where show_hide = 'show' AND conference_id = '525' ORDER BY cr_id"));
+        $custom_old_notice = [];
 
-        // 팝업 사용 게시판 없어서 팝업은 안옮김
-        foreach ($old_schedule as $row) {
+        foreach ($old_notice as $row) {
+            $created_at = $row->create_dt ?? null;
+            $updated_at = $row->update_dt ?? null;
 
-            $signdate = $row->WORK_DATE ?? null;
-            $cdate = DateTime::createFromFormat('y/m/d', $signdate);
-            $created_at = $cdate ? $cdate->format('Y-m-d H:i:s') : null;
-
-            $updatedate = $row->UPDATE_DATE ?? null;
-            $udate = DateTime::createFromFormat('y/m/d', $updatedate);
-            $updated_at = $udate ? $udate->format('Y-m-d H:i:s') : null;
-
-            $sosok_kr = $row->OFFICE.(!empty($row->DEPT) ? ' '.$row->DEPT : '');
-
-            //결제 여부
-            $order = DB::select(DB::raw("SELECT * FROM order_pay WHERE order_no = '".$row->ORDER_NO."' "));
-            $order_yn = empty($order) ? 'N' : 'Y';
-
-            $custom_old_schedule[] = [
-                'work_code' => $row->WORKSHOP_IDX,
-                'reg_idx' => $row->IDX,
-                'user_id' => $row->USERID,
-
-                'name_kr' => $row->USERNAME,
-                'country' => $row->COUNTRY,
-                'sosok_kr' => $sosok_kr,
-                'position' => $row->POSITION,
-                'email' => $row->EMAIL,
-                'phone' => $row->MOBILE,
-
-                'gubun' => null,
-                'category' => null,
-                'price' => $row->PAY_AMT ?? 0,
-                'payment_status' => $order_yn,
-                'shuttle_yn' => $row->SHUTTLE_YN ?? 'N',
-
-                'created_at' => $created_at,
-                'updated_at' => $updated_at,
-            ];
-        }
-
-        $this->activationDBConnection();
-        $this->transaction();
-
-        try {
-            $totSchedule = number_format(count($custom_old_schedule));
-            var_dump("INSERT workshop (mems) START: {{$totSchedule}} 개 데이터 <br><br>");
-
-            foreach ($custom_old_schedule as $key => $row) {
-
-                $user = User::withTrashed()->where('id', $row['user_id'])->first();
-                $row['user_sid'] = $user->sid ?? 0;
-
-                $board = new Registration();
-                $board->setByData($row);
-
-                $board->created_at = $row['created_at'];
-                $board->updated_at = $row['updated_at'];
-                $board->save();
-
-                $cnt = ($key + 1);
-                var_dump("INSERT boards (학술대회 일정) {$cnt} 번째 <br>");
-            }
-
-            DB::commit();
-            var_dump("<br><br> INSERT boards FINISH (학술대회 일정)");
-        } catch (\Exception $e) {
-            $this->dbRollback($e);
-        }
-    }
-
-    private function absTransfer()
-    {
-        $this->oldDBConnection();
-        $old_schedule = DB::select(DB::raw("SELECT * FROM workshop_abstract "));
-        $custom_old_schedule = [];
-
-        // 팝업 사용 게시판 없어서 팝업은 안옮김
-        foreach ($old_schedule as $row) {
-
-            $signdate = $row->WORK_DATE ?? null;
-            $cdate = DateTime::createFromFormat('y/m/d', $signdate);
-            $created_at = $cdate ? $cdate->format('Y-m-d H:i:s') : null;
-
-            $updatedate = $row->UPDATE_DATE ?? null;
-            $udate = DateTime::createFromFormat('y/m/d', $updatedate);
-            $updated_at = $udate ? $udate->format('Y-m-d H:i:s') : null;
-
-            //Topic
-            switch ($row->TOPIC){
-                case '대기환경':
-                    $topic='A';
+            switch ($row->user_type){
+                case '11':
+                    $gubun = '1';
                     break;
-                case '물환경 / 상하수도':
-                    $topic='C';
+                case '22':
+                    $gubun = '2';
                     break;
-                case '생태 및 위해성':
-                    $topic='B';
+                case '33':
+                    $gubun = '3';
                     break;
-                case '자원순환':
-                    $topic='D';
+                case '44':
+                    $gubun = '4';
                     break;
-                case '토양 지하수':
-                    $topic='E';
+                case '99':
+                    $gubun = '5';
                     break;
                 default:
-                    $topic='F';
+                    $gubun = '5';
                     break;
             }
 
-            $custom_old_schedule[] = [
-                'work_code' => $row->WORKSHOP_IDX,
-                'prereg_idx' => $row->PREREG_IDX,
 
-                'topic' => $topic,
-                'title_kr' => $row->TITLE_KOR,
-                'title_en' => $row->TITLE_ENG,
-                'contents' => $row->ABSTRACT,
-                'keyword1' => $row->KEYWORD1,
-                'keyword2' => $row->KEYWORD2,
 
-                'keyword3' => $row->KEYWORD3,
-                'keyword4' => $row->KEYWORD4,
-                'keyword5' => $row->KEYWORD5,
+            $custom_old_notice[] = [
+                'wsid' => '123',
+                'member_gubun' => $row->user_class == '99' ? 'N' : 'Y',
+                'license_number' => $row->license_no ?? null,
+                'name_kr' => $row->name_ko ?? null,
+                'gubun' => $gubun ?? null,
 
-                'ack' => $row->ACKNOWLEDGE ?? null,
+                'email' => $row->user_email ?? null,
+                'region' => $row->region ?? null,
+                'sigu' => $row->local_med_org2 ?? null,
+                'office_name' => $row->org_name ?? null,
+                'phone' => $row->user_mobile ?? null,
+                'department' => $row->org_dept ?? null,
 
-                'created_at' => $created_at,
-                'updated_at' => $updated_at,
+                'zipcode' => $row->org_zipcode ?? null,
+                'addr' => $row->org_address1 ?? null,
+                'addr_etc' => $row->org_address2 ?? null,
+                'office_tel' => $row->org_tel2 ?? null,
+                'office_tel_first' => $row->org_tel1 ?? null,
+
+
+
+                'amount' => $row->total_amount ?? null,
+                'pay_method' => ($row->pay_method == 'CARD_LC') ? 'C' : 'B',
+                'pay_status' => ($row->pay_state == '9000') ? 'Y' : 'N',
+
+
+                'user_memo' => $row->user_memo ?? null,
+                'memo' => $row->admin_memo ?? null,
+                'created_at' => $created_at ?? null,
+                'updated_at' => $updated_at ?? null,
             ];
         }
 
@@ -1976,27 +2119,194 @@ class DBTransferServices extends AppServices
         $this->transaction();
 
         try {
-            $totSchedule = number_format(count($custom_old_schedule));
-            var_dump("INSERT abs (mems) START: {{$totSchedule}} 개 데이터 <br><br>");
+            $totNotice = number_format(count($custom_old_notice));
+            var_dump("INSERT past_workshop (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
 
-            foreach ($custom_old_schedule as $key => $row) {
+            foreach ($custom_old_notice as $key => $row) {
+                $board = new Registration();
+                $board->setByTransfer($row);
 
-                $reg = Registration::withTrashed()->where('reg_idx', $row['prereg_idx'])->first();
-                $row['reg_sid'] = $reg->sid ?? 0;
-
-                $board = new Abs();
-                $board->setByData($row);
-
+                // 추가 or 변경 데이터
                 $board->created_at = $row['created_at'];
-                $board->updated_at = $row['updated_at'];
                 $board->save();
 
                 $cnt = ($key + 1);
-                var_dump("INSERT abs (학술대회 일정) {$cnt} 번째 <br>");
+                var_dump("INSERT past_workshop (공지사항) {$cnt} 번째 <br>");
             }
 
             DB::commit();
-            var_dump("<br><br> INSERT abs FINISH (학술대회 일정)");
+            var_dump("<br><br> INSERT past_workshop FINISH (공지사항)");
+        } catch (\Exception $e) {
+            $this->dbRollback($e);
+        }
+    }
+private function pastLectureTransfer()
+    {
+        $this->oldDBConnection();
+        $old_notice = DB::select(DB::raw("select * from if_study_detail ORDER BY num"));
+        $custom_old_notice = [];
+
+        foreach ($old_notice as $row) {
+            $created_at = $row->reg_dt ?? null;
+
+            $custom_old_notice[] = [
+                'wsid' => $row->uid ?? null,
+                'title' => $row->title ?? null,
+                'office' => $row->office ?? null,
+                'name' => $row->name ?? null,
+
+
+                'created_at' => $created_at ?? null,
+            ];
+        }
+
+        $this->activationDBConnection();
+        $this->transaction();
+
+        try {
+            $totNotice = number_format(count($custom_old_notice));
+            var_dump("INSERT past_workshop (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
+
+            foreach ($custom_old_notice as $key => $row) {
+                $board = new Lecture();
+                $board->setByTransfer($row);
+
+                // 추가 or 변경 데이터
+                $board->created_at = $row['created_at'];
+                $board->save();
+
+                $cnt = ($key + 1);
+                var_dump("INSERT past_workshop (공지사항) {$cnt} 번째 <br>");
+            }
+
+            DB::commit();
+            var_dump("<br><br> INSERT past_workshop FINISH (공지사항)");
+        } catch (\Exception $e) {
+            $this->dbRollback($e);
+        }
+    }
+
+    private function hospitalTransfer()
+    {
+        $this->oldDBConnection();
+        $old_notice = DB::select(DB::raw("select * from if_hospital ORDER BY num"));
+        $custom_old_notice = [];
+
+        // 팝업 사용 게시판 없어서 팝업은 안옮김
+        foreach ($old_notice as $row) {
+            $created_at = $row->reg_dt ?? null;
+
+            switch ($row->position){
+                case '내과':
+                    $major='A';
+                    break;
+                case '소아청소년과':
+                    $major='B';
+                    break;
+                case '피부과':
+                    $major='C';
+                    break;
+                case '이비인후과':
+                    $major='D';
+                    break;
+                default:
+                    $major='A';
+                    break;
+            }
+
+            switch ($row->sido) {
+                case '서울특별시':
+                    $si = '1';
+                    break;
+                case '부산광역시':
+                    $si = '2';
+                    break;
+                case '대구광역시':
+                    $si = '3';
+                    break;
+                case '인천광역시':
+                    $si = '4';
+                    break;
+                case '광주광역시':
+                    $si = '5';
+                    break;
+                case '대전광역시':
+                    $si = '6';
+                    break;
+                case '울산광역시':
+                    $si = '7';
+                    break;
+                case '세종특별자치시':
+                    $si = '17';
+                    break;
+                case '경기도':
+                    $si = '9';
+                    break;
+                case '강원도':
+                    $si = '8';
+                    break;
+                case '충청북도':
+                    $si = '16';
+                    break;
+                case '충청남도':
+                    $si = '15';
+                    break;
+                case '전라북도':
+                    $si = '13';
+                    break;
+                case '전라남도':
+                    $si = '12';
+                    break;
+                case '경상북도':
+                    $si = '11';
+                    break;
+                case '경상남도':
+                    $si = '10';
+                    break;
+                case '제주특별자치도':
+                    $si = '14';
+                    break;
+                default:
+                    $si = '1';
+                    break;
+            }
+
+            $custom_old_notice[] = [
+                'major' => $major ?? null,
+                'name_kr' => $row->hosp_name ?? null,
+                'chief_name' => $row->chief_name ?? null,
+                'chief_email' => $row->chief_mail ?? null,
+                'address' => $row->addr ?? null,
+                'tel' => $row->tel ?? null,
+
+                'si' => $si ?? null,
+                'jext_yn' => $row->jext ?? 'N',
+
+                'created_at' => $created_at ?? null,
+            ];
+        }
+
+        $this->activationDBConnection();
+        $this->transaction();
+
+        try {
+            $totNotice = number_format(count($custom_old_notice));
+            var_dump("INSERT past_workshop (공지사항) START: {{$totNotice}} 개 데이터 <br><br>");
+
+            foreach ($custom_old_notice as $key => $row) {
+                $board = new Hospital();
+                $board->setByTransfer($row);
+
+                // 추가 or 변경 데이터
+                $board->created_at = $row['created_at'];
+                $board->save();
+
+                $cnt = ($key + 1);
+                var_dump("INSERT past_workshop (공지사항) {$cnt} 번째 <br>");
+            }
+
+            DB::commit();
+            var_dump("<br><br> INSERT past_workshop FINISH (공지사항)");
         } catch (\Exception $e) {
             $this->dbRollback($e);
         }

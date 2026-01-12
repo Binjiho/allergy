@@ -3,30 +3,19 @@
     if(!empty($sub_menu)){
         $sub_name = $menu['sub'][$main_menu][$sub_menu]['name'] ?? '';
     }
-
-    if( $_SERVER['REMOTE_ADDR']=="218.235.94.247") {
-        echo "<pre>"; print_r($main_menu); echo "</pre>";
-        echo "<pre>"; print_r($sub_menu); echo "</pre>";
-    }
-
 @endphp
 
-<article class="sub-visual js-sub-visual">
-    <div class="sub-visual-img"></div>
+<article class="sub-visual">
     <div class="sub-visual-con inner-layer">
-        <div class="sub-visual-text">
+        <div class="sub-visual-con inner-layer">
             <h2 class="sub-visual-tit">{{ $main_name }}</h2>
-            <ul class="breadcrumb">
-                <li>{{ $main_name }}</li>
-                <li>{{ $sub_name }}</li>
-            </ul>
         </div>
     </div>
 </article>
 
-<article class="sub-menu-wrap" >
-    <div class="sub-menu inner-layer cf {{ ($main_menu ?? '') == 'M1' ? "sub-menu-type2" : "" }} {{ ($main_menu ?? '') == 'MYPAGE' ? "sub-menu-type3" : "" }}" >
-        <ul class="sub-menu-list js-sub-menu-list cf">
+<article class="sub-menu-wrap inner-layer">
+    <div class="sub-menu">
+        <ul class="sub-menu-list js-sub-menu-list">
             <li class="sub-menu-depth01">
                 <a href="javascript:;" class="btn-sub-menu js-btn-sub-menu">{{ $main_name }}</a>
                 <ul>

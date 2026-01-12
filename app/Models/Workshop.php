@@ -36,6 +36,7 @@ class Workshop extends Model
     public function setByData($data)
     {
         if(empty($this->sid)) {
+            $this->kind = $data->kind ?? null;
             $this->code = $data->code ?? null;
             $this->created_at = date('Y-m-d H:i:s');
         }
@@ -46,6 +47,7 @@ class Workshop extends Model
         $this->event_sdate = $data->event_sdate ?? null;
         $this->event_edate = ($data->date_type == 'L') ? $data->event_edate : null;
         $this->place = $data->place ?? null;
+        $this->link_url = $data->link_url ?? null;
         $this->total_info = $data->total_info ?? null;
         $this->fee_info = $data->fee_info ?? null;
         $this->pay_info = $data->pay_info ?? null;
@@ -94,6 +96,36 @@ class Workshop extends Model
         }
     }
 
+    public function setByTransfer($data) //DB이관
+    {
+        $this->code = $data['code'] ?? null;
+        $this->title = $data['title'] ?? null;
+        $this->date_type = $data['date_type'] ?? null;
+        $this->event_sdate = $data['event_sdate'] ?? null;
+        $this->created_at = $data['created_at'] ?? null;
+        $this->regist_use = 'N';
+
+        $this->event_edate = null;
+        $this->hide = $data->hide ?? 'N';
+        $this->place = $data->place ?? null;
+        $this->total_info = $data->total_info ?? null;
+        $this->fee_info = $data->fee_info ?? null;
+        $this->pay_info = $data->pay_info ?? null;
+        $this->notice_info = $data->notice_info ?? null;
+        $this->inquire_info = $data->inquire_info ?? null;
+
+        //사전등록
+        $this->regist_sdate = $data->regist_sdate ?? null;
+        $this->regist_edate = $data->regist_edate ?? null;
+        $this->grace_use = $data->grace_use ?? 'N';
+        $this->regist_grace_sdate = $data->regist_grace_sdate ?? null;
+        $this->regist_grace_edate = $data->regist_grace_edate ?? null;
+        $this->res_fee = $data->res_fee ?? null;
+
+        //강의원고 사용유무
+        $this->lecture_use = $data->lecture_use ?? 'N';
+    }
+
     public function downloadUrl($field)
     {
         return route('download', [
@@ -107,6 +139,12 @@ class Workshop extends Model
     {
         // foreignKey = registration 테이블 컬럼, localKey = workshop 테이블 컬럼
         return $this->hasMany(Registration::class, 'wsid', 'sid');
+    }
+
+    public function details()
+    {
+        // foreignKey = registration 테이블 컬럼, localKey = workshop 테이블 컬럼
+        return $this->hasMany(WorkshopDetail::class, 'wsid', 'sid');
     }
 
     public function regCnt()

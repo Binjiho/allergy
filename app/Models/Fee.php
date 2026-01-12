@@ -73,12 +73,6 @@ class Fee extends Model
 
     public function setByData($data)
     {
-//        if (request()->route()->getName() != 'dbTransfer' /* 데이터 이전 작업아닐때 */) {
-//
-//        }else{
-//            $this->user_sid = $data['user_sid'];
-//        }
-
         if (empty($this->sid)) {
             $this->user_sid = $data['user_sid'];
         }
@@ -98,6 +92,24 @@ class Fee extends Model
         $this->depositor = $data['depositor'] ?? null;
         $this->deposit_date = $data['deposit_date'] ?? null;
         $this->memo = $data['memo'] ?? null;
+    }
+
+    public function setByTransfer($data)
+    {
+        $this->category = $data['category'] ?? null;
+        $this->user_sid = $data['user_sid'] ?? null;
+        $this->memo = $data['memo'] ?? null;
+        $this->payment_status = $data['payment_status'] ?? 'N';
+        $this->payment_method = $data['payment_method'] ?? null;
+
+        $this->year = $data['year'];
+        $this->payment_date = $data['payment_date'] ?? null;
+        $this->price = $data['price'] ?? null;
+        $this->sDate = $data['sDate'] ?? null;
+        $this->eDate = $data['eDate'] ?? null;
+
+        $this->resultCode = $data['resultCode'] ?? null;
+        $this->level = $data['level'] ?? null;
     }
 
     public function user()

@@ -4,7 +4,7 @@
             {{-- Previous Page Link --}}
             @if (!$paginator->onFirstPage())
                 <li>
-                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')"><span class="hide">이전</span></a>
                 </li>
             @endif
 
@@ -30,7 +30,7 @@
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <li class="next">
-                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')"><span class="hide">다음</span></a>
                 </li>
             @endif
         </ul>

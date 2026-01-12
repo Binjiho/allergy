@@ -74,7 +74,7 @@ class MypageController extends Controller
     public function certiReceipt(Request $request)
     {
         view()->share(['sub_menu' => 'S4']);
-        return view('mypage.certiReceipt', $this->mypageServices->certiService($request));
+        return view('mypage.certiReceipt', $this->mypageServices->certiReceiptService($request));
     }
 
     //책갈피

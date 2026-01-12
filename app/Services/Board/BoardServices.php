@@ -20,13 +20,19 @@ use Illuminate\Http\Request;
  */
 class BoardServices extends AppServices
 {
+    private $boardConfig;
+
+    public function __construct()
+    {
+        $this->boardConfig = getConfig('board')[request()->code] ?? [];
+    }
     private function getNoticeList($code)
     {
         $noticeQuery = Board::where([
             'code' => $code,
             'notice' => 'Y'
         ])
-            ->withCount('files')
+            ->withCount('files', 'comments')
             ->orderByDesc('sid');
 
         if (!isAdmin()) {
@@ -49,15 +55,16 @@ class BoardServices extends AppServices
             return $this->eventSchedule($request);
         }
 
-        $query = Board::where('code', $code)->withCount('files');
+        $query = Board::where('code', $code)->withCount('files', 'comments');
 
-        if ($code == 'photo' || $code == 'past-workshop' || $code == 'overseas-workshop') {
+        if ($code == 'photo' || $code == 'past-workshop' || $code == 'overseas-workshop' || $code == 'domestic') {
             $query->orderByDesc('event_sDate'); // 학술대회 일정
         }else if ($code == 'newsletter') {
             $query->orderByDesc('year')->orderByDesc('month'); // 뉴스레터
         }else if ($code == 'treatment') {
             $query->orderByDesc('year')->orderByDesc('sid'); // 진료지침 게시판
-
+        }else if ($code == 'branch' || $code == 'research-team') {
+            $query->orderByDesc('created_at'); // 지회 게시판
         }else if ($code == 'notice') {
             $query->orderByDesc('created_at')->orderByDesc('sid'); // 공지사항 게시판
         } else {
@@ -146,9 +153,10 @@ class BoardServices extends AppServices
             $query->whereNotIn('sid', $this->data['notice_list']->pluck('sid'));
         }
 
-        $this->data['tot_cnt'] = $query->count();
+        $this->data['tot_cnt'] = (clone $query)->count();
 
-        $list = $query->paginate($boardConfig['paginate'])->appends($request->except(['page']));;
+        $list = $query->paginate($boardConfig['paginate'])->appends($request->except(['page']));
+
         $this->data['list'] = setListSeq($list);
 
         return $this->data;
@@ -196,7 +204,8 @@ class BoardServices extends AppServices
             });
         }
 
-        $list = $query->paginate($boardConfig['paginate']);
+        // ->appends($request->except(['page'])) 없이 사용시 페이징에 파라미터 풀려서 추가 20251218 한상혁
+        $list = $query->paginate($boardConfig['paginate'])->appends($request->except(['page']));
         $this->data['list'] = setListSeq($list);
 
         $this->data['year'] = $year;
@@ -219,8 +228,17 @@ class BoardServices extends AppServices
 
     public function viewService(Request $request)
     {
-        $this->data['board'] = Board::withCount('files')->findOrFail($request->sid);
+        $this->data['board'] = Board::withCount('files', 'comments')->findOrFail($request->sid);
         $this->refCounter($request); // 조회수 업데이트
+
+        // 댓글 사용시
+        if ($this->boardConfig['use']['comment']) {
+            $this->data['comments'] = $this->data['board']->comments()
+                ->where([
+                    'depth1' => 0,
+                    'depth2' => 0,
+                ])->paginate($this->boardConfig['comment_paginate'])->appends($request->query());
+        }
 
         return $this->data;
     }
@@ -245,6 +263,18 @@ class BoardServices extends AppServices
 
             case 'change-heart':
                 return $this->changeHeart($request);
+
+            case 'comment-postform':
+                return $this->commentPostform($request);
+
+            case 'comment-create':
+                return $this->commentCreate($request);
+
+            case 'comment-update':
+                return $this->commentUpdate($request);
+
+            case 'comment-delete':
+                return $this->commentDelete($request);
 
             default:
                 return notFoundRedirect();
@@ -439,6 +469,113 @@ class BoardServices extends AppServices
             ]);
         } catch (\Exception $e) {
             return $this->dbRollback($e,true);
+        }
+    }
+
+    private function commentPostform(Request $request)
+    {
+        $sid = $request->sid;
+        $b_sid = $request->b_sid;
+        $action = $request->action;
+
+        switch ($action) {
+            case 'create': // 등록
+                $reqDepth1 = $request->depth1;
+                $reqDepth2 = $request->depth2;
+
+                $depth1 = $reqDepth1;
+                $depth2 = 0;
+
+                if ($depth1 == 0) {
+                    $depth1 = $sid;
+                }
+
+                if ($reqDepth1 != 0 && $reqDepth2 == 0) {
+                    $depth2 = $sid;
+                }
+
+                $comment = (object)[
+                    'depth1' => $depth1, // 1차 상위 댓글 sid
+                    'depth2' => $depth2, // 2차 상위 댓글 sid
+                ];
+                break;
+
+            case 'update': // 수정
+                $comment = BoardComment::where('b_sid', $b_sid)->findOrFail($sid);
+                break;
+
+            default:
+                return notFoundRedirect();
+        }
+
+        $this->data['action'] = $action;
+        $this->data['comment'] = $comment;
+
+        $view = view("board.{$request->code}.comment.upsert", $this->data)->render();
+
+        return $this->returnJsonData('upsert', $view);
+    }
+
+    private function commentCreate(Request $request)
+    {
+//        dd($request->all());
+        $this->transaction();
+
+        try {
+            $comment = new BoardComment();
+            $comment->setByData($request);
+            $comment->save();
+
+            $this->dbCommit("댓글 등록");
+
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => '댓글이 등록 되었습니다.',
+                'location' => $this->ajaxActionLocation('reload'),
+            ]);
+        } catch (\Exception $e) {
+            return $this->dbRollback($e);
+        }
+    }
+
+    private function commentUpdate(Request $request)
+    {
+        $this->transaction();
+
+        try {
+            $comment = BoardComment::where('b_sid', $request->b_sid)->findOrFail($request->sid);
+            $comment->setByData($request);
+            $comment->update();
+
+            $this->dbCommit("댓글 수정");
+
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => '댓글이 수정 되었습니다.',
+                'location' => $this->ajaxActionLocation('reload'),
+            ]);
+        } catch (\Exception $e) {
+            return $this->dbRollback($e);
+        }
+    }
+
+    private function commentDelete(Request $request)
+    {
+        $this->transaction();
+
+        try {
+            $comment = BoardComment::where('b_sid', $request->b_sid)->findOrFail($request->sid);
+            $comment->delete();
+
+            $this->dbCommit("댓글 삭제");
+
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => '댓글이 삭제 되었습니다.',
+                'location' => $this->ajaxActionLocation('reload'),
+            ]);
+        } catch (\Exception $e) {
+            return $this->dbRollback($e);
         }
     }
 }

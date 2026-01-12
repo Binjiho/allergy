@@ -4,7 +4,7 @@ $code = 'treatment';
 
 $year = [];
 
-for ($i = date('Y'); $i >= 2000; $i--) {
+for ($i = date('Y'); $i >= 1999; $i--) {
     $year[$i] = $i;
 }
 
@@ -41,6 +41,7 @@ return [
     'subject' => '행사명', // 게시판 Subject 명
     'directory' => "/board/notice", // 게시판 업로드 경로
     'paginate' => 15, // 페이지별 노출 리스트 수
+    'comment_paginate' => 20, // 댓글 노출 리스트 수
 
     'options' => [
         'hide' => ['N' => '공개', 'Y' => '비공개'], // 노출여부
@@ -78,6 +79,7 @@ return [
         'file' => true, // 파일업로드 (단일파일)
         'contents' => true, // 내용
         'plupload' => false, // 파일업로드 (plupload) 사용
+        'comment' => true, // 댓글
     ],
 
     'gubun' => [

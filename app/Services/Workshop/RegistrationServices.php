@@ -5,7 +5,9 @@ namespace App\Services\Workshop;
 use App\Services\AppServices;
 use App\Services\CommonServices;
 use App\Services\MailRealSendServices;
+use App\Services\EasyPay\EasyPayServices;
 use App\Models\Workshop;
+use App\Models\Education;
 use App\Models\Registration;
 use App\Models\Office;
 use Illuminate\Http\Request;
@@ -24,12 +26,12 @@ class RegistrationServices extends AppServices
     // 등록및 수정 기간 아닐때
     private function notPeriod(Request $request)
     {
-        return errorRedirect('replace', "It's not the application period", route('workshop.detail',['mode'=>'registration','sid'=>$request->wsid]));
+        return errorRedirect('replace', "사전등록 기간이 아닙니다.", route('workshop.detail',['mode'=>'registration','wsid'=>$request->wsid]));
     }
 
     public function indexService(Request $request)
     {
-        $this->data['workshop'] = Workshop::findOrFail($request->wsid);
+        $this->data['workshop'] = Education::findOrFail($request->wsid);
         if(!empty($request->sid)) {
             $this->data['reg'] = Registration::findOrFail($request->sid);
         }
@@ -43,8 +45,12 @@ class RegistrationServices extends AppServices
 
     public function upsertService(Request $request)
     {
-        $this->data['workshop'] = Workshop::findOrFail($request->wsid);
+        $this->data['workshop'] = Education::findOrFail($request->wsid);
         $this->data['wsid'] = $this->data['workshop']->sid;
+
+        $request->merge(['regist_sdate' => $this->data['workshop']->regist_sdate]);
+        $request->merge(['regist_edate' => $this->data['workshop']->regist_edate]);
+        $this->registrationPeriodCheck($request);
 
         if(!empty($request->sid)){
             $this->data['reg'] = Registration::findOrFail($request->sid);
@@ -122,7 +128,7 @@ class RegistrationServices extends AppServices
             $reg = new Registration();
 
             // 현재 워크샵 코드 prefix (예: "CODE-")
-            $workshop = Workshop::findOrFail($request->wsid);
+            $workshop = Education::findOrFail($request->wsid);
             $work_code_prefix = $workshop->code . "-R";
 
             // 가장 큰 번호 가져오기
@@ -163,6 +169,17 @@ class RegistrationServices extends AppServices
             if($request->pay_method == 'F'){
                 $request->merge(['pay_status' => 'Y']);
                 $request->merge(['pay_confirm_date' => time()]);
+            }
+
+            if ($request->pay_method === 'C') {
+//                if (isAdmin() == false) {
+//                    return [
+//                        'status' => 'fail',
+//                        'msg' => '카드결제 준비중.',
+//                    ];
+//                }
+
+                return (new EasyPayServices())->transactionRegistration('REG', $request->sid);
             }
 
             $reg->setByCompleteData($request);
@@ -278,8 +295,18 @@ class RegistrationServices extends AppServices
 //            return 'suc';
         }
 
-        if ( \Carbon\Carbon::parse($request->regist_edate) ) {
+        $now = \Carbon\Carbon::now();
 
+        $sdate = \Carbon\Carbon::parse($request->regist_sdate." 00:00:00");
+        $edate = \Carbon\Carbon::parse($request->regist_edate." 23:59:59");
+
+        // 시작일보다 이전인 경우
+        if ($now->lessThan($sdate)) {
+            return $this->notPeriod($request);
+        }
+
+        // 현재 시간이 종료일보다 크면(지났으면) 에러 리다이렉트
+        if ($now->greaterThan($edate)) {
             return $this->notPeriod($request);
         }
 

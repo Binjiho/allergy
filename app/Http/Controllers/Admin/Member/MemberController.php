@@ -35,6 +35,16 @@ class MemberController extends Controller
     {
         return view('admin.member.popup.search', $this->memberServices->popupSearchService($request));
     }
+
+    public function offline(Request $request)
+    {
+        view()->share(['sub_key' => 'S2']);
+        return view('admin.member.offline.index', $this->memberServices->offlineService($request));
+    }
+    public function offlineUpsert(Request $request)
+    {
+        return view('admin.member.offline.upsert', $this->memberServices->offlineUpsertService($request));
+    }
     
     public function excel(Request $request)
     {

@@ -17,8 +17,13 @@
                     <div class="view-contop">
                         <h4 class="view-tit">
                             @if($boardConfig['use']['category'])
+                                @php
+                                if( $_SERVER['REMOTE_ADDR']=="218.235.94.247") {
+                                    echo "<pre>"; print_r($board->category); echo "</pre>";
+                                }
+                                @endphp
                                 <span class="bbs-cate">
-                                    <span class="cate0{{ $row->category ?? '1' }}">{{ $boardConfig['category']['item'][$row->category ?? '1'] ?? '' }}</span>
+                                    <span class="cate0{{ $board->category ?? '1' }}">{{ $boardConfig['category']['item'][$board->category ?? '1'] ?? '' }}</span>
                                 </span>
                             @endif
                             <strong>{{ $board->subject ?? '' }}</strong>

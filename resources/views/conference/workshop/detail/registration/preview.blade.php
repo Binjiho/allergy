@@ -26,6 +26,7 @@
                 </div>
                 <div class="write-form-wrap">
                     <form id="register-frm" action="" method="post" onsubmit="" data-sid="{{ !empty($reg->sid) ? $reg->sid : '' }}" data-case="registration-complete">
+                        <input type="hidden" name="resCd" id="resCd" value="" readonly>
                         <input type="hidden" name="member_gubun" id="member_gubun" value="{{ $reg->member_gubun }}" readonly>
 
                         @include('conference.workshop.detail.registration.form.preview-frm')
@@ -70,6 +71,7 @@
         });
 
         const boardSubmit = () => {
+            const pay_method = $("input[name='pay_method']:checked").val();
             let ajaxData = newFormData(form);
 
             //캡챠
@@ -84,7 +86,38 @@
                 return false;
             }
 
-            callMultiAjax(dataUrl, ajaxData);
+
+            if( isEmpty( $("#resCd").val() ) ) {
+                callbackMultiAjax(dataUrl, ajaxData, function (data, error) {
+                    if (error) {
+                        console.log(error);
+                        alert('ERROR');
+                        // location.reload();
+                        return false;
+                    }
+
+                    if (pay_method !== 'C') {
+                        ajaxSuccessData(data);
+                    } else {
+                        if (data.status === 'fail') {
+                            alert(data.msg);
+                            location.reload();
+                            return false;
+                        }
+
+                        const popupHeight = 700;
+                        const popupWidth = 600;
+                        const popName = 'easyPay';
+                        const popupY = (window.screen.height / 2) - (popupHeight / 2);
+                        const popupX = (window.screen.width / 2) - (popupWidth / 2);
+
+                        window.open(data.url, popName, 'status=no, height=' + popupHeight + ', width=' + popupWidth + ', left=' + popupX + ', top=' + popupY);
+                    }
+                });
+            }else{
+                callMultiAjax(dataUrl, ajaxData);
+            }
+
         }
     </script>
 

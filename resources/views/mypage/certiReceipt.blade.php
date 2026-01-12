@@ -97,17 +97,22 @@
                     <h1 class="print-tit">영 수 증</h1>
 
                     <div class="price">
-                        일금  <strong>십오만원</strong>  정 <strong>(&#8361; 150,000)</strong>
+                        일금  <strong>{{ priceKo($reg->amount) ?? 0 }}</strong>  정 <strong>(&#8361; {{ number_format($reg->amount) ?? 0 }})</strong>
                     </div>
 
                     <p>
                         상기 금액을 대한천식알레르기학회 <br>
-                        <strong>2021 58차 알레르기 교육강좌</strong> 등록비로 <br>
+                        <strong>{{ $reg->workshop->title ?? '' }}</strong> 등록비로 <br>
                         정히 영수합니다.
                     </p>
 
                     <div class="date">
-                        {{ date('Y.m.d') }}
+                        @php
+                            // 출력할 날짜 결정
+                            $targetDate = !empty($reg->workshop->event_edate) ? $reg->workshop->event_edate : $reg->workshop->event_sdate;
+                        @endphp
+
+                        {{ !empty($targetDate) ? date('Y.m.d', strtotime($targetDate)) : '' }}
                     </div>
 
                     <div class="sign">

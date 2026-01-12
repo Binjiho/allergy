@@ -27,3 +27,12 @@ Route::controller(\App\Http\Controllers\AgentMail\AgentMailController::class)->p
     Route::get('template/{file}', 'template');
     Route::post('data', 'data');
 });
+
+/*
+|--------------------------------------------------------------------------
+| easyPay
+|--------------------------------------------------------------------------
+*/
+Route::controller(\App\Http\Controllers\EasyPay\EasyPayController::class)->prefix('easyPay')->group(function() {
+    Route::post('{payType}/result', 'result');
+});

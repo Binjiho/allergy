@@ -108,40 +108,40 @@
                     </div>
                 </li>
 
-                <li>
-                    <div class="form-tit">
-                        주소
-                    </div>
-                    <div class="form-con">
-                        <div class="form-group n2">
-                            <select name="si" id="si" class="form-item sch-cate">
-                                <option value="">전체</option>
-                                @foreach($userConfig['si'] as $key => $val)
-                                    <option value="{{ $key }}" {{ ($user->si ?? '') == $key ? 'selected' : '' }}>{{ $val }}</option>
-                                @endforeach
-                            </select>
+{{--                <li>--}}
+{{--                    <div class="form-tit">--}}
+{{--                        주소--}}
+{{--                    </div>--}}
+{{--                    <div class="form-con">--}}
+{{--                        <div class="form-group n2">--}}
+{{--                            <select name="si" id="si" class="form-item sch-cate">--}}
+{{--                                <option value="">전체</option>--}}
+{{--                                @foreach($userConfig['si'] as $key => $val)--}}
+{{--                                    <option value="{{ $key }}" {{ ($user->si ?? '') == $key ? 'selected' : '' }}>{{ $val }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
 
-                            <select name="gu" id="gu" class="form-item sch-cate" style="{{ ($hos->si ?? '') == '17' ? 'display:none;' : '' }}">
-                                <option value="">구/군</option>
-                                @if(!empty($user->si))
-                                    @foreach($userConfig['gu'][$user->si ?? ''] as $key => $val)
-                                        <option value="{{ $key }}" {{ ($user->gu ?? '') == $key ? 'selected' : '' }}>{{ $val }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </div>
-                </li>
+{{--                            <select name="gu" id="gu" class="form-item sch-cate" style="{{ ($hos->si ?? '') == '17' ? 'display:none;' : '' }}">--}}
+{{--                                <option value="">구/군</option>--}}
+{{--                                @if(!empty($user->si))--}}
+{{--                                    @foreach($userConfig['gu'][$user->si ?? ''] as $key => $val)--}}
+{{--                                        <option value="{{ $key }}" {{ ($user->gu ?? '') == $key ? 'selected' : '' }}>{{ $val }}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
 
-                <li>
-                    <div class="form-tit">jext 처방 병원 <strong class="required">*</strong></div>
-                    <div class="form-con">
-                        <div class="radio-wrap cst">
-                            <label for="jext_1" class="radio-group"><input type="radio" name="jext" id="jext_1" value="Y" {{ ($user->jext ?? '') == 'Y' ? 'checked' : '' }}>예</label>
-                            <label for="jext_2" class="radio-group"><input type="radio" name="jext" id="jext_2" value="N" {{ ($user->jext ?? '') == 'N' ? 'checked' : '' }}>아니오</label>
-                        </div>
-                    </div>
-                </li>
+{{--                <li>--}}
+{{--                    <div class="form-tit">jext 처방 병원 <strong class="required">*</strong></div>--}}
+{{--                    <div class="form-con">--}}
+{{--                        <div class="radio-wrap cst">--}}
+{{--                            <label for="jext_1" class="radio-group"><input type="radio" name="jext" id="jext_1" value="Y" {{ ($user->jext ?? '') == 'Y' ? 'checked' : '' }}>예</label>--}}
+{{--                            <label for="jext_2" class="radio-group"><input type="radio" name="jext" id="jext_2" value="N" {{ ($user->jext ?? '') == 'N' ? 'checked' : '' }}>아니오</label>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
             </ul>
 
             <div class="btn-wrap text-center">
@@ -163,6 +163,7 @@
         //이메일 수정체크
         $(document).on('click', '#emailModify', function() {
             $("#email").attr("readonly", false);
+            $("#email").data("chk").val('N');
         });
 
         const boardSubmit = () => {
@@ -223,140 +224,140 @@
 
         $(document).on('click','.modifyClass', function(){
 
-            if (isEmpty($("#first_name").val())) {
-                alert('성명(영문)을 입력해주세요.');
-                $("#first_name").focus();
-                return false;
-            }
-            if (isEmpty($("#last_name").val())) {
-                alert('성명(영문)을 입력해주세요.');
-                $("#last_name").focus();
-                return false;
-            }
-            if (isEmpty($("#name_han").val())) {
-                alert('성명(한자)를 입력해주세요.');
-                $("#name_han").focus();
-                return false;
-            }
-
-            if ($("input[name='is_national']:checked").length < 1) {
-                alert('외국 국적 회원 여부를 선택해주세요.');
-                $("input[name='is_national']").focus();
-                return false;
-            }
-            if (isEmpty($("#birth_date").val())) {
-                alert('생년월일을 입력해주세요.');
-                $("#birth_date").focus();
-                return false;
-            }
-            if ( $("#birth_date").val().length < 10){
-                alert('생년월일을 입력해주세요.');
-                $("#birth_date").focus();
-                return false;
-            }
-            if (isEmpty($("#phone").val())) {
-                alert('휴대전화번호를 입력해주세요.');
-                $("#phone").focus();
-                return false;
-            }
-            if (isEmpty($("#email").val())) {
-                alert('E-Mail을 입력해주세요.');
-                $("#email").focus();
-                return false;
-            }
-            if ( $("#email").data('chk') == 'N' ) {
-                alert('E-Mail 중복체크를 해주세요.');
-                $("#email").focus();
-                return false;
-            }
-            if (isEmpty($("#home_zipcode").val())) {
-                alert('자택주소를 입력해주세요.');
-                $("#home_zipcode").focus();
-                return false;
-            }
-            if (isEmpty($("#home_address2").val())) {
-                alert('자택주소를 입력해주세요.');
-                $("#home_address2").focus();
-                return false;
-            }
-
-            //form3
-            if($("input[name='license_number']").is(":visible")){
-                if (isEmpty($("input[name='license_number']").val())) {
-                    alert('의사면허번호를 입력해주세요.');
-                    $("input[name='license_number']").focus();
-                    return false;
-                }
-                if ( $("input[name='license_number']").data('chk') == 'N' ) {
-                    alert('의사면허번호 중복체크를 해주세요.');
-                    $("input[name='license_number']").focus();
-                    return false;
-                }
-            }
-            if (isEmpty($("#major").val())) {
-                alert('전공분야를 선택해주세요.');
-                $("#major").focus();
-                return false;
-            }
-            if ($("#major").val() == 'Z' && isEmpty($("#major_etc").val())) {
-                alert('기타 전공분야를 입력해주세요.');
-                $("#major_etc").focus();
-                return false;
-            }
-
-            if (isEmpty($("#company_kr").val())) {
-                alert('근무처 정보(국문)을 입력해주세요.');
-                $("#company_kr").focus();
-                return false;
-            }
-            if (isEmpty($("#company_en").val())) {
-                alert('근무처 정보(영문)을 입력해주세요.');
-                $("#company_en").focus();
-                return false;
-            }
-            if (isEmpty($("#position").val())) {
-                alert('근무처 정보(직위)를 입력해주세요.');
-                $("#position").focus();
-                return false;
-            }
-            if (isEmpty($("#companyTel1").val())) {
-                alert('근무처 정보(번호)를 입력해주세요.');
-                $("#companyTel1").focus();
-                return false;
-            }
-            if (isEmpty($("#companyTel2").val())) {
-                alert('근무처 정보(번호)를 입력해주세요.');
-                $("#companyTel2").focus();
-                return false;
-            }
-            if (isEmpty($("#companyTel3").val())) {
-                alert('근무처 정보(번호)를 입력해주세요.');
-                $("#companyTel3").focus();
-                return false;
-            }
-
-            if (isEmpty($("#company_zipcode").val())) {
-                alert('근무처 주소를 입력해주세요.');
-                $("#company_zipcode").focus();
-                return false;
-            }
-            if (isEmpty($("#company_address2").val())) {
-                alert('근무처 주소를 입력해주세요.');
-                $("#company_address2").focus();
-                return false;
-            }
-
-            //form4
-            if ( $("input[name='emailReception']:checked").length < 1 ) {
-                alert('Mailing 서비스 여부를 체크해주세요.');
-                $("input[name='emailReception']").focus();
-                return false;
-            }
-            if ( $("input[name='smsReception']:checked").length < 1 ) {
-                alert('SMS 수신 여부를 체크해주세요.');
-                $("input[name='smsReception']").focus();
-                return false;
-            }
+            // if (isEmpty($("#first_name").val())) {
+            //     alert('성명(영문)을 입력해주세요.');
+            //     $("#first_name").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#last_name").val())) {
+            //     alert('성명(영문)을 입력해주세요.');
+            //     $("#last_name").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#name_han").val())) {
+            //     alert('성명(한자)를 입력해주세요.');
+            //     $("#name_han").focus();
+            //     return false;
+            // }
+            //
+            // if ($("input[name='is_national']:checked").length < 1) {
+            //     alert('외국 국적 회원 여부를 선택해주세요.');
+            //     $("input[name='is_national']").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#birth_date").val())) {
+            //     alert('생년월일을 입력해주세요.');
+            //     $("#birth_date").focus();
+            //     return false;
+            // }
+            // if ( $("#birth_date").val().length < 10){
+            //     alert('생년월일을 입력해주세요.');
+            //     $("#birth_date").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#phone").val())) {
+            //     alert('휴대전화번호를 입력해주세요.');
+            //     $("#phone").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#email").val())) {
+            //     alert('E-Mail을 입력해주세요.');
+            //     $("#email").focus();
+            //     return false;
+            // }
+            // if ( $("#email").data('chk') == 'N' ) {
+            //     alert('E-Mail 중복체크를 해주세요.');
+            //     $("#email").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#home_zipcode").val())) {
+            //     alert('자택주소를 입력해주세요.');
+            //     $("#home_zipcode").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#home_address2").val())) {
+            //     alert('자택주소를 입력해주세요.');
+            //     $("#home_address2").focus();
+            //     return false;
+            // }
+            //
+            // //form3
+            // if($("input[name='license_number']").is(":visible")){
+            //     if (isEmpty($("input[name='license_number']").val())) {
+            //         alert('의사면허번호를 입력해주세요.');
+            //         $("input[name='license_number']").focus();
+            //         return false;
+            //     }
+            //     if ( $("input[name='license_number']").data('chk') == 'N' ) {
+            //         alert('의사면허번호 중복체크를 해주세요.');
+            //         $("input[name='license_number']").focus();
+            //         return false;
+            //     }
+            // }
+            // if (isEmpty($("#major").val())) {
+            //     alert('전공분야를 선택해주세요.');
+            //     $("#major").focus();
+            //     return false;
+            // }
+            // if ($("#major").val() == 'Z' && isEmpty($("#major_etc").val())) {
+            //     alert('기타 전공분야를 입력해주세요.');
+            //     $("#major_etc").focus();
+            //     return false;
+            // }
+            //
+            // if (isEmpty($("#company_kr").val())) {
+            //     alert('근무처 정보(국문)을 입력해주세요.');
+            //     $("#company_kr").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#company_en").val())) {
+            //     alert('근무처 정보(영문)을 입력해주세요.');
+            //     $("#company_en").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#position").val())) {
+            //     alert('근무처 정보(직위)를 입력해주세요.');
+            //     $("#position").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#companyTel1").val())) {
+            //     alert('근무처 정보(번호)를 입력해주세요.');
+            //     $("#companyTel1").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#companyTel2").val())) {
+            //     alert('근무처 정보(번호)를 입력해주세요.');
+            //     $("#companyTel2").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#companyTel3").val())) {
+            //     alert('근무처 정보(번호)를 입력해주세요.');
+            //     $("#companyTel3").focus();
+            //     return false;
+            // }
+            //
+            // if (isEmpty($("#company_zipcode").val())) {
+            //     alert('근무처 주소를 입력해주세요.');
+            //     $("#company_zipcode").focus();
+            //     return false;
+            // }
+            // if (isEmpty($("#company_address2").val())) {
+            //     alert('근무처 주소를 입력해주세요.');
+            //     $("#company_address2").focus();
+            //     return false;
+            // }
+            //
+            // //form4
+            // if ( $("input[name='emailReception']:checked").length < 1 ) {
+            //     alert('Mailing 서비스 여부를 체크해주세요.');
+            //     $("input[name='emailReception']").focus();
+            //     return false;
+            // }
+            // if ( $("input[name='smsReception']:checked").length < 1 ) {
+            //     alert('SMS 수신 여부를 체크해주세요.');
+            //     $("input[name='smsReception']").focus();
+            //     return false;
+            // }
 
             boardSubmit();
         });

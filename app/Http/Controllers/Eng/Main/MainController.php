@@ -17,6 +17,9 @@ class MainController extends Controller
 
     public function main(Request $request)
     {
+        view()->share([
+            'main_menu' => 'main',
+        ]);
         return view('eng.index', $this->mainServices->indexService($request));
     }
 

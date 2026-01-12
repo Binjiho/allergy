@@ -208,17 +208,15 @@
 .notice-box img{
     display: block;
     width: 100%;
-    max-width: 200px;
-    margin: 0 auto 25px;
+    max-width: 500px;
+    margin: 0 auto 40px;
 }
 .notice-box .tit{
     position: relative;
     display: inline-block;
-    padding: 0 10px 3px;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 32px;
+    font-weight: 500;
     line-height: 1.4;
-    color: #111111;
 }
 
 /* sub contents */
@@ -648,12 +646,12 @@
     display: flex;
 }
 .step-list > li{
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    width: calc(100% / 5);
     padding-bottom: 20px;
     border-bottom: 2px solid #d8dbe0;
 }
@@ -678,7 +676,7 @@
 .step-list > li:nth-child(4) .icon{
     background-image: url('../image/sub/ic_step02.png');
 }
-.step-list > li:nth-child(5) .icon{
+.step-list > li:last-child .icon{
     background-image: url('../image/sub/ic_step05.png');
 }
 .step-list .tit{
@@ -731,7 +729,7 @@
 .step-list > li.on:nth-child(5){
     border-color: #001b4a;
 }
-.step-list > li.on:nth-child(5) .icon{
+.step-list > li.on:last-child .icon{
     background-color: #001b4a;
     background-image: url('../image/sub/ic_step05_on.png');
 }
@@ -1388,6 +1386,18 @@
 .btn-wrap .ev-cate07:hover{
     background-color: #748ca5;
     border-color: #748ca5;
+    color: #fff;
+}
+/* 25.12.16 추가 */
+.btn-ev.ev-cate08{
+    background-color: #dff3ff;
+    border-color: #dff3ff;
+    color: #4aa9e5;
+}
+.btn-wrap .ev-cate08.on,
+.btn-wrap .ev-cate08:hover{
+    background-color: #4aa9e5;
+    border-color: #4aa9e5;
     color: #fff;
 }
 .btn-ev .plus,
@@ -2580,6 +2590,9 @@
     gap: 30px;
 }
 .journal-list > li{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     position: relative;
     width: calc((100% - 30px)/2);
     border: 1px solid #e2e2e2;
@@ -2620,17 +2633,21 @@
     margin-top: 3px;
 }
 .journal-list .iso{
+    margin-bottom: 20px;
     font-size: 1.8rem;
     font-weight: 500;
 }
 .journal-list .keywords{
     margin-top: 5px;
+    margin-bottom: 20px;
     font-size: 1.6rem;
 }
 .journal-list .btn-download{
-    position: absolute;
-    top: 30px;
-    right: 30px;
+    /* position: absolute;
+    bottom: 30px;
+    right: 30px; */
+    flex: 0 0 auto;
+    margin-top: auto;
     padding: 8px 20px;
     padding-right: 15px;
     border-radius: 3px;
@@ -2721,6 +2738,10 @@
     border-color: #1398c3;
     font-weight: 500;
     color: #fff;
+}
+.journal-sch-form .checkbox-group:has(input:disabled), 
+.journal-sch-form .checkbox-group input[type="checkbox"]:disabled{
+    opacity: 1;
 }
 
 /* 회원공간::천식 E-러닝 */
@@ -4433,4 +4454,217 @@
 }
 .center-list > li:hover strong{
     color: #342bc1;
+}
+
+
+/*  국외학술대회참가신청::국외학회 스케줄 및 진행상황 */
+.cst-table th.m-hide,
+.cst-table td.m-hide {
+    display: table-cell !important;
+}
+
+.overseas-box{
+    padding: 30px;
+    background-color: #f3fbff;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+.overseas-box .highlights {
+    box-shadow: inset 0 -10px 0 #d7e8ff;
+}
+.overseas-box.yellow{
+    background-color: #fffbec;
+}
+.overseas-box .btn-wrap {
+    margin-top: 20px;
+}
+.overseas-box .btn-wrap .btn{
+    border-radius: 5px;
+}
+.overseas-box .btn-wrap .btn img {
+    margin-left: 10px;
+}
+
+.img-border-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 35px 50px;
+    margin-top: 30px;
+    background-color: #fffbec;
+}
+.img-border-box .list-type li + li {
+    margin-top: 10px;
+}
+
+.progress-title {
+    margin: 40px 0 20px;
+    padding: 13px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+    border: 5px;
+    background-image: url('../image/sub/bg_progress_title01.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #fff;
+}
+.progress-title.end {
+    background-image: url('../image/sub/bg_progress_title02.png');
+}
+
+/*  국외학술대회참가신청::지원규정 및 선정 규정 */
+.process-list{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 30px 50px;
+    margin-top: 50px;
+}
+.process-list > li{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #f3fbff;
+    border: 1px solid #369dd1;
+    border-radius: 5px;
+}
+.process-list > li p{
+    font-weight: 500;
+    line-height: 1.2;
+}
+.process-list > li span{
+    font-size: 1.4rem;
+}
+.process-list > li + li:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    display: block;
+    width: 33px;
+    height: 24px;
+    transform: translate(-50%, -50%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('../image/sub/ic_step_arrow.png');
+}
+
+/*  국외학술대회참가신청::지원신청::step 2 */
+.overseas-text-wrap {
+    margin-bottom: 70px;
+    padding: 30px;
+    background-color: #fffbec;
+    border-radius: 5px;
+}
+.overseas-text-wrap .btn-wrap {
+    margin-top: 25px;
+}
+
+/*  국외학술대회참가신청::지원신청::step 4 */
+.signup-complete-wrap.overseas{
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.signup-complete-wrap.overseas .des {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #23afe4;
+}
+
+/*  국외학술대회참가신청::신청내역 확인 및 결과보고 */
+.text-skyblue .highlights{
+    display: inline;
+    box-shadow: inset 0 -10px #daeeff;
+}
+.text-red .highlights{
+    display: inline;
+    box-shadow: inset 0 -10px #FFFFCC;
+}
+.overseas-list-title {
+    margin: 40px 0 20px;
+    padding: 50px 20px;
+    text-align: center;
+    font-size: 3.2rem;
+    line-height: 1.2;
+    border: 5px;
+    background-image: url('../image/sub/bg_overseas_title01.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.overseas-list-title.past {
+    background-image: url('../image/sub/bg_overseas_title02.png');
+}
+.overseas-list-title strong {
+    color: #003173;
+}
+
+.cst-table td .btn-small {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+
+/*  국외학술대회참가신청::결과보고서 제출 */
+.write-wrap .form-tit:has(.title-wrap) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.write-wrap .form-tit .title-wrap {
+    width: 100%;
+}
+.write-wrap .form-tit .btn {
+    flex-shrink: 0;
+}
+
+.committee-conbox .term-conbox .list-type-decimal > li + li{
+    margin-top: 40px;
+}
+.term-conbox .list-type-decimal:not(.type2) > li + li{
+    margin-top: 0;
+}
+.term-conbox .list-type-square > li:before{
+    top: 9px;
+    width: 8px;
+    height: 8px;
+    background-color: #444;
+}
+.committee-conbox .term-wrap{
+    margin-top: 50px;
+    border: 1px solid #e2e2e2;
+}
+.committee-conbox .term-conbox > .tit{
+    margin-bottom: 20px;
+    font-size: 2.6rem;
+    color: #0c4693;
+    text-align: center;
+}
+.committee-conbox .term-tit{
+    margin-top: 40px;
+}
+.committee-conbox .term-tit.fz-big{
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.committee-conbox .term-tit.fz-big + .term-tit{
+    margin-top: 0;
 }

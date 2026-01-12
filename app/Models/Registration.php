@@ -36,10 +36,6 @@ class Registration extends Model
 
     public function setByData($data)
     {
-//        if(!empty($data['tel1'])){
-//            $tel = $data['tel1'].'-'.$data['tel2'].'-'.$data['tel3'];
-//        }
-
         if(empty($this->sid)) {
             $this->usid = $data->usid ?? thisPK();
             $this->member_gubun = $data->member_gubun ?? 'N';
@@ -85,6 +81,61 @@ class Registration extends Model
 
         $this->complete = $data->complete ?? 'Y';
         $this->completed_at = $data->completed_at ?? date('Y-m-d H:i:s');
+    }
+
+    public function setByAdmin($data)
+    {
+        if(empty($this->sid)) {
+            $this->wsid = $data->wsid ?? null;
+            $this->created_at = date('Y-m-d H:i:s');
+        }
+
+        $this->updated_at = date('Y-m-d H:i:s');
+
+        $this->name_kr = $data->name_kr ?? null;
+        $this->addr = $data->addr ?? null;
+        $this->license_number = $data->license_number ?? null;
+        $this->amount = $data->amount ?? null;
+        $this->pay_method = $data->pay_method ?? null;
+        $this->pay_status = $data->pay_status ?? null;
+    }
+
+    public function setByTransfer($data)
+    {
+
+//        $this->usid = $data->usid ?? thisPK();
+        $this->wsid = $data['wsid'] ?? null;
+        $this->member_gubun = $data['member_gubun'] ?? 'N';
+        $this->reg_num = $data['reg_num'] ?? null;
+
+        $this->license_number = $data['license_number'] ?? null;
+        $this->name_kr = $data['name_kr'] ?? null;
+        $this->gubun = $data['gubun'] ?? null;
+
+        $this->email = $data['email'] ?? null;
+        $this->region = $data['region'] ?? null;
+        $this->sigu = $data['sigu'] ?? null;
+        $this->office_use = $data['office_use'] ?? 'N';
+        $this->office_sid = $data['office_sid'] ?? null;
+        $this->office_name = $data['office_name'] ?? null;
+
+        $this->zipcode =  $data['zipcode'] ?? null;
+        $this->addr = $data['addr'] ?? null;
+        $this->addr_etc = $data['addr_etc'] ?? null;
+        $this->phone = $data['phone'] ?? null;
+        $this->department = $data['department'] ?? null;
+        $this->office_tel_first = $data['office_tel_first'] ?? null;
+        $this->office_tel = $data['office_tel'] ?? null;
+
+        $this->amount = $data['amount'] ?? null;
+        $this->pay_method = $data['pay_method'] ?? null;
+        $this->pay_status = $data['pay_status'] ?? null;
+        $this->agree = $data['agree'] ?? 'Y';
+
+        $this->user_memo = $data['user_memo'] ?? null;
+        $this->memo = $data['memo'] ?? null;
+        $this->created_at = $data['created_at'] ?? null;
+        $this->updated_at = $data['updated_at'] ?? null;
     }
 
     public function workshop()

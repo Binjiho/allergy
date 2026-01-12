@@ -67,7 +67,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 35px 0; 
+    padding: 35px 0;
 }
 .header-logo > a img{
     height: 33px;
@@ -273,7 +273,7 @@
     color: #ccd0d7;
     font-weight: 400;
 }
-.footer-con a{    
+.footer-con a{
     color: #c4c4cf;
 }
 .footer-menu{
@@ -318,7 +318,7 @@
 }
 .main-tit{
     font-size: 5.5rem;
-    color: #191829;    
+    color: #191829;
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1;

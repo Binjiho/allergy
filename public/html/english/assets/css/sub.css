@@ -1,0 +1,688 @@
+@charset "utf-8";
+/* ==================================================
+
+    * sub
+    
+================================================== */
+
+/* 서브::비주얼 */
+@keyframes visualTextUp{
+	from {opacity: 0; -webkit-transform:translateY(10px); transform:translateY(10px); }
+	50%{ opacity: 0.4; }
+	to { opacity: 1; -webkit-transform:translateY(0px); transform:translateY(0px); }
+}
+.sub-visual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 190px;
+    padding-bottom: 35px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1920px auto;
+    background-image: url('../image/sub/bg_subvisual.png');
+}
+
+.sub-visual-con{
+    width: 100%;
+}
+.sub-visual-tit{
+    opacity: 0;
+    position: relative;
+    padding-top: 20px;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #104795;
+    text-align: center;
+    animation:visualTextUp 0.5s linear forwards;
+}
+.sub-visual-tit::after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -30px;
+    width: 60px;
+    height: 4px;
+    background-color: #104795;
+}
+
+/* 서브::LNB */
+.btn-sub-menu,
+.sub-menu-depth01{
+    display: none;
+}
+.sub-menu-wrap{
+    padding: 10px;
+    margin-top: -35px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 2px 8px 0 rgba(161, 161, 161, 0.5)
+}
+.sub-menu-list > li > ul{
+    display: flex;
+    gap: 10px;
+}
+.sub-menu-list > li > ul > li{
+    flex: 1;
+}
+.sub-menu-list > li > ul > li > a{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    height: 50px;
+    font-size: 1.9rem;
+    font-weight: 500;
+    text-align: center;
+    transition: 0.3s ease;
+    border-radius: 5px;
+    background-color: #e9f0f3;
+    color: #104795;
+}
+.sub-menu-list > li > ul > li.on > a,
+.sub-menu-list > li > ul > li:hover > a{
+    font-weight: 600;
+    color: #fff;
+    background-color: #104795;
+}
+
+/* 서브::TAP MENU */
+.sub-tab-wrap{
+    position: relative;
+    margin-bottom: 30px;
+}
+.btn-tab-menu{
+    display: none;
+}
+.sub-tab-menu{
+    overflow: hidden;
+    display: flex;
+    border-bottom: 1px solid #cecece;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+.sub-tab-menu > li{
+    display: block;
+    flex: 1;
+    min-height: 60px;
+    text-align: center;
+}
+.sub-tab-menu > li > a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 5px;
+    border-bottom: 2px solid transparent;
+    font-size: 1.7rem;
+    line-height: 1.2;
+    transition: 0.3s ease;
+}
+.sub-tab-menu > li.on > a,
+.sub-tab-menu > li:hover > a{
+    font-weight: 700;
+    color: #1daab7;
+    border-color: #1daab7;
+}
+.sub-tab-con{
+    display: none;
+}
+
+.sub-tab-wrap.type2 {
+    margin-top: 30px;
+}
+.sub-tab-wrap.type2 .sub-tab-menu {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 30px;
+    border-bottom: 0;
+    background-color: #f0f6ff;
+}
+.sub-tab-wrap.type2 .sub-tab-menu > li > a {
+    border-radius: 30px;
+    border-bottom: 0;
+    font-size: 1.9rem;
+    color: #7a8fa9;
+}
+.sub-tab-wrap.type2 .sub-tab-menu > li.on > a,
+.sub-tab-wrap.type2 .sub-tab-menu > li:hover > a {
+    background-color: #5293e3;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* 서브::공통 */
+.page-tit-wrap {
+    position: relative;
+    margin: 50px 0;
+}
+.page-tit {
+    display: inline-block;
+    padding-left: 42px;
+    padding-right: 15px;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-image: url('../image/sub/bg_pagetit.png');
+    background-color: #fff;
+    letter-spacing: -1px;
+}
+.page-tit::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 10px;
+    height: 1px;
+    background-color: #eeeff1;
+}
+.sub-tit-wrap {
+    margin: 20px 0;
+}
+.sub-tit {
+    padding-top: 24px;
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 1;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-image: url('../image/sub/bg_subtit.png');
+    color: #3b3aba;
+}
+.con-tit {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #063577;
+}
+
+/* 서브::준비중 */ 
+.ready-wrap{
+    margin: 0 auto;
+    text-align: center;
+}
+.ready-wrap .tit{
+    margin-top: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+.ready-wrap .tit span {
+    font-size: 3rem;
+    color: #3a6bea;
+}
+
+/* 서브::Welcome Message */ 
+.welcome-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+}
+.welcome-wrap .img-wrap{
+    flex-shrink: 0;
+    width: 386px;
+    padding: 0 35px 55px;
+    border-radius: 5px 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+    background-image: url('../image/sub/bg_welcome.png');
+    color: #fff;
+    font-weight: 300;
+    line-height: 1.3;
+}
+.welcome-wrap .img-wrap img {
+    margin-bottom: 20px;
+}
+.welcome-wrap .img-wrap .name {
+    margin-top: 10px;
+    font-size: 2.1rem;
+    font-weight: 600;
+}
+.welcome-wrap .text-wrap {
+    width: 100%;
+}
+.welcome-wrap .text-wrap .title {
+    margin-bottom: 20px;
+    font-size: 3.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #063577;
+}
+
+/* 서브::History */ 
+.history-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 40px 30px;
+    margin-top: 20px;
+}
+.history-list li {
+    width: calc(50% - 15px);
+    padding: 30px;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: auto 202px;
+    background-image: url('../image/sub/bg_history_list.png');
+    background-color: #fafdff;
+}
+.history-list li .title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.history-list li .title .years {
+    position: relative;
+    padding-right: 10px;
+    margin-right: 10px;
+    font-size: 2.2rem;
+    font-weight: bold;
+    line-height: 1;
+    color: #063577;
+}
+.history-list li .title .years::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 1px;
+    background-color: #dddddd;
+}
+
+/* 서브::Official Journals */ 
+.journal-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.journal-list li {
+    width: calc(25% - 15px);
+}
+.journal-list dl {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    padding: 30px 40px;
+    border: 1px solid #e2e2e2;
+    text-align: center;
+}
+.journal-list dl dt {
+    display: inline-block;
+    padding: 10px 25px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    background-color: #063577;
+    color: #fff;
+}
+.journal-list li:nth-of-type(2) dl dt,
+.journal-list li:nth-of-type(4) dl dt,
+.journal-list li:nth-of-type(5) dl dt {
+    background-color: #2897d2;
+}
+
+/* 서브::International Meetings */ 
+.meeting-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+.meeting-list > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    width: calc(25% - 15px);
+    padding: 30px;
+    border: 1px solid #e2e2e2;
+}
+.meeting-list > li p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #063577;
+}
+.meeting-list > li ul {
+    width: 100%;
+}
+.meeting-list > li li {
+    padding-left: 22px;
+    background-repeat: no-repeat;
+    background-position: left top 4px;
+    background-image: url('../image/sub/ico_date.png');
+}
+.meeting-list > li li.rocation {
+    margin-top: 5px;
+    background-position: left 2px top 4px;
+    background-image: url('../image/sub/ico_rocation.png');
+}
+
+
+/* 서브::Related Societies */ 
+.society-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+.society-list li {
+    width: calc(20% - 8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border: 1px solid #e2e2e2;
+    text-align: center;
+}
+
+
+/* 서브::Past Presidents */ 
+.past-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.past-list li {
+    width: calc(25% - 15px);
+    padding: 30px 35px;
+    border: 1px solid #e2e2e2;
+}
+.past-list li .years {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    background-color: #063577;
+    color: #fff;
+}
+.past-list li .name {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* 서브::Contact Us */ 
+.map-wrap {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+.map-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;    
+}
+.map-info {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 0 50px 0 0;
+}
+.map-info p {
+    font-size: 15px;
+    color: #666;
+} 
+
+.contact-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+    margin-top: 30px;
+}
+.contact-list li {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    padding-left: 35px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+.contact-list li strong{
+    display: block;
+    font-size: 2rem;
+}
+
+.contact-list li:nth-of-type(1){
+    border-color: #108795;
+    background-color: #f9feff;
+}
+.contact-list li:nth-of-type(2){
+    border-color: #0d69b0;
+    background-color: #f9fcff;
+}
+.contact-list li:nth-of-type(3){
+    border-color: #122195;
+    background-color: #f8f9ff;
+}
+
+/* 서브::Committee */ 
+.committee-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.committee-list li {
+    width: calc(33.3333% - 14px);
+    padding: 30px;
+    border: 1px solid #e2e2e2;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-image: url('../image/sub/bg_committee.png');
+}
+.committee-list li .position {
+    position: relative;
+    margin-bottom: 50px;
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #063577;
+}
+.committee-list li .position::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -23px;
+    width: 50px;
+    height: 3px;
+    background-color: #063577;
+}
+.committee-list li .name {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* 서브::Regional Branches */ 
+.branch-map-wrap {
+    padding: 30px;
+    border: 1px solid #e2e2e2;
+}
+.branch-wrap {
+    z-index: 1;
+    position: relative;
+    max-width: 498px;
+    margin-right: auto;
+    margin-left: auto;
+} 
+.branch-wrap .pin-list li {
+    z-index: 1;
+    position: absolute;
+}
+.branch-wrap .pin-list li p {
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 50%;
+    top: -20px;
+    transform: translate(-50%, -100%);
+    display: inline-block;
+    width: auto;
+    padding: 20px;
+    white-space: nowrap;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    border: solid 1px #2897d2;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 rgba(40, 151, 210, 0.2);
+    pointer-events: none;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+.branch-wrap .pin-list li a{
+    position: relative;
+    z-index: 1;
+}
+.branch-wrap .pin-list li a img {
+    position: relative;
+    z-index: 1;
+}
+.branch-wrap .pin-list li.seoul{
+    left: 26%;
+    top: 17%;
+}
+.branch-wrap .pin-list li.gangwon{
+    right: 23%;
+    top: 16%;
+}
+.branch-wrap .pin-list li.incheon{
+    left: 37%;
+    top: 24%;
+}
+.branch-wrap .pin-list li.jeonbuk{
+    left: 38%;
+    bottom: 37%;
+}
+.branch-wrap .pin-list li.daegu{
+    right: 25%;
+    bottom: 45%;
+}
+.branch-wrap .pin-list li.gwangju{
+    left: 32%;
+    bottom: 23%;
+}
+.branch-wrap .pin-list li.busan{
+    right: 20%;
+    bottom: 31%;
+}
+
+.branch-wrap .pin-list li a:hover + p,
+.branch-wrap .pin-list li a:focus-visible + p{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.branch-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+.branch-list > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: calc(25% - 15px);
+    padding: 30px;
+    border: 1px solid #e2e2e2;
+    text-align: center;
+}
+.branch-list > li p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* 서브::AAIR */ 
+.publication-wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+}
+.publication-wrap > img {
+    flex-shrink: 0;
+}
+.publication-wrap .title-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.publication-wrap .title-wrap .title {
+    font-size: 2.4rem;
+    font-weight: 600;
+}
+.publication-wrap .title-wrap .des {
+    font-size: 2rem;
+    color: #666666;
+}
+.publication-wrap .title-wrap .btn {
+    min-width: 175px;
+}
+.publication-wrap .title-wrap .btn img {
+    margin-top: -4px;
+}
+
+/* 서브::Textbook */ 
+.textbook-wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 40px;
+}
+.textbook-wrap .title {
+    margin-bottom: 10px;
+    font-size: 2.4rem;
+    font-weight: 700;
+}

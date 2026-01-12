@@ -75,28 +75,28 @@
             let locationUrl = defaultUrl;
 
             if (_this.hasClass('btn-ev-first')) {
-                locationUrl += "?year=" + minYear;
+                locationUrl += "&year=" + minYear;
                 location.replace(locationUrl);
             }
 
             if (_this.hasClass('btn-ev-prev')) {
                 locationUrl += (year == minYear)
-                    ? "?year=" + minYear
-                    : "?year=" + (year - 1);
+                    ? "&year=" + minYear
+                    : "&year=" + (year - 1);
 
                 location.replace(locationUrl);
             }
 
             if (_this.hasClass('btn-ev-next')) {
                 locationUrl += (year == maxYear)
-                    ? "?year=" + maxYear
-                    : "?year=" + (year + 1);
+                    ? "&year=" + maxYear
+                    : "&year=" + (year + 1);
 
                 location.replace(locationUrl);
             }
 
             if (_this.hasClass('btn-ev-last')) {
-                locationUrl += "?year=" + maxYear;
+                locationUrl += "&year=" + maxYear;
                 location.replace(locationUrl);
             }
         });

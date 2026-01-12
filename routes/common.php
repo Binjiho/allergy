@@ -41,17 +41,6 @@ Route::fallback([\App\Http\Controllers\FallbackController::class, 'handle']);
 
 /*
 |--------------------------------------------------------------------------
-| inicis
-|--------------------------------------------------------------------------
-*/
-Route::controller(\App\Http\Controllers\InicisController::class)->prefix('inicis')->group(function() {
-    Route::post('init', 'INISInit')->name('inicis.init');
-    Route::post('result', 'INISResult')->name('inicis.result');
-    Route::get('close', 'INISClose')->name('inicis.close');
-});
-
-/*
-|--------------------------------------------------------------------------
 | DB 이관용
 |--------------------------------------------------------------------------
 */

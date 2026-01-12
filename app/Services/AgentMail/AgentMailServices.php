@@ -75,7 +75,8 @@ class AgentMailServices
         try {
             switch ($table) {
                 case 'user_binfo':
-                    $query = DB::table($table)->selectRaw('*, name_kr AS name, email')->whereNull('deleted_at');
+                    $query = DB::table($table)->selectRaw('*, name_kr AS name, email')->where(['create_status'=>'Y','del'=>'N','del_request'=>'N'])->whereNull('deleted_at');
+                    //260105 메일링 전부 수신으로 변경
                     $query->where('emailReception','Y');
 
                     // 검색어 있을경우
@@ -255,6 +256,10 @@ class AgentMailServices
 			'T2' => [
                 'name' => '템플릿 2',
                 'path' => "{$this->domain}/api/mail/template/temp02", //파일명
+            ],
+            'T3' => [
+                'name' => '템플릿 3',
+                'path' => "{$this->domain}/api/mail/template/temp03", //파일명
             ],
         ];
 

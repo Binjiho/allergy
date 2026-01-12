@@ -104,6 +104,7 @@
             <div class="form-con">
                 <div class="radio-wrap cst">
                     @foreach($defaultConfig['pay_method'] as $key => $val)
+
                         @continue($key =='F')
                         <label for="chk3_{{ $key }}" class="radio-group">
                             <input type="radio" name="pay_method" id="chk3_{{ $key }}" value="{{ $key }}" {{ ($reg->pay_method ?? '')==$key ? 'checked' :'' }}>{{ $val }}

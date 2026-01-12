@@ -133,10 +133,14 @@
                         if( empty($reg->sid) ){
                             if (($member_gubun ?? '') == 'Y'){
                                 $com_tel = thisUser()->companyTel ?? '';
+
                                 if(!empty($com_tel)){
                                     $com_tel_arr = explode('-',$com_tel);
                                     $reg['office_tel_first'] = $com_tel_arr[0];
-                                    $reg['office_tel'] = $com_tel_arr[1].$com_tel_arr[2];
+                                    $reg['office_tel'] = $com_tel_arr[1];
+                                    if(!empty($com_tel_arr[2])){
+                                        $reg['office_tel'] .=$com_tel_arr[2];
+                                    }
                                 }
                             }
                         }

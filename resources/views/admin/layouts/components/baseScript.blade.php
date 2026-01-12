@@ -25,4 +25,29 @@
             }
         }
     </script>
+
+    <script>
+        const mailLogin = () => {
+            $.ajax({
+                type: "POST",
+                url: '{{ url('api/mail/data') }}',
+                data: {'case': 'auth-login'},
+                success: function (data) {
+                    if (!data.url) {
+                        alert('요청 실패');
+                        console.log(data);
+                        location.reload();
+                        return false;
+                    }
+
+                    window.open(data.url);
+                },
+                error: function (error) {
+                    alert('ERROR');
+                    console.log(error);
+                    location.reload();
+                }
+            });
+        }
+    </script>
 @endif

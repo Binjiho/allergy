@@ -1,0 +1,138 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/html/english/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">PHOTOGRAPH</h2>
+        </div>
+    </article>
+    <article class="sub-menu-wrap inner-layer">
+        <div class="sub-menu">
+            <ul class="sub-menu-list js-sub-menu-list">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">PHOTOGRAPH</a>
+                    <ul>
+                        <li class="on"><a href="#n">About KAAACI</a></li>
+                        <li><a href="#n">ORGANIZATION</a></li>
+                        <li><a href="#n">PUBLICATION</a></li>
+                        <li><a href="#n">ACADEMIC MEETINGS</a></li>
+                        <li><a href="#n">NEWS & NOTICE</a></li>
+                        <li><a href="#n">PHOTOGRAPH</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">PHOTOGRAPH</a>
+                    <ul>
+                        <li class="on"><a href="#n">PHOTOGRAPH</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <!-- s:board -->             
+            <link href="/html/english/assets/css/board_gallery.css" rel="stylesheet">
+
+            <div id="board" class="board-wrap">
+                <div class="board-write">
+                    <div class="write-form-wrap">
+                        <form action="list.html" method="">
+                            <fieldset>
+                                <legend class="hide">글쓰기</legend>
+                                <div class="write-contop text-right">
+                                    <div class="help-text"><strong class="required">*</strong> 표시는 필수입력 항목입니다.</div>
+                                </div>
+                                <ul class="write-wrap">
+                                    <li>
+                                        <div class="form-tit">연도 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <select name="" id="" class="form-item">
+                                                <option value="">2025</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">제목 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <input type="text" name="" id="" class="form-item">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">공개 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label class="radio-group"><input type="radio" name="chk2">공개</label>
+                                                <label class="radio-group"><input type="radio" name="chk2" >비공개</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">썸네일</div>
+                                        <div class="form-con">
+                                            <div class="filebox">
+                                                <input class="upload-name form-item" name="fileName" id="fileName" value="" placeholder="Select File" readonly="readonly">
+                                                <label for="user_image">첨부파일</label>
+                                                <input type="file" id="user_image" name="user_image" class="file-upload" accept="image/gif, image/jpeg, image/png">
+                                                <input type="hidden" name="file_del" id="file_del" value="" readonly="">
+                                                <div class="attach-file">
+                                                    <a href="#n" target="_blank" class="link">filename.jpg</a>
+                                                    <a href="#n" class="btn-file-delete text-red">X</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">파일 첨부 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <div class="filebox">
+                                                <input class="upload-name form-item" name="fileName" id="fileName" value="" placeholder="Select File" readonly="readonly">
+                                                <label for="user_image">첨부파일</label>
+                                                <input type="file" id="user_image" name="user_image" class="file-upload" accept="image/gif, image/jpeg, image/png">
+                                                <input type="hidden" name="file_del" id="file_del" value="" readonly="">
+                                                <div class="attach-file">
+                                                    <a href="#n" target="_blank" class="link">filename.jpg</a>
+                                                    <a href="#n" class="btn-file-delete text-red">X</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="btn-wrap text-center">
+                                    <a href="list.html" class="btn btn-board btn-cancel">취소</a>
+                                    <!-- <button type="submit" class="btn btn-board btn-modify">수정</button> -->
+                                    <button type="submit" class="btn btn-board btn-write">등록</button>
+                                    <a href="list.html" class="btn btn-board btn-list full-right">목록</a>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>  
+            <!-- //e:board -->
+            
+        </div>
+    </article>
+    <script>
+        $(function(e){
+           fileUpload();            
+       });
+
+       function fileUpload(){
+           $('.file-upload').each(function(e){
+               $(this).parent().find('.upload-name').attr('readonly','readonly');
+               $(this).on('change',function(){
+                   var fileName = $(this).val();
+                   $(this).parent().find('.upload-name').val(fileName);
+               });
+           });
+       }
+   </script>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/html/english/include/footer.inc';
+?>

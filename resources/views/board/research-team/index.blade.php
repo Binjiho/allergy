@@ -10,7 +10,7 @@
     <article class="sub-contents">
         <div class="sub-conbox inner-layer">
 
-            <div class="sub-tab-wrap">
+            <div class="sub-tab-wrap type2">
                 <button type="button" class="btn btn-tab-menu js-btn-tab-menu">연혁</button>
                 <ul class="sub-tab-menu js-tab-menu">
                     <li class=""><a href="{{ route('intro.research') }}">현 임원진</a></li>
@@ -107,6 +107,9 @@
 
                     @forelse($list as $row)
                         <li class="ef01" data-sid="{{ $row->sid }}">
+                            <div class="bbs-no">
+                                {{ $row->seq }}
+                            </div>
                             <div class="list-con">
                                 <div class="bbs-tit">
                                     @if($boardConfig['use']['category'])

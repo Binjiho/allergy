@@ -38,6 +38,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
+            
             switch (checkUrl()) {
                 case 'api' :
                     Route::middleware('api')

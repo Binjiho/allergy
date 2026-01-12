@@ -31,65 +31,65 @@
                                     @endif
 
 
-                                        @if($boardConfig['use']['gubun'])
-                                            <li>
-                                                <div class="form-tit">{{ $boardConfig['gubun']['name'] }}</div>
+                                    @if($boardConfig['use']['gubun'])
+                                        <li>
+                                            <div class="form-tit">{{ $boardConfig['gubun']['name'] }}</div>
 
-                                                <div class="form-con">
-                                                    @switch($boardConfig['gubun']['type'])
-                                                        @case('radio')
-                                                            <div class="radio-wrap cst">
-                                                                @foreach($boardConfig['gubun']['item'] as $key => $val)
-                                                                    <div class="radio-group">
-                                                                        <input type="radio" name="gubun" id="gubun_{{ $key }}" value="{{ $key }}" {{ (($board->gubun ?? '') == $key) ? 'checked' : '' }}>
-                                                                        <label for="gubun_{{ $key }}">{{ $val }}</label>
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                            @break
+                                            <div class="form-con">
+                                                @switch($boardConfig['gubun']['type'])
+                                                    @case('radio')
+                                                        <div class="radio-wrap cst">
+                                                            @foreach($boardConfig['gubun']['item'] as $key => $val)
+                                                                <div class="radio-group">
+                                                                    <input type="radio" name="gubun" id="gubun_{{ $key }}" value="{{ $key }}" {{ (($board->gubun ?? '') == $key) ? 'checked' : '' }}>
+                                                                    <label for="gubun_{{ $key }}">{{ $val }}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                        @break
 
-                                                        @case('select')
-                                                            <select name="gubun">
-                                                                <option value="">선택</option>
-                                                                @foreach($boardConfig['gubun']['item'] as $key => $val)
-                                                                    <option value="{{ $key }}" {{ (($board->gubun ?? '') == $key) ? 'selected' : '' }}>{{ $val }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @break
-                                                    @endswitch
-                                                </div>
-                                            </li>
-                                        @endif
+                                                    @case('select')
+                                                        <select name="gubun">
+                                                            <option value="">선택</option>
+                                                            @foreach($boardConfig['gubun']['item'] as $key => $val)
+                                                                <option value="{{ $key }}" {{ (($board->gubun ?? '') == $key) ? 'selected' : '' }}>{{ $val }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @break
+                                                @endswitch
+                                            </div>
+                                        </li>
+                                    @endif
 
-                                        @if($boardConfig['use']['category'])
-                                            <li>
-                                                <div class="form-tit"><strong class="required">*</strong> {{ $boardConfig['category']['name'] }}</div>
+                                    @if($boardConfig['use']['category'])
+                                        <li>
+                                            <div class="form-tit"><strong class="required">*</strong> {{ $boardConfig['category']['name'] }}</div>
 
-                                                <div class="form-con">
-                                                    @switch($boardConfig['category']['type'])
-                                                        @case('radio')
-                                                            <div class="radio-wrap cst">
-                                                                @foreach($boardConfig['category']['item'] as $key => $val)
-                                                                    <div class="radio-group">
-                                                                        <input type="radio" name="category" id="category_{{ $key }}" value="{{ $key }}" {{ (($board->category ?? '') == $key) ? 'checked' : '' }}>
-                                                                        <label for="category_{{ $key }}">{{ $val }}</label>
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                            @break
+                                            <div class="form-con">
+                                                @switch($boardConfig['category']['type'])
+                                                    @case('radio')
+                                                        <div class="radio-wrap cst">
+                                                            @foreach($boardConfig['category']['item'] as $key => $val)
+                                                                <div class="radio-group">
+                                                                    <input type="radio" name="category" id="category_{{ $key }}" value="{{ $key }}" {{ (($board->category ?? '') == $key) ? 'checked' : '' }}>
+                                                                    <label for="category_{{ $key }}">{{ $val }}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                        @break
 
-                                                        @case('select')
-                                                            <select name="category" id="category" class="form-item">
-                                                                <option value="">선택</option>
-                                                                @foreach($boardConfig['category']['item'] as $key => $val)
-                                                                    <option value="{{ $key }}" {{ (($board->category ?? '') == $key) ? 'selected' : '' }}>{{ $val }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @break
-                                                    @endswitch
-                                                </div>
-                                            </li>
-                                        @endif
+                                                    @case('select')
+                                                        <select name="category" id="category" class="form-item">
+                                                            <option value="">선택</option>
+                                                            @foreach($boardConfig['category']['item'] as $key => $val)
+                                                                <option value="{{ $key }}" {{ (($board->category ?? '') == $key) ? 'selected' : '' }}>{{ $val }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @break
+                                                @endswitch
+                                            </div>
+                                        </li>
+                                    @endif
 
                                     @if($boardConfig['use']['subject'])
                                         <li>
@@ -100,10 +100,10 @@
 
                                                 <div class="checkbox-wrap cst mt-10">
                                                     @if($boardConfig['use']['notice'])
-                                                    <label class="checkbox-group"><input type="checkbox" name="notice" value="Y"  id="chk-tit1" {{ ($board->notice ?? '') == 'Y' ? 'checked' : '' }}>공지</label>
+                                                        <label class="checkbox-group"><input type="checkbox" name="notice" value="Y"  id="chk-tit1" {{ ($board->notice ?? '') == 'Y' ? 'checked' : '' }}>공지</label>
                                                     @endif
                                                     @if($boardConfig['use']['main'])
-                                                    <label class="checkbox-group"><input type="checkbox" name="main" value="Y" id="chk-tit2" {{ ($board->main ?? '') == 'Y' ? 'checked' : '' }}>Main 노출</label>
+                                                        <label class="checkbox-group"><input type="checkbox" name="main" value="Y" id="chk-tit2" {{ ($board->main ?? '') == 'Y' ? 'checked' : '' }}>Main 노출</label>
                                                     @endif
                                                 </div>
 
@@ -374,12 +374,15 @@
 
                                         <li class="popupContentBox" style="display: {{ $popupContentDisplay }}">
                                             <div class="form-con">
-                                                <textarea name="popup_contents" id="popup_contents" class="tinymce">{{ $board->popup_contents ?? '' }}</textarea>
+                                                <textarea name="popup_contents" id="popup_contents" class="tinymce">{{ $popup->popup_contents ?? '' }}</textarea>
                                             </div>
                                         </li>
                                     @endif
 
                                     @if($boardConfig['use']['contents'])
+{{--                                        @php--}}
+{{--                                        dd($board->contents);--}}
+{{--                                        @endphp--}}
                                         <li>
                                             <div class="form-con">
                                                 <textarea name="contents" id="contents" class="tinymce">{{ $board->contents ?? '' }}</textarea>
@@ -536,8 +539,12 @@
             });
 
             // 팝업 내용 선택
+            // $(document).on('click', 'input:radio[name=popup_select]', function() {
+            //     $('.popupContentBox').css('display', $(this).val() == 'P' ? 'table-row' : 'none');
+            // });
+
             $(document).on('click', 'input:radio[name=popup_select]', function() {
-                // $('.popupContentBox').css('display', $(this).val() == '2' ? 'table-row' : 'none');
+                $('.popupContentBox').css('display', $(this).val() == '2' ? 'table-row' : 'none');
                 if ($(this).val() === "2") {
                     $('.popupContentBox').show();
                 }else{
@@ -763,7 +770,7 @@
                     popupIsEmpty: true,
                 },
                 popup_contents: {
-                    PopupIsTinyEmpty: true,
+                    // PopupIsTinyEmpty: true,
                 },
                 // contents: {
                 //     isTinyEmpty: true,

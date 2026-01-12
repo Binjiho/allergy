@@ -3,7 +3,7 @@
 namespace App\Services\Workshop;
 
 use App\Services\AppServices;
-use App\Models\Workshop;
+use App\Models\Education;
 use App\Models\Registration;
 use App\Models\User;
 use App\Models\QA;
@@ -21,7 +21,7 @@ class WorkshopServices extends AppServices
         $today = date('Y-m-d'); // 오늘 날짜
 
         //진행중인 행사
-        $ing_query = Workshop::orderByDesc('event_sdate')->where('del', 'N');
+        $ing_query = Education::where(['del'=>'N','kind'=>'E'])->orderByDesc('event_sdate');
 
         if (!isAdmin()) {
             $ing_query->where('hide', 'N');
@@ -43,7 +43,7 @@ class WorkshopServices extends AppServices
         $this->data['ing_list'] = $ing_query->limit(6)->get();
 
         //완료된 행사
-        $query = Workshop::orderByDesc('event_sdate')->where('del', 'N');
+        $query = Education::where(['del'=>'N','kind'=>'E'])->orderByDesc('event_sdate');
 
         if (!isAdmin()) {
             $query->where('hide', 'N');
@@ -69,14 +69,14 @@ class WorkshopServices extends AppServices
     public function upsertService(Request $request)
     {
         if($request->sid){
-            $this->data['workshop'] = Workshop::findOrFail($request->sid);
+            $this->data['workshop'] = Education::findOrFail($request->sid);
         }
         return $this->data;
     }
 
     public function detailService(Request $request)
     {
-        $this->data['workshop'] = Workshop::findOrFail($request->wsid);
+        $this->data['workshop'] = Education::findOrFail($request->wsid);
         return $this->data;
     }
 
@@ -103,7 +103,7 @@ class WorkshopServices extends AppServices
         $this->transaction();
 
         try {
-            $workshop = new Workshop();
+            $workshop = new Education();
 
             $res_fee = array();
             $res_cnt = count($request->member_gubun);
@@ -117,12 +117,12 @@ class WorkshopServices extends AppServices
             }
             $request->merge([ 'res_fee' => $res_fee ]);
 
-            $codeExist = Workshop::where('code',$request->code)->exists();
+            $codeExist = Education::where('code',$request->code)->exists();
             if($codeExist){
                 return $this->returnJsonData('alert', [
-                    'case' => true,
+                    'case' => false,
                     'msg' => '이미 등록되어 있는 코드가 있습니다.',
-                    'location' => $this->ajaxActionLocation('reload',false),
+                    'location' => $this->ajaxActionLocation('reload'),
                 ]);
             }
 
@@ -145,7 +145,7 @@ class WorkshopServices extends AppServices
         $this->transaction();
 
         try {
-            $workshop = Workshop::findOrFail($request->sid);
+            $workshop = Education::findOrFail($request->sid);
 
             $res_fee = array();
             $res_cnt = count($request->member_gubun);
@@ -179,7 +179,7 @@ class WorkshopServices extends AppServices
         $this->transaction();
 
         try {
-            $workshop = Workshop::findOrFail($request->sid);
+            $workshop = Education::findOrFail($request->sid);
             $workshop->del='Y';
             $workshop->update();
 
@@ -200,7 +200,7 @@ class WorkshopServices extends AppServices
         $this->data['defaultConfig'] = config('site.default-workshop');
 
         return $this->returnJsonData('after', [
-            $this->ajaxActionHtml('.aff_div:last', view('admin.workshop.form.add-affi', $this->data)->render()),
+            $this->ajaxActionHtml('.aff_div:last', view('admin.education.form.add-affi', $this->data)->render()),
         ]);
     }
     private function dbChange(Request $request)
@@ -208,7 +208,7 @@ class WorkshopServices extends AppServices
         $this->transaction();
 
         try {
-            $workshop = Workshop::findOrFail($request->sid);
+            $workshop = Education::findOrFail($request->sid);
             $workshop->{$request->field}=$request->value;
             $workshop->update();
 

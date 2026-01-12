@@ -55,9 +55,9 @@
 
             </div>
         </div>
-        <div class="popup-footer btn-pop-today-close" style="cursor: pointer;">
-            [오늘하루 그만보기]
-{{--                <button type="button">[오늘 하루 그만보기]</button>--}}
+        <div class="popup-footer">
+            <button type="button" class="btn-pop-today-close">[오늘하루 그만보기]</button>
+            <button type="button" class="btn-pop-7-close">[7일동안 열지않기]</button>
         </div>
 
         <button type="button" class="btn btn-pop-close">
@@ -69,14 +69,45 @@
 </div>
 @endif
 
-@if(!empty($preview))
-    <script>
-        $(document).on('click', '.btn-pop-close', function () {
-            $('.popup-rolling-wrap').remove();
-        });
+<script>
+    @if(!empty($preview))
+    $(document).on('click', '.btn-pop-close', function () {
+        $('.popup-rolling-wrap').remove();
+    });
 
-        $(document).on('click', '.btn-pop-today-close', function () {
-            $('.popup-rolling-wrap').remove();
-        });
-    </script>
-@endif
+    $(document).on('click', '.btn-pop-today-close', function () {
+        $('.popup-rolling-wrap').remove();
+    });
+    @else
+
+    $(document).on('click', '.popup_close_btn', function () {
+        self.close();
+    });
+
+    @if(!empty($main_pop) && $main_pop !== false)
+    $(document).on('click', '.btn-pop-today-close', function () {
+        const layer = $(this).closest('.win-popup-wrap');
+
+        setCookie24(layer.attr('id'), 'done', 1);
+
+        self.close();
+    });
+
+    $(document).on('click', '.btn-pop-7-close', function () {
+        const layer = $(this).closest('.win-popup-wrap');
+
+        setCookie24(layer.attr('id'), 'done', 7);
+
+        self.close();
+    });
+    @endif
+
+    function setCookie24(name, value, expiredays) {
+        var todayDate = new Date();
+
+        todayDate.setDate(todayDate.getDate() + expiredays);
+
+        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+    }
+    @endif
+</script>

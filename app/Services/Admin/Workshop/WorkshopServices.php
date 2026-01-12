@@ -25,17 +25,11 @@ class WorkshopServices extends AppServices
 
     public function indexService(Request $request)
     {
-        $query = Workshop::orderByDesc('sid');
+        $query = Workshop::where(['del'=>'N','kind'=>'W'])->orderByDesc('event_sdate');
         $query->where('del', 'N');
 
-        if ( $request->year ) {
-            $query->where('year', $request->year);
-        }
-        if ( $request->status ) {
-            $query->where('status', $request->status);
-        }
-        if ( $request->event_title ) {
-            $query->where('event_title', 'like', "%{$request->event_title}%");
+        if ( $request->title ) {
+            $query->where('title', 'like', "%{$request->title}%");
         }
 
         $list = $query->paginate(10)->appends(request()->except(['page']));
@@ -74,37 +68,6 @@ class WorkshopServices extends AppServices
 
         try {
             $workshop = new Workshop();
-
-//            //코드 생성
-//            $maxCode = Workshop::where('year', $request->year)
-//                ->max(\DB::raw("CAST(RIGHT(code, 2) AS UNSIGNED)"));
-//
-//            $nextNumber = ($maxCode ?? 0) + 1;
-//            $code = $request->year . str_pad($nextNumber, 2, '0', STR_PAD_LEFT);
-//
-//            $request->merge(['code' => $code]);
-
-            $res_fee = array();
-            $res_cnt = count($request->member_gubun);
-
-            for ($i=0; $i<$res_cnt; $i++){
-                $res_fee[] = [
-                    'member_gubun' => $request->member_gubun[$i],
-                    'gubun' => $request->gubun[$i],
-                    'amount' => $request->amount[$i],
-                ];
-            }
-            $request->merge([ 'res_fee' => $res_fee ]);
-
-            $codeExist = Workshop::where('code',$request->code)->exists();
-            if($codeExist){
-                return $this->returnJsonData('alert', [
-                    'case' => true,
-                    'msg' => '이미 등록되어 있는 코드가 있습니다.',
-                    'location' => $this->ajaxActionLocation('reload',false),
-                ]);
-            }
-
             $workshop->setBydata($request);
             $workshop->save();
 
@@ -125,19 +88,6 @@ class WorkshopServices extends AppServices
 
         try {
             $workshop = Workshop::findOrFail($request->sid);
-
-            $res_fee = array();
-            $res_cnt = count($request->member_gubun);
-
-            for ($i=0; $i<$res_cnt; $i++){
-                $res_fee[] = [
-                    'member_gubun' => $request->member_gubun[$i],
-                    'gubun' => $request->gubun[$i],
-                    'amount' => $request->amount[$i],
-                ];
-            }
-            $request->merge([ 'res_fee' => $res_fee ]);
-
             $workshop->setBydata($request);
             $workshop->update();
 
@@ -179,7 +129,7 @@ class WorkshopServices extends AppServices
         $this->data['defaultConfig'] = config('site.default-workshop');
 
         return $this->returnJsonData('after', [
-            $this->ajaxActionHtml('.aff_div:last', view('admin.workshop.form.add-affi', $this->data)->render()),
+            $this->ajaxActionHtml('.aff_div:last', view('admin.education.form.add-affi', $this->data)->render()),
         ]);
     }
 

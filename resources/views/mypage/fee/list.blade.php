@@ -27,9 +27,11 @@
                             </li>
                         @endif
                     </ul>
+                    @if(($user->level) == 'A')
                     <div class="text-red mt-20">
                         * 평생회비 납부 시 당해연도 연회비부터는 납부하지 않으셔도 됩니다.
                     </div>
+                    @endif
                 </div>
             </div>
 

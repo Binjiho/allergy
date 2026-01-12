@@ -96,8 +96,12 @@ body:has(.print-wrap){
 }
 
 /* color */
-.text-skyblue{
-    color: #23afe4 !important;
+.text-green{
+    color: #2a9b3f !important;
+}
+.text-skyblue,
+.text-skyblue a{
+    color: #007cd5 !important;
 }
 .text-skyblue2{
     color: #487eb0 !important;
@@ -673,7 +677,7 @@ body:has(.print-wrap){
 .radio-group input[type="radio"]:disabled,
 .checkbox-group:has(input:disabled),
 .checkbox-group input[type="checkbox"]:disabled{
-    opacity: 0.3;
+    opacity: 0.5;
 }
 .radio-group,
 .checkbox-group{
@@ -830,6 +834,15 @@ table{
     width: 80%;
     font-size: 1.6rem;
 }
+
+.write-wrap .form-con:has(.write-wrap) {
+    padding: 0;
+}
+.write-wrap .form-con .form-tit {
+    width: 25%;
+    border-left: 1px solid #d2d5e0;
+}
+
 .write-wrap + .write-wrap{
     margin-top: 40px;
 }
@@ -968,9 +981,11 @@ textarea.form-item{
     border-top: 0;
     margin-bottom: -1px;
 }
-.write-wrap .form-con .write-wrap li:not(:has(.form-tit)){
+/*
+.write-wrap .form-con .write-wrap > li:not(:has(.form-tit)){
     padding: 10px 20px;
 }
+*/
 
 /* input file custom */
 .filebox{

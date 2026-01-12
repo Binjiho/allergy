@@ -49,8 +49,8 @@ class Lecture extends Model
 
         /* 파일 업로드 or 삭제 */
         $thumbnail = $data->file("thumbfile") ?? null; // 썸네일 첨부파일
-        $thumbnailDel = $data->thumbnail_del ?? null; // 썸네일 파일삭제
-
+        $thumbnailDel = $data->thumbfile_del ?? null; // 썸네일 파일삭제
+        
         // 파일 삭제이면서 기존 썸네일 있을경우 경로에 있는 실제 파일 삭제
         if ($thumbnailDel && !is_null($this->realfile)) {
             (new CommonServices())->fileDeleteService($this->realfile);
@@ -70,6 +70,15 @@ class Lecture extends Model
             $this->filename = $uploadFile['filename'];
         }
     }
+
+    public function setByTransfer($data)
+    {
+        $this->wsid = $data['wsid'] ?? null;
+        $this->title = $data['title'] ?? null;
+        $this->name_kr = $data['name'] ?? null;
+        $this->sosok = $data['office'] ?? null;
+
+    } //DB이관
 
     public function workshop()
     {

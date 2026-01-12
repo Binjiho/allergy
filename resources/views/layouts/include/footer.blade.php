@@ -39,7 +39,7 @@
                     <strong>상호 : </strong> 대한천식알레르기학회
                 </li>
                 <li>
-                    <strong>대표자 : </strong> 장안
+                    <strong>대표자 : </strong> 임대현 
                 </li>
                 <li>
                     <strong>사업자등록번호 : </strong> 208-82-05449
@@ -68,7 +68,7 @@
 
 <!-- s:이메일 무단 수집 거부 popup -->
 <div class="popup-wrap dim-click" id="pop-email" style="display: none;">
-    <div class="popup-contents">
+    <div class="popup-contents email-contents">
         <div class="popup-tit-wrap">
             <h4 class="popup-tit">
                 <img src="/assets/image/common/ic_pop_email.png" alt=""> 이메일 무단 수집 거부

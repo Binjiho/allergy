@@ -1,0 +1,244 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container" class="<?php echo $main;?>">
+    <article class="sub-visual js-sub-visual">
+        <div class="sub-visual-img"></div>
+        <div class="sub-visual-con inner-layer">
+            <div class="sub-visual-text">
+                <h2 class="sub-visual-tit">학술행사</h2>
+                <ul class="breadcrumb">
+                    <li>학술행사</li>
+                    <li>국외학술대회참가신청</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-menu-wrap">
+        <div class="sub-menu inner-layer cf">
+            <ul class="sub-menu-list js-sub-menu-list cf">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">학술행사</a>
+                    <ul>
+                        <li><a href="#n">학회소개</a></li>
+                        <li><a href="#n">학술지</a></li>
+                        <li><a href="#n">학술행사</a></li>
+                        <li><a href="#n">게시판</a></li>
+                        <li><a href="#n">일반인 정보</a></li>
+                        <li><a href="#n">Membership</a></li>
+                        <li><a href="#n">My Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">국외학술대회참가신청</a>
+                    <ul>
+                        <li><a href="#n">행사일정</a></li>
+                        <li class="on"><a href="#n">국외학술대회참가신청</a></li>
+                        <li><a href="#n">국내학술대회</a></li>
+                        <li><a href="#n">교육강좌</a></li>
+                        <li><a href="#n">역대학술대회</a></li>
+                        <li><a href="#n">포토갤러리</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <div class="sub-tab-wrap">
+                <button type="button" class="btn btn-tab-menu js-btn-tab-menu">신청내역 확인 및 결과보고</button>
+                <ul class="sub-tab-menu">
+                    <li><a href="overseas_schedule.html">국외학회 스케줄 및 진행상황</a></li>
+                    <li><a href="overseas_guide.html">지원 규정 및 선정 규정</a></li>
+                    <li><a href="overseas_step01.html">지원신청</a></li>
+                    <li class="on"><a href="overseas_result_list.html">신청내역 확인 및 결과보고</a></li>
+                    <li><a href="#n">공지사항</a></li>
+                </ul>
+            </div>
+
+            <p class="overseas-list-title"><strong>{성명(한글)}</strong> 국외 학회 참가 지원 신청 내역 입니다.</p>
+            <p class="text-skyblue mb-10 m-hide">
+                <span class="highlights">
+                    * 지원신청 취소를 원하시는 경우 학회( <a href="mailto:allergy@allergy.or.kr">allergy@allergy.or.kr</a>, 
+                    <a href="mailto:kaaaci@naver.com">kaaaci@naver.com</a> )로 연락 주시기 바랍니다.
+                </span>
+            </p>
+            <p class="text-red mb-10 m-show">
+                <span class="highlights">* 해외학회 지원 신청 수정 및 결과보고서 작성은 PC에서만 가능합니다.</span>
+            </p>
+            <div class="table-wrap scroll-x touch-help">
+                <table class="cst-table text-center">
+                    <caption class="hide">해외학회 참가 지원 신청</caption>
+                    <colgroup>
+                        <col>
+                        <col style="width: 15%;">
+                        <col style="width: 12%;">
+                        <col style="width: 11%;">
+                        <col style="width: 8%;">
+                        <col style="width: 8%;">
+                        <col style="width: 11%;">
+                        <col style="width: 8%;">
+                        <col style="width: 11%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>지원학회 명</th>
+                            <th>개최일자</th>
+                            <th>개최장소</th>
+                            <th>신청완료일</th>
+                            <th>신청상태</th>
+                            <th>심사결과</th>
+                            <th>결과보고서</th>
+                            <th>지급여부</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{행사명}</td>
+                            <td>YYYY-MM-DD ~ <br>YYYY-MM-DD</td>
+                            <td>{장소}</td>
+                            <td>YYYY-MM-DD</td>
+                            <td>등록중</td>
+                            <td><span class="text-blue">미선정</span></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a href="" class="btn btn-small color-type5 m-hide">수정</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{행사명}</td>
+                            <td>YYYY-MM-DD ~ <br>YYYY-MM-DD</td>
+                            <td>{장소}</td>
+                            <td>YYYY-MM-DD</td>
+                            <td>등록완료</td>
+                            <td><span class="text-red">선정<br>(KRPIA)</span></td>
+                            <td>
+                                <a href="" class="btn btn-small color-type1 m-hide">제출하기</a>
+                            </td>
+                            <td>지급완료</td>
+                            <td><a href="" class="btn btn-small color-type8 m-hide">신청내역보기</a></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>등록완료</td>
+                            <td><span class="text-red">선정<br>(KPBMA)</span></td>
+                            <td>
+                                <p>제출완료</p>
+                                <a href="" class="btn btn-small color-type4 m-hide">제출자료 보기</a>
+                            </td>
+                            <td>미지급</td>
+                            <td>마감</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>등록완료</td>
+                            <td><span class="text-red">선정<br>(KPBMA)</span></td>
+                            <td>미제출</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="paging-wrap">
+                <ul class="paging">
+                    <li class="first"><a href="#n"><span class="hide">처음</span></a></li>
+                    <li class="prev"><a href="#n"><span class="hide">이전</span></a></li>
+                    <li class="num on"><a href="#n">1</a></li>
+                    <li class="num"><a href="#n">2</a></li>
+                    <li class="num"><a href="#n">3</a></li>
+                    <li class="num"><a href="#n">4</a></li>
+                    <li class="num"><a href="#n">5</a></li>
+                    <li class="next"><a href="#n"><span class="hide">다음</span></a></li>
+                    <li class="last"><a href="#n"><span class="hide">마지막</span></a></li>
+                </ul>
+            </div>
+
+            <p class="overseas-list-title past"><strong>{성명(한글)}</strong> 과거 수혜 내역 입니다.</p>
+            <div class="table-wrap scroll-x touch-help">
+                <table class="cst-table text-center">
+                    <caption class="hide">과거 수혜 내역</caption>
+                    <colgroup>
+                        <col>
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>학회명</th>
+                            <th>개최일자</th>
+                            <th>개최장소</th>
+                            <th>지원협회</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{행사명}</td>
+                            <td>YYYY-MM-DD ~ YYYY-MM-DD</td>
+                            <td>{장소}</td>
+                            <td>KRPIA</td>
+                        </tr>
+                        <tr>
+                            <td>{행사명}</td>
+                            <td>YYYY-MM-DD ~ YYYY-MM-DD</td>
+                            <td>{장소}</td>
+                            <td>KPBMA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-wrap">
+                <table class="cst-table text-center">
+                    <caption class="hide">과거 수혜 내역</caption>
+                    <colgroup>
+                        <col>
+                        <col style="width: 25%;">
+                        <col style="width: 15%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>학회명</th>
+                            <th>개최일자</th>
+                            <th>개최장소</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">수혜 내역이 없습니다</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="paging-wrap">
+                <ul class="paging">
+                    <li class="first"><a href="#n"><span class="hide">처음</span></a></li>
+                    <li class="prev"><a href="#n"><span class="hide">이전</span></a></li>
+                    <li class="num on"><a href="#n">1</a></li>
+                    <li class="num"><a href="#n">2</a></li>
+                    <li class="num"><a href="#n">3</a></li>
+                    <li class="num"><a href="#n">4</a></li>
+                    <li class="num"><a href="#n">5</a></li>
+                    <li class="next"><a href="#n"><span class="hide">다음</span></a></li>
+                    <li class="last"><a href="#n"><span class="hide">마지막</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

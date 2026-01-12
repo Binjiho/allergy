@@ -24,7 +24,8 @@ return [
         'popup_contents' => ['1' => '공지 내용과 동일', '2' => '팝업 내용 새로 작성'], // 팝업내용
         'popup_detail' => ['N' => '설정안함', 'Y' => '설정함'], // 팝업 상세보기 링크 사용여부
         'popup_skin' => ['none' => '없음', 'A' => 'TYPE A', 'B' => 'TYPE B', 'C' => 'TYPE C'], // 팝업 스킨
-        'popup_yn' => ['N' => '미사용', 'Y' => '사용'], // 팝업 사용여부
+        'popup_yn' => ['N' => '미사용', 'Y' => '사용'], // 팝업 사용여부,
+
     ],
 
     'permission' => [ // 권한 빈값은 전체 접근, 값이있을경우 해당 level 만 접근가능
@@ -52,6 +53,7 @@ return [
         'contents' => false, // 내용
         'plupload' => false, // 파일업로드 (plupload) 사용
         'heart' => false, // 좋아요 기능
+        'comment' => false, // 댓글
     ],
 
     'gubun' => [

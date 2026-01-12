@@ -22,11 +22,18 @@
                                 </div>
 
                                 <ul class="write-wrap">
+                                    <li>
+                                        <div class="form-tit"><strong class="required">*</strong> 진료지침/전문가 의견서 </div>
+                                        <div class="form-con">
+                                            <input type="text" name="subject" id="subject" class="form-item" value="{{ $board->subject ?? '' }}">
+                                        </div>
+                                    </li>
+
                                     @if($boardConfig['use']['writer'])
                                         <li>
                                             <div class="form-tit">작성자</div>
-                                            <div class="form-con">{{ env('APP_NAME') }}</div>
-                                            <input type="hidden" name="name" value="{{ env('APP_NAME') }}" readonly>
+                                            <div class="form-con">{{ thisUser()->name_kr ?? '' }}</div>
+                                            <input type="hidden" name="name" value="{{ thisUser()->name_kr ?? '' }}" readonly>
                                         </li>
                                     @endif
 
@@ -36,27 +43,16 @@
                                             <div class="form-tit"><strong class="required">*</strong> {{ $boardConfig['gubun']['name'] }}</div>
 
                                             <div class="form-con">
-                                                @switch($boardConfig['gubun']['type'])
-                                                    @case('radio')
-                                                        <div class="radio-wrap cst">
-                                                            @foreach($boardConfig['gubun']['item'] as $key => $val)
-                                                                <div class="radio-group">
-                                                                    <input type="radio" name="gubun" id="gubun_{{ $key }}" value="{{ $key }}" {{ (($board->gubun ?? '') == $key) ? 'checked' : '' }}>
-                                                                    <label for="gubun_{{ $key }}">{{ $val }}</label>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                        @break
-
-                                                    @case('select')
-                                                        <select name="gubun">
-                                                            <option value="">선택</option>
-                                                            @foreach($boardConfig['gubun']['item'] as $key => $val)
-                                                                <option value="{{ $key }}" {{ (($board->gubun ?? '') == $key) ? 'selected' : '' }}>{{ $val }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @break
-                                                @endswitch
+                                                <div class="radio-wrap cst">
+                                                    <div class="radio-group">
+                                                        <input type="radio" name="gubun" id="gubun_1" value="1" checked>
+                                                        <label for="gubun_1">진료지침</label>
+                                                    </div>
+{{--                                                    <div class="radio-group">--}}
+{{--                                                        <input type="radio" name="gubun" id="gubun_2" value="2" disabled>--}}
+{{--                                                        <label for="gubun_2">개발중 진료지침</label>--}}
+{{--                                                    </div>--}}
+                                                </div>
                                             </div>
                                         </li>
                                     @endif
@@ -88,10 +84,11 @@
                                             </select>
                                         </div>
                                     </li>
+
                                     <li>
-                                        <div class="form-tit"><strong class="required">*</strong> 진료지침/전문가 의견서 </div>
+                                        <div class="form-tit">국문 진료지침명</div>
                                         <div class="form-con">
-                                            <input type="text" name="subject" id="subject" class="form-item" value="{{ $board->subject ?? '' }}">
+                                            <input type="text" name="guideline_kr" id="guideline_kr" value="{{ $board->guideline_kr ?? '' }}" class="form-item">
                                         </div>
                                     </li>
                                     <li>
@@ -310,6 +307,9 @@
         $(boardForm).validate({
             ignore: ['contents', 'popup_contents'],
             rules: {
+                subject: {
+                    isEmpty: true,
+                },
                 gubun: {
                     checkEmpty: true,
                 },
@@ -319,9 +319,7 @@
                 year: {
                     isEmpty: true,
                 },
-                subject: {
-                    isEmpty: true,
-                },
+
 
                 link_type: {
                     checkEmpty: {

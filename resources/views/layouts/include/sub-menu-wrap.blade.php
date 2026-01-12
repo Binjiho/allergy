@@ -3,12 +3,6 @@
     if(!empty($sub_menu)){
         $sub_name = $menu['sub'][$main_menu][$sub_menu]['name'] ?? '';
     }
-
-    if( $_SERVER['REMOTE_ADDR']=="218.235.94.247") {
-        echo "<pre>"; print_r($main_menu); echo "</pre>";
-        echo "<pre>"; print_r($sub_menu); echo "</pre>";
-    }
-
 @endphp
 
 <article class="sub-visual js-sub-visual">

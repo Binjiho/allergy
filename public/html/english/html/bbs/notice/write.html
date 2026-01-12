@@ -1,0 +1,109 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/html/english/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">NEWS & NOTICE</h2>
+        </div>
+    </article>
+    <article class="sub-menu-wrap inner-layer">
+        <div class="sub-menu">
+            <ul class="sub-menu-list js-sub-menu-list">
+                <li class="sub-menu-depth01">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">NEWS & NOTICE</a>
+                    <ul>
+                        <li class="on"><a href="#n">About KAAACI</a></li>
+                        <li><a href="#n">ORGANIZATION</a></li>
+                        <li><a href="#n">PUBLICATION</a></li>
+                        <li><a href="#n">ACADEMIC MEETINGS</a></li>
+                        <li><a href="#n">NEWS & NOTICE</a></li>
+                        <li><a href="#n">PHOTOGRAPH</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu-depth02">
+                    <a href="#n" class="btn-sub-menu js-btn-sub-menu">NEWS & NOTICE</a>
+                    <ul>
+                        <li class="on"><a href="#n">NEWS & NOTICE</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <!-- s:board -->             
+            <link href="/html/english/assets/css/board_notice.css" rel="stylesheet">
+
+            <div id="board" class="board-wrap">
+                <div class="board-write">
+                    <div class="write-form-wrap">
+                        <form action="./list.html" method="">
+                            <fieldset>
+                                <legend class="hide">글쓰기</legend>
+                                <div class="write-contop text-right">
+                                    <div class="help-text"><strong class="required">*</strong> 표시는 필수입력 항목입니다.</div>
+                                </div>
+                                <ul class="write-wrap">
+                                    <li>
+                                        <div class="form-tit">작성자</div>
+                                        <div class="form-con">
+                                            Admin
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">제목 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <input type="text" name="" id="" class="form-item">
+                                            <div class="checkbox-wrap cst mt-10">
+                                                <label for="chk-tit1" class="checkbox-group"><input type="checkbox" name="" id="chk-tit1">공지</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">LINK URL <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <input type="text" name="" id="" class="form-item">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">공개 여부 <strong class="required">*</strong></div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label class="radio-group"><input type="radio" name="chk2">공개</label>
+                                                <label class="radio-group"><input type="radio" name="chk2" >비공개</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-con">
+                                            에디터 영역
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-con">
+                                            파일 등록 영역
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="btn-wrap text-center">
+                                    <a href="list.html" class="btn btn-board btn-cancel">취소</a>
+                                    <button type="submit" class="btn btn-board btn-modify">등록</button>
+                                    <a href="list.html" class="btn btn-board btn-list full-right">목록</a>
+                                </div>                      
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>  
+            <!-- //e:board -->
+            
+        </div>
+    </article>
+</section>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/html/english/include/footer.inc';
+?>

@@ -473,7 +473,7 @@
                     directory: boardConfig.directory,
                 },
                 filters: {
-                    max_file_size: '20mb'
+                    max_file_size: '200mb'
                 },
             });
         }

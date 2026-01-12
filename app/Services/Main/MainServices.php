@@ -49,7 +49,7 @@ class MainServices extends AppServices
 
 
         // 메인 중단 뉴스레터
-        $this->data['newsletter'] = Board::where(['code' => 'newsletter', 'hide' => 'N', 'year'=>date('Y')])->orderByDesc('month')->first();
+        $this->data['newsletter'] = Board::where(['code' => 'newsletter', 'hide' => 'N'])->orderByDesc('year')->orderByDesc('month')->first();
         // 메인 중단 진료지침
         $this->data['guideline'] = Board::where(['code' => 'guideline', 'hide' => 'N', 'main'=>'Y'])->orderByDesc('sid')->limit(2)->get();
         // 메인 중단 최신논문소식
@@ -57,12 +57,33 @@ class MainServices extends AppServices
 
         // 학술대회 일정
         $query = Board::where(['code' => 'event-schedule', 'hide' => 'N'])->orderBy('event_sDate');
-        if (!empty($request->year)) {
-            $query->whereYear('event_sDate', $request->year);
-        }
-        if (!empty($request->month)) {
-            $query->whereMonth('event_sDate', $request->month);
-        }
+
+        // 중복 없이 연도만 뽑기 (pluck와 map 사용)
+        $this->data['yearList'] = (clone $query)
+            ->selectRaw("DISTINCT YEAR(event_sDate) as year")
+            ->pluck('year')   // 일단 연도들을 다 뽑아옵니다.
+            ->sortDesc()      // 💡 여기서 내림차순 정렬 (2026, 2025...)
+            ->values()        // 💡 인덱스를 0, 1, 2... 순서로 새로 부여 (중요!)
+            ->toArray();
+
+        $year = $request->year ?? date('Y');
+        $month = $request->month ?? date('m');
+
+//        $query->whereYear('event_sDate', $year);
+//        $query->whereMonth('event_sDate', $month);
+
+        // 1. 조회 시작 날짜 (선택한 연/월의 1일)
+        $startDate = \Carbon\Carbon::createFromDate($year, $month, 1)->startOfMonth();
+
+        // 2. 조회 종료 날짜 (시작일로부터 2개월 후의 마지막 날)
+        $endDate = (clone $startDate)->addMonths(2)->endOfMonth();
+
+        // 3. 쿼리 적용
+        $query->whereBetween('event_sDate', [
+            $startDate->toDateTimeString(),
+            $endDate->toDateTimeString()
+        ]);
+
         $this->data['event_list'] = $query->get();
 
         return $this->data;

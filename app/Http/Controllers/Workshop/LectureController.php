@@ -23,14 +23,14 @@ class LectureController extends Controller
     }
     public function index(Request $request)
     {
-        view()->share(['sub_menu' => 'S3']);
+        view()->share(['sub_menu' => 'S4']);
 
         return view('conference.workshop.detail.lecture.index', $this->lectureServices->indexService($request));
     }
 
     public function upload(Request $request)
     {
-        view()->share(['sub_menu' => 'S3']);
+        view()->share(['sub_menu' => 'S4']);
 
         return view('conference.workshop.detail.lecture.upsert', $this->lectureServices->upsertService($request));
     }

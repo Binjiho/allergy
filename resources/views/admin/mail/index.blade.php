@@ -1,6 +1,7 @@
 @extends('admin.layouts.admin-layout')
 
 @section('addStyle')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endsection
 
 @section('contents')
@@ -33,25 +34,15 @@
                         <tr>
                             <th scope="row">작성일</th>
                             <td class="text-left">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <input type="text" name="create_sdate" value="{{ request()->create_sdate ?? '' }}" class="form-item" readonly datepicker style="width: 47%">
+                                <input type="text" name="create_sdate" value="{{ request()->create_sdate ?? '' }}" class="form-item" readonly datepicker style="width: 47%">
 
-                                    <span>~</span>
+                                <span>~</span>
 
-                                    <input type="text" name="create_edate" value="{{ request()->create_edate ?? '' }}" class="form-item" readonly datepicker style="width: 47%">
-                                </div>
+                                <input type="text" name="create_edate" value="{{ request()->create_edate ?? '' }}" class="form-item" readonly datepicker style="width: 47%">
                             </td>
 
-                            <th scope="row">발송일</th>
-                            <td class="text-left">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <input type="text" name="send_sdate" value="{{ request()->send_sdate ?? '' }}" class="form-item" readonly datepicker style="width: 47%">
-
-                                    <span>~</span>
-
-                                    <input type="text" name="send_edate" value="{{ request()->send_edate ?? '' }}" class="form-item" readonly datepicker style="width: 47%">
-                                </div>
-                            </td>
+                            <th scope="row"></th>
+                            <td class="text-left"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -69,10 +60,6 @@
                 [총 <strong>{{ number_format($list->total()) }}</strong> 건]
             </span>
 
-            <a href="{{ route('mail.upsert') }}" class="btn btn-small btn-type1 color-type20 call-popup" data-popup_name="mail-upsert" data-width="850" data-height="900">
-                메일 등록
-            </a>
-
             @include('admin.layouts.include.li_page')
         </div>
 
@@ -85,14 +72,6 @@
                     <col>
                     <col style="width: 9%;">
                     <col style="width: 5%;">
-                    <col style="width: 9%;">
-                    <col style="width: 7%;">
-                    <col style="width: 5%;">
-                    <col style="width: 5%;">
-                    <col style="width: 6%;">
-                    <col style="width: 6%;">
-                    <col style="width: 6%;">
-                    <col style="width: 5%;">
                 </colgroup>
 
                 <thead>
@@ -100,15 +79,7 @@
                     <th scope="col">No</th>
                     <th scope="col">제목</th>
                     <th scope="col">발송자명</th>
-                    <th scope="col">총 발송 건수</th>
-                    <th scope="col">대기 / 성공 / 실패</th>
-                    <th scope="col">발송 상태 갱신</th>
-                    <th scope="col">발송횟수</th>
-                    <th scope="col">재발송</th>
                     <th scope="col">작성일</th>
-                    <th scope="col">최종 발송일</th>
-                    <th scope="col">상세보기</th>
-                    <th scope="col">관리</th>
                 </tr>
                 </thead>
 
@@ -122,37 +93,11 @@
                             </a>
                         </td>
                         <td>{{ $row->sender_name }}</td>
-                        <td>{{ number_format($row->totCnt()) }}</td>
-                        <td>
-                            <span style="color: #eb5e00 !important;">{{ number_format($row->readyCnt) }}</span> /
-                            <span style="color: #0e9ad0 !important;">{{ number_format($row->sucCnt) }}</span> /
-                            <span style="color: #eb1600 !important;">{{ number_format($row->failCnt) }}</span>
-                        </td>
-                        <td>
-                            @if($row->readyCnt > 0)
-                                <a href="javascript:void(0);" class="btn btn-small color-type1 send-renew">갱신</a>
-                            @endif
-                        </td>
-                        <td>{{ number_format($row->thread) }}</td>
-                        <td>
-                            <a href="javascript:void(0);" class="btn btn-small color-type15 mail-send">{{ empty($row->send_date) ? '발송' : '재발송' }}</a>
-                        </td>
                         <td>{{ $row->created_at }}</td>
-                        <td>{{ empty($row->send_date) ? '' : $row->send_date }}</td>
-                        <td><a href="{{ route('mail.detail', ['sid' => $row->sid]) }}" class="btn btn-small color-type10" style="margin-top: 5px;">상세보기</a></td>
-                        <td>
-                            <a href="{{ route('mail.upsert', ['sid' => $row->sid]) }}" class="btn-admin call-popup" data-popup_name="mail-upsert" data-width="850" data-height="900">
-                                <img src="/assets/image/admin/ic_modify.png" alt="수정">
-                            </a>
-
-                            <a href="javascript:void(0);" class="btn-admin btn-del">
-                                <img src="/assets/image/admin/ic_del.png" alt="삭제">
-                            </a>
-                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="12">등록된 메일이 없습니다.</td>
+                        <td colspan="4">등록된 메일이 없습니다.</td>
                     </tr>
                 @endforelse
                 </tbody>

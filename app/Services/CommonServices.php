@@ -7,6 +7,8 @@ use App\Models\BoardFile;
 use App\Models\MailFile;
 use App\Models\Publication;
 use App\Models\Lecture;
+use App\Models\OverseasApply;
+use App\Models\OverseasSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -67,7 +69,6 @@ class CommonServices extends AppServices
 
                 $board->increment($downloadField);
 
-
                 $this->data = ['realfile' => $board->{$pathField}, 'filename' => $board->{$nameField}];
                 break;
 
@@ -91,6 +92,33 @@ class CommonServices extends AppServices
             case 'lecture':
                 $mailFile = Lecture::findOrFail($sid);
                 $this->data = ['realfile' => $mailFile->realfile, 'filename' => $mailFile->filename];
+                break;
+             case 'overseas_apply':
+                 $field = $request->field;
+
+                 $pathField = "realfile{$field}";
+                 $nameField = "filename{$field}";
+
+                 $board = OverseasApply::findOrFail($sid);
+
+
+                 $this->data = ['realfile' => $board->{$pathField}, 'filename' => $board->{$nameField}];
+                 break;
+             case 'overseas_setting':
+                 $field = $request->field;
+
+                 $pathField = "realfile{$field}";
+                 $nameField = "filename{$field}";
+
+                 $board = OverseasSetting::findOrFail($sid);
+
+
+                 $this->data = ['realfile' => $board->{$pathField}, 'filename' => $board->{$nameField}];
+                 break;
+
+            case 'excelHyperLink':
+                $boardFile = AbstractApply::findOrFail($sid);
+                $this->data = ['realfile' => $boardFile->realfile1, 'filename' => $boardFile->filename1];
                 break;
 
 

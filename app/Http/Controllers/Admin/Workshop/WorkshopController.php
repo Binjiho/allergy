@@ -16,7 +16,7 @@ class WorkshopController extends Controller
 
         view()->share([
             'main_key' => 'M3',
-            'sub_key' => 'S2',
+            'sub_key' => 'S1',
             'userConfig' => config('site.user'),
             'defaultConfig' => config('site.default-workshop'),
         ]);

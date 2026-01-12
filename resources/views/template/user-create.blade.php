@@ -48,6 +48,14 @@
                                     {{ $user->id ? maskEvenStr($user->id) : '' }}
                                 </td>
                             </tr>
+                            <tr>
+                                <th scope="row" style="width: 195px;padding: 10px 15px;background-color: #f4f4f4;border-top: 1px solid #dddddd;border-bottom: 1px solid #dddddd;font-family: 'Malgun Gothic', '맑은고딕', '돋움', 'dotum', 'Arial', sans-serif;font-size: 14px;line-height: 1.3;text-align: left;letter-spacing: -0.03em;">
+                                    이름
+                                </th>
+                                <td style="width: 355px;padding: 10px 15px;border-top: 1px solid #dddddd;border-bottom: 1px solid #dddddd;border-left: 1px solid #dddddd;font-family: 'Malgun Gothic', '맑은고딕', '돋움', 'dotum', 'Arial', sans-serif;font-size: 14px;color: #444444;line-height: 1.3;letter-spacing: -0.03em;">
+                                    {{ $user->name_kr ?? '' }}
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </td>

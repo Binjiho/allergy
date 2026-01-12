@@ -67,14 +67,14 @@
     }
 
     $(document).on('click', '.btn-pop-close', function () {
-        var $popup = $(this).closest('.popup-contents');
+        var $popup = $(this).closest('.popup-contents:not(.email-contents)');
         var index = $popup.index(); // .slider > .popup-contents 중 몇 번째인가?
 
         if (index >= 0) {
             if( $('.js-popup-rolling').hasClass('slick-initialized') ){
                 $('.slider').slick('slickRemove', index);
             }else{
-                $('.popup-contents').eq(index).remove();
+                $('.popup-contents:not(.email-contents)').eq(index).remove();
             }
         }
 
@@ -82,19 +82,41 @@
     });
 
     $(document).on('click', '.btn-pop-today-close', function () {
-        const rolling = $(this).closest('.popup-contents');
-        const index = rolling.index();
+        const rolling = $(this).closest('.popup-contents:not(.email-contents)');
+        // const index = rolling.index();
+        //
+        // setCookie24(rolling.attr('id'), 'done', 1);
+        //
+        // if (index >= 0) {
+        //     if( $('.js-popup-rolling').hasClass('slick-initialized') ){
+        //         $('.slider').slick('slickRemove', index);
+        //     }else{
+        //         $('.popup-contents').eq(index).remove();
+        //     }
+        // }
 
         setCookie24(rolling.attr('id'), 'done', 1);
 
-        // rolling.remove();
-        if (index >= 0) {
-            if( $('.js-popup-rolling').hasClass('slick-initialized') ){
-                $('.slider').slick('slickRemove', index);
-            }else{
-                $('.popup-contents').eq(index).remove();
-            }
-        }
+        rolling.remove();
+
+        popupRolling();
+    });
+
+    $(document).on('click', '.btn-pop-7-close', function () {
+        const rolling = $(this).closest('.popup-contents:not(.email-contents)');
+        // const index = rolling.index();
+        //
+        // if (index >= 0) {
+        //     if( $('.js-popup-rolling').hasClass('slick-initialized') ){
+        //         $('.slider').slick('slickRemove', index);
+        //     }else{
+        //         $('.popup-contents').eq(index).remove();
+        //     }
+        // }
+
+        setCookie24(rolling.attr('id'), 'done', 7);
+
+        rolling.remove();
 
         popupRolling();
     });

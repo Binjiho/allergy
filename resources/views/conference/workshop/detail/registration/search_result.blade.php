@@ -46,7 +46,7 @@
                         <div class="form-tit">회원등급 및 ID</div>
                         <div class="form-con">
                             @if( ($reg->member_gubun ?? '') == 'Y' )
-                                {{ $userConfig['level'][$reg->user->level] ?? '' }} / {{ $reg->user->id ?? '' }}
+                                {{ $userConfig['level'][$reg->user->level ?? 'A'] ?? '' }} / {{ $reg->user->id ?? '' }}
                             @else
                                 비회원
                             @endif

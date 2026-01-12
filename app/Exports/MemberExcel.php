@@ -38,15 +38,34 @@ class MemberExcel implements FromCollection, WithHeadings, ShouldAutoSize, WithE
             '번호',
             '회원상태',
             '회원등급',
-            '이름',
             '아이디',
+            '이름(국문)',
 
-            '이메일',
-            '면허번호',
-            '근무처',
-            '근무처번호',
+            '이름(영문)',
+            '이름(한자)',
+            '외국 국적 회원 여부',
+            '생년월일',
             '휴대폰번호',
 
+            '이메일',
+            '자택주소',
+            '면허번호',
+            '전공분야',
+
+            '전문의번호',
+            '분과전문의번호',
+            '입회일',
+            '출신학교',
+            '졸업일',
+
+            '근무처(국문)',
+            '근무처(영문)',
+            '직위',
+            '근무처번호',
+            '근무처주소',
+            'Mailing 서비스',
+
+            'SMS 수신',
             '가입일',
             '최종수정일',
             '최종로그인',
@@ -58,19 +77,58 @@ class MemberExcel implements FromCollection, WithHeadings, ShouldAutoSize, WithE
     {
         $userConfig = $this->userConfig;
 
+        $eng_name = $data->first_name ?? '';
+        $eng_name .= ' ';
+        $eng_name .= $data->last_name ?? '';
+
+        $home_addr = '('.$data->home_zipcode.') ';
+        $home_addr .= $data->home_address ?? '';
+        $home_addr .= ' ';
+        $home_addr .= $data->home_address2 ?? '';
+
+        $major = $userConfig['major'][$data->major] ?? '';
+        if($data->major == 'Z') {
+            $major .= '-';
+            $major .= $data->major_etc;
+        }
+
+        $company_addr = '('.$data->company_zipcode.') ';
+        $company_addr .= $data->company_address ?? '';
+        $company_addr .= ' ';
+        $company_addr .= $data->company_address2 ?? '';
+
         return [
             $this->total - ($this->row++),
             $userConfig['confirm'][$data->confirm] ?? '',
             $userConfig['level'][$data->level] ?? '',
-            $data->name_kr ?? '',
             $data->id ?? '',
+            $data->name_kr ?? '',
 
-            $data->email ?? '',
-            $data->license_number ?? '',
-            !empty($data->company_kr) ? $data->company_kr : $data->company_en ?? '',
-            $data->companyTel ?? '',
+            $eng_name ?? '',
+            $data->name_han ?? '',
+            $data->is_national ?? '',
+            $data->birth_date ?? '',
             $data->phone ?? '',
 
+            $data->email ?? '',
+            $home_addr ?? '',
+            $data->license_number ?? '',
+            $major ?? '',
+
+            $data->special_number ?? '',
+            $data->bun_number ?? '',
+            $data->join_date ?? '',
+            $data->school ?? '',
+            $data->graduate_date ?? '',
+
+            $data->company_kr ?? '',
+            $data->company_en ?? '',
+            $data->position ?? '',
+            $data->companyTel ?? '',
+            $company_addr ?? '',
+            $data->emailReception == 'Y' ? '수신' : '미수신',
+
+            $data->smsReception == 'Y' ? '수신' : '미수신',
             !empty($data->created_at) ? $data->created_at->format('Y-m-d') : '',
             !empty($data->updated_at) ? $data->updated_at->format('Y-m-d') : '',
             !empty($data->login_at) ? $data->login_at->format('Y-m-d') : '',

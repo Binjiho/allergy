@@ -18,7 +18,7 @@
                         <h4 class="view-tit">
                             @if($boardConfig['use']['category'])
                                 <span class="bbs-cate">
-                                    <span class="cate0{{ $row->category ?? '1' }}">{{ $boardConfig['category']['item'][$row->category ?? '1'] ?? '' }}</span>
+                                    <span class="cate0{{ $board->category ?? '1' }}">{{ $boardConfig['category']['item'][$board->category ?? '1'] ?? '' }}</span>
                                 </span>
                             @endif
                             <strong>{{ $board->subject ?? '' }}</strong>

@@ -50,7 +50,7 @@
                                                 <li>
                                                     <p class="con">
                                                         충청지회 설립 <br>
-                                                        학회 SNS 개설 (YouTube, Instagram) <br>
+                                                        학회 SNS 개설(YouTube, Instagram) <br>
                                                         태국알레르기학회(AAIAT)와 MOU 체결
                                                     </p>
                                                 </li>
@@ -232,7 +232,7 @@
                                             <ul class="history-con">
                                                 <li>
                                                     <p class="con">
-                                                        제1회 Airway Symposium 개최 (대한결핵 및 호흡기학회 공동)
+                                                        제1회 Airway Symposium 개최(대한결핵 및 호흡기학회 공동)
                                                     </p>
                                                 </li>
                                             </ul>
@@ -245,7 +245,7 @@
                                             <ul class="history-con">
                                                 <li>
                                                     <p class="con">
-                                                        4천만의 알레르기 (개정판) 발행
+                                                        4천만의 알레르기(개정판) 발행
                                                     </p>
                                                 </li>
                                             </ul>
@@ -258,7 +258,7 @@
                                             <ul class="history-con">
                                                 <li>
                                                     <p class="con">
-                                                        경인지회 명칭 변경 (경인/인천 통합)
+                                                        경인지회 명칭 변경(경인/인천 통합)
                                                     </p>
                                                 </li>
                                             </ul>
@@ -290,7 +290,7 @@
                                                 <li>
                                                     <p class="con">
                                                         대한천식 및알레르기학회로 명칭 변경 <br>
-                                                        학회지 명칭 변경 (천식 및 알레르기, Journal of Asthma, Allergy and Clinical Immunology)
+                                                        학회지 명칭 변경(천식 및 알레르기, Journal of Asthma, Allergy and Clinical Immunology)
                                                     </p>
                                                 </li>
                                             </ul>
@@ -304,7 +304,7 @@
                                                 <li>
                                                     <p class="con">
                                                         학회 창립 25주년 기념학회 개최(제7회 한일합동 심포지엄, 제5회 서태평양 심포지엄 합동) <br>
-                                                        알레르기 교육강좌로 명칭 변경 (강습회)
+                                                        알레르기 교육강좌로 명칭 변경(강습회)
                                                     </p>
                                                 </li>
                                             </ul>
@@ -317,7 +317,7 @@
                                             <ul class="history-con">
                                                 <li>
                                                     <p class="con">
-                                                        제1회 소오 우수논문상 시상 (춘계)
+                                                        제1회 소오 우수논문상 시상(춘계)
                                                     </p>
                                                 </li>
                                             </ul>
@@ -330,7 +330,7 @@
                                             <ul class="history-con">
                                                 <li>
                                                     <p class="con">
-                                                        제1회 창산 우수논문상 시상 (추계)
+                                                        제1회 창산 우수논문상 시상(추계)
                                                     </p>
                                                 </li>
                                             </ul>
@@ -411,7 +411,7 @@
                                             <ul class="history-con">
                                                 <li>
                                                     <p class="con">
-                                                        학회지 창간 (알레르기, Journal of The Korean Society of Allergology) <br>
+                                                        학회지 창간(알레르기, Journal of The Korean Society of Allergology) <br>
                                                         서울지회, 전북지회 설립
                                                     </p>
                                                 </li>
@@ -480,7 +480,7 @@
                                                 <li>
                                                     <p class="date"><span>11. 30</span></p>
                                                     <p class="con">
-                                                        대한알레르기학회 창립 (초대 회장 윤일선. 부회장 강석영)
+                                                        대한알레르기학회 창립(초대 회장 윤일선. 부회장 강석영)
                                                     </p>
                                                 </li>
                                             </ul>

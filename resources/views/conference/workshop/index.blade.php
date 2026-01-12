@@ -11,7 +11,7 @@
             <div class="sub-conbox inner-layer">
                 <div class="ev-conbox">
                     <div class="sch-wrap">
-                        <form id="searchF" name="searchF" action="{{ route('workshop.domestic') }}" class="sch-form-wrap">
+                        <form id="searchF" name="searchF" action="{{ route('workshop.education') }}" class="sch-form-wrap">
                             <fieldset>
                                 <legend class="hide">검색</legend>
                                 <div class="form-group">
@@ -21,7 +21,7 @@
                                     </select>
                                     <input type="text" name="keywrod" id="keywrod" value="{{ request()->keyword ?? '' }}" class="form-item sch-key" placeholder="검색하실 내용을 입력해주세요.">
                                     <button type="submit" class="btn btn-sch"><span class="hide">검색</span></button>
-                                    <a href="{{ route('workshop.domestic') }}" type="reset" class="btn btn-reset" style="align-content: center;">검색 초기화</a>
+                                    <a href="{{ route('workshop.education') }}" type="reset" class="btn btn-reset" style="align-content: center;">검색 초기화</a>
                                 </div>
                             </fieldset>
                         </form>
@@ -43,7 +43,7 @@
                                 <div class="ev-tit">
                                     <span>{{ $row->title ?? '' }}</span>
 
-                                    <div class="state {{ $row->regist_edate > date('Y-m-d') ? '' : 'end' }}">사전등록 {{ $row->regist_edate > date('Y-m-d') ? '접수 중' : '마감' }}</div>
+                                    <div class="state {{ $row->regist_edate >= date('Y-m-d') ? '' : 'end' }}">사전등록 {{ $row->regist_edate >= date('Y-m-d') ? '접수 중' : '마감' }}</div>
 
                                     @if(isAdmin())
                                     <div class="bbs-admin">
@@ -105,12 +105,18 @@
                                 <div class="ev-con">
                                     <ul class="list-type list-type-dot">
                                         <li>행사일 : {{ $row->event_sdate ?? '' }}{{ formatKoreanDate($row->event_sdate) }} {{ ($row->date_type ?? '') == 'L' ? ' ~ '.$row->event_edate.formatKoreanDate($row->event_edate) : '' }}</li>
+                                        @if(!empty($row->place))
                                         <li>장소 : {{ $row->place ?? '' }}</li>
+                                        @endif
+                                        @if( ($row->regist_use ?? '') == 'Y')
                                         <li>사전등록 마감일 : <span class="date">{{ $row->regist_edate ?? '' }}{{ formatKoreanDate($row->regist_edate) }}</span></li>
+                                        @endif
                                     </ul>
                                     <div class="btn-wrap">
                                         <a href="{{ route('workshop.detail',['wsid'=>$row->sid]) }}" class="btn btn-type1 btn-line color-type9">+ 상세보기</a>
+                                        @if( ($row->regist_use ?? '') == 'Y')
                                         <a href="{{ route('registration.search',['wsid'=>$row->sid]) }}" class="btn btn-type1 color-type9">사전등록 확인 및 영수증 출력</a>
+                                        @endif
                                         <a href="{{ route('lecture',['wsid'=>$row->sid]) }}" class="btn btn-type1 color-type6">강의원고 보기</a>
                                     </div>
                                 </div>

@@ -60,30 +60,34 @@ class LoginServices extends AppServices
                 ]);
             }
 
-            // 1.비밀번호 변경 해야함
-            $password_months = 6; // 비밀번호 변경일 기준 (6개월)
-            $password_at = $user->password_at ?? $user->created_at; // 비밀번호 변경시간
-            if (Carbon::parse($password_at)->lessThan(now()->subMonths($password_months))) {
-                return $this->returnJsonData('alert', [
-                    'case' => true,
-                    'msg' => "비밀번호를 변경 하신지 6개월이 지났습니다.\n비밀번호를 변경해주세요.",
-                    'location' => $this->ajaxActionLocation('replace', route('mypage.password')),
-                ]);
-            }
+            if(masterIp() === false){
 
-            // 4.연회비 미납(당해년도 연회비 미납 && 종신회원이 아닌경우) -> 회비 납부 페이지로 이동
-            $thisYearFee = Fee::where(['year'=>date('Y'), 'user_sid'=>$user->sid, 'category'=>'B', 'payment_status' => 'N', 'del'=>'N'])->first();
-
-            if(!empty($thisYearFee)){
-                if( $user->isLifeMember() !== true ) {
+                // 1.비밀번호 변경 해야함
+                $password_months = 6; // 비밀번호 변경일 기준 (6개월)
+                $password_at = $user->password_at ?? $user->created_at; // 비밀번호 변경시간
+                if (Carbon::parse($password_at)->lessThan(now()->subMonths($password_months))) {
                     return $this->returnJsonData('alert', [
                         'case' => true,
-                        'msg' => "연회비 미납 내역이 있습니다.\n회비 납부 페이지로 이동 됩니다.",
-                        'location' => $this->ajaxActionLocation('replace', route('mypage.fee')),
+                        'msg' => "비밀번호를 변경 하신지 6개월이 지났습니다.\n비밀번호를 변경해주세요.",
+                        'location' => $this->ajaxActionLocation('replace', route('mypage.password')),
                     ]);
                 }
-            }
 
+                // 4.연회비 미납(당해년도 연회비 미납 && 종신회원이 아닌경우) -> 회비 납부 페이지로 이동
+                $thisYearFee = Fee::where(['year'=>date('Y'), 'user_sid'=>$user->sid, 'category'=>'B', 'payment_status' => 'N', 'del'=>'N'])->first();
+
+
+                if(!empty($thisYearFee)){
+                    if( $user->isLifeMember() !== true ) {
+                        return $this->returnJsonData('alert', [
+                            'case' => true,
+                            'msg' => "연회비 미납 내역이 있습니다.\n회비 납부 페이지로 이동 됩니다.",
+                            'location' => $this->ajaxActionLocation('replace', route('mypage.fee')),
+                        ]);
+                    }
+                }
+                
+            }
 
             if(!empty($request->ret_url)){
                 return $this->returnJsonData('location', $this->ajaxActionLocation('replace', '/'.$request->ret_url));

@@ -52,6 +52,7 @@ return [
         'contents' => true, // 내용
         'plupload' => true, // 파일업로드 (plupload) 사용
         'heart' => false, // 좋아요 기능 사용
+        'comment' => false, // 댓글
     ],
 
     'gubun' => [

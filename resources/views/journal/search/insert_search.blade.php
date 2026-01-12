@@ -13,8 +13,8 @@
     </td>
     <td >
         <div class="radio-wrap cst text-center and_div" style="display:none;">
-            <label for="and{{ $eq ?? 2 }}_1" class="radio-group"><input type="radio" name="and{{ $eq ?? 2 }}_[]" id="and{{ $eq ?? 2 }}_1" value="and" >AND</label>
-            <label for="and{{ $eq ?? 2 }}_2" class="radio-group"><input type="radio" name="and{{ $eq ?? 2 }}_[]" id="and{{ $eq ?? 2 }}_2" value="or" >OR</label>
+            <label for="and{{ $eq ?? 2 }}_1" class="radio-group"><input type="radio" name="and{{ $eq ?? 2 }}" id="and{{ $eq ?? 2 }}_1" value="and" >AND</label>
+            <label for="and{{ $eq ?? 2 }}_2" class="radio-group"><input type="radio" name="and{{ $eq ?? 2 }}" id="and{{ $eq ?? 2 }}_2" value="or" >OR</label>
         </div>
     </td>
     <td>

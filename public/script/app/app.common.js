@@ -674,10 +674,31 @@ const fileCheck = (_this, inputTarget = null) => {
     }
 
     // 2. 확장자 체크
+    const ext = str.split('.').pop().toLowerCase();
+    const forbiddenExt = ['exe', 'bat', 'cmd', 'com', 'msi', 'sh', 'run'];
+
+    if ($.inArray(ext, forbiddenExt) !== -1) {
+        alert('실행 파일(.' + ext + ')은 보안상 업로드할 수 없습니다.');
+
+        if (!isEmpty(inputTarget)) {
+            $(inputTarget).val('');
+        }
+        return false;
+    }
+
+    // // 2. 실행 파일(.exe)은 보안상 어떤 경우에도 차단
+    // if (ext === 'exe') {
+    //     alert('실행 파일(.exe)은 보안상 업로드할 수 없습니다.');
+    //     if (!isEmpty(inputTarget)) {
+    //         $(inputTarget).val('');
+    //     }
+    //     return false;
+    // }
+
+    // 2. 확장자 체크
     const accept = $(_this).data('accept');
     if (!isEmpty(accept)) {
         const extArr = accept.split('|');
-        const ext = str.split('.').pop().toLowerCase();
 
         if ($.inArray(ext, extArr) == -1) {
             alert(`${accept.replace(/\|/g, ', ')}` + ' 만 업로드 가능합니다.');
@@ -693,7 +714,7 @@ const fileCheck = (_this, inputTarget = null) => {
     // 3. 파일 크기 체크 (기본 업로드 크기 20MB data 값으로 업로드 크기 개별 조절)
     const size = $(_this)[0].files[0].size;
     const customSize = $(_this).data('size');
-    const maxFileSize = isEmpty(customSize) ? 20 : parseInt(customSize);
+    const maxFileSize = isEmpty(customSize) ? 50 : parseInt(customSize);
     if (size > (maxFileSize * 1024 * 1024)) {
         alert(`The attached file size can be registered within ${maxFileSize}MB.`);
 
@@ -959,7 +980,7 @@ const callPostCode = (target = '') => {
 //Email 형
 $(document).on("change",".emailOnly", function() {
     if( !isCorrectEmail( $(this).val() ) ) {
-        alert('이메일 형식으로 입력해주세요.');
+        alert('아이디는 이메일 형식으로 입력해주세요.');
         $(this).val('').focus();
     }
 });

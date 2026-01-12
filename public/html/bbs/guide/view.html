@@ -157,6 +157,80 @@ include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
                             <a href="./write.html" class="btn btn-board btn-modify">수정</a>
                             <a href="#n" class="btn btn-board btn-delete">삭제</a>
                         </div>
+
+                        <div class="comment-wrap">
+                            <div class="tit">
+                                Comment
+                            </div>
+                            <form action="" mehotd="">
+                                <fieldset>
+                                    <legned class="hide">댓글 입력</legned>
+                                    <div class="comment-write-wrap">
+                                        <textarea name="" id="" class="form-item" placeholder="댓글을 입력해주세요."></textarea>
+                                        <button type="submit" class="btn btn-submit">등록</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+    
+                            <div class="comment-list-wrap">
+                                <ul>
+                                    <li>
+                                        <div class="comment-contop">
+                                            <span class="comment-name">홍길동</span>
+                                            <span class="comment-date">YYYY-MM-DD HH:MM</span>
+                                        </div>
+                                        <div class="comment-contents">
+                                            <div>
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A sunt, id fugiat ut error harum odit corporis quam? Soluta, totam aspernatur dolore rerum deserunt illo. Autem quisquam ipsum tenetur nostrum? <br>
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A sunt, id fugiat ut error harum odit corporis quam? Soluta, totam aspernatur dolore rerum deserunt illo. Autem quisquam ipsum tenetur nostrum?
+                                            </div>                                        
+                                            <div class="btn-wrap text-right">
+                                                <a href="#n" class="btn btn-comment">답글</a>
+                                                <a href="#n" class="btn btn-comment btn-modify">수정</a>
+                                                <a href="#n" class="btn btn-comment btn-delete">삭제</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="comment-reply">
+                                        <div class="comment-contop">
+                                            <span class="comment-name">고길동</span>
+                                            <span class="comment-date">YYYY-MM-DD HH:MM</span>
+                                        </div>
+                                        <div class="comment-contents">
+                                            <div>
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A sunt, id fugiat ut error harum odit corporis quam? Soluta, totam aspernatur dolore rerum deserunt illo. Autem quisquam ipsum tenetur nostrum? <br>
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A sunt, id fugiat ut error harum odit corporis quam? Soluta, totam aspernatur dolore rerum deserunt illo. Autem quisquam ipsum tenetur nostrum?
+                                            </div>                                        
+                                            <div class="btn-wrap text-right">
+                                                <a href="#n" class="btn btn-comment">답글</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="comment-reply">
+                                        <div class="comment-contop">
+                                            <span class="comment-name">고길동</span>
+                                            <span class="comment-date">YYYY-MM-DD HH:MM</span>
+                                        </div>
+                                        <div class="comment-contents">
+                                            <div>
+                                                댓글 내용입니다. <br>
+                                                댓글 내용입니다.
+                                            </div>                                        
+                                            <div class="btn-wrap text-right">
+                                                <a href="#n" class="btn btn-comment">답글</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="comment-reply">
+                                        <div class="comment-write-wrap">
+                                            <textarea name="" id="" class="form-item" placeholder="댓글을 입력해주세요."></textarea>
+                                            <button type="submit" class="btn btn-submit">등록</button>
+                                            <button type="button" class="btn btn-cancel">취소</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         
                         <!-- 이전글/다음글 type1 -->
                         <!-- <div class="view-move type1">
