@@ -714,7 +714,7 @@ const fileCheck = (_this, inputTarget = null) => {
     // 3. 파일 크기 체크 (기본 업로드 크기 20MB data 값으로 업로드 크기 개별 조절)
     const size = $(_this)[0].files[0].size;
     const customSize = $(_this).data('size');
-    const maxFileSize = isEmpty(customSize) ? 50 : parseInt(customSize);
+    const maxFileSize = isEmpty(customSize) ? 900 : parseInt(customSize);
     if (size > (maxFileSize * 1024 * 1024)) {
         alert(`The attached file size can be registered within ${maxFileSize}MB.`);
 

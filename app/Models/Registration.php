@@ -100,6 +100,24 @@ class Registration extends Model
         $this->pay_status = $data->pay_status ?? null;
     }
 
+    public function setByCollective($data)
+    {
+        $this->wsid = $data->wsid ?? null;
+        $this->member_gubun = $data->member_gubun ?? null;
+        $this->gubun = $data->gubun ?? null;
+        $this->name_kr = $data->name_kr ?? null;
+        $this->office_name = $data->office_name ?? null;
+
+        $this->license_number = $data->license_number ?? null;
+        $this->email = $data->email ?? null;
+        $this->phone = $data->phone ?? null;
+        $this->amount = $data->amount ?? null;
+        $this->pay_method = $data->pay_method ?? null;
+
+        $this->pay_status = $data->pay_status ?? null;
+        $this->created_at = $data->created_at ?? null;
+    }
+    
     public function setByTransfer($data)
     {
 

@@ -52,6 +52,7 @@ Route::controller(\App\Http\Controllers\Admin\Overseas\OverseasController::class
         Route::get('modify/{sid}', 'modify')->name('apply.modify');
         Route::get('report_modify/{sid}', 'report_modify')->name('apply.report_modify');
         Route::get('all-judge-change', 'allJudgeChange')->name('apply.all-judge-change');
+        Route::get('all-pay-change', 'allPayChange')->name('apply.all-pay-change');
         Route::get('memo', 'memo')->name('apply.memo');
 
         Route::get('excel', 'excel')->name('apply.excel');

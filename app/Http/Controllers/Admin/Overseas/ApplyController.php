@@ -45,10 +45,10 @@ class ApplyController extends Controller
         return view("admin.overseas.apply.all-audit-change", $this->applyServices->allJudgeChangeService($request));
     }
 
-//    public function search(Request $request)
-//    {
-//        return view("workshop.{$request->work_code}.registration.search", $this->registrationServices->popupService($request));
-//    }
+    public function allPayChange(Request $request)
+    {
+        return view("admin.overseas.apply.all-pay-change", $this->applyServices->allPayChangeService($request));
+    }
 
     public function completeZip(Request $request)
     {

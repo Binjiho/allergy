@@ -4634,6 +4634,9 @@
     flex-shrink: 0;
 }
 
+.committee-conbox .term-wrap{
+    display: none;
+}
 .committee-conbox .term-conbox .list-type-decimal > li + li{
     margin-top: 40px;
 }

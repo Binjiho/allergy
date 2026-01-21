@@ -9,7 +9,9 @@
                     비회원
                 @else
                     @if(!empty($reg->sid))
+                        @if(!empty($reg->usid))
                         {{ $userConfig['level'][$reg->user->level] ?? '' }} / {{ $reg->user->id ?? '' }}
+                        @endif
                     @else
                         {{ $userConfig['level'][thisUser()->level] }} / {{ thisUser()->id }}
                     @endif
@@ -17,6 +19,7 @@
             </div>
         </li>
 
+        @if(!empty($workshop['res_fee']))
         <li>
             <div class="form-tit">등록구분 <strong class="required">*</strong></div>
             <div class="form-con">
@@ -28,6 +31,9 @@
                         @else
                             @continue($val['member_gubun'] == 'N')
                         @endif
+
+                        @continue($val['gubun'] == '' || empty($val['gubun']))
+
                         <label for="gubun_{{ $val['gubun'] }}" class="radio-group">
                             <input type="radio" name="gubun" id="gubun_{{ $val['gubun'] }}" value="{{ $val['gubun'] }}" data-price="{{ $val['amount'] ?? 0 }}" {{ ($reg->gubun ?? '') == $val['gubun'] ? 'checked' : '' }}>{{ $defaultConfig['gubun'][$val['gubun']] }} -
                             {{ number_format($val['amount']) ?? 0 }}원
@@ -36,7 +42,7 @@
                 </div>
             </div>
         </li>
-
+        @endif
 
         <li>
             <div class="form-tit">성명 <strong class="required">*</strong></div>

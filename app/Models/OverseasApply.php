@@ -215,8 +215,8 @@ class OverseasApply extends Model
         return $this->hasMany(Registration::class, 'wsid', 'sid')->where(['del'=>'N','complete'=>'Y'])->count();
     }
 
-    public function excelHyperLink($type)
+    public function excelHyperLink($field)
     {
-        return url('common/fileDownload/only/excelHyperLink/' . enCryptString($this->sid));
+        return url('common/fileDownload/only/overseas_apply/' . enCryptString($this->sid).'?field='.$field);
     }
 }

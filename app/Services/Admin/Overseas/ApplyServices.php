@@ -62,40 +62,30 @@ class ApplyServices extends AppServices
             $query->where('email', 'like', "%{$request->email}%");
         }
 
-        // 엑셀 다운로드 할때
-//        if ($request->excel) {
-//            $this->data['total'] = $query->count();
-//            $this->data['collection'] = $query->lazy();
-//            return (new CommonServices())->excelDownload(new OverseasApplyExcel($this->data), date('Y-m-d').'_'.($excelName ?? '명단정보'));
-//        }
 
         if ($request->excel) {
-            $query->getQuery()->orders = []; // 기존 orderBy 초기화
-            $query->orderBy('sid', 'asc');   // 오래된 회원부터 정렬
+            $excel_query = clone $query;
+
+            $this->data['query'] = $excel_query;
+            $this->data['total'] = $excel_query->count();
+            $this->data['collection'] = $excel_query->lazy();
 
             $fileName = date('Y-m-d').'_'.($excelName ?? '명단정보');
-            $this->data['query'] = $query;
-            $this->data['total'] = (clone $query)->count();
+
 
             $export = new OverseasApplyExcel($this->data);
 
-            if (isDev()) {
-                return view('admin.components.excel-preview', [
-                        'previewData' => $export->getPreviewData(),
-                        'fileName' => $fileName,
-                    ]
-                );
-            }
+            //미리보기
+//            if (isDev()) {
+//                return view('admin.components.excel-preview', [
+//                        'previewData' => $export->getPreviewData(),
+//                        'fileName' => $fileName,
+//                    ]
+//                );
+//            }
 
             return (new CommonServices())->excelDownload($export, $fileName);
         }
-
-//		if ($request->excel) {
-//			$this->data['total'] = (clone $query)->count();
-//			$this->data['query'] = $query;
-//
-//			return (new CommonServices())->excelDownload(new OverseasApplyExcel($this->data), ($excelName ?? '명단 list'), \Maatwebsite\Excel\Excel::XLSX);
-//        }
 
 
         //completeZip 파일
@@ -262,7 +252,11 @@ class ApplyServices extends AppServices
         $this->data['overseas'] = OverseasSetting::findOrFail($o_sid);
 
 		$query = OverseasApply::where(['o_sid'=>$o_sid, 'del'=>'N']);
-		$query->whereNotIn('judge', ['Y']);
+        $query->where(function($q) {
+            $q->where('judge', '!=', 'Y')
+                ->orWhereNull('judge');
+        });
+
 		$query->orderBy('sid', 'desc');
 		$list = $query->get();
 
@@ -272,6 +266,25 @@ class ApplyServices extends AppServices
         return $this->data;
     }
 
+    //지급여부 일괄변경
+    public function allPayChangeService(Request $request)
+    {
+        $o_sid = $request->o_sid;
+        $this->data['overseas'] = OverseasSetting::findOrFail($o_sid);
+
+        $query = OverseasApply::where(['o_sid'=>$o_sid, 'del'=>'N']);
+        $query->where(function($q) {
+            $q->where('pay_result', '!=', 'Y')
+                ->orWhereNull('pay_result');
+        });
+        $query->orderBy('sid', 'desc');
+        $list = $query->get();
+
+        $this->data['list'] = $list;
+
+
+        return $this->data;
+    }
 
 	
 
@@ -282,7 +295,8 @@ class ApplyServices extends AppServices
                 return $this->memoWrite($request);
 			case 'all-judge-change':
                 return $this->allJudgeChange($request);
-
+            case 'all-pay-change':
+                return $this->allPayChange($request);
 
             case 'overseas-step2':
                 return $this->step2Services($request);
@@ -581,6 +595,32 @@ class ApplyServices extends AppServices
 				]);
 
             $this->dbCommit('관리자 - 국외학술대회지원 심사상태 일괄 변경');
+
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => '저장 되었습니다.',
+                'winClose' => $this->ajaxActionWinClose(true),
+            ]);
+        } catch (\Exception $e) {
+            return $this->dbRollback($e);
+        }
+    }
+
+    private function allPayChange(Request $request)
+    {
+        $pay_result = $request->pay_result;
+        $sids = $request->sids;
+
+        $this->transaction();
+
+        try {
+            OverseasApply::whereIn('sid', $sids)
+                ->update([
+                    'pay_result' => $pay_result,
+                    'updated_at' => DB::raw('updated_at'),
+                ]);
+
+            $this->dbCommit('관리자 - 국외학술대회지원 지급여부 일괄 변경');
 
             return $this->returnJsonData('alert', [
                 'case' => true,

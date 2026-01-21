@@ -14,10 +14,10 @@
             <div class="overseas-box yellow">
                 <p>자세한 사항은 아래 참가지원 규정 버튼을 눌러 확인 부탁드립니다.</p>
                 <div class="btn-wrap">
-                    <a -href="/assets/file/" target="_blank" class="btn btn-type1 color-type2">
+                    <a href="/assets/file/KRPIA_국내외학술대회_참가자_정산_매뉴얼(2024_07_15).pdf" target="_blank" class="btn btn-type1 color-type2">
                         한국글로벌의약산업협회(KRPIA) 규정 다운로드<img src="/assets/image/sub/ic_btn_download.png" alt="">
                     </a>
-                    <a -href="/assets/file/" target="_blank" class="btn btn-type1 color-type3">
+                    <a href="/assets/file/한국제약바이오협회_학술대회_참가자_지원_가이드라인(2023.09.20).pdf" target="_blank" class="btn btn-type1 color-type3">
                         한국제약바이오협회(KPBMA) 규정 다운로드<img src="/assets/image/sub/ic_btn_download.png" alt="">
                     </a>
                 </div>

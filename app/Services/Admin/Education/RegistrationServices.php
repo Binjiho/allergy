@@ -443,6 +443,99 @@ class RegistrationServices extends AppServices
 
         try {
             foreach (json_decode($request->data) ?? [] as $data) {
+                $data->wsid = $request->ex_sid;
+
+                switch ($data->member_gubun){
+                    case '비회원':
+                        $member_gubun = 'N';
+                        break;
+                    default:
+                        $member_gubun = 'Y';
+                        break;
+                }
+
+                switch ($data->gubun){
+                    case '전문의':
+                        $gubun = '1';
+                        break;
+                    case '일반의':
+                        $gubun = '2';
+                        break;
+                    case '전공의':
+                        $gubun = '3';
+                        break;
+                    case '공중보건의':
+                        $gubun = '4';
+                        break;
+                    default:
+                        $gubun = '5';
+                        break;
+                }
+
+                switch ($data->pay_method){
+                    case '카드결제':
+                        $pay_method = 'C';
+                        break;
+                    case '무통장입금':
+                        $pay_method = 'B';
+                        break;
+                    default:
+                        $pay_method = null;
+                        break;
+                }
+
+                switch ($data->pay_status){
+                    case '입금':
+                        $pay_status = 'Y';
+                        break;
+                    case '환불':
+                        $pay_status = 'R';
+                        break;
+                    case '미입금':
+                        $pay_status = 'N';
+                        break;
+                    default:
+                        $pay_status = null;
+                        break;
+                }
+
+                $phone = str_replace('-','',$data->phone);
+                $amount = str_replace(',','',$data->amount);
+
+                $data->member_gubun = $member_gubun;
+                $data->gubun = $gubun;
+                $data->pay_method = $pay_method;
+                $data->pay_status = $pay_status;
+                $data->phone = $phone;
+                $data->amount = trim($amount);
+
+                $executiveDetail = new Registration();
+                $executiveDetail->setByCollective($data);
+                $executiveDetail->m2_memo = date('Y-m-d').' 일괄 업로드';
+                $executiveDetail->save();
+            }
+
+            $this->dbCommit('관리자 - registration 일괄 등록');
+
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => "등록 되었습니다.",
+                'winClose' => $this->ajaxActionWinClose(true)
+            ]);
+        } catch (\Exception $e) {
+            return $this->dbRollback($e);
+        }
+    }
+
+    private function collectiveHospitalCreateService(Request $request)
+    {
+        dd($request->all());
+        $this->transaction();
+
+        $userConfig = config('site.user');
+
+        try {
+            foreach (json_decode($request->data) ?? [] as $data) {
 //                $data->ex_sid = $request->ex_sid;
 
                 $hospital = Hospital::where(['name_kr'=>$data->name_kr,'chief_name'=>$data->chief_name])->first();

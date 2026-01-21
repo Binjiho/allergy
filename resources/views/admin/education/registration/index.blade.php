@@ -138,6 +138,8 @@
 
             @if( $_SERVER['REMOTE_ADDR']=="218.235.94.247")
                 <a href="{{ route('registration.collective', ['wsid' => request()->wsid]) }}" class="btn btn-small btn-type1 color-type10 call-popup" data-popup_name="executive-upsert-collective" data-width="1350" data-height="700">엑셀 업로드</a>
+
+{{--                <a href="{{ route('registration.hospital_collective', ['wsid' => request()->wsid]) }}" class="btn btn-small btn-type1 color-type10 call-popup" data-popup_name="executive-upsert-collective" data-width="1350" data-height="700">병원 엑셀 업로드</a>--}}
             @endif
 
 {{--            <a href="{{ route('registration.upsert',['wsid'=>request()->wsid ?? '']) }}" class="btn btn-small btn-type1 color-type8 call-popup" data-name="upsert-individual" data-width="1550" data-height="900">개별 등록</a>--}}

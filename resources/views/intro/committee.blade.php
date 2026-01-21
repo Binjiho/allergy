@@ -75,7 +75,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김미애</td>
-                                <td>차의대 분당</td>
+                                <td>차의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
@@ -111,7 +111,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김경훈</td>
-                                <td>서울의대 분당</td>
+                                <td>서울의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -473,13 +473,13 @@
                             <tr>
                                 <th scope="row">간행이사</th>
                                 <td>최정희</td>
-                                <td>한림의대 동탄</td>
+                                <td>한림의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
                                 <th scope="row">간사</th>
                                 <td>양송이</td>
-                                <td>한림의대 성심</td>
+                                <td>한림의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -509,13 +509,13 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김정현</td>
-                                <td>순천향의대 서울</td>
+                                <td>순천향의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>심지수</td>
-                                <td>이대서울병원</td>
+                                <td>이화의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
@@ -539,7 +539,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김민지</td>
-                                <td>세종충남대병원</td>
+                                <td>충남의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -740,7 +740,7 @@
                         </ol>
                     </div>
                 </div>
-            </div>
+            </div> 
             <!-- //e:간행위원회 -->
 
             <!-- s:교육위원회 -->
@@ -781,6 +781,7 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div class="term-wrap">
                     <div class="term-conbox">
                         <h4 class="tit">교육위원회 업무규정</h4>
@@ -1019,7 +1020,7 @@
                             <tr>
                                 <th scope="row">홍보이사</th>
                                 <td>허규영</td>
-                                <td>고려의대 구로</td>
+                                <td>고려의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
@@ -1204,6 +1205,12 @@
                                 <td>한림의대</td>
                                 <td>내과</td>
                             </tr>
+							<tr>
+                                <th scope="row">위원</th>
+                                <td>양송이</td>
+                                <td>한림의대</td>
+                                <td>소아청소년과</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -1353,13 +1360,13 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>강성윤</td>
-                                <td>가천의대 길병원</td>
+                                <td>가천의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김미애</td>
-                                <td>차의대 분당차병원</td>
+                                <td>차의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
@@ -1371,7 +1378,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>심지수</td>
-                                <td>이대서울병원</td>
+                                <td>이화의대</td>
                                 <td>내과</td>
                             </tr>
                         </tbody>
@@ -1485,7 +1492,7 @@
                             <tr>
                                 <th scope="row">간사</th>
                                 <td>김정현</td>
-                                <td>순천향의대 서울</td>
+                                <td>순천향의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
@@ -1539,13 +1546,13 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김경훈</td>
-                                <td>서울의대 분당</td>
+                                <td>서울의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김민지</td>
-                                <td>세종충남대병원</td>
+                                <td>충남의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                         </tbody>
@@ -1667,7 +1674,7 @@
                             <tr>
                                 <th scope="row">간사</th>
                                 <td>김윤희</td>
-                                <td>연세의대 강남</td>
+                                <td>연세의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -1691,7 +1698,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>신정우</td>
-                                <td>차의대 분당차병원</td>
+                                <td>차의대</td>
                                 <td>피부과</td>
                             </tr>
                         </tbody>
@@ -1813,7 +1820,7 @@
                             <tr>
                                 <th scope="row">간사</th>
                                 <td>김경훈</td>
-                                <td>서울의대 분당</td>
+                                <td>서울의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -1843,13 +1850,13 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김진엽</td>
-                                <td>동국의대 일산</td>
+                                <td>동국의대</td>
                                 <td>이비인후과</td>
                             </tr>
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>홍종수</td>
-                                <td>동국의대 일산</td>
+                                <td>동국의대</td>
                                 <td>피부과</td>
                             </tr>
                         </tbody>
@@ -1983,7 +1990,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김성렬</td>
-                                <td>연세의대 용인세브란스</td>
+                                <td>연세의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
@@ -2138,7 +2145,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>이소연</td>
-                                <td>울산의대 서울아산</td>
+                                <td>연세의료원 디지털헬스혁신연구소 </td>
                                 <td>소아청소년과</td>
                             </tr>
                         </tbody>
@@ -2457,7 +2464,7 @@
                             <tr>
                                 <th scope="row">간사</th>
                                 <td>성명순</td>
-                                <td>순천향의대 구미</td>
+                                <td>순천향의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -2469,7 +2476,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김미애</td>
-                                <td>차의대 분당차병원</td>
+                                <td>차의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
@@ -2493,7 +2500,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김경훈</td>
-                                <td>서울의대 분당</td>
+                                <td>서울의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -2505,7 +2512,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>지혜미</td>
-                                <td>차의대 분당차병원</td>
+                                <td>차의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -2632,19 +2639,19 @@
                             <tr>
                                 <th scope="row">대외협력이사</th>
                                 <td>김세훈</td>
-                                <td>서울의대 분당</td>
+                                <td>서울의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
                                 <th scope="row">간사</th>
                                 <td>김정현</td>
-                                <td>순천향의대 서울</td>
+                                <td>순천향의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김병근</td>
-                                <td>고려의대 안암</td>
+                                <td>고려의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>
@@ -2656,7 +2663,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김환수</td>
-                                <td>가톨릭의대 부천성모</td>
+                                <td>가톨릭의대</td>
                                 <td>소아청소년과</td>
                             </tr>
                             <tr>
@@ -2866,7 +2873,7 @@
                             <tr>
                                 <th scope="row">위원</th>
                                 <td>김정현</td>
-                                <td>순천향의대 서울</td>
+                                <td>순천향의대</td>
                                 <td>내과</td>
                             </tr>
                             <tr>

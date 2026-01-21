@@ -135,18 +135,20 @@
                             <li>
                                 <div class="form-con">{{ $overseasConfig['submit_type'][$overseas->submit_type] ?? '' }}</div>
                             </li>
+                            @if (($overseas->submit_type ?? '') == 'A' && !empty($overseas->filename2))
                             <li>
                                 <div class="form-con">
-                                    @if (!empty($overseas->filename2))
                                     <a href="{{ $overseas->downloadUrl(2) }}">{{ $overseas->filename2 }}</a>
-                                    @endif
                                 </div>
                             </li>
+                            @endif
+                            @if (($overseas->submit_type ?? '') == 'B')
                             <li>
                                 <!-- 추후 제출 -->
                                 <div class="form-con">{{ $overseasConfig['agree2'][$overseas->agree2 ?? 'Y'] ?? '' }}</div>
                                 <!-- //추후제출 -->
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>

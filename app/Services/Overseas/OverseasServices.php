@@ -354,31 +354,52 @@ class OverseasServices extends AppServices
 
             }else{
 
-                if($overseas->complete != 'Y') {
-                    // 메일 발송
-                    $mailData = [
-                        'receiver_name' => $overseas->user->name_kr,
-                        'receiver_email' => $overseas->email,
-                        'body' => view("template.overseas-create", ['overseas' => $overseas])->render(),
-                    ];
-
-                    $mailSubject = "[".env('APP_NAME')."] ".$overseasSetting->title." 지원 신청이 완료되었습니다.";
-
-                    $mailResult = (new MailRealSendServices())->mailSendService($mailData, 'overseas-create',['subject'=>$mailSubject]);
-
-                    if ($mailResult !== 'suc') {
-                        return $mailResult;
-                    }
-                    // END 회원가입 메일 발송
-                }
-
                 if($request->modify == 'Y'){
+                    if($overseas->complete != 'Y'){
+                        // 메일 발송
+                        $mailData = [
+                            'receiver_name' => $overseas->user->name_kr,
+                            'receiver_email' => $overseas->email,
+                            'body' => view("template.overseas-create", ['overseas' => $overseas])->render(),
+                        ];
+
+                        $mailSubject = "[".env('APP_NAME')."] ".$overseasSetting->title." 지원 신청이 완료되었습니다.";
+
+                        $mailResult = (new MailRealSendServices())->mailSendService($mailData, 'overseas-create',['subject'=>$mailSubject]);
+
+                        if ($mailResult !== 'suc') {
+                            return $mailResult;
+                        }
+                        // END 회원가입 메일 발송
+
+                        $overseas->complete='Y';
+                        $overseas->completed_at=date('Y-m-d H:i:s');
+                    }
+
                     $overseas->update();
                     $this->dbCommit( ( checkUrl() == 'admin' ? '관리자 ' : '사용자' ).' - 국외학술지원 step3 수정');
 
                     return $this->returnJsonData('location', $this->ajaxActionLocation('replace', route('overseas.search') ));
 
                 }else{
+
+                    if($overseas->complete != 'Y') {
+                        // 메일 발송
+                        $mailData = [
+                            'receiver_name' => $overseas->user->name_kr,
+                            'receiver_email' => $overseas->email,
+                            'body' => view("template.overseas-create", ['overseas' => $overseas])->render(),
+                        ];
+
+                        $mailSubject = "[".env('APP_NAME')."] ".$overseasSetting->title." 지원 신청이 완료되었습니다.";
+
+                        $mailResult = (new MailRealSendServices())->mailSendService($mailData, 'overseas-create',['subject'=>$mailSubject]);
+
+                        if ($mailResult !== 'suc') {
+                            return $mailResult;
+                        }
+                        // END 회원가입 메일 발송
+                    }
 
                     $overseas->complete='Y';
                     $overseas->completed_at=date('Y-m-d H:i:s');

@@ -20,7 +20,7 @@
         <p style="font-size: 1.5rem; padding: 3px;">* 빨간색으로 표기된 부분은 필수 값이니 꼭 입력해 주세요.</p>
     </div>
 
-    <form id="collective-frm" method="post" action="{{ route('registration.data',['wsid'=>request()->wsid]) }}" data-ex_sid="{{ request()->wsid }}" data-case="collective-create">
+    <form id="collective-frm" method="post" action="{{ route('registration.data',['wsid'=>request()->wsid]) }}" data-ex_sid="{{ request()->ex_sid }}" data-case="collective-create">
         <div style="width:100%;" >
             <div id="handsontable" class="hot handsontable htRowHeaders htColumnHeaders" ></div>
         </div>
@@ -40,38 +40,22 @@
         const rowHeader = "✚";
         const delimiter = '|::|';
         const hadsonHeaers = [
-            '회원구분',
-            '등록구분',
+            '<b class="handson-headers">직위</b>',
+            '세부직위',
             '<b class="handson-headers">이름</b>',
-            '근무처(소속)',
-            '면허번호',
-
-            '이메일',
-            '휴대폰번호',
-            '등록비',
-            '결제방법',
-            '결제상태',
-
-            '최초등록일',
+            '소속',
+            'address',
         ];
 
         const handson = new Handsontable(document.getElementById('handsontable'), {
             colHeaders: hadsonHeaers,
-            colWidths: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+            colWidths: [150, 150, 150, 150, 150],
             data: [{
-                name: '',
-                name1: '',
-                name2: '',
-                name3: '',
-                name4: '',
-
-                name5: '',
-                name6: '',
-                name7: '',
-                name8: '',
-                name9: '',
-
-                name10: '',
+                name: 'name_kr',
+                name1: 'chief_name',
+                name2: 'si',
+                name3: 'gu',
+                name4: 'address',
             }],
             licenseKey: 'non-commercial-and-evaluation',
             rowHeaders: "✚",
@@ -102,19 +86,11 @@
                 excelData.shift();
 
                 excelData = {
-                    member_gubun: excelData[0],
-                    gubun: excelData[1],
-                    name_kr: excelData[2],
-                    office_name: excelData[3],
-                    license_number: excelData[4],
-
-                    email: excelData[5],
-                    phone: excelData[6],
-                    amount: excelData[7],
-                    pay_method: excelData[8],
-                    pay_status: excelData[9],
-
-                    created_at: excelData[10],
+                    name_kr: excelData[0],
+                    chief_name: excelData[1],
+                    si: excelData[2],
+                    gu: excelData[3],
+                    address: excelData[4],
                 }
 
                 // if(isEmpty(excelData.degree)) {

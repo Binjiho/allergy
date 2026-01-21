@@ -149,7 +149,7 @@
             <a href="{{ route('apply.all-judge-change', ['o_sid'=>$overseas->sid]) }}" class="btn btn-small btn-type1 color-type20 call-popup" data-name="all-judge-change" data-width="1550" data-height="900">
 				심사상태 일괄변경
             </a>
-            <a href="" class="btn btn-small btn-type1 color-type20 call-popup" data-name="" data-width="1550" data-height="900"">
+            <a href="{{ route('apply.all-pay-change', ['o_sid'=>$overseas->sid]) }}" class="btn btn-small btn-type1 color-type20 call-popup" data-name="all-pay-change" data-width="1550" data-height="900">
                 지급여부상태 일괄변경
             </a>
 

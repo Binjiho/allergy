@@ -16,14 +16,14 @@
                     <img src="/assets/image/main/img_mainvisual01_m.png" alt="" class="m-show">
                 </div>
             </div>
-            <div class="main-visual-con">
+            <!-- <div class="main-visual-con">
                 <a href="https://allergy3.pcocms.com/" target="_blank">
                     <picture>
                         <source srcset="/assets/image/main/img_mainvisual02_m.jpg" media="(max-width: 768px)">
                         <img src="/assets/image/main/img_mainvisual02.jpg" alt="">
                     </picture>
                 </a>
-            </div>
+            </div> -->
         </div>
         <div class="slider-attr">
             <div class="slick-dots-wrap"></div>

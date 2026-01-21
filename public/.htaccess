@@ -8,8 +8,8 @@
     # PHP 설정 (PHP 8.3용)
     <IfModule mod_php.c>
         php_value upload_max_filesize 500M
-        php_value post_max_size 50M
-        php_value max_input_vars 5000
+        php_value post_max_size 200M
+        php_value max_input_vars 9000
     </IfModule>
 
     # Handle Authorization Header
